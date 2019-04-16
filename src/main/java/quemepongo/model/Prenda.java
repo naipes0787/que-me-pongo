@@ -1,3 +1,4 @@
+package quemepongo.model;
 import java.awt.*;
 
 public class Prenda {
@@ -7,7 +8,7 @@ public class Prenda {
     public Color colorSecundario;
     public Trama trama;
 
-    Prenda(TipoPrenda tipo, Material material, Trama trama, Color colorPrincipal, Color colorSecundario){
+    public Prenda(TipoPrenda tipo, Material material, Trama trama, Color colorPrincipal, Color colorSecundario){
         this.tipo = tipo;
         this.material = material;
         this.trama = trama;

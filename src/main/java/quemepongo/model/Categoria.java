@@ -1,3 +1,4 @@
+package quemepongo.model;
 public enum Categoria {
     PARTE_SUPERIOR,
     CALZADO,
