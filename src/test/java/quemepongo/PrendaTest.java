@@ -24,6 +24,7 @@ public class PrendaTest {
 	 * Al crear prendas sin tipo se arroja {@link NullPointerException}
 	 */
 	@Test(expected = NullPointerException.class)
+	@SuppressWarnings("unused")
 	public void buildPrendaWithoutTipo() {
 		List<Material> materiales = new ArrayList<>();
 		materiales.add(Material.ALGODON);
@@ -31,13 +32,13 @@ public class PrendaTest {
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.buildPrenda();
-		prenda.getCategoria();
 	}
 	
 	/**
 	 * Al crear prendas sin color principal {@link NullPointerException}
 	 */
 	@Test(expected = NullPointerException.class)
+	@SuppressWarnings("unused")
 	public void buildPrendaWithoutMaterial() {
 		List<Material> materiales = new ArrayList<>();
 		materiales.add(Material.ALGODON);
@@ -45,13 +46,13 @@ public class PrendaTest {
 				.setTipoPrenda(new TipoPrenda(Categoria.PARTE_SUPERIOR, materiales))
 				.setColorPrincipal(Color.BLACK)
 				.buildPrenda();
-		prenda.getCategoria();
 	}
 	
 	/**
 	 * Al crear prendas sin material {@link NullPointerException}
 	 */
 	@Test(expected = NullPointerException.class)
+	@SuppressWarnings("unused")
 	public void buildPrendaWithoutColorPrincipal() {
 		List<Material> materiales = new ArrayList<>();
 		materiales.add(Material.ALGODON);
@@ -59,7 +60,6 @@ public class PrendaTest {
 				.setTipoPrenda(new TipoPrenda(Categoria.PARTE_SUPERIOR, materiales))
 				.setMaterial(Material.ALGODON)
 				.buildPrenda();
-		prenda.getCategoria();
 	}
 	
 	/**
