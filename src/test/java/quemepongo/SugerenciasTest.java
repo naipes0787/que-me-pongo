@@ -1,48 +1,67 @@
 package quemepongo;
 
-import org.junit.Assert;
 import org.junit.Test;
 import quemepongo.model.*;
 
 import java.util.Arrays;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 public class SugerenciasTest {
 
     private static final TipoPrenda JEAN = new TipoPrenda(Categoria.PARTE_INFERIOR, Arrays.asList(Material.values()));
     private static final TipoPrenda CARGO = new TipoPrenda(Categoria.PARTE_INFERIOR, Arrays.asList(Material.values()));
     private static final TipoPrenda POLLERA = new TipoPrenda(Categoria.PARTE_INFERIOR, Arrays.asList(Material.values()));
+    private static final TipoPrenda CALZA = new TipoPrenda(Categoria.PARTE_INFERIOR, Arrays.asList(Material.values()));
 
     private static final TipoPrenda REMERA = new TipoPrenda(Categoria.PARTE_SUPERIOR, Arrays.asList(Material.values()));
     private static final TipoPrenda MUSCULOSA = new TipoPrenda(Categoria.PARTE_SUPERIOR, Arrays.asList(Material.values()));
-    private static final TipoPrenda SWEATER = new TipoPrenda(Categoria.PARTE_SUPERIOR, Arrays.asList(Material.values()));
+    private static final TipoPrenda CAMISA = new TipoPrenda(Categoria.PARTE_SUPERIOR, Arrays.asList(Material.values()));
 
     private static final TipoPrenda BOTAS = new TipoPrenda(Categoria.CALZADO, Arrays.asList(Material.values()));
     private static final TipoPrenda BORCEGOS = new TipoPrenda(Categoria.CALZADO, Arrays.asList(Material.values()));
     private static final TipoPrenda ZAPATILLAS = new TipoPrenda(Categoria.CALZADO, Arrays.asList(Material.values()));
 
-    private static final TipoPrenda ANTEOJOS = new TipoPrenda(Categoria.ACCESORIOS, Arrays.asList(Material.values()));
-    private static final TipoPrenda PULSERA = new TipoPrenda(Categoria.ACCESORIOS, Arrays.asList(Material.values()));
+    private static final TipoPrenda ANTEOJOS = new TipoPrenda(Categoria.ACCESORIO, Arrays.asList(Material.values()));
+    private static final TipoPrenda PULSERA = new TipoPrenda(Categoria.ACCESORIO, Arrays.asList(Material.values()));
 
-    private static Guardarropa guardarropaSinAccesorios;
+    @Test
+    public void guardarropaSinAccesorios() {
+        Guardarropa guardarropa = new Guardarropa();
+        guardarropa.agregarPrendaInferior(new Prenda(JEAN, null, null, null, null));
+        guardarropa.agregarPrendaInferior(new Prenda(CARGO, null, null, null, null));
+        guardarropa.agregarPrendaInferior(new Prenda(CALZA, null, null, null, null));
+        guardarropa.agregarPrendaInferior(new Prenda(POLLERA, null, null, null, null));
+        guardarropa.agregarPrendaSuperior(new Prenda(REMERA, null, null, null, null));
+        guardarropa.agregarPrendaSuperior(new Prenda(MUSCULOSA, null, null, null, null));
+        guardarropa.agregarPrendaSuperior(new Prenda(CAMISA, null, null, null, null));
+        guardarropa.agregarCalzado(new Prenda(BOTAS, null, null, null, null));
+        guardarropa.agregarCalzado(new Prenda(BORCEGOS, null, null, null, null));
+        guardarropa.agregarCalzado(new Prenda(ZAPATILLAS, null, null, null, null));
 
-    static {
-        guardarropaSinAccesorios = new Guardarropa();
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(JEAN, null, null, null, null));
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(CARGO, null, null, null, null));
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(POLLERA, null, null, null, null));
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(REMERA, null, null, null, null));
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(MUSCULOSA, null, null, null, null));
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(SWEATER, null, null, null, null));
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(BOTAS, null, null, null, null));
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(BORCEGOS, null, null, null, null));
-        guardarropaSinAccesorios.agregarPrenda(new Prenda(ZAPATILLAS, null, null, null, null));
+        Set<Atuendo> sugerencias = guardarropa.sugerencias();
+        assertEquals(4 * 3 * 3, sugerencias.size());
     }
 
     @Test
-    public void guardarropa_sin_accesorios() {
-        Usuario usuario = new Usuario();
-        usuario.agregarGuardarropa(guardarropaSinAccesorios);
-        usuario.sugerencias().forEach(a -> Assert.assertEquals(3, a.partes()));
+    public void guardarropaConAccesorios() {
+        Guardarropa guardarropa = new Guardarropa();
+        guardarropa.agregarPrendaInferior(new Prenda(JEAN, null, null, null, null));
+        guardarropa.agregarPrendaInferior(new Prenda(CARGO, null, null, null, null));
+        guardarropa.agregarPrendaInferior(new Prenda(CALZA, null, null, null, null));
+        guardarropa.agregarPrendaInferior(new Prenda(POLLERA, null, null, null, null));
+        guardarropa.agregarPrendaSuperior(new Prenda(REMERA, null, null, null, null));
+        guardarropa.agregarPrendaSuperior(new Prenda(MUSCULOSA, null, null, null, null));
+        guardarropa.agregarPrendaSuperior(new Prenda(CAMISA, null, null, null, null));
+        guardarropa.agregarCalzado(new Prenda(BOTAS, null, null, null, null));
+        guardarropa.agregarCalzado(new Prenda(BORCEGOS, null, null, null, null));
+        guardarropa.agregarCalzado(new Prenda(ZAPATILLAS, null, null, null, null));
+        guardarropa.agregarAccesorio(new Prenda(ANTEOJOS, null, null, null, null));
+        guardarropa.agregarAccesorio(new Prenda(PULSERA, null, null, null, null));
+
+        Set<Atuendo> sugerencias = guardarropa.sugerenciasConAccesorios();
+        assertEquals(4 * 3 * 3 * 2, sugerencias.size());
     }
 
 }
