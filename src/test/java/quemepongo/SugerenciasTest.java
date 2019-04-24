@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class SugerenciasTest {
 
@@ -42,6 +43,11 @@ public class SugerenciasTest {
 
         Set<Atuendo> sugerencias = guardarropa.sugerencias();
         assertEquals(4 * 3 * 3, sugerencias.size());
+        sugerencias.forEach(atuendo -> {
+            assertPrenda(atuendo.getPrendaSuperior(), Categoria.PARTE_SUPERIOR);
+            assertPrenda(atuendo.getPrendaInferior(), Categoria.PARTE_INFERIOR);
+            assertPrenda(atuendo.getCalzado(), Categoria.CALZADO);
+        });
     }
 
     @Test
@@ -62,6 +68,18 @@ public class SugerenciasTest {
 
         Set<Atuendo> sugerencias = guardarropa.sugerenciasConAccesorios();
         assertEquals(4 * 3 * 3 * 2, sugerencias.size());
+
+        sugerencias.forEach(atuendo -> {
+            assertPrenda(atuendo.getPrendaSuperior(), Categoria.PARTE_SUPERIOR);
+            assertPrenda(atuendo.getPrendaInferior(), Categoria.PARTE_INFERIOR);
+            assertPrenda(atuendo.getCalzado(), Categoria.CALZADO);
+            assertPrenda(atuendo.getAccesorio(), Categoria.ACCESORIO);
+        });
+    }
+
+    private void assertPrenda(Prenda prenda, Categoria categoriaEsperada) {
+        assertNotNull(prenda);
+        assertEquals(categoriaEsperada, prenda.getCategoria());
     }
 
 }

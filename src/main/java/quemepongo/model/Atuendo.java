@@ -1,8 +1,5 @@
 package quemepongo.model;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public class Atuendo {
 
     private Prenda prendaSuperior;
@@ -11,19 +8,29 @@ public class Atuendo {
     private Prenda accesorio;
 
     public Atuendo(Prenda prendaSuperior, Prenda prendaInferior, Prenda calzado) {
-        this.prendaSuperior = prendaValida(prendaSuperior, Categoria.PARTE_SUPERIOR);
-        this.prendaInferior = prendaValida(prendaInferior, Categoria.PARTE_INFERIOR);
-        this.calzado = prendaValida(calzado, Categoria.CALZADO);
+        this.prendaSuperior = prendaSuperior;
+        this.prendaInferior = prendaInferior;
+        this.calzado = calzado;
     }
 
     public Atuendo conAccesorio(Prenda accesorio) {
-        this.accesorio = prendaValida(accesorio, Categoria.ACCESORIO);
+        this.accesorio = accesorio;
         return this;
     }
 
-    private Prenda prendaValida(Prenda prenda, Categoria categoria) {
-        checkNotNull(prenda, "Se requiere una prenda de categoría '%s'", categoria);
-        checkArgument(categoria.equals(prenda.getCategoria()), "La prenda debería ser de categoría '%s', pero es de categoría '%s'", categoria, prenda.getCategoria());
-        return prenda;
+    public Prenda getPrendaSuperior() {
+        return prendaSuperior;
+    }
+
+    public Prenda getPrendaInferior() {
+        return prendaInferior;
+    }
+
+    public Prenda getCalzado() {
+        return calzado;
+    }
+
+    public Prenda getAccesorio() {
+        return accesorio;
     }
 }
