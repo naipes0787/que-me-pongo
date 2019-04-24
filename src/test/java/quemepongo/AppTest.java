@@ -1,10 +1,9 @@
 package quemepongo;
 
 /**
- * Test de QueMePongo
+ * Test de la aplicación QueMePongo
  */
 public class AppTest {
 	
-
 
 }
