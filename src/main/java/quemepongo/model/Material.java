@@ -1,6 +1,18 @@
 package quemepongo.model;
 public enum Material {
-	ALGODON,
+    ALGODON,
+    BRONCE,
+    CUERO,
+    GABARDINA,
+    LANA,
+    LINO,
     LONA,
-    PIQUE
+    ORO,
+    OXFORD,
+    PIQUE,
+    PLASTICO,
+    PLATA,
+    POLIESTER,
+    SEDA
+
 }

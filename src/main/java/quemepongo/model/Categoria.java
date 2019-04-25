@@ -1,7 +1,11 @@
 package quemepongo.model;
+
+import java.util.Set;
+
 public enum Categoria {
-    PARTE_SUPERIOR,
+    ACCESORIO,
     CALZADO,
-    PARTE_INFERIOR,
-    ACCESORIOS
+    PRENDA_INFERIOR,
+    PRENDA_SUPERIOR
+
 }
