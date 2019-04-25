@@ -8,11 +8,13 @@ import java.util.List;
 
 import org.junit.Test;
 
-import quemepongo.model.PrendaBuilder;
 import quemepongo.model.Categoria;
 import quemepongo.model.Material;
 import quemepongo.model.Prenda;
+import quemepongo.model.PrendaBuilder;
+import quemepongo.model.TipoInferior;
 import quemepongo.model.TipoPrenda;
+import quemepongo.model.TipoSuperior;
 import quemepongo.model.Trama;
 
 /**
@@ -43,7 +45,7 @@ public class PrendaTest {
 		List<Material> materiales = new ArrayList<>();
 		materiales.add(Material.ALGODON);
 		Prenda prenda = new PrendaBuilder()
-				.setTipoPrenda(new TipoPrenda(Categoria.PARTE_SUPERIOR, materiales))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
 				.setColorPrincipal(Color.BLACK)
 				.buildPrenda();
 	}
@@ -57,7 +59,7 @@ public class PrendaTest {
 		List<Material> materiales = new ArrayList<>();
 		materiales.add(Material.ALGODON);
 		Prenda prenda = new PrendaBuilder()
-				.setTipoPrenda(new TipoPrenda(Categoria.PARTE_SUPERIOR, materiales))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
 				.setMaterial(Material.ALGODON)
 				.buildPrenda();
 	}
@@ -70,11 +72,11 @@ public class PrendaTest {
 		List<Material> materiales = new ArrayList<>();
 		materiales.add(Material.ALGODON);
 		Prenda prenda = new PrendaBuilder()
-				.setTipoPrenda(new TipoPrenda(Categoria.PARTE_SUPERIOR, materiales))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.buildPrenda();
-		assertEquals(prenda.getCategoria(), Categoria.PARTE_SUPERIOR);
+		assertEquals(prenda.getCategoria(), Categoria.PRENDA_SUPERIOR);
 	}
 	
 	/**
@@ -85,12 +87,12 @@ public class PrendaTest {
 		List<Material> materiales = new ArrayList<>();
 		materiales.add(Material.ALGODON);
 		Prenda prenda = new PrendaBuilder()
-				.setTipoPrenda(new TipoPrenda(Categoria.PARTE_INFERIOR, materiales))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoInferior()))
 				.setMaterial(Material.ALGODON)
 				.setTrama(Trama.RALLADO)
 				.setColorPrincipal(Color.BLACK)
 				.buildPrenda();
-		assertEquals(prenda.getCategoria(), Categoria.PARTE_INFERIOR);
+		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
 	}
 
 }
