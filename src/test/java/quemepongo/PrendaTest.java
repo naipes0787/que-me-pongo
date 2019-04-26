@@ -9,13 +9,12 @@ import org.junit.Test;
 import quemepongo.exceptions.ColoresRepetidosException;
 import quemepongo.exceptions.MaterialInvalidoException;
 import quemepongo.model.Categoria;
-import quemepongo.model.Material;
-import quemepongo.model.Prenda;
 import quemepongo.model.FabricadorTipoCalzado;
 import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.TipoPrenda;
 import quemepongo.model.FabricadorTipoSuperior;
-import quemepongo.model.Trama;
+import quemepongo.model.Material;
+import quemepongo.model.Prenda;
+import quemepongo.model.TipoPrenda;
 
 /**
  * Test de la construcción y el uso de la clase Prenda
@@ -67,7 +66,6 @@ public class PrendaTest {
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoCalzado()))
 				.setMaterial(Material.SEDA)
-				.setTrama(Trama.RALLADO)
 				.setColorPrincipal(Color.BLACK)
 				.build();
 	}
@@ -80,7 +78,6 @@ public class PrendaTest {
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
 				.setMaterial(Material.ALGODON)
-				.setTrama(Trama.RALLADO)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.BLACK)
 				.build();
@@ -108,7 +105,6 @@ public class PrendaTest {
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
 				.setMaterial(Material.ALGODON)
-				.setTrama(Trama.RALLADO)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.WHITE)
 				.build();

@@ -13,7 +13,6 @@ public class Prenda {
 		public Material material;
 		public Color colorPrincipal;
 		public Color colorSecundario;
-		public Trama trama = Trama.LISA;
 
 		public Builder() {
 			
@@ -26,11 +25,6 @@ public class Prenda {
 
 		public Builder setMaterial(Material material) {
 			this.material = material;
-			return this;
-		}
-
-		public Builder setTrama(Trama trama) {
-			this.trama = trama;
 			return this;
 		}
 
@@ -73,7 +67,7 @@ public class Prenda {
 			Objects.requireNonNull(this.material, "El material de la prenda es obligatorio");
 			this.validarMaterial();
 			this.validarColores();
-			return new Prenda(tipoPrenda, material, trama, colorPrincipal, colorSecundario);
+			return new Prenda(tipoPrenda, material, colorPrincipal, colorSecundario);
 		}
 
 	}
@@ -82,12 +76,10 @@ public class Prenda {
     public Material material;
     public Color colorPrincipal;
     public Color colorSecundario;
-    public Trama trama;
 
-    private Prenda(TipoPrenda tipo, Material material, Trama trama, Color colorPrincipal, Color colorSecundario){
+    private Prenda(TipoPrenda tipo, Material material, Color colorPrincipal, Color colorSecundario){
         this.tipo = tipo;
         this.material = material;
-        this.trama = trama;
         this.colorPrincipal = colorPrincipal;
         this.colorSecundario = colorSecundario;
     }
