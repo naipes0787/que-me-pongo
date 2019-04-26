@@ -3,8 +3,6 @@ package quemepongo;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -29,8 +27,6 @@ public class PrendaTest {
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
 	public void buildPrendaWithoutTipo() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
 		Prenda prenda = new Prenda.Builder()
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
@@ -43,8 +39,6 @@ public class PrendaTest {
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
 	public void buildPrendaWithoutMaterial() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
 				.setColorPrincipal(Color.BLACK)
@@ -57,8 +51,6 @@ public class PrendaTest {
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
 	public void buildPrendaWithoutColorPrincipal() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
 				.setMaterial(Material.ALGODON)
@@ -71,8 +63,6 @@ public class PrendaTest {
 	@Test(expected = MaterialInvalidoException.class)
 	@SuppressWarnings("unused")
 	public void buildPrendaInvalida() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoCalzado()))
 				.setMaterial(Material.SEDA)
@@ -86,8 +76,6 @@ public class PrendaTest {
 	 */
 	@Test
 	public void buildPrendaWithoutColorSecundario() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
 				.setMaterial(Material.ALGODON)
@@ -101,8 +89,6 @@ public class PrendaTest {
 	 */
 	@Test
 	public void buildPrendaCompleta() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoInferior()))
 				.setMaterial(Material.ALGODON)

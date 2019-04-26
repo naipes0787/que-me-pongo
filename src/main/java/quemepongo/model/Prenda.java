@@ -42,15 +42,19 @@ public class Prenda {
 			this.colorSecundario = color;
 			return this;
 		}
+		
+		private void validarMaterial() {
+			if(this.tipoPrenda.getMaterialesValidos().stream().
+					noneMatch(material -> material.equals(this.material))) {
+				throw new MaterialInvalidoException(this.material);
+			}
+		}
 
 		public Prenda build() {
 			Objects.requireNonNull(this.tipoPrenda, "El tipo de la prenda es obligatorio");
 			Objects.requireNonNull(this.colorPrincipal, "El color principal de la prenda es obligatorio");
 			Objects.requireNonNull(this.material, "El material de la prenda es obligatorio");
-			if(this.tipoPrenda.getMaterialesValidos().stream().
-					noneMatch(material -> material.equals(this.material))) {
-				throw new MaterialInvalidoException(this.material);
-			}
+			this.validarMaterial();
 			return new Prenda(tipoPrenda, material, trama, colorPrincipal, colorSecundario);
 		}
 
