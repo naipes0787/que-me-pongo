@@ -14,31 +14,31 @@ import quemepongo.model.Categoria;
 import quemepongo.model.Guardarropa;
 import quemepongo.model.Material;
 import quemepongo.model.Prenda;
-import quemepongo.model.TipoAccesorio;
-import quemepongo.model.TipoCalzado;
-import quemepongo.model.TipoInferior;
+import quemepongo.model.FabricadorTipoAccesorio;
+import quemepongo.model.FabricadorTipoCalzado;
+import quemepongo.model.FabricadorTipoInferior;
 import quemepongo.model.TipoPrenda;
-import quemepongo.model.TipoSuperior;
+import quemepongo.model.FabricadorTipoSuperior;
 
 public class SugerenciasTest {
 
 	Guardarropa guardarropa = new Guardarropa();
 	
-	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new TipoInferior());
-    private static final TipoPrenda CARGO = TipoPrenda.diseniarTipo(new TipoInferior());
-    private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new TipoInferior());
-    private static final TipoPrenda CALZA = TipoPrenda.diseniarTipo(new TipoInferior());
+	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
+    private static final TipoPrenda CARGO = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
+    private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
+    private static final TipoPrenda CALZA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
 
-    private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new TipoSuperior());
-    private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new TipoSuperior());
-    private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new TipoSuperior());
+    private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
+    private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
+    private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
 
-    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new TipoCalzado());
-    private static final TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new TipoCalzado());
-    private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new TipoCalzado());
+    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
+    private static final TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
+    private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
 
-    private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new TipoAccesorio());
-    private static final TipoPrenda PULSERA = TipoPrenda.diseniarTipo(new TipoAccesorio());
+    private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
+    private static final TipoPrenda PULSERA = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
     
     @Before
     public void executeBeforeEachTest() {

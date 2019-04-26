@@ -5,7 +5,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class TipoAccesorio implements FabricadorTiposPrenda {
+public class FabricadorTipoAccesorio implements FabricaTipoPrenda {
+	
     public Categoria getCategoria() {
         return Categoria.ACCESORIO;
     }

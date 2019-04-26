@@ -5,22 +5,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class TipoSuperior implements FabricadorTiposPrenda {
+public class FabricadorTipoCalzado implements FabricaTipoPrenda {
+	
     public Categoria getCategoria() {
-        return Categoria.PRENDA_SUPERIOR;
+        return Categoria.CALZADO;
     }
 
     public Set<Material> materialesValidos() {
         return Stream.of(
-                Material.ALGODON,
-                Material.PIQUE,
-                Material.LINO,
-                Material.GABARDINA,
-                Material.SEDA,
-                Material.OXFORD
-        )
+                Material.CUERO,
+                Material.LONA,
+                Material.POLIESTER)
                 .collect(Collectors.toCollection(HashSet::new));
     }
 }
-
-
