@@ -6,6 +6,7 @@ import java.awt.Color;
 
 import org.junit.Test;
 
+import quemepongo.exceptions.ColoresRepetidosException;
 import quemepongo.exceptions.MaterialInvalidoException;
 import quemepongo.model.Categoria;
 import quemepongo.model.Material;
@@ -72,6 +73,21 @@ public class PrendaTest {
 	}
 	
 	/**
+	 * No se permiten crear prendas con el mismo color como principal y secundario
+	 */
+	@Test(expected = ColoresRepetidosException.class)
+	public void buildPrendaMismosColores() {
+		Prenda prenda = new Prenda.Builder()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoInferior()))
+				.setMaterial(Material.ALGODON)
+				.setTrama(Trama.RALLADO)
+				.setColorPrincipal(Color.BLACK)
+				.setColorSecundario(Color.BLACK)
+				.build();
+		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
+	}
+	
+	/**
 	 * Se permite crear prendas sin color secundario
 	 */
 	@Test
@@ -85,7 +101,7 @@ public class PrendaTest {
 	}
 	
 	/**
-	 * Se permite crear prendas completas
+	 * Se permite crear prendas completas con colores distintos
 	 */
 	@Test
 	public void buildPrendaCompleta() {
@@ -94,6 +110,7 @@ public class PrendaTest {
 				.setMaterial(Material.ALGODON)
 				.setTrama(Trama.RALLADO)
 				.setColorPrincipal(Color.BLACK)
+				.setColorSecundario(Color.WHITE)
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
 	}

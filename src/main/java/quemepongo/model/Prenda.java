@@ -2,6 +2,7 @@ package quemepongo.model;
 import java.awt.Color;
 import java.util.Objects;
 
+import quemepongo.exceptions.ColoresRepetidosException;
 import quemepongo.exceptions.MaterialInvalidoException;
 
 public class Prenda {
@@ -43,10 +44,26 @@ public class Prenda {
 			return this;
 		}
 		
+		/**
+		 * Se valida que el material elegido sea de los permitidos por el tipo
+		 * de prenda. 
+		 * @throws MaterialInvalidoException
+		 */
 		private void validarMaterial() {
 			if(this.tipoPrenda.getMaterialesValidos().stream().
 					noneMatch(material -> material.equals(this.material))) {
 				throw new MaterialInvalidoException(this.material);
+			}
+		}
+		
+		/**
+		 * Se valida que el color principal no sea el mismo que el color 
+		 * secundario.
+		 * @throws ColoresRepetidosException
+		 */
+		private void validarColores() {
+			if(this.colorPrincipal.equals(this.colorSecundario)) {
+				throw new ColoresRepetidosException();
 			}
 		}
 
@@ -55,6 +72,7 @@ public class Prenda {
 			Objects.requireNonNull(this.colorPrincipal, "El color principal de la prenda es obligatorio");
 			Objects.requireNonNull(this.material, "El material de la prenda es obligatorio");
 			this.validarMaterial();
+			this.validarColores();
 			return new Prenda(tipoPrenda, material, trama, colorPrincipal, colorSecundario);
 		}
 
