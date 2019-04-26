@@ -22,6 +22,10 @@ public class TipoPrenda {
     }
 
     public Categoria getCategoria() {
-        return categoria;
+        return this.categoria;
+    }
+    
+    public Set<Material> getMaterialesValidos(){
+    	return this.materialesValidos;
     }
 }

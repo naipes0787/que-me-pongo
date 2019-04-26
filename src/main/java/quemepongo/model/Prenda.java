@@ -1,6 +1,8 @@
 package quemepongo.model;
-import java.awt.*;
+import java.awt.Color;
 import java.util.Objects;
+
+import quemepongo.exceptions.MaterialInvalidoException;
 
 public class Prenda {
 	
@@ -45,10 +47,10 @@ public class Prenda {
 			Objects.requireNonNull(this.tipoPrenda, "El tipo de la prenda es obligatorio");
 			Objects.requireNonNull(this.colorPrincipal, "El color principal de la prenda es obligatorio");
 			Objects.requireNonNull(this.material, "El material de la prenda es obligatorio");
-			/* 
-			 * TODO: Validar que el tipo de prenda se corresponda con la categoría y también con el material,
-			 * 		 si es que no lo hace la clase Prenda - Pendiente de respuesta del ayudante
-			 */
+			if(this.tipoPrenda.getMaterialesValidos().stream().
+					noneMatch(material -> material.equals(this.material))) {
+				throw new MaterialInvalidoException(this.material);
+			}
 			return new Prenda(tipoPrenda, material, trama, colorPrincipal, colorSecundario);
 		}
 

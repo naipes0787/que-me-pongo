@@ -8,9 +8,11 @@ import java.util.List;
 
 import org.junit.Test;
 
+import quemepongo.exceptions.MaterialInvalidoException;
 import quemepongo.model.Categoria;
 import quemepongo.model.Material;
 import quemepongo.model.Prenda;
+import quemepongo.model.TipoCalzado;
 import quemepongo.model.TipoInferior;
 import quemepongo.model.TipoPrenda;
 import quemepongo.model.TipoSuperior;
@@ -60,6 +62,22 @@ public class PrendaTest {
 		Prenda prenda = new Prenda.Builder()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
 				.setMaterial(Material.ALGODON)
+				.build();
+	}
+	
+	/**
+	 * No se permiten crear prendas con materiales inválidos
+	 */
+	@Test(expected = MaterialInvalidoException.class)
+	@SuppressWarnings("unused")
+	public void buildPrendaInvalida() {
+		List<Material> materiales = new ArrayList<>();
+		materiales.add(Material.ALGODON);
+		Prenda prenda = new Prenda.Builder()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoCalzado()))
+				.setMaterial(Material.SEDA)
+				.setTrama(Trama.RALLADO)
+				.setColorPrincipal(Color.BLACK)
 				.build();
 	}
 	
