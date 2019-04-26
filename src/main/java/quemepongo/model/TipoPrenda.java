@@ -12,8 +12,8 @@ public class TipoPrenda {
     public Categoria categoria;
     public Set<Material> materialesValidos = new HashSet<>();
 
-    public static TipoPrenda diseniarTipo(FabricadorTiposPrenda tipo) {
-        return new TipoPrenda(tipo.getCategoria(), tipo.materialesValidos());
+    public static TipoPrenda diseniarTipo(FabricaTipoPrenda tipo) {
+        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos());
     }
 
     private TipoPrenda(Categoria categoria, Set<Material> materialesValidos) {
@@ -22,6 +22,10 @@ public class TipoPrenda {
     }
 
     public Categoria getCategoria() {
-        return categoria;
+        return this.categoria;
+    }
+    
+    public Set<Material> getMaterialesValidos(){
+    	return this.materialesValidos;
     }
 }

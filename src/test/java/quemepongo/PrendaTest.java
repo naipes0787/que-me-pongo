@@ -3,19 +3,18 @@ package quemepongo;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 
+import quemepongo.exceptions.ColoresRepetidosException;
+import quemepongo.exceptions.MaterialInvalidoException;
 import quemepongo.model.Categoria;
+import quemepongo.model.FabricadorTipoCalzado;
+import quemepongo.model.FabricadorTipoInferior;
+import quemepongo.model.FabricadorTipoSuperior;
 import quemepongo.model.Material;
 import quemepongo.model.Prenda;
-import quemepongo.model.PrendaBuilder;
-import quemepongo.model.TipoInferior;
 import quemepongo.model.TipoPrenda;
-import quemepongo.model.TipoSuperior;
-import quemepongo.model.Trama;
 
 /**
  * Test de la construcción y el uso de la clase Prenda
@@ -28,12 +27,10 @@ public class PrendaTest {
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
 	public void buildPrendaWithoutTipo() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
-		Prenda prenda = new PrendaBuilder()
+		Prenda prenda = new Prenda.Builder()
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
-				.buildPrenda();
+				.build();
 	}
 	
 	/**
@@ -42,12 +39,10 @@ public class PrendaTest {
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
 	public void buildPrendaWithoutMaterial() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
-		Prenda prenda = new PrendaBuilder()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
+		Prenda prenda = new Prenda.Builder()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
 				.setColorPrincipal(Color.BLACK)
-				.buildPrenda();
+				.build();
 	}
 	
 	/**
@@ -56,12 +51,37 @@ public class PrendaTest {
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
 	public void buildPrendaWithoutColorPrincipal() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
-		Prenda prenda = new PrendaBuilder()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
+		Prenda prenda = new Prenda.Builder()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
 				.setMaterial(Material.ALGODON)
-				.buildPrenda();
+				.build();
+	}
+	
+	/**
+	 * No se permiten crear prendas con materiales inválidos
+	 */
+	@Test(expected = MaterialInvalidoException.class)
+	@SuppressWarnings("unused")
+	public void buildPrendaInvalida() {
+		Prenda prenda = new Prenda.Builder()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoCalzado()))
+				.setMaterial(Material.SEDA)
+				.setColorPrincipal(Color.BLACK)
+				.build();
+	}
+	
+	/**
+	 * No se permiten crear prendas con el mismo color como principal y secundario
+	 */
+	@Test(expected = ColoresRepetidosException.class)
+	public void buildPrendaMismosColores() {
+		Prenda prenda = new Prenda.Builder()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setMaterial(Material.ALGODON)
+				.setColorPrincipal(Color.BLACK)
+				.setColorSecundario(Color.BLACK)
+				.build();
+		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
 	}
 	
 	/**
@@ -69,29 +89,25 @@ public class PrendaTest {
 	 */
 	@Test
 	public void buildPrendaWithoutColorSecundario() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
-		Prenda prenda = new PrendaBuilder()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoSuperior()))
+		Prenda prenda = new Prenda.Builder()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
-				.buildPrenda();
+				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_SUPERIOR);
 	}
 	
 	/**
-	 * Se permite crear prendas completas
+	 * Se permite crear prendas completas con colores distintos
 	 */
 	@Test
 	public void buildPrendaCompleta() {
-		List<Material> materiales = new ArrayList<>();
-		materiales.add(Material.ALGODON);
-		Prenda prenda = new PrendaBuilder()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new TipoInferior()))
+		Prenda prenda = new Prenda.Builder()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
 				.setMaterial(Material.ALGODON)
-				.setTrama(Trama.RALLADO)
 				.setColorPrincipal(Color.BLACK)
-				.buildPrenda();
+				.setColorSecundario(Color.WHITE)
+				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
 	}
 
