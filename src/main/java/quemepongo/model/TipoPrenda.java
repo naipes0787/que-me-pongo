@@ -16,7 +16,7 @@ public class TipoPrenda {
         return new TipoPrenda(tipo.getCategoria(), tipo.materialesValidos());
     }
 
-    TipoPrenda(Categoria categoria, Set<Material> materialesValidos) {
+    private TipoPrenda(Categoria categoria, Set<Material> materialesValidos) {
         this.categoria = categoria;
         this.materialesValidos = materialesValidos;
     }
