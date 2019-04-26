@@ -1,7 +1,8 @@
 package quemepongo.model;
+
 public enum Categoria {
-    PARTE_SUPERIOR,
+    ACCESORIO,
     CALZADO,
-    PARTE_INFERIOR,
-    ACCESORIO
+    PRENDA_INFERIOR,
+    PRENDA_SUPERIOR
 }

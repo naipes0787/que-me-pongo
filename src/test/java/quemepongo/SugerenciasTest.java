@@ -1,31 +1,39 @@
 package quemepongo;
 
-import org.junit.Test;
-import quemepongo.model.*;
-
-import java.util.Arrays;
-import java.util.Set;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Set;
+
+import org.junit.Test;
+
+import quemepongo.model.Atuendo;
+import quemepongo.model.Categoria;
+import quemepongo.model.Guardarropa;
+import quemepongo.model.Prenda;
+import quemepongo.model.TipoAccesorio;
+import quemepongo.model.TipoCalzado;
+import quemepongo.model.TipoInferior;
+import quemepongo.model.TipoPrenda;
+import quemepongo.model.TipoSuperior;
+
 public class SugerenciasTest {
 
-    private static final TipoPrenda JEAN = new TipoPrenda(Categoria.PARTE_INFERIOR, Arrays.asList(Material.values()));
-    private static final TipoPrenda CARGO = new TipoPrenda(Categoria.PARTE_INFERIOR, Arrays.asList(Material.values()));
-    private static final TipoPrenda POLLERA = new TipoPrenda(Categoria.PARTE_INFERIOR, Arrays.asList(Material.values()));
-    private static final TipoPrenda CALZA = new TipoPrenda(Categoria.PARTE_INFERIOR, Arrays.asList(Material.values()));
+	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new TipoInferior());
+    private static final TipoPrenda CARGO = TipoPrenda.diseniarTipo(new TipoInferior());
+    private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new TipoInferior());
+    private static final TipoPrenda CALZA = TipoPrenda.diseniarTipo(new TipoInferior());
 
-    private static final TipoPrenda REMERA = new TipoPrenda(Categoria.PARTE_SUPERIOR, Arrays.asList(Material.values()));
-    private static final TipoPrenda MUSCULOSA = new TipoPrenda(Categoria.PARTE_SUPERIOR, Arrays.asList(Material.values()));
-    private static final TipoPrenda CAMISA = new TipoPrenda(Categoria.PARTE_SUPERIOR, Arrays.asList(Material.values()));
+    private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new TipoSuperior());
+    private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new TipoSuperior());
+    private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new TipoSuperior());
 
-    private static final TipoPrenda BOTAS = new TipoPrenda(Categoria.CALZADO, Arrays.asList(Material.values()));
-    private static final TipoPrenda BORCEGOS = new TipoPrenda(Categoria.CALZADO, Arrays.asList(Material.values()));
-    private static final TipoPrenda ZAPATILLAS = new TipoPrenda(Categoria.CALZADO, Arrays.asList(Material.values()));
+    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new TipoCalzado());
+    private static final TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new TipoCalzado());
+    private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new TipoCalzado());
 
-    private static final TipoPrenda ANTEOJOS = new TipoPrenda(Categoria.ACCESORIO, Arrays.asList(Material.values()));
-    private static final TipoPrenda PULSERA = new TipoPrenda(Categoria.ACCESORIO, Arrays.asList(Material.values()));
+    private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new TipoAccesorio());
+    private static final TipoPrenda PULSERA = TipoPrenda.diseniarTipo(new TipoAccesorio());
 
     @Test
     public void guardarropaSinAccesorios() {
@@ -44,8 +52,8 @@ public class SugerenciasTest {
         Set<Atuendo> sugerencias = guardarropa.sugerencias();
         assertEquals(4 * 3 * 3, sugerencias.size());
         sugerencias.forEach(atuendo -> {
-            assertPrenda(atuendo.getPrendaSuperior(), Categoria.PARTE_SUPERIOR);
-            assertPrenda(atuendo.getPrendaInferior(), Categoria.PARTE_INFERIOR);
+            assertPrenda(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
+            assertPrenda(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
             assertPrenda(atuendo.getCalzado(), Categoria.CALZADO);
         });
     }
@@ -70,8 +78,8 @@ public class SugerenciasTest {
         assertEquals(4 * 3 * 3 * 2, sugerencias.size());
 
         sugerencias.forEach(atuendo -> {
-            assertPrenda(atuendo.getPrendaSuperior(), Categoria.PARTE_SUPERIOR);
-            assertPrenda(atuendo.getPrendaInferior(), Categoria.PARTE_INFERIOR);
+            assertPrenda(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
+            assertPrenda(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
             assertPrenda(atuendo.getCalzado(), Categoria.CALZADO);
             assertPrenda(atuendo.getAccesorio(), Categoria.ACCESORIO);
         });

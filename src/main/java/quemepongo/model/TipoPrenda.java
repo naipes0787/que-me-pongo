@@ -1,26 +1,27 @@
 package quemepongo.model;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
-/* TODO: Falta definir si esto sería una clase o un Enum, 
- * ejemplo de cómo se vería como Enum en:
- *  	https://github.com/naipes0787/quemepongo/blob/master/src/main/java/dds/quemepongo/model/TipoPrenda.java
+import java.util.*;
+
+/*
+Se modela con un Abstract Factory donde el TipoPrenda será instanciado a partir de diseniarTipo llamando a
+un Fabricador de Tipo (TipoSuperior, TipoInferior, TipoCalzado, TipoAccesorio), el cual instanciará con la
+Categoria y listado de materiales validos que corresponde.
  */
+
 public class TipoPrenda {
     public Categoria categoria;
-    public List<Material> materialesValidos = new ArrayList<>();
+    public Set<Material> materialesValidos = new HashSet<>();
 
-    public TipoPrenda(Categoria categoria, List<Material> materialesValidos){
-        this.categoria = Objects.requireNonNull(categoria, "Categoria Obligatorio");
-        this.materialesValidos = Objects.requireNonNull(materialesValidos, "Materiales validos al menos uno");
+    public static TipoPrenda diseniarTipo(FabricadorTiposPrenda tipo) {
+        return new TipoPrenda(tipo.getCategoria(), tipo.materialesValidos());
     }
 
-    public boolean tramaValida(Material material){
-        return materialesValidos.contains(material);
+    private TipoPrenda(Categoria categoria, Set<Material> materialesValidos) {
+        this.categoria = categoria;
+        this.materialesValidos = materialesValidos;
     }
 
-    public Categoria getCategoria(){
+    public Categoria getCategoria() {
         return categoria;
     }
 }
