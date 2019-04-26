@@ -13,7 +13,7 @@ public class TipoPrenda {
     public Set<Material> materialesValidos = new HashSet<>();
 
     public static TipoPrenda diseniarTipo(FabricaTipoPrenda tipo) {
-        return new TipoPrenda(tipo.getCategoria(), tipo.materialesValidos());
+        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos());
     }
 
     private TipoPrenda(Categoria categoria, Set<Material> materialesValidos) {

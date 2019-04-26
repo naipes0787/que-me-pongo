@@ -11,7 +11,7 @@ public class FabricadorTipoCalzado implements FabricaTipoPrenda {
         return Categoria.CALZADO;
     }
 
-    public Set<Material> materialesValidos() {
+    public Set<Material> getMaterialesValidos() {
         return Stream.of(
                 Material.CUERO,
                 Material.LONA,

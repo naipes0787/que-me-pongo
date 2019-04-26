@@ -11,7 +11,7 @@ public class FabricadorTipoSuperior implements FabricaTipoPrenda {
         return Categoria.PRENDA_SUPERIOR;
     }
 
-    public Set<Material> materialesValidos() {
+    public Set<Material> getMaterialesValidos() {
         return Stream.of(
                 Material.ALGODON,
                 Material.PIQUE,

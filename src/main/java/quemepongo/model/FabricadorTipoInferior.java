@@ -11,7 +11,7 @@ public class FabricadorTipoInferior implements FabricaTipoPrenda {
         return Categoria.PRENDA_INFERIOR;
     }
 
-    public Set<Material> materialesValidos() {
+    public Set<Material> getMaterialesValidos() {
         return Stream.of(
                 Material.ALGODON,
                 Material.CUERO,

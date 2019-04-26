@@ -11,7 +11,7 @@ public class FabricadorTipoAccesorio implements FabricaTipoPrenda {
         return Categoria.ACCESORIO;
     }
 
-    public Set<Material> materialesValidos() {
+    public Set<Material> getMaterialesValidos() {
         return Stream.of(
                 Material.ORO,
                 Material.PLATA,
