@@ -102,13 +102,13 @@ public class UsuarioTest {
 		usuario1.agregarGuardarropa(guardarropa1);
 		usuario1.agregarGuardarropa(guardarropa2);
 		usuario2.agregarGuardarropa(guardarropa3);
-		// En el guardarropa 1 hay sólo una prenda de cada categoría
-		final Integer cantidadAtuendosGuardarropa1 = 1;
-		// En el guardarropa 2 hay sólo una prenda inferior, dos superiores y dos calzados
-		final Integer cantidadAtuendosGuardarropa2 = 1*2*2;
 		Set<Atuendo> sugerenciasUsuario1 = usuario1.sugerencias();
-		assertEquals(cantidadAtuendosGuardarropa1 + cantidadAtuendosGuardarropa2, sugerenciasUsuario1.size());
+		// En el guardarropa 1 hay sólo una prenda de cada categoría
+		// En el guardarropa 2 hay sólo una prenda inferior, dos superiores y dos calzados
+		assertEquals(1 + 1*2*2, sugerenciasUsuario1.size());
+		Set<Atuendo> sugerenciasUsuario2 = usuario2.sugerencias();
 		// En el guardarropa 3 hay sólo una prenda inferior, una superior, un calzado y un accesorio
+		assertEquals(1, sugerenciasUsuario2.size());
 	}
 
 }
