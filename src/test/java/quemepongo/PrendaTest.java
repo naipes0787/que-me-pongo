@@ -8,13 +8,7 @@ import org.junit.Test;
 
 import quemepongo.exceptions.ColoresRepetidosException;
 import quemepongo.exceptions.MaterialInvalidoException;
-import quemepongo.model.Categoria;
-import quemepongo.model.FabricadorTipoCalzado;
-import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.FabricadorTipoSuperior;
-import quemepongo.model.Material;
-import quemepongo.model.Prenda;
-import quemepongo.model.TipoPrenda;
+import quemepongo.model.*;
 
 /**
  * Test de la construcción y el uso de la clase Prenda
@@ -26,8 +20,8 @@ public class PrendaTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
-	public void buildPrendaWithoutTipo() {
-		Prenda prenda = new Prenda.Builder()
+	public void construirPrendaSinTipo() {
+		Prenda prenda = new CreadorDePrenda()
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build();
@@ -38,8 +32,8 @@ public class PrendaTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
-	public void buildPrendaWithoutMaterial() {
-		Prenda prenda = new Prenda.Builder()
+	public void construirPrendaSinMaterial() {
+		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
 				.setColorPrincipal(Color.BLACK)
 				.build();
@@ -50,8 +44,8 @@ public class PrendaTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	@SuppressWarnings("unused")
-	public void buildPrendaWithoutColorPrincipal() {
-		Prenda prenda = new Prenda.Builder()
+	public void construirPrendaSinColorPrincipal() {
+		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
 				.setMaterial(Material.ALGODON)
 				.build();
@@ -62,8 +56,8 @@ public class PrendaTest {
 	 */
 	@Test(expected = MaterialInvalidoException.class)
 	@SuppressWarnings("unused")
-	public void buildPrendaInvalida() {
-		Prenda prenda = new Prenda.Builder()
+	public void construirPrendaInvalida() {
+		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoCalzado()))
 				.setMaterial(Material.SEDA)
 				.setColorPrincipal(Color.BLACK)
@@ -74,8 +68,8 @@ public class PrendaTest {
 	 * No se permiten crear prendas con el mismo color como principal y secundario
 	 */
 	@Test(expected = ColoresRepetidosException.class)
-	public void buildPrendaMismosColores() {
-		Prenda prenda = new Prenda.Builder()
+	public void construirPrendaMismosColores() {
+		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
@@ -88,8 +82,8 @@ public class PrendaTest {
 	 * Se permite crear prendas sin color secundario
 	 */
 	@Test
-	public void buildPrendaWithoutColorSecundario() {
-		Prenda prenda = new Prenda.Builder()
+	public void construirPrendaSinColorSecundario() {
+		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
@@ -101,8 +95,8 @@ public class PrendaTest {
 	 * Se permite crear prendas completas con colores distintos
 	 */
 	@Test
-	public void buildPrendaCompleta() {
-		Prenda prenda = new Prenda.Builder()
+	public void construirPrendaCompleta() {
+		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)

@@ -9,16 +9,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import quemepongo.model.Atuendo;
-import quemepongo.model.Categoria;
-import quemepongo.model.Guardarropa;
-import quemepongo.model.Material;
-import quemepongo.model.Prenda;
-import quemepongo.model.FabricadorTipoAccesorio;
-import quemepongo.model.FabricadorTipoCalzado;
-import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.TipoPrenda;
-import quemepongo.model.FabricadorTipoSuperior;
+import quemepongo.model.*;
 
 public class SugerenciasTest {
 
@@ -41,54 +32,54 @@ public class SugerenciasTest {
     private static final TipoPrenda PULSERA = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
     
     @Before
-    public void executeBeforeEachTest() {
+    public void ejecutarAntesDeCadaTest() {
     	guardarropa = new Guardarropa();
-        guardarropa.agregarPrendaInferior(new Prenda.Builder()
+        guardarropa.agregarPrendaInferior(new CreadorDePrenda()
 				.setTipoPrenda(JEAN)
 				.setMaterial(Material.OXFORD)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaInferior(new Prenda.Builder()
+        guardarropa.agregarPrendaInferior(new CreadorDePrenda()
 				.setTipoPrenda(CARGO)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaInferior(new Prenda.Builder()
+        guardarropa.agregarPrendaInferior(new CreadorDePrenda()
 				.setTipoPrenda(CALZA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaInferior(new Prenda.Builder()
+        guardarropa.agregarPrendaInferior(new CreadorDePrenda()
 				.setTipoPrenda(POLLERA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaSuperior(new Prenda.Builder()
+        guardarropa.agregarPrendaSuperior(new CreadorDePrenda()
 				.setTipoPrenda(REMERA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaSuperior(new Prenda.Builder()
+        guardarropa.agregarPrendaSuperior(new CreadorDePrenda()
 				.setTipoPrenda(MUSCULOSA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaSuperior(new Prenda.Builder()
+        guardarropa.agregarPrendaSuperior(new CreadorDePrenda()
 				.setTipoPrenda(CAMISA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarCalzado(new Prenda.Builder()
+        guardarropa.agregarCalzado(new CreadorDePrenda()
 				.setTipoPrenda(BOTAS)
 				.setMaterial(Material.CUERO)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarCalzado(new Prenda.Builder()
+        guardarropa.agregarCalzado(new CreadorDePrenda()
 				.setTipoPrenda(BORCEGOS)
 				.setMaterial(Material.CUERO)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarCalzado(new Prenda.Builder()
+        guardarropa.agregarCalzado(new CreadorDePrenda()
 				.setTipoPrenda(ZAPATILLAS)
 				.setMaterial(Material.LONA)
 				.setColorPrincipal(Color.BLACK)
@@ -100,20 +91,20 @@ public class SugerenciasTest {
         Set<Atuendo> sugerencias = guardarropa.sugerencias();
         assertEquals(4 * 3 * 3, sugerencias.size());
         sugerencias.forEach(atuendo -> {
-            assertPrenda(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
-            assertPrenda(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
-            assertPrenda(atuendo.getCalzado(), Categoria.CALZADO);
+            verificarPrendar(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
+            verificarPrendar(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
+            verificarPrendar(atuendo.getCalzado(), Categoria.CALZADO);
         });
     }
 
     @Test
     public void guardarropaConAccesorios() {
-        guardarropa.agregarAccesorio(new Prenda.Builder()
+        guardarropa.agregarAccesorio(new CreadorDePrenda()
 				.setTipoPrenda(ANTEOJOS)
 				.setMaterial(Material.PLASTICO)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarAccesorio(new Prenda.Builder()
+        guardarropa.agregarAccesorio(new CreadorDePrenda()
 				.setTipoPrenda(PULSERA)
 				.setMaterial(Material.PLATA)
 				.setColorPrincipal(Color.GRAY)
@@ -122,14 +113,14 @@ public class SugerenciasTest {
         assertEquals(4 * 3 * 3 * 2, sugerencias.size());
 
         sugerencias.forEach(atuendo -> {
-            assertPrenda(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
-            assertPrenda(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
-            assertPrenda(atuendo.getCalzado(), Categoria.CALZADO);
-            assertPrenda(atuendo.getAccesorio(), Categoria.ACCESORIO);
+            verificarPrendar(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
+            verificarPrendar(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
+            verificarPrendar(atuendo.getCalzado(), Categoria.CALZADO);
+            verificarPrendar(atuendo.getAccesorio(), Categoria.ACCESORIO);
         });
     }
 
-    private void assertPrenda(Prenda prenda, Categoria categoriaEsperada) {
+    private void verificarPrendar(Prenda prenda, Categoria categoriaEsperada) {
         assertNotNull(prenda);
         assertEquals(categoriaEsperada, prenda.getCategoria());
     }
