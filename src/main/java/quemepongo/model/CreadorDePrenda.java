@@ -2,16 +2,27 @@ package quemepongo.model;
 
 import quemepongo.exceptions.ColoresRepetidosException;
 import quemepongo.exceptions.MaterialInvalidoException;
+import quemepongo.exceptions.PathInvalidoException;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
+
+import javax.imageio.ImageIO;
+
+import net.coobird.thumbnailator.Thumbnails;
 
 public class CreadorDePrenda {
 
-	public TipoPrenda tipoPrenda;
-	public Material material;
-	public Color colorPrincipal;
-	public Color colorSecundario;
+	private TipoPrenda tipoPrenda;
+	private Material material;
+	private Color colorPrincipal;
+	private Color colorSecundario;
+	private BufferedImage foto;
+	public static final Integer ANCHO_FOTO = 200;
+	public static final Integer ALTO_FOTO = 200;
 
 	public CreadorDePrenda setTipoPrenda(TipoPrenda tipoPrenda) {
 		this.tipoPrenda = tipoPrenda;
@@ -32,6 +43,20 @@ public class CreadorDePrenda {
 		this.colorSecundario = color;
 		return this;
 	}
+	
+    public CreadorDePrenda setFoto(String path) {
+    	try {
+    		this.foto = Thumbnails.of(ImageIO.read(new File(path))).
+    				forceSize(ANCHO_FOTO, ALTO_FOTO).asBufferedImage();
+    	} catch(IOException ex) {
+    		throw new PathInvalidoException(path);
+    	}
+    	return this;
+    }
+    
+    public BufferedImage getFoto() {
+    	return this.foto;
+    }
 
 	/**
 	 * Se valida que el material elegido sea de los permitidos por el tipo
@@ -62,7 +87,8 @@ public class CreadorDePrenda {
 		Objects.requireNonNull(this.material, "El material de la prenda es obligatorio");
 		this.validarMaterial();
 		this.validarColores();
-		return new Prenda(tipoPrenda, material, colorPrincipal, colorSecundario);
+		return new Prenda(this.tipoPrenda, this.material, this.colorPrincipal, 
+				this.colorSecundario, this.foto);
 	}
 
 }
