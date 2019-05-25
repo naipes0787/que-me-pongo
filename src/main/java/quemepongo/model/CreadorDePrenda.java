@@ -48,10 +48,10 @@ public class CreadorDePrenda {
     	try {
     		this.foto = Thumbnails.of(ImageIO.read(new File(path))).
     				forceSize(ANCHO_FOTO, ALTO_FOTO).asBufferedImage();
+        	return this;
     	} catch(IOException ex) {
     		throw new PathInvalidoException(path);
     	}
-    	return this;
     }
     
     public BufferedImage getFoto() {
