@@ -96,14 +96,13 @@ public class GuardarropaTest {
 		usuario1.agregarGuardarropa(guardarropa1);
 		usuario1.agregarGuardarropa(guardarropa2);
 		usuario2.agregarGuardarropa(guardarropa3);
-		// En el guardarropa 1 hay sÛlo una prenda de cada categor√≠a
+		// En el guardarropa 1 hay s√≥lo una prenda de cada categor√≠a
 		final Integer cantidadAtuendosGuardarropa1 = 1;
-		// En el guardarropa 2 hay sÛlo una prenda inferior, dos superiores y dos
-		// calzados
+		// En el guardarropa 2 hay s√≥lo una prenda inferior, dos superiores y dos calzados
 		final Integer cantidadAtuendosGuardarropa2 = 1 * 2 * 2;
 		Set<Atuendo> sugerenciasUsuario1 = usuario1.sugerencias();
 		assertEquals(cantidadAtuendosGuardarropa1 + cantidadAtuendosGuardarropa2, sugerenciasUsuario1.size());
-		// En el guardarropa 3 hay sÛlo una prenda inferior, una superior, un calzado y
+		// En el guardarropa 3 hay s√≥lo una prenda inferior, una superior, un calzado y
 		// un accesorio
 		// cantidadAtuendosGuardarropa3 = 1 * 1 * 1 * 1;
 		Set<Atuendo> sugerenciasUsuario2 = usuario2.sugerencias();
@@ -111,7 +110,7 @@ public class GuardarropaTest {
 	}
 
 	
-	@Test // Este guardarropa no tendr· Prendas superiores, por ende se espera que no de ninguna sugerencia
+	@Test // Este guardarropa no tendr√° Prendas superiores, por ende se espera que no de ninguna sugerencia
 	public void sugerenciasDeGuardarropasSinPrendasSuperiores() {
 		Guardarropa guardarropaSinPrendasSuperiores = new Guardarropa();
 
@@ -124,7 +123,7 @@ public class GuardarropaTest {
 		assertEquals(0, sugerencias.size());
 	}
 
-	@Test // Este guardarropa no tendr· Prendas inferiores, por ende se espera que no de ninguna sugerencia
+	@Test // Este guardarropa no tendr√° Prendas inferiores, por ende se espera que no de ninguna sugerencia
 	public void sugerenciasDeGuardarropasSinPrendasInferiores() {
 		Guardarropa guardarropaSinPrendasInferiores = new Guardarropa();
 
@@ -137,7 +136,7 @@ public class GuardarropaTest {
 		assertEquals(0, sugerencias.size());
 	}
 
-	@Test // Este guardarropa no tendr· Prendas de calzado, por ende se espera que no de ninguna sugerencia
+	@Test // Este guardarropa no tendr√° Prendas de calzado, por ende se espera que no de ninguna sugerencia
 	public void sugerenciasDeGuardarropasSinCalzados() {
 		Guardarropa guardarropaSinCalzados = new Guardarropa();
 
