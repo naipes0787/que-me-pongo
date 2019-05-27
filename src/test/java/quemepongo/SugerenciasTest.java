@@ -91,9 +91,9 @@ public class SugerenciasTest {
         Set<Atuendo> sugerencias = guardarropa.sugerencias();
         assertEquals(4 * 3 * 3, sugerencias.size());
         sugerencias.forEach(atuendo -> {
-            verificarPrendar(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
-            verificarPrendar(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
-            verificarPrendar(atuendo.getCalzado(), Categoria.CALZADO);
+            prendaTieneCategoriaEsperada(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
+            prendaTieneCategoriaEsperada(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
+            prendaTieneCategoriaEsperada(atuendo.getCalzado(), Categoria.CALZADO);
         });
     }
 
@@ -113,14 +113,14 @@ public class SugerenciasTest {
         assertEquals(4 * 3 * 3 * 2, sugerencias.size());
 
         sugerencias.forEach(atuendo -> {
-            verificarPrendar(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
-            verificarPrendar(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
-            verificarPrendar(atuendo.getCalzado(), Categoria.CALZADO);
-            verificarPrendar(atuendo.getAccesorio(), Categoria.ACCESORIO);
+            prendaTieneCategoriaEsperada(atuendo.getPrendaSuperior(), Categoria.PRENDA_SUPERIOR);
+            prendaTieneCategoriaEsperada(atuendo.getPrendaInferior(), Categoria.PRENDA_INFERIOR);
+            prendaTieneCategoriaEsperada(atuendo.getCalzado(), Categoria.CALZADO);
+            prendaTieneCategoriaEsperada(atuendo.getAccesorio(), Categoria.ACCESORIO);
         });
     }
 
-    private void verificarPrendar(Prenda prenda, Categoria categoriaEsperada) {
+    private void prendaTieneCategoriaEsperada(Prenda prenda, Categoria categoriaEsperada) {
         assertNotNull(prenda);
         assertEquals(categoriaEsperada, prenda.getCategoria());
     }
