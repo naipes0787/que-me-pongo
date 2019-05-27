@@ -1,6 +1,6 @@
 package quemepongo.api.dto;
 
-public class Temperatura {
+public class TemperaturaAccuWeather {
 
     private TemperaturaConSistema Metric;
     private TemperaturaConSistema Imperial;

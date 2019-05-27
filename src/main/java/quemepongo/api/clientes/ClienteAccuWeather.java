@@ -17,6 +17,7 @@ public class ClienteAccuWeather extends Cliente implements ApiDeClima{
     //private static final String PRONOSTICO_UN_DIA = "/forecasts/v1/daily/1day/";
     private static final String PRONOSTICO_ACTUAL = "/currentconditions/v1/";
 
+    //http://dataservice.accuweather.com
     public ClienteAccuWeather(String host, String key) {
         super(host);
         this.key = key;

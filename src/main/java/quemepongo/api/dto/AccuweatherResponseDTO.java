@@ -3,7 +3,7 @@ package quemepongo.api.dto;
 public class AccuweatherResponseDTO {
 
     private String LocalObservationDateTime;
-    private Temperatura Temperature;
+    private TemperaturaAccuWeather Temperature;
 
     public String getLocalObservationDateTime() {
         return LocalObservationDateTime;
@@ -13,11 +13,11 @@ public class AccuweatherResponseDTO {
         LocalObservationDateTime = localObservationDateTime;
     }
 
-    public Temperatura getTemperature() {
+    public TemperaturaAccuWeather getTemperature() {
         return Temperature;
     }
 
-    public void setTemperature(Temperatura temperature) {
+    public void setTemperature(TemperaturaAccuWeather temperature) {
         Temperature = temperature;
     }
 
