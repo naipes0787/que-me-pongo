@@ -4,7 +4,7 @@ package quemepongo.exceptions;
 public class LimiteDeGuardarropasException extends RuntimeException {
 	
 	public LimiteDeGuardarropasException() {
-		super("El guardarropas no puede agregar más de atuendos.");
+		super("El guardarropas no puede agregar más atuendos.");
 		
 	}
 }
