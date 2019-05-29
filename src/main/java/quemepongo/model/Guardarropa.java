@@ -37,4 +37,27 @@ public class Guardarropa {
         Set<List<Prenda>> combinaciones = Sets.cartesianProduct(prendasSuperiores, prendasInferiores, calzados, accesorios);
         return combinaciones.stream().map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)).conAccesorio(c.get(3))).collect(Collectors.toSet());
     }
+    
+    public int cantidadDePrendas() {
+    	return prendasSuperiores.size() + prendasInferiores.size() + calzados.size() + accesorios.size();
+    }
+    
+    public void agregarPrenda(Prenda prenda) {
+    	// TODO - consultar si se va seguir manteniendo los 4 Sets o si se unen en uno.
+    	
+    	switch(prenda.getCategoria()) {
+    		case PRENDA_SUPERIOR:
+    			agregarPrendaSuperior(prenda);
+    			break;
+    		case PRENDA_INFERIOR:
+    			agregarPrendaInferior(prenda);
+    			break;
+    		case CALZADO:
+    			agregarCalzado(prenda);
+    			break;
+    		case ACCESORIO:
+    			agregarCalzado(prenda);
+    			break;
+    	}
+    }
 }
