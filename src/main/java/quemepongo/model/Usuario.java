@@ -11,7 +11,7 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
     
     public Usuario() {
-    	tipoUsuario = new UsuarioFree();
+    	tipoUsuario = new UsuarioGratuito();
     };
 
     public Usuario(TipoUsuario nuevaSuscripcion) {

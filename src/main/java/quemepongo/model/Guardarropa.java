@@ -56,7 +56,7 @@ public class Guardarropa {
     			agregarCalzado(prenda);
     			break;
     		case ACCESORIO:
-    			agregarCalzado(prenda);
+    			agregarAccesorio(prenda);
     			break;
     	}
     }

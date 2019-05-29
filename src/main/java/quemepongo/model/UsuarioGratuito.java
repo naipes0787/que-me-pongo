@@ -2,7 +2,7 @@ package quemepongo.model;
 
 import quemepongo.exceptions.LimiteDeGuardarropasException;;
 
-public class UsuarioFree implements TipoUsuario{
+public class UsuarioGratuito implements TipoUsuario{
 	
 	private int limiteDeCapacidad = 25;
 	
