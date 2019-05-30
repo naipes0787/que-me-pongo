@@ -11,7 +11,7 @@ import quemepongo.model.Atuendo;
 import quemepongo.model.FabricadorTipoAccesorio;
 import quemepongo.model.FabricadorTipoCalzado;
 import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.FabricadorTipoSuperior;
+import quemepongo.model.FabricadorTipoSuperiorBase;
 import quemepongo.model.Guardarropa;
 import quemepongo.model.Material;
 import quemepongo.model.Prenda;
@@ -23,9 +23,9 @@ public class GuardarropaTest {
 
 	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
 	private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
-	private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
-	private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
-	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
+	private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
+	private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
+	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
 	private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
 	private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
 	private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());

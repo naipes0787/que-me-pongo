@@ -1,6 +1,22 @@
 package quemepongo.model;
 
+import com.google.common.collect.Sets;
+
+import java.util.Set;
+
 public class Atuendo {
+
+    private Set<Prenda> prendas = Sets.newHashSet();
+
+    public Atuendo(Set<Prenda> prendas){
+        this.prendas = prendas;
+    }
+
+    public double getNivelAbrigo(){
+        return prendas.stream().mapToDouble(prenda -> prenda.getNivelAbrigo()).sum();
+    }
+
+   /*
 
     private Prenda prendaSuperior;
     private Prenda prendaInferior;
@@ -18,6 +34,7 @@ public class Atuendo {
         return this;
     }
 
+
     public Prenda getPrendaSuperior() {
         return prendaSuperior;
     }
@@ -32,5 +49,5 @@ public class Atuendo {
 
     public Prenda getAccesorio() {
         return accesorio;
-    }
+    }*/
 }
