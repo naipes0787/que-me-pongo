@@ -3,11 +3,13 @@ package quemepongo;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 import org.junit.Test;
 
 import quemepongo.exceptions.ColoresRepetidosException;
 import quemepongo.exceptions.MaterialInvalidoException;
+import quemepongo.exceptions.PathInvalidoException;
 import quemepongo.model.*;
 
 /**
@@ -95,7 +97,7 @@ public class PrendaTest {
 	 * Se permite crear prendas completas con colores distintos
 	 */
 	@Test
-	public void construirPrendaCompleta() {
+	public void construirPrendaCompletaSinFoto() {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
 				.setMaterial(Material.ALGODON)
@@ -103,6 +105,52 @@ public class PrendaTest {
 				.setColorSecundario(Color.WHITE)
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
+	}
+	
+	/**
+	 * Se permite crear prendas con fotos que estén en ubicaciones válidas
+	 */
+	@Test
+	public void construirPrendaCompletaConFoto() {
+		Prenda prenda = new CreadorDePrenda()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setMaterial(Material.ALGODON)
+				.setColorPrincipal(Color.BLACK)
+				.setColorSecundario(Color.WHITE)
+				.setFoto("./src/test/resources/test-foto.jpg")
+				.build();
+		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
+	}
+	
+	/**
+	 * Si se utiliza una ubicación inválida para la foto, se arroja PathInvalidoException
+	 */
+	@Test(expected = PathInvalidoException.class)
+	public void construirPrendaConFotoInvalida() {
+		Prenda prenda = new CreadorDePrenda()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setMaterial(Material.ALGODON)
+				.setColorPrincipal(Color.BLACK)
+				.setColorSecundario(Color.WHITE)
+				.setFoto("./src/test/resources/test-foto-no-existe.jpg")
+				.build();
+		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
+	}
+	
+	/**
+	 * Al crear prendas con foto, la foto se normaliza
+	 */
+	@Test
+	public void construirPrendaCompletaConFoto2() {
+		CreadorDePrenda creadorPrenda = new CreadorDePrenda()
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setMaterial(Material.ALGODON)
+				.setColorPrincipal(Color.BLACK)
+				.setColorSecundario(Color.WHITE)
+				.setFoto("./src/test/resources/test-foto.jpg");
+		BufferedImage foto = creadorPrenda.getFoto();
+		assertEquals(foto.getWidth(), CreadorDePrenda.ANCHO_FOTO.intValue());
+		assertEquals(foto.getHeight(), CreadorDePrenda.ALTO_FOTO.intValue());
 	}
 
 }

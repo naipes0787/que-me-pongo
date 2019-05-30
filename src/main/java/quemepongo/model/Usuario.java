@@ -17,8 +17,20 @@ public class Usuario {
     public Set<Atuendo> sugerencias() {
         return guardarropas.stream().flatMap(g -> g.sugerencias().stream()).collect(Collectors.toSet());
     }
-    
+  
     public void agregarEvento(Evento evento) {
         eventos.add(evento);
+    }
+
+    public void aceptarSugerencia(Atuendo atuendo) {
+        atuendo.aceptar();
+    }
+
+    public void rechazarSugerencia(Atuendo atuendo) {
+        atuendo.rechazar();
+    }
+
+    public void deshacerUltimaOperacion(Atuendo atuendo) {
+        atuendo.deshacerDecision();
     }
 }
