@@ -6,14 +6,19 @@ import java.util.Set;
 
 public class Atuendo {
 
-    private Set<Prenda> prendas = Sets.newHashSet();
+    private CombinacionPrenda prendasSuperiores;
+    private CombinacionPrenda prendaInferior;
+    private CombinacionPrenda calzado;
+    private Prenda accesorio;
 
-    public Atuendo(Set<Prenda> prendas){
-        this.prendas = prendas;
+    public Atuendo(CombinacionPrenda prendasSuperiores, CombinacionPrenda prendaInferior, CombinacionPrenda calzado){
+        this.prendasSuperiores = prendasSuperiores;
+        this.prendaInferior = prendaInferior;
+        this.calzado = calzado;
     }
 
     public double getNivelAbrigo(){
-        return prendas.stream().mapToDouble(prenda -> prenda.getNivelAbrigo()).sum();
+        return (prendasSuperiores.getNivelAbrigo() + prendaInferior.getNivelAbrigo() + calzado.getNivelAbrigo());
     }
 
    /*
