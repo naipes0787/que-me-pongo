@@ -5,24 +5,23 @@ import org.apache.http.HttpResponse;
 import quemepongo.api.dto.AccuweatherResponseDTO;
 import quemepongo.exceptions.AccuWeatherException;
 import quemepongo.exceptions.ObjectMapperException;
+import quemepongo.model.Localizacion;
 
 import java.io.IOException;
 import java.util.List;
 
 public class ClienteAccuWeather extends Cliente implements ApiDeClima{
 
-    //TODO agregar log
-    private String key;
+    //TODO agregar log y que el host y la key vengan de un .properties
+    private static final String host = "http://dataservice.accuweather.com";
+    private static final String key = "4zxMMc9pFj6f6pOdoQ2TirQCUwLTmG9S";
     private static final String PRONOSTICO_ACTUAL = "/currentconditions/v1/";
 
-    //http://dataservice.accuweather.com
-    //4zxMMc9pFj6f6pOdoQ2TirQCUwLTmG9S
-    public ClienteAccuWeather(String host, String key) {
+    public ClienteAccuWeather() {
         super(host);
-        this.key = key;
     }
 
-    public List<AccuweatherResponseDTO> obtenerTemperaturaActual(String locationKey){
+    private List<AccuweatherResponseDTO> obtenerTemperaturaActual(String locationKey){
         HttpResponse respuesta = get(PRONOSTICO_ACTUAL + locationKey + parametrosGenerales());
         if(terminoEnError(respuesta)){
             throw new AccuWeatherException("Pronostico Actual");
@@ -40,8 +39,13 @@ public class ClienteAccuWeather extends Cliente implements ApiDeClima{
     }
 
     @Override
-    public Double obtenerTemperaturaActual() {
-        String locationKey ="7894";
+    public Double obtenerTemperaturaActual(Localizacion localizacion) {
+        String locationKey = getLocationKey(localizacion);
         return obtenerTemperaturaActual(locationKey).get(0).getTemperature().getMetric().getValue();
+    }
+
+    private String getLocationKey(Localizacion localizacion) {
+        //TODO la idea es tener un mapa, propio de AccuWeather, cuya key sea una localizacion y el valor sea el id
+        return "7894";
     }
 }
