@@ -1,8 +1,9 @@
 package quemepongo.api.clientes;
 
 import quemepongo.model.Localizacion;
+import quemepongo.model.Temperatura;
 
 public interface ApiDeClima {
 
-    Double obtenerTemperaturaActual(Localizacion localizacion);
+    Temperatura obtenerTemperaturaActual(Localizacion localizacion);
 }

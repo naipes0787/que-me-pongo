@@ -2,9 +2,10 @@ package quemepongo.api.clientes;
 
 import org.apache.http.HttpResponse;
 import quemepongo.api.dto.OpenWeatherResponseDTO;
-import quemepongo.exceptions.AccuWeatherException;
+import quemepongo.exceptions.ApiDeClimaException;
 import quemepongo.exceptions.ObjectMapperException;
 import quemepongo.model.Localizacion;
+import quemepongo.model.Temperatura;
 
 import java.io.IOException;
 
@@ -22,7 +23,7 @@ public class ClienteOpenWeather extends Cliente implements ApiDeClima {
     private OpenWeatherResponseDTO obtenerTemperaturaActual(String locationKey){
         HttpResponse respuesta = get(PRONOSTICO_ACTUAL + locationKey + parametrosGenerales());
         if(terminoEnError(respuesta)){
-            throw new AccuWeatherException("Pronostico Actual");
+            throw new ApiDeClimaException("Pronostico Actual");
         }
         try{
             return mapper.readValue(respuesta.getEntity().getContent(), OpenWeatherResponseDTO.class);
@@ -37,9 +38,11 @@ public class ClienteOpenWeather extends Cliente implements ApiDeClima {
     }
 
     @Override
-    public Double obtenerTemperaturaActual(Localizacion localizacion) {
+    public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
         String locationKey = getLocationKey(localizacion);
-        return obtenerTemperaturaActual(locationKey).getMain().getTemp();
+        Temperatura temperatura = new Temperatura();
+        temperatura.setTemperatura(obtenerTemperaturaActual(locationKey).getMain().getTemp());
+        return temperatura;
     }
 
     private String getLocationKey(Localizacion localizacion) {

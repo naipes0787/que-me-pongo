@@ -3,9 +3,10 @@ package quemepongo.api.clientes;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.http.HttpResponse;
 import quemepongo.api.dto.AccuweatherResponseDTO;
-import quemepongo.exceptions.AccuWeatherException;
+import quemepongo.exceptions.ApiDeClimaException;
 import quemepongo.exceptions.ObjectMapperException;
 import quemepongo.model.Localizacion;
+import quemepongo.model.Temperatura;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +25,7 @@ public class ClienteAccuWeather extends Cliente implements ApiDeClima{
     private List<AccuweatherResponseDTO> obtenerTemperaturaActual(String locationKey){
         HttpResponse respuesta = get(PRONOSTICO_ACTUAL + locationKey + parametrosGenerales());
         if(terminoEnError(respuesta)){
-            throw new AccuWeatherException("Pronostico Actual");
+            throw new ApiDeClimaException("Pronostico Actual");
         }
         try{
             return mapper.readValue(respuesta.getEntity().getContent(), new TypeReference<List<AccuweatherResponseDTO>>(){});
@@ -39,9 +40,11 @@ public class ClienteAccuWeather extends Cliente implements ApiDeClima{
     }
 
     @Override
-    public Double obtenerTemperaturaActual(Localizacion localizacion) {
+    public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
         String locationKey = getLocationKey(localizacion);
-        return obtenerTemperaturaActual(locationKey).get(0).getTemperature().getMetric().getValue();
+        Temperatura temperatura = new Temperatura();
+        temperatura.setTemperatura(obtenerTemperaturaActual(locationKey).get(0).getTemperature().getMetric().getValue());
+        return temperatura;
     }
 
     private String getLocationKey(Localizacion localizacion) {
