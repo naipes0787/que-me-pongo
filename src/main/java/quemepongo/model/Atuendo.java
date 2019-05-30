@@ -37,15 +37,22 @@ public class Atuendo {
     }
 
     public void aceptar() {
-        estado = EstadoAtuendo.ACEPTADO;
+        if (EstadoAtuendo.NUEVO.equals(estado)) {
+            estado = EstadoAtuendo.ACEPTADO;
+        }
     }
 
     public void rechazar() {
-        estado = EstadoAtuendo.RECHAZADO;
+        if (EstadoAtuendo.NUEVO.equals(estado)) {
+            estado = EstadoAtuendo.RECHAZADO;
+        }
     }
 
     public void deshacerDecision() {
         estado = EstadoAtuendo.NUEVO;
     }
 
+    public EstadoAtuendo getEstado() {
+        return estado;
+    }
 }
