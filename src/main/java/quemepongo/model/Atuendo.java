@@ -7,6 +7,8 @@ public class Atuendo {
     private Prenda calzado;
     private Prenda accesorio;
 
+    private EstadoAtuendo estado = EstadoAtuendo.NUEVO;
+
     public Atuendo(Prenda prendaSuperior, Prenda prendaInferior, Prenda calzado) {
         this.prendaSuperior = prendaSuperior;
         this.prendaInferior = prendaInferior;
@@ -32,5 +34,25 @@ public class Atuendo {
 
     public Prenda getAccesorio() {
         return accesorio;
+    }
+
+    public void aceptar() {
+        if (EstadoAtuendo.NUEVO.equals(estado)) {
+            estado = EstadoAtuendo.ACEPTADO;
+        }
+    }
+
+    public void rechazar() {
+        if (EstadoAtuendo.NUEVO.equals(estado)) {
+            estado = EstadoAtuendo.RECHAZADO;
+        }
+    }
+
+    public void deshacerDecision() {
+        estado = EstadoAtuendo.NUEVO;
+    }
+
+    public EstadoAtuendo getEstado() {
+        return estado;
     }
 }

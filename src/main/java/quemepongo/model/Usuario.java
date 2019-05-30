@@ -18,7 +18,7 @@ public class Usuario {
     	tipoUsuario = nuevaSuscripcion;
     };
     
-	public void agregarGuardarropa(Guardarropa guardarropa) {
+	  public void agregarGuardarropa(Guardarropa guardarropa) {
         guardarropas.add(guardarropa);
     }
 
@@ -27,14 +27,26 @@ public class Usuario {
     }
     
     public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
-	}
+		    return tipoUsuario;
+	  }
     
-	public void cambiarSuscripcion(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
+	  public void cambiarSuscripcion(TipoUsuario tipoUsuario) {
+		    this.tipoUsuario = tipoUsuario;
+	  }
 	
     public void agregarPrenda(Prenda prenda, Guardarropa guardarropa) {
-    	tipoUsuario.agregarPrenda(prenda, guardarropa);
+    	  tipoUsuario.agregarPrenda(prenda, guardarropa);
+    }
+
+    public void aceptarSugerencia(Atuendo atuendo) {
+        atuendo.aceptar();
+    }
+
+    public void rechazarSugerencia(Atuendo atuendo) {
+        atuendo.rechazar();
+    }
+
+    public void deshacerUltimaOperacion(Atuendo atuendo) {
+        atuendo.deshacerDecision();
     }
 }
