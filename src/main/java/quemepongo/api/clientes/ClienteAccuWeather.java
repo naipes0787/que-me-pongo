@@ -13,11 +13,10 @@ public class ClienteAccuWeather extends Cliente implements ApiDeClima{
 
     //TODO agregar log
     private String key;
-    //private static final String PRONOSTICO_UNA_HORA = "/forecasts/v1/hourly/1hour/";
-    //private static final String PRONOSTICO_UN_DIA = "/forecasts/v1/daily/1day/";
     private static final String PRONOSTICO_ACTUAL = "/currentconditions/v1/";
 
     //http://dataservice.accuweather.com
+    //4zxMMc9pFj6f6pOdoQ2TirQCUwLTmG9S
     public ClienteAccuWeather(String host, String key) {
         super(host);
         this.key = key;
