@@ -12,16 +12,19 @@
         <guava.version>27.1-jre</guava.version>
         <junit.version>4.12</junit.version>
         <apache-http.version>4.5.8</apache-http.version>
+        <jackson-databind.version>2.9.8</jackson-databind.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
     </properties>
 
     <dependencies>
+        <!--SUGERENCIAS-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
 
-        <!-- CLIENTE HTTP-->
+        <!--CLIENTE HTTP-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -30,10 +33,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.8</version>
+            <version>${jackson-databind.version}</version>
         </dependency>
 
-        <!--TESTING -->
+        <!--MANEJO DE IMAGENES-->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>${thumbnailator.version}</version>
+        </dependency>
+
+        <!--TESTING-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
