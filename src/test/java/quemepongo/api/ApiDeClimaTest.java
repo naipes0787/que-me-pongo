@@ -47,7 +47,7 @@ public class ApiDeClimaTest {
     }
 
     @Test(expected = ApiDeClimaException.class)
-    public void noRetorneTemperatura(){
+    public void llamadoFalleSiLaApiRetornaError(){
         Mockito.when(apiDeClima.obtenerTemperaturaActual(LOCALIZACION))
                 .thenThrow(new ApiDeClimaException(MENSAJE_EXCEPTION_TEMPERATURA_ACTUAL));
 
