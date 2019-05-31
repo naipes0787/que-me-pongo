@@ -11,4 +11,5 @@ public class Temperatura {
     public void setTemperatura(Double temperatura) {
         this.temperatura = temperatura;
     }
+
 }
