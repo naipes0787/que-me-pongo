@@ -28,4 +28,7 @@ public class Prenda {
         return this.tipo.getCategoria();
     }
 
+    public double getNivelAbrigo() { return this.tipo.getNivelAbrigo();}
+
+    public Capa getCapa(){ return this.tipo.getCapa();}
 }

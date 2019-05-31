@@ -7,7 +7,7 @@ import quemepongo.model.FabricadorTipoAccesorio;
 import quemepongo.model.FabricadorTipoCalzado;
 import quemepongo.model.FabricadorTipoInferior;
 import quemepongo.model.TipoPrenda;
-import quemepongo.model.FabricadorTipoSuperior;
+import quemepongo.model.FabricadorTipoSuperiorBase;
 
 
 import static org.junit.Assert.*;
@@ -16,7 +16,7 @@ public class TipoPrendaTest {
 
     @Test
     public void tipoPrendaSuperior(){
-        TipoPrenda remera = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
+        TipoPrenda remera = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
         assertEquals(remera.getCategoria(), Categoria.PRENDA_SUPERIOR);
         tipoPrendaContieneMaterialesValidos(remera, Material.ALGODON, Material.BRONCE);
     }

@@ -11,7 +11,7 @@ import quemepongo.model.Atuendo;
 import quemepongo.model.FabricadorTipoAccesorio;
 import quemepongo.model.FabricadorTipoCalzado;
 import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.FabricadorTipoSuperior;
+import quemepongo.model.FabricadorTipoSuperiorBase;
 import quemepongo.model.Guardarropa;
 import quemepongo.model.Material;
 import quemepongo.model.Prenda;
@@ -23,9 +23,9 @@ public class GuardarropaTest {
 
 	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
 	private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
-	private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
-	private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
-	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
+	private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
+	private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
+	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
 	private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
 	private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
 	private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
@@ -80,18 +80,18 @@ public class GuardarropaTest {
 		Guardarropa guardarropa2 = new Guardarropa();
 		Guardarropa guardarropa3 = new Guardarropa();
 
-		guardarropa1.agregarPrendaInferior(JeanDeOxfordNegro);
-		guardarropa2.agregarPrendaInferior(PolleraDeAlgodonNegra);
-		guardarropa3.agregarPrendaInferior(JeanDeOxfordNegro);
-		guardarropa1.agregarPrendaSuperior(RemeraDeAlgodonNegra);
-		guardarropa2.agregarPrendaSuperior(RemeraDeAlgodonNegra);
-		guardarropa2.agregarPrendaSuperior(MusculosaDeAlgodonNegra);
-		guardarropa3.agregarPrendaSuperior(CamisaDeAlgodonNegra);
-		guardarropa1.agregarCalzado(ZapatillasDeLonaNegras);
-		guardarropa2.agregarCalzado(ZapatillasDeLonaNegras);
-		guardarropa2.agregarCalzado(BotasDeCueroNegras);
-		guardarropa3.agregarCalzado(ZapatillasDeLonaNegras);
-		guardarropa3.agregarAccesorio(AnteojosDePlasticoNegros);
+		guardarropa1.agregarPrenda(JeanDeOxfordNegro);
+		guardarropa2.agregarPrenda(PolleraDeAlgodonNegra);
+		guardarropa3.agregarPrenda(JeanDeOxfordNegro);
+		guardarropa1.agregarPrenda(RemeraDeAlgodonNegra);
+		guardarropa2.agregarPrenda(RemeraDeAlgodonNegra);
+		guardarropa2.agregarPrenda(MusculosaDeAlgodonNegra);
+		guardarropa3.agregarPrenda(CamisaDeAlgodonNegra);
+		guardarropa1.agregarPrenda(ZapatillasDeLonaNegras);
+		guardarropa2.agregarPrenda(ZapatillasDeLonaNegras);
+		guardarropa2.agregarPrenda(BotasDeCueroNegras);
+		guardarropa3.agregarPrenda(ZapatillasDeLonaNegras);
+		guardarropa3.agregarPrenda(AnteojosDePlasticoNegros);
 
 		usuario1.agregarGuardarropa(guardarropa1);
 		usuario1.agregarGuardarropa(guardarropa2);
@@ -114,10 +114,10 @@ public class GuardarropaTest {
 	public void sugerenciasDeGuardarropasSinPrendasSuperiores() {
 		Guardarropa guardarropaSinPrendasSuperiores = new Guardarropa();
 
-		guardarropaSinPrendasSuperiores.agregarPrendaInferior(JeanDeOxfordNegro);
-		guardarropaSinPrendasSuperiores.agregarPrendaInferior(PolleraDeAlgodonNegra);
-		guardarropaSinPrendasSuperiores.agregarCalzado(ZapatillasDeLonaNegras);
-		guardarropaSinPrendasSuperiores.agregarCalzado(BotasDeCueroNegras);
+		guardarropaSinPrendasSuperiores.agregarPrenda(JeanDeOxfordNegro);
+		guardarropaSinPrendasSuperiores.agregarPrenda(PolleraDeAlgodonNegra);
+		guardarropaSinPrendasSuperiores.agregarPrenda(ZapatillasDeLonaNegras);
+		guardarropaSinPrendasSuperiores.agregarPrenda(BotasDeCueroNegras);
 		
 		Set<Atuendo> sugerencias = guardarropaSinPrendasSuperiores.sugerencias();
 		assertEquals(0, sugerencias.size());
@@ -127,10 +127,10 @@ public class GuardarropaTest {
 	public void sugerenciasDeGuardarropasSinPrendasInferiores() {
 		Guardarropa guardarropaSinPrendasInferiores = new Guardarropa();
 
-		guardarropaSinPrendasInferiores.agregarPrendaSuperior(RemeraDeAlgodonNegra);
-		guardarropaSinPrendasInferiores.agregarPrendaSuperior(CamisaDeAlgodonNegra);
-		guardarropaSinPrendasInferiores.agregarCalzado(ZapatillasDeLonaNegras);
-		guardarropaSinPrendasInferiores.agregarCalzado(BotasDeCueroNegras);
+		guardarropaSinPrendasInferiores.agregarPrenda(RemeraDeAlgodonNegra);
+		guardarropaSinPrendasInferiores.agregarPrenda(CamisaDeAlgodonNegra);
+		guardarropaSinPrendasInferiores.agregarPrenda(ZapatillasDeLonaNegras);
+		guardarropaSinPrendasInferiores.agregarPrenda(BotasDeCueroNegras);
 		
 		Set<Atuendo> sugerencias = guardarropaSinPrendasInferiores.sugerencias();
 		assertEquals(0, sugerencias.size());
@@ -140,10 +140,10 @@ public class GuardarropaTest {
 	public void sugerenciasDeGuardarropasSinCalzados() {
 		Guardarropa guardarropaSinCalzados = new Guardarropa();
 
-		guardarropaSinCalzados.agregarPrendaSuperior(RemeraDeAlgodonNegra);
-		guardarropaSinCalzados.agregarPrendaSuperior(CamisaDeAlgodonNegra);
-		guardarropaSinCalzados.agregarPrendaInferior(JeanDeOxfordNegro);
-		guardarropaSinCalzados.agregarPrendaInferior(PolleraDeAlgodonNegra);
+		guardarropaSinCalzados.agregarPrenda(RemeraDeAlgodonNegra);
+		guardarropaSinCalzados.agregarPrenda(CamisaDeAlgodonNegra);
+		guardarropaSinCalzados.agregarPrenda(JeanDeOxfordNegro);
+		guardarropaSinCalzados.agregarPrenda(PolleraDeAlgodonNegra);
 
 		Set<Atuendo> sugerencias = guardarropaSinCalzados.sugerencias();
 		assertEquals(0, sugerencias.size());

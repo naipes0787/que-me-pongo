@@ -36,7 +36,7 @@ public class PrendaTest {
 	@SuppressWarnings("unused")
 	public void construirPrendaSinMaterial() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase()))
 				.setColorPrincipal(Color.BLACK)
 				.build();
 	}
@@ -48,7 +48,7 @@ public class PrendaTest {
 	@SuppressWarnings("unused")
 	public void construirPrendaSinColorPrincipal() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase()))
 				.setMaterial(Material.ALGODON)
 				.build();
 	}
@@ -86,7 +86,7 @@ public class PrendaTest {
 	@Test
 	public void construirPrendaSinColorSecundario() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperior()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase()))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build();
