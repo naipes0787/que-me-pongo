@@ -17,4 +17,5 @@ public class SelectorDeProveedorDeClima {
     public void setProovedorDeClima(ApiDeClima proovedorDeClima) {
         this.proovedorDeClima = proovedorDeClima;
     }
+
 }
