@@ -3,7 +3,6 @@ package quemepongo.api;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -19,7 +18,6 @@ public class ApiDeClimaTest {
     private ApiDeClima apiDeClima;
     @Mock
     private ApiDeClima apiDeClimaSecundario;
-    //@InjectMocks
     private SelectorDeProveedorDeClima selector;
 
     private static final Localizacion LOCALIZACION = Localizacion.CABA;
