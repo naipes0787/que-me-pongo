@@ -1,10 +1,9 @@
 package quemepongo.model;
 
-import com.google.common.collect.Sets;
-
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.google.common.collect.Sets;
 
 public class CombinadorMultiple implements Combinador {
     private Guardarropa guardarropa;

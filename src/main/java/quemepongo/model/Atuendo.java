@@ -1,15 +1,11 @@
 package quemepongo.model;
 
-import com.google.common.collect.Sets;
-
-import java.util.Set;
-
 public class Atuendo {
 
     private CombinacionPrenda prendasSuperiores;
     private CombinacionPrenda prendaInferior;
     private CombinacionPrenda calzado;
-    private Prenda accesorio;
+    private CombinacionPrenda accesorio;
     
     private EstadoAtuendo estado = EstadoAtuendo.NUEVO;  
   
@@ -19,7 +15,7 @@ public class Atuendo {
         this.calzado = calzado;
     }
   
-    public Atuendo conAccesorio(Prenda accesorio) {
+    public Atuendo conAccesorio(CombinacionPrenda accesorio) {
         this.accesorio = accesorio;
         return this;
     }
@@ -28,13 +24,13 @@ public class Atuendo {
         return (prendasSuperiores.getNivelAbrigo() + prendaInferior.getNivelAbrigo() + calzado.getNivelAbrigo());
     }
   
-    public Prenda getAccesorio() {
+    public CombinacionPrenda getAccesorio() {
         return accesorio;
     }
   
     public boolean abrigaLoSuficiente(Temperatura temperatura, double margenError){
-        return (margenInferior(temperatura.nivelDeAbrigo(), margenError) <= getNivelAbrigo()
-                && getNivelAbrigo() <= margenSuperior(temperatura.nivelDeAbrigo(), margenError));
+        return (margenInferior(temperatura.convertirANivelDeAbrigo(), margenError) <= getNivelAbrigo()
+                && getNivelAbrigo() <= margenSuperior(temperatura.convertirANivelDeAbrigo(), margenError));
     }
 
     double nivelDeAbrigoPara(Temperatura temperatura){

@@ -1,7 +1,5 @@
 package quemepongo.model;
 
-import quemepongo.exceptions.CapaInvalidaException;
-
 import java.util.Set;
 
 public abstract class FabricaTipoPrenda {

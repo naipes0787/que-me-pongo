@@ -1,5 +1,6 @@
 package quemepongo.exceptions;
 
+@SuppressWarnings("serial")
 public class ClienteHttpException extends RuntimeException {
 
     public ClienteHttpException(String url){

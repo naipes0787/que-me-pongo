@@ -1,5 +1,6 @@
 package quemepongo.exceptions;
 
+@SuppressWarnings("serial")
 public class ApiDeClimaException extends RuntimeException{
 
     public ApiDeClimaException(String servicio){

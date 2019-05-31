@@ -10,8 +10,9 @@ public class Evento{
 	
 	public Evento(Localizacion nuevoLugar, LocalDateTime nuevaFecha) {
 		lugar = nuevoLugar;
-		if(nuevaFecha.isBefore(LocalDateTime.now()))
+		if(nuevaFecha.toLocalDate().isBefore(LocalDateTime.now().toLocalDate())) {
 			throw new FechaEventoNoValidaException();
+		}
 		fecha = nuevaFecha;
 	}
 	

@@ -9,17 +9,20 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import quemepongo.api.ClienteTest;
+import quemepongo.api.clientes.ApiDeClima;
+import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.model.*;
 
 public class GuardarropaTest {
 
-	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(20));
-	private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(10));
-	private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10));
-	private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(7));
-	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(15));
-	private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
-	private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(15));
+	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(50));
+	private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(50));
+	private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(50));
+	private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(50));
+	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(50));
+	private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(50));
+	private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(50));
 	private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
 
 	private Temperatura temperatura;
@@ -72,6 +75,8 @@ public class GuardarropaTest {
 		temperatura = new Temperatura();
 		temperatura.setTemperatura(20.0);
 		eventoBasico = new Evento(Localizacion.CABA, LocalDateTime.now());
+		ApiDeClima proovedorDeClima = new ClienteTest();
+		SelectorDeProveedorDeClima.getInstancia().setProovedorDeClima(proovedorDeClima);
 	}
 
 	@Test
@@ -103,7 +108,14 @@ public class GuardarropaTest {
 		// En el guardarropa 2 hay sólo una prenda inferior, dos superiores y dos calzados
 		final Integer cantidadAtuendosGuardarropa2 = 1 * 2 * 2;
 		Set<Atuendo> sugerenciasUsuario1 = usuario1.sugerencias(eventoBasico);
+		
+		
+		// No da OK!! Creo que porque no hay prendas válidas
 		assertEquals(cantidadAtuendosGuardarropa1 + cantidadAtuendosGuardarropa2, sugerenciasUsuario1.size());
+		
+		
+		
+		
 		// En el guardarropa 3 hay sólo una prenda inferior, una superior, un calzado y
 		// un accesorio
 		// cantidadAtuendosGuardarropa3 = 1 * 1 * 1 * 1;

@@ -1,5 +1,6 @@
 package quemepongo.exceptions;
 
+@SuppressWarnings("serial")
 public class ObjectMapperException extends RuntimeException {
 
     public ObjectMapperException(){
