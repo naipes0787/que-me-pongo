@@ -30,5 +30,7 @@ public class FabricadorTipoCalzado extends FabricaTipoPrenda {
                 .collect(Collectors.toCollection(HashSet::new));
     }
 
-    public Capa getCapa() { return Capa.BASE;}
+    public Capa getCapa() {
+    	return Capa.BASE;
+    }
 }

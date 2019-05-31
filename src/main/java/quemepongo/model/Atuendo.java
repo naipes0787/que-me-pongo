@@ -37,8 +37,13 @@ public class Atuendo {
         return 100;
     }
 
-    private double margenInferior(double nivelAbrigoNecesario, double margenError){return nivelAbrigoNecesario * (1 - margenError);}
-    private double margenSuperior(double nivelAbrigoNecesario, double margenError){return nivelAbrigoNecesario * (1 + margenError);}
+    private double margenInferior(double nivelAbrigoNecesario, double margenError){
+    	return nivelAbrigoNecesario * (1 - margenError);
+    }
+    
+    private double margenSuperior(double nivelAbrigoNecesario, double margenError){
+    	return nivelAbrigoNecesario * (1 + margenError);
+    }
     
     public void aceptar() {
         if (EstadoAtuendo.NUEVO.equals(estado)) {

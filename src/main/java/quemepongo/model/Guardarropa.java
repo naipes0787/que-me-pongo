@@ -9,10 +9,10 @@ public class Guardarropa {
     private double margenError = 0.1;
     private Set<Prenda> prendas = Sets.newHashSet();
 
-    private Combinador combinadorSuperior = new CombinadorMultiple(this, Categoria.PRENDA_SUPERIOR);
-    private Combinador combinadorInferior = new CombinadorSimple(this, Categoria.PRENDA_INFERIOR);
-    private Combinador combinadorCalzado = new CombinadorSimple(this, Categoria.CALZADO);
-    private Combinador combinadorAccesorio = new CombinadorSimple(this, Categoria.ACCESORIO);
+    private CombinadorSuperposicion combinadorSuperior = new CombinadorSuperposicionMultiple(this, Categoria.PRENDA_SUPERIOR);
+    private CombinadorSuperposicion combinadorInferior = new CombinadorSuperposicionSimple(this, Categoria.PRENDA_INFERIOR);
+    private CombinadorSuperposicion combinadorCalzado = new CombinadorSuperposicionSimple(this, Categoria.CALZADO);
+    private CombinadorSuperposicion combinadorAccesorio = new CombinadorSuperposicionSimple(this, Categoria.ACCESORIO);
 
     public void agregarPrenda(Prenda prenda) {
         prendas.add(prenda);

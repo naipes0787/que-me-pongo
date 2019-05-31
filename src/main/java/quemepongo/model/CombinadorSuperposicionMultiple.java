@@ -5,11 +5,17 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.Sets;
 
-public class CombinadorMultiple implements Combinador {
+/**
+ * Clase que se encarga de combinar prendas que pueden tener una múltiple
+ * superposición (Es decir, una prenda podría ir sola o acompañada con otras
+ * de otras capas)
+ */
+public class CombinadorSuperposicionMultiple implements CombinadorSuperposicion {
+	
     private Guardarropa guardarropa;
     private Categoria categoria;
 
-    public CombinadorMultiple(Guardarropa guardarropa, Categoria categoria) {
+    public CombinadorSuperposicionMultiple(Guardarropa guardarropa, Categoria categoria) {
         this.guardarropa = guardarropa;
         this.categoria = categoria;
     }

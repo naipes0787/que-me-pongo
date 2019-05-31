@@ -27,5 +27,7 @@ public class FabricadorTipoSuperiorIntermedio extends FabricaTipoPrenda {
                 .collect(Collectors.toCollection(HashSet::new));
     }
 
-    public Capa getCapa() { return Capa.INTERMEDIO;}
+    public Capa getCapa() {
+    	return Capa.INTERMEDIO;
+    }
 }

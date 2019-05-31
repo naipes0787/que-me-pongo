@@ -5,11 +5,16 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CombinadorSimple implements Combinador {
+/**
+ * Clase que se encarga de combinar prendas que pueden tener sólo una
+ * simple superposición
+ */
+public class CombinadorSuperposicionSimple implements CombinadorSuperposicion {
+	
     private Guardarropa guardarropa;
     private Categoria categoria;
 
-    public CombinadorSimple(Guardarropa guardarropa, Categoria categoria){
+    public CombinadorSuperposicionSimple(Guardarropa guardarropa, Categoria categoria){
         this.guardarropa = guardarropa;
         this.categoria = categoria;
     }

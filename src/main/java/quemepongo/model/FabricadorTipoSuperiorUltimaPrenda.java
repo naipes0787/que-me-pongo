@@ -27,5 +27,7 @@ public class FabricadorTipoSuperiorUltimaPrenda extends FabricaTipoPrenda{
                 .collect(Collectors.toCollection(HashSet::new));
     }
 
-    public Capa getCapa() { return Capa.ULTIMA_PRENDA;}
+    public Capa getCapa() {
+    	return Capa.ULTIMA_PRENDA;
+    }
 }

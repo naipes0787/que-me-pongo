@@ -10,6 +10,8 @@ public abstract class FabricaTipoPrenda {
     public abstract Set<Material> getMaterialesValidos();
     public abstract Capa getCapa();
 
-    public double getNivelAbrigo(){ return this.nivelAbrigo;}
+    public double getNivelAbrigo(){
+    	return this.nivelAbrigo;
+    }
 
 }
