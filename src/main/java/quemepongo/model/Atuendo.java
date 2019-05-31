@@ -21,6 +21,19 @@ public class Atuendo {
         return (prendasSuperiores.getNivelAbrigo() + prendaInferior.getNivelAbrigo() + calzado.getNivelAbrigo());
     }
 
+    public boolean abrigaLoSuficiente(double temperatura, double margenError){
+        return (margenInferior(nivelDeAbrigoPara(temperatura), margenError) <= getNivelAbrigo()
+                && getNivelAbrigo() <= margenSuperior(nivelDeAbrigoPara(temperatura), margenError));
+    }
+
+    double nivelDeAbrigoPara(double temperatura){
+        return 100;
+    }
+
+    private double margenInferior(double nivelAbrigoNecesario, double margenError){return nivelAbrigoNecesario * (1 - margenError);}
+    private double margenSuperior(double nivelAbrigoNecesario, double margenError){return nivelAbrigoNecesario * (1 + margenError);}
+
+
    /*
 
     private Prenda prendaSuperior;
