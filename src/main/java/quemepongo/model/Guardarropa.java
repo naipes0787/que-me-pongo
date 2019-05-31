@@ -49,5 +49,8 @@ public class Guardarropa {
         return combinadorCalzado.combinar();
     }
 
+    public int cantidadDePrendas() {
+    	return prendas.size() 
+    }
 
 }

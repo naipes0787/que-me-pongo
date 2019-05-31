@@ -18,3 +18,4 @@ public class Temperatura {
         else {return 25;}
     }
 }
+
