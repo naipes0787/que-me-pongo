@@ -33,10 +33,6 @@ public class Atuendo {
                 && getNivelAbrigo() <= margenSuperior(temperatura.convertirANivelDeAbrigo(), margenError));
     }
 
-    double nivelDeAbrigoPara(Temperatura temperatura){
-        return 100;
-    }
-
     private double margenInferior(double nivelAbrigoNecesario, double margenError){
     	return nivelAbrigoNecesario * (1 - margenError);
     }

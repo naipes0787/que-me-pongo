@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * Clase que se encarga de combinar prendas que pueden tener superposiciones
  */
-public class CombinadorSuperposicion {
+public class Combinador {
 	
     public static Set<CombinacionPrenda> combinarSimple(Set<Prenda> prendas) {
     	return prendas
