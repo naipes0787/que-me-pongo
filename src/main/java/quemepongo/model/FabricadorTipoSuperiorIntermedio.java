@@ -5,8 +5,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FabricadorTipoSuperior implements FabricaTipoPrenda {
-	
+public class FabricadorTipoSuperiorIntermedio extends FabricaTipoPrenda {
+
+    public FabricadorTipoSuperiorIntermedio(double nivelAbrigo){
+        super.nivelAbrigo = nivelAbrigo;
+    }
+
     public Categoria getCategoria() {
         return Categoria.PRENDA_SUPERIOR;
     }
@@ -22,6 +26,6 @@ public class FabricadorTipoSuperior implements FabricaTipoPrenda {
         )
                 .collect(Collectors.toCollection(HashSet::new));
     }
+
+    public Capa getCapa() { return Capa.INTERMEDIO;}
 }
-
-

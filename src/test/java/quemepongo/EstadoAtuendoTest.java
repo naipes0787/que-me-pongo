@@ -1,5 +1,6 @@
 package quemepongo;
 
+import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
 import quemepongo.model.*;
@@ -9,30 +10,31 @@ import java.awt.*;
 import static org.junit.Assert.assertEquals;
 
 public class EstadoAtuendoTest {
-    private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
-    private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperior());
-    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
+    private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15));
+    private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(12));
+    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
 
     private Atuendo atuendo;
     private Usuario usuario;
 
     @Before
     public void setup() {
-        Prenda jean = new CreadorDePrenda()
-                .setTipoPrenda(JEAN)
-                .setMaterial(Material.OXFORD)
-                .setColorPrincipal(Color.BLACK)
-                .build();
-        Prenda remera = new CreadorDePrenda()
+        CombinacionPrenda jean = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
+                                                .setTipoPrenda(JEAN)
+                                                .setMaterial(Material.OXFORD)
+                                                .setColorPrincipal(Color.BLACK)
+                                                .build()));
+        CombinacionPrenda remera = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
                 .setTipoPrenda(REMERA)
                 .setMaterial(Material.ALGODON)
                 .setColorPrincipal(Color.BLACK)
-                .build();
-        Prenda botas = new CreadorDePrenda()
+                .build()));
+
+        CombinacionPrenda botas = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
                 .setTipoPrenda(BOTAS)
                 .setMaterial(Material.CUERO)
                 .setColorPrincipal(Color.BLACK)
-                .build();
+                .build()));
         atuendo = new Atuendo(remera, jean, botas);
         usuario = new Usuario();
     }

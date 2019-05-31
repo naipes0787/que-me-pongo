@@ -12,4 +12,10 @@ public class Temperatura {
         this.temperatura = temperatura;
     }
 
+    public double nivelDeAbrigo(){
+        if(getTemperatura() < 0)  {return 200;}
+        if (getTemperatura() < 35) {return 200 - 5 * getTemperatura();}
+        else {return 25;}
+    }
 }
+
