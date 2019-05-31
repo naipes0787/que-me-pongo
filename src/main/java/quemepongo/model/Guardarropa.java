@@ -6,13 +6,9 @@ import java.util.stream.Collectors;
 import com.google.common.collect.Sets;
 
 public class Guardarropa {
+	
     private double margenError = 0.1;
     private Set<Prenda> prendas = Sets.newHashSet();
-
-    private CombinadorSuperposicion combinadorSuperior = new CombinadorSuperposicionMultiple(this, Categoria.PRENDA_SUPERIOR);
-    private CombinadorSuperposicion combinadorInferior = new CombinadorSuperposicionSimple(this, Categoria.PRENDA_INFERIOR);
-    private CombinadorSuperposicion combinadorCalzado = new CombinadorSuperposicionSimple(this, Categoria.CALZADO);
-    private CombinadorSuperposicion combinadorAccesorio = new CombinadorSuperposicionSimple(this, Categoria.ACCESORIO);
 
     public void agregarPrenda(Prenda prenda) {
         prendas.add(prenda);
@@ -23,12 +19,15 @@ public class Guardarropa {
                 filter(prenda -> prenda.getCategoria() == categoria)
                 .collect(Collectors.toSet());
     }
-    
+
     public Set<Atuendo> sugerencias(Temperatura temperatura) {
         return Sets.cartesianProduct(
-                        combinacionSuperior(),
-                        combinacionInferior(),
-                        combinacionCalzado())
+        				CombinadorSuperposicion.combinarMultiple(
+        						this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)),
+						CombinadorSuperposicion.combinarSimple(
+								this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)),
+						CombinadorSuperposicion.combinarSimple(
+								this.prendasDeCategoria(Categoria.CALZADO)))
                 .stream()
                 .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)))
                 .filter(atuendo -> atuendo.abrigaLoSuficiente(temperatura, margenError))
@@ -37,32 +36,19 @@ public class Guardarropa {
 
     public Set<Atuendo> sugerenciasConAccesorios(Temperatura temperatura) {
         return Sets.cartesianProduct(
-                        combinacionSuperior(),
-                        combinacionInferior(),
-                        combinacionCalzado(),
-                        combinadorAccesorio())
+					CombinadorSuperposicion.combinarMultiple(
+							this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)),
+					CombinadorSuperposicion.combinarSimple(
+							this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)),
+					CombinadorSuperposicion.combinarSimple(
+							this.prendasDeCategoria(Categoria.CALZADO)),
+					CombinadorSuperposicion.combinarSimple(
+							this.prendasDeCategoria(Categoria.ACCESORIO)))
                 .stream()
                 .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)).conAccesorio(c.get(3))
                 	)
                 .filter(atuendo -> atuendo.abrigaLoSuficiente(temperatura, margenError))
                 .collect(Collectors.toSet());
-    }
-
-
-    private Set<CombinacionPrenda> combinacionSuperior() {
-        return combinadorSuperior.combinar();
-    }
-
-    private Set<CombinacionPrenda> combinacionInferior() {
-        return combinadorInferior.combinar();
-    }
-
-    private Set<CombinacionPrenda> combinacionCalzado() {
-        return combinadorCalzado.combinar();
-    }
-    
-    private Set<CombinacionPrenda> combinadorAccesorio() {
-        return combinadorAccesorio.combinar();
     }
 
     public int cantidadDePrendas() {
