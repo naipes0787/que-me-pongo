@@ -25,14 +25,14 @@ public class Guardarropa {
                 .collect(Collectors.toSet());
     }
 
-    public Set<Atuendo> generarSugerencias(/*Temperatura Temp*/) {
+    public Set<Atuendo> sugerencias(Temperatura temperatura) {
         return Sets.cartesianProduct(
                         combinacionSuperior(),
                         combinacionInferior(),
                         combinacionCalzado())
                 .stream()
                 .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)))
-                .filter(atuendo -> atuendo.abrigaLoSuficiente(10, margenError))
+                .filter(atuendo -> atuendo.abrigaLoSuficiente(temperatura, margenError))
                 .collect(Collectors.toSet());
     }
 

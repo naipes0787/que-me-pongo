@@ -25,7 +25,7 @@ public class CombinadorSimple implements Combinador {
                 .collect(Collectors.toSet());
     }
 
-    private CombinacionPrenda generarCombinacion(Prenda prenda){
+    public CombinacionPrenda generarCombinacion(Prenda prenda){
         return new CombinacionPrenda(Sets.newHashSet(prenda));
     }
 

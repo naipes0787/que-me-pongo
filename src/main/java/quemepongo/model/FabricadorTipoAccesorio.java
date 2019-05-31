@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 public class FabricadorTipoAccesorio extends FabricaTipoPrenda {
 
-    public FabricadorTipoAccesorio(double nivelAbrigo){
-        super.nivelAbrigo = nivelAbrigo;
+    public FabricadorTipoAccesorio(){
+        super.nivelAbrigo = 0;
     }
 
     public Categoria getCategoria() {

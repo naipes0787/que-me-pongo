@@ -15,75 +15,80 @@ public class SugerenciasTest {
 
 	Guardarropa guardarropa = new Guardarropa();
 	
-	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
-    private static final TipoPrenda CARGO = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
-    private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
-    private static final TipoPrenda CALZA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
+	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(20));
+    private static final TipoPrenda CARGO = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15));
+    private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(10));
+    private static final TipoPrenda CALZA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(18));
 
-    private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
-    private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
-    private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
+    private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10));
+    private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(5));
+    private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(15));
 
-    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
-    private static final TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
-    private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
+    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
+    private static final TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(15));
+    private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(5));
 
     private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
     private static final TipoPrenda PULSERA = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
+
+    private Temperatura temperatura;
     
     @Before
     public void ejecutarAntesDeCadaTest() {
     	guardarropa = new Guardarropa();
-        guardarropa.agregarPrendaInferior(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(JEAN)
 				.setMaterial(Material.OXFORD)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaInferior(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(CARGO)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaInferior(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(CALZA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaInferior(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(POLLERA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaSuperior(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(REMERA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaSuperior(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(MUSCULOSA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarPrendaSuperior(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(CAMISA)
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarCalzado(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(BOTAS)
 				.setMaterial(Material.CUERO)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarCalzado(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(BORCEGOS)
 				.setMaterial(Material.CUERO)
 				.setColorPrincipal(Color.BLACK)
 				.build());
-        guardarropa.agregarCalzado(new CreadorDePrenda()
+        guardarropa.agregarPrenda(new CreadorDePrenda()
 				.setTipoPrenda(ZAPATILLAS)
 				.setMaterial(Material.LONA)
 				.setColorPrincipal(Color.BLACK)
 				.build());
+
+        temperatura = new Temperatura();
+        temperatura.setTemperatura(20.0);
     }
 
     @Test

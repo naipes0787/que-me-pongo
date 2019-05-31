@@ -32,12 +32,12 @@ public class Atuendo {
         return accesorio;
     }
   
-    public boolean abrigaLoSuficiente(double temperatura, double margenError){
-        return (margenInferior(nivelDeAbrigoPara(temperatura), margenError) <= getNivelAbrigo()
-                && getNivelAbrigo() <= margenSuperior(nivelDeAbrigoPara(temperatura), margenError));
+    public boolean abrigaLoSuficiente(Temperatura temperatura, double margenError){
+        return (margenInferior(temperatura.nivelDeAbrigo(), margenError) <= getNivelAbrigo()
+                && getNivelAbrigo() <= margenSuperior(temperatura.nivelDeAbrigo(), margenError));
     }
 
-    double nivelDeAbrigoPara(double temperatura){
+    double nivelDeAbrigoPara(Temperatura temperatura){
         return 100;
     }
 

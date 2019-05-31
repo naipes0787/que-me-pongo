@@ -5,30 +5,24 @@ import static org.junit.Assert.assertEquals;
 import java.awt.Color;
 import java.util.Set;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import quemepongo.model.Atuendo;
-import quemepongo.model.FabricadorTipoAccesorio;
-import quemepongo.model.FabricadorTipoCalzado;
-import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.FabricadorTipoSuperiorBase;
-import quemepongo.model.Guardarropa;
-import quemepongo.model.Material;
-import quemepongo.model.Prenda;
-import quemepongo.model.TipoPrenda;
-import quemepongo.model.Usuario;
-import quemepongo.model.CreadorDePrenda;
+import quemepongo.model.*;
 
 public class GuardarropaTest {
 
-	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
-	private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior());
-	private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
-	private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
-	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase());
-	private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
-	private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado());
+	private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(20));
+	private static final TipoPrenda POLLERA = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(10));
+	private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10));
+	private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(7));
+	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(15));
+	private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
+	private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(15));
 	private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
+
+	private Temperatura temperatura;
+
 
 	private static final Prenda JeanDeOxfordNegro = new CreadorDePrenda()
 			.setTipoPrenda(JEAN)
@@ -71,9 +65,14 @@ public class GuardarropaTest {
 			.setColorPrincipal(Color.BLACK)
 			.build();
 
+	@Before
+	public void setTemperatura(){
+		temperatura = new Temperatura();
+		temperatura.setTemperatura(20.0);
+	}
+
 	@Test
 	public void usuariosUsandoGuardarropas() {
-
 		Usuario usuario1 = new Usuario();
 		Usuario usuario2 = new Usuario();
 		Guardarropa guardarropa1 = new Guardarropa();
@@ -119,7 +118,7 @@ public class GuardarropaTest {
 		guardarropaSinPrendasSuperiores.agregarPrenda(ZapatillasDeLonaNegras);
 		guardarropaSinPrendasSuperiores.agregarPrenda(BotasDeCueroNegras);
 		
-		Set<Atuendo> sugerencias = guardarropaSinPrendasSuperiores.sugerencias();
+		Set<Atuendo> sugerencias = guardarropaSinPrendasSuperiores.sugerencias(temperatura);
 		assertEquals(0, sugerencias.size());
 	}
 
@@ -132,7 +131,7 @@ public class GuardarropaTest {
 		guardarropaSinPrendasInferiores.agregarPrenda(ZapatillasDeLonaNegras);
 		guardarropaSinPrendasInferiores.agregarPrenda(BotasDeCueroNegras);
 		
-		Set<Atuendo> sugerencias = guardarropaSinPrendasInferiores.sugerencias();
+		Set<Atuendo> sugerencias = guardarropaSinPrendasInferiores.sugerencias(temperatura);
 		assertEquals(0, sugerencias.size());
 	}
 
@@ -145,7 +144,7 @@ public class GuardarropaTest {
 		guardarropaSinCalzados.agregarPrenda(JeanDeOxfordNegro);
 		guardarropaSinCalzados.agregarPrenda(PolleraDeAlgodonNegra);
 
-		Set<Atuendo> sugerencias = guardarropaSinCalzados.sugerencias();
+		Set<Atuendo> sugerencias = guardarropaSinCalzados.sugerencias(temperatura);
 		assertEquals(0, sugerencias.size());
 	}
 

@@ -36,7 +36,7 @@ public class PrendaTest {
 	@SuppressWarnings("unused")
 	public void construirPrendaSinMaterial() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10)))
 				.setColorPrincipal(Color.BLACK)
 				.build();
 	}
@@ -48,7 +48,7 @@ public class PrendaTest {
 	@SuppressWarnings("unused")
 	public void construirPrendaSinColorPrincipal() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10)))
 				.setMaterial(Material.ALGODON)
 				.build();
 	}
@@ -60,7 +60,7 @@ public class PrendaTest {
 	@SuppressWarnings("unused")
 	public void construirPrendaInvalida() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoCalzado()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10)))
 				.setMaterial(Material.SEDA)
 				.setColorPrincipal(Color.BLACK)
 				.build();
@@ -72,7 +72,7 @@ public class PrendaTest {
 	@Test(expected = ColoresRepetidosException.class)
 	public void construirPrendaMismosColores() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.BLACK)
@@ -86,7 +86,7 @@ public class PrendaTest {
 	@Test
 	public void construirPrendaSinColorSecundario() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(15)))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.build();
@@ -99,7 +99,7 @@ public class PrendaTest {
 	@Test
 	public void construirPrendaCompletaSinFoto() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.WHITE)
@@ -113,7 +113,7 @@ public class PrendaTest {
 	@Test
 	public void construirPrendaCompletaConFoto() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.WHITE)
@@ -128,7 +128,7 @@ public class PrendaTest {
 	@Test(expected = PathInvalidoException.class)
 	public void construirPrendaConFotoInvalida() {
 		Prenda prenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.WHITE)
@@ -143,7 +143,7 @@ public class PrendaTest {
 	@Test
 	public void construirPrendaCompletaConFoto2() {
 		CreadorDePrenda creadorPrenda = new CreadorDePrenda()
-				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior()))
+				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.WHITE)
