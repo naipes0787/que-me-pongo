@@ -18,8 +18,10 @@ public abstract class Cliente {
     public Cliente(String host){
         this.cliente = HttpClients.createDefault();
         this.host = host;
-        this.mapper = new ObjectMapper();
+        this.mapper = buildMapper();
     }
+
+    public abstract ObjectMapper buildMapper();
 
     public HttpResponse get(String path) {
         String url = host + path;

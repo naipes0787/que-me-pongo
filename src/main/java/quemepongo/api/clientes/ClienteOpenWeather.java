@@ -1,5 +1,8 @@
 package quemepongo.api.clientes;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.apache.http.HttpResponse;
 import quemepongo.api.dto.OpenWeatherResponseDTO;
 import quemepongo.exceptions.ApiDeClimaException;
@@ -34,7 +37,7 @@ public class ClienteOpenWeather extends Cliente implements ApiDeClima {
 
     private String parametrosGenerales(){
         //TODO hacerlo parametrizable y usar Query
-        return "&appid="+key+"=&units=metric&lang=es";
+        return "&appid="+key+"&units=metric&lang=es";
     }
 
     @Override
@@ -48,5 +51,12 @@ public class ClienteOpenWeather extends Cliente implements ApiDeClima {
     private String getLocationKey(Localizacion localizacion) {
         //TODO la idea es tener un mapa, propio de OpenWeather, cuya key sea una localizacion y el valor sea el id
         return "3433955";
+    }
+
+    @Override
+    public ObjectMapper buildMapper() {
+        return new ObjectMapper()
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                .setPropertyNamingStrategy(PropertyNamingStrategy.SnakeCaseStrategy.SNAKE_CASE);
     }
 }
