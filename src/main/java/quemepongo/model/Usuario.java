@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 public class Usuario {
 
     private Set<Guardarropa> guardarropas = Sets.newHashSet();
+
+    private Set<Evento> eventos = Sets.newHashSet();
+
     private TipoUsuario tipoUsuario;
     
     public Usuario() {
@@ -24,6 +27,10 @@ public class Usuario {
 
     public Set<Atuendo> sugerencias() {
         return guardarropas.stream().flatMap(g -> g.sugerencias().stream()).collect(Collectors.toSet());
+    }
+
+    public void agregarEvento(Evento evento) {
+        eventos.add(evento);
     }
     
     public TipoUsuario getTipoUsuario() {
@@ -50,3 +57,4 @@ public class Usuario {
         atuendo.deshacerDecision();
     }
 }
+
