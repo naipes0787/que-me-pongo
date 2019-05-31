@@ -6,4 +6,5 @@ import quemepongo.model.Temperatura;
 public interface ApiDeClima {
 
     Temperatura obtenerTemperaturaActual(Localizacion localizacion);
+
 }
