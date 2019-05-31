@@ -1,13 +1,19 @@
 package quemepongo.api.servicio;
 
 import quemepongo.api.clientes.ApiDeClima;
+import quemepongo.api.clientes.ClienteAccuWeather;
 
 public class SelectorDeProveedorDeClima {
 
-    private ApiDeClima proovedorDeClima;
+    private static SelectorDeProveedorDeClima selector;
 
-    public SelectorDeProveedorDeClima(ApiDeClima proovedorDeClima) {
-        this.proovedorDeClima = proovedorDeClima;
+    private ApiDeClima proovedorDeClima = new ClienteAccuWeather();
+
+    public static SelectorDeProveedorDeClima getInstancia() {
+        if (selector == null) {
+            selector = new SelectorDeProveedorDeClima();
+        }
+        return selector;
     }
 
     public ApiDeClima getProovedorDeClima() {

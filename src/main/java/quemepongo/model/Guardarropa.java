@@ -50,7 +50,7 @@ public class Guardarropa {
     }
 
     public int cantidadDePrendas() {
-    	return prendas.size() 
+    	return prendas.size();
     }
 
 }

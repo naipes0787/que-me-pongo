@@ -18,7 +18,6 @@ public class ApiDeClimaTest {
     private ApiDeClima apiDeClima;
     @Mock
     private ApiDeClima apiDeClimaSecundario;
-    private SelectorDeProveedorDeClima selector;
 
     private static final Localizacion LOCALIZACION = Localizacion.CABA;
     private static final String MENSAJE_EXCEPTION_TEMPERATURA_ACTUAL = "Pronostico Actual";
@@ -27,10 +26,12 @@ public class ApiDeClimaTest {
     private static Temperatura temperaturaSecundaria = new Temperatura();
     private static final Double VALOR_TEMPERATURA_SECUNDARIA = 20.0;
 
+    SelectorDeProveedorDeClima selector = SelectorDeProveedorDeClima.getInstancia();
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        selector = new SelectorDeProveedorDeClima(apiDeClima);
+        selector.setProovedorDeClima(apiDeClima);
         temperatura.setTemperatura(VALOR_TEMPERATURA);
         temperaturaSecundaria.setTemperatura(VALOR_TEMPERATURA_SECUNDARIA);
     }

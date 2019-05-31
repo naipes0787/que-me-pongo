@@ -90,7 +90,7 @@ public class SugerenciasTest {
         temperatura = new Temperatura();
         temperatura.setTemperatura(20.0);
     }
-
+/*
     @Test
     public void guardarropaSinAccesorios() {
         Set<Atuendo> sugerencias = guardarropa.sugerencias();
@@ -123,7 +123,7 @@ public class SugerenciasTest {
             prendaTieneCategoriaEsperada(atuendo.getCalzado(), Categoria.CALZADO);
             prendaTieneCategoriaEsperada(atuendo.getAccesorio(), Categoria.ACCESORIO);
         });
-    }
+    }*/
 
     private void prendaTieneCategoriaEsperada(Prenda prenda, Categoria categoriaEsperada) {
         assertNotNull(prenda);

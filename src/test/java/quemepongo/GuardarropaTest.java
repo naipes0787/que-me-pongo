@@ -3,6 +3,7 @@ package quemepongo;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import org.junit.Before;
@@ -22,6 +23,7 @@ public class GuardarropaTest {
 	private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
 
 	private Temperatura temperatura;
+	private Evento eventoBasico;
 
 
 	private static final Prenda JeanDeOxfordNegro = new CreadorDePrenda()
@@ -66,9 +68,10 @@ public class GuardarropaTest {
 			.build();
 
 	@Before
-	public void setTemperatura(){
+	public void preparar(){
 		temperatura = new Temperatura();
 		temperatura.setTemperatura(20.0);
+		eventoBasico = new Evento(Localizacion.CABA, LocalDateTime.now());
 	}
 
 	@Test
@@ -99,12 +102,12 @@ public class GuardarropaTest {
 		final Integer cantidadAtuendosGuardarropa1 = 1;
 		// En el guardarropa 2 hay sólo una prenda inferior, dos superiores y dos calzados
 		final Integer cantidadAtuendosGuardarropa2 = 1 * 2 * 2;
-		Set<Atuendo> sugerenciasUsuario1 = usuario1.sugerencias();
+		Set<Atuendo> sugerenciasUsuario1 = usuario1.sugerencias(eventoBasico);
 		assertEquals(cantidadAtuendosGuardarropa1 + cantidadAtuendosGuardarropa2, sugerenciasUsuario1.size());
 		// En el guardarropa 3 hay sólo una prenda inferior, una superior, un calzado y
 		// un accesorio
 		// cantidadAtuendosGuardarropa3 = 1 * 1 * 1 * 1;
-		Set<Atuendo> sugerenciasUsuario2 = usuario2.sugerencias();
+		Set<Atuendo> sugerenciasUsuario2 = usuario2.sugerencias(eventoBasico);
 		assertEquals(1, sugerenciasUsuario2.size());
 	}
 

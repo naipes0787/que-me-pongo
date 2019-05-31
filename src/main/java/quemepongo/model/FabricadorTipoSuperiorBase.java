@@ -1,7 +1,5 @@
 package quemepongo.model;
 
-import quemepongo.exceptions.CapaInvalidaException;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
