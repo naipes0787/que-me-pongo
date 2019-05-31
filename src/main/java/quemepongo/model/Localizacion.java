@@ -1,5 +1,15 @@
 package quemepongo.model;
 
 public enum Localizacion {
-    CABA,
+    CABA("Ciudad Autónoma de Buenos Aires");
+
+    private String nombre;
+
+    Localizacion(String nombre){
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 }
