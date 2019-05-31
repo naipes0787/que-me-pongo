@@ -1,5 +1,7 @@
 package quemepongo.model;
 
+import com.google.common.collect.Sets;
+
 public class Atuendo {
 
     private CombinacionPrenda prendasSuperiores;
@@ -13,6 +15,7 @@ public class Atuendo {
         this.prendasSuperiores = prendasSuperiores;
         this.prendaInferior = prendaInferior;
         this.calzado = calzado;
+        this.accesorio = new CombinacionPrenda(Sets.newHashSet());
     }
   
     public Atuendo conAccesorio(CombinacionPrenda accesorio) {
@@ -23,18 +26,10 @@ public class Atuendo {
     public double getNivelAbrigo(){
         return (prendasSuperiores.getNivelAbrigo() + prendaInferior.getNivelAbrigo() + calzado.getNivelAbrigo());
     }
-  
-    public CombinacionPrenda getAccesorio() {
-        return accesorio;
-    }
-  
+
     public boolean abrigaLoSuficiente(Temperatura temperatura, double margenError){
         return (margenInferior(temperatura.convertirANivelDeAbrigo(), margenError) <= getNivelAbrigo()
                 && getNivelAbrigo() <= margenSuperior(temperatura.convertirANivelDeAbrigo(), margenError));
-    }
-
-    double nivelDeAbrigoPara(Temperatura temperatura){
-        return 100;
     }
 
     private double margenInferior(double nivelAbrigoNecesario, double margenError){
@@ -64,4 +59,17 @@ public class Atuendo {
     public EstadoAtuendo getEstado() {
         return estado;
     }
+
+    public CombinacionPrenda getPrendasSuperiores(){return prendasSuperiores;}
+    public CombinacionPrenda getPrendaInferior(){return prendaInferior;}
+    public CombinacionPrenda getCalzado() {return calzado;}
+    public CombinacionPrenda getAccesorio(){return accesorio;}
+
+    public int getCantidadPrendas(){
+        return getPrendasSuperiores().getCantPrendas()
+                + getPrendaInferior().getCantPrendas()
+                + getCalzado().getCantPrendas()
+                + getAccesorio().getCantPrendas();
+    }
+
 }

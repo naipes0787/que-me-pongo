@@ -21,38 +21,65 @@ public class Guardarropa {
     }
 
     public Set<Atuendo> sugerencias(Temperatura temperatura) {
-        return Sets.cartesianProduct(
-        				CombinadorSuperposicion.combinarMultiple(
-        						this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)),
-						CombinadorSuperposicion.combinarSimple(
-								this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)),
-						CombinadorSuperposicion.combinarSimple(
-								this.prendasDeCategoria(Categoria.CALZADO)))
-                .stream()
-                .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)))
-                .filter(atuendo -> atuendo.abrigaLoSuficiente(temperatura, margenError))
-                .collect(Collectors.toSet());
+        return filtrarAtuendosPorTemperatura(generarAtuendos(), temperatura);
     }
 
     public Set<Atuendo> sugerenciasConAccesorios(Temperatura temperatura) {
+        return filtrarAtuendosPorTemperatura(generarAtuendosConAccesorios(), temperatura);
+    }
+
+    private Set<Atuendo> generarAtuendos(){
         return Sets.cartesianProduct(
-					CombinadorSuperposicion.combinarMultiple(
-							this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)),
-					CombinadorSuperposicion.combinarSimple(
-							this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)),
-					CombinadorSuperposicion.combinarSimple(
-							this.prendasDeCategoria(Categoria.CALZADO)),
-					CombinadorSuperposicion.combinarSimple(
-							this.prendasDeCategoria(Categoria.ACCESORIO)))
+                Combinador.combinarMultiple(
+                        this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)),
+                Combinador.combinarSimple(
+                        this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)),
+                Combinador.combinarSimple(
+                        this.prendasDeCategoria(Categoria.CALZADO)))
                 .stream()
-                .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)).conAccesorio(c.get(3))
-                	)
-                .filter(atuendo -> atuendo.abrigaLoSuficiente(temperatura, margenError))
+                .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)))
                 .collect(Collectors.toSet());
     }
 
-    public int cantidadDePrendas() {
-    	return prendas.size();
+    private Set<Atuendo> generarAtuendosConAccesorios(){
+        return Sets.cartesianProduct(
+                Combinador.combinarMultiple(
+                        this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)),
+                Combinador.combinarSimple(
+                        this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)),
+                Combinador.combinarSimple(
+                        this.prendasDeCategoria(Categoria.CALZADO)),
+                Combinador.combinarSimple(
+                        this.prendasDeCategoria(Categoria.ACCESORIO)))
+                .stream()
+                .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)).conAccesorio(c.get(3)))
+                .collect(Collectors.toSet());
     }
+
+    private Set<Atuendo> filtrarAtuendosPorTemperatura(Set<Atuendo> atuendos, Temperatura temperatura){
+        if(atuendos.size() == 0) {
+            return Sets.newHashSet();
+        }else{
+            return sugerenciasSegunMargen(atuendos, temperatura, getMargenError());
+        }
+    }
+
+    public Set<Atuendo> sugerenciasSegunMargen(Set<Atuendo> atuendos, Temperatura temperatura, double margen) {
+        Set<Atuendo> atuendosFiltrados = atuendos.stream()
+                .filter(atuendo -> atuendo.abrigaLoSuficiente(temperatura, margen))
+                .collect(Collectors.toSet());
+        if (atuendosFiltrados.size() == 0)
+        {return sugerenciasSegunMargen(atuendos, temperatura, ampliarMargen(margen));}
+        else
+        {return atuendosFiltrados;}
+    }
+
+    public int cantidadDePrendas() {
+        return prendas.size();
+    }
+
+    private double getMargenError(){return margenError;}
+
+    private double ampliarMargen(double margenError){return margenError + 0.1;}
 
 }
