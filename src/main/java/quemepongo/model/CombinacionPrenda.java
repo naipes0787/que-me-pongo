@@ -15,4 +15,6 @@ public class CombinacionPrenda {
         return prendas.stream().mapToDouble(prenda -> prenda.getNivelAbrigo()).sum();
     }
 
+    public int getCantPrendas(){ return prendas.size();}
+
 }

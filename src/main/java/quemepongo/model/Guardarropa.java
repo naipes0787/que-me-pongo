@@ -65,13 +65,13 @@ public class Guardarropa {
     }
 
     public Set<Atuendo> sugerenciasSegunMargen(Set<Atuendo> atuendos, Temperatura temperatura, double margen) {
-        atuendos.stream()
+        Set<Atuendo> atuendosFiltrados = atuendos.stream()
                 .filter(atuendo -> atuendo.abrigaLoSuficiente(temperatura, margen))
                 .collect(Collectors.toSet());
-        if (atuendos.size() == 0)
+        if (atuendosFiltrados.size() == 0)
         {return sugerenciasSegunMargen(atuendos, temperatura, ampliarMargen(margen));}
         else
-        {return atuendos;}
+        {return atuendosFiltrados;}
     }
 
     public int cantidadDePrendas() {

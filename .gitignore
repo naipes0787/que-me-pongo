@@ -1,6 +1,7 @@
 #Ide's files and folders
 .idea
 *.iml
+.ipr
 
 ### Eclipse ###
 .metadata
