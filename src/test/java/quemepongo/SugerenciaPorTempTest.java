@@ -1,15 +1,26 @@
 package quemepongo;
 
-import org.junit.Before;
-import org.junit.Test;
-import quemepongo.model.*;
-
-import java.awt.*;
-import java.lang.management.MonitorInfo;
-import java.util.Set;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+import java.awt.Color;
+import java.util.Set;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import quemepongo.model.Atuendo;
+import quemepongo.model.CreadorDePrenda;
+import quemepongo.model.FabricadorTipoCalzado;
+import quemepongo.model.FabricadorTipoInferior;
+import quemepongo.model.FabricadorTipoSuperiorBase;
+import quemepongo.model.FabricadorTipoSuperiorIntermedio;
+import quemepongo.model.FabricadorTipoSuperiorUltimaPrenda;
+import quemepongo.model.Guardarropa;
+import quemepongo.model.Material;
+import quemepongo.model.Prenda;
+import quemepongo.model.Temperatura;
+import quemepongo.model.TipoPrenda;
 
 public class SugerenciaPorTempTest {
 
@@ -28,10 +39,6 @@ public class SugerenciaPorTempTest {
     private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(15));
     private static final TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(15));
 
-
-    private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
-    private static final TipoPrenda PULSERA = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
-
     private static Prenda Musculosa;
     private static Prenda Camisa;
 
@@ -46,10 +53,6 @@ public class SugerenciaPorTempTest {
 
     private static Prenda Botas;
     private static Prenda Borcegos;
-
-    private static Prenda Anteojos;
-    private static Prenda Pulsera;
-
 
     @Before
     public void ejecutarAntesDeCadaTest() {
@@ -103,23 +106,12 @@ public class SugerenciaPorTempTest {
                 .setMaterial(Material.CUERO)
                 .setColorPrincipal(Color.BLACK)
                 .build();
-        Anteojos = new CreadorDePrenda()
-                .setTipoPrenda(ANTEOJOS)
-                .setMaterial(Material.PLASTICO)
-                .setColorPrincipal(Color.BLACK)
-                .build();
-        Pulsera = new CreadorDePrenda()
-                .setTipoPrenda(PULSERA)
-                .setMaterial(Material.PLASTICO)
-                .setColorPrincipal(Color.BLACK)
-                .build();
     }
 
     @Test
     public void sugerenciasCon3Capas() {
 
-        Temperatura temperatura = new Temperatura();
-        temperatura.setTemperatura(10.0);
+        Temperatura temperatura = new Temperatura(10.0);
     /**
      *  Se comienza teniendo solo una combinación posible.
      */
@@ -183,8 +175,7 @@ public class SugerenciaPorTempTest {
 
     @Test
     public void sugerenciasUnicaCapa() {
-        Temperatura temperatura = new Temperatura();
-        temperatura.setTemperatura(31.0);
+        Temperatura temperatura = new Temperatura(31.0);
 
         Guardarropa guardarropa = new Guardarropa();
         guardarropa.agregarPrenda(Camisa);

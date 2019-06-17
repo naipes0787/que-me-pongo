@@ -95,8 +95,7 @@ public class SugerenciasTest {
 				.setColorPrincipal(Color.BLACK)
 				.build());
 
-        temperatura = new Temperatura();
-        temperatura.setTemperatura(10.0);
+        temperatura = new Temperatura(10.0);
     }
 
     @Test

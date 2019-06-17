@@ -60,10 +60,21 @@ public class Atuendo {
         return estado;
     }
 
-    public CombinacionPrenda getPrendasSuperiores(){return prendasSuperiores;}
-    public CombinacionPrenda getPrendaInferior(){return prendaInferior;}
-    public CombinacionPrenda getCalzado() {return calzado;}
-    public CombinacionPrenda getAccesorio(){return accesorio;}
+    public CombinacionPrenda getPrendasSuperiores(){
+    	return prendasSuperiores;
+    }
+    
+    public CombinacionPrenda getPrendaInferior(){
+    	return prendaInferior;
+    }
+    
+    public CombinacionPrenda getCalzado() {
+    	return calzado;
+    }
+    
+    public CombinacionPrenda getAccesorio(){
+    	return accesorio;
+    }
 
     public int getCantidadPrendas(){
         return getPrendasSuperiores().getCantPrendas()

@@ -4,6 +4,10 @@ public class Temperatura {
 
     private Double temperatura;
 
+    public Temperatura(double temperatura) {
+    	this.temperatura = temperatura;
+    }
+    
     public Double getTemperatura() {
         return temperatura;
     }

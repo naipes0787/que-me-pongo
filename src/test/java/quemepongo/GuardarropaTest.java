@@ -72,8 +72,7 @@ public class GuardarropaTest {
 
 	@Before
 	public void preparar(){
-		temperatura = new Temperatura();
-		temperatura.setTemperatura(20.0);
+		temperatura = new Temperatura(20.0);
 		eventoBasico = new Evento(Localizacion.CABA, LocalDateTime.now());
 		ApiDeClima proovedorDeClima = new ClienteTest();
 		SelectorDeProveedorDeClima.getInstancia().setProovedorDeClima(proovedorDeClima);

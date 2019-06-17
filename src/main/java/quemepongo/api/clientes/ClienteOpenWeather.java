@@ -43,8 +43,9 @@ public class ClienteOpenWeather extends Cliente implements ApiDeClima {
     @Override
     public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
         String locationKey = getLocationKey(localizacion);
-        Temperatura temperatura = new Temperatura();
-        temperatura.setTemperatura(obtenerTemperaturaActual(locationKey).getMain().getTemp());
+        Temperatura temperatura = new Temperatura(obtenerTemperaturaActual(locationKey)
+        		.getMain()
+        		.getTemp());
         return temperatura;
     }
 

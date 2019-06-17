@@ -45,8 +45,11 @@ public class ClienteAccuWeather extends Cliente implements ApiDeClima{
     @Override
     public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
         String locationKey = getLocationKey(localizacion);
-        Temperatura temperatura = new Temperatura();
-        temperatura.setTemperatura(obtenerTemperaturaActual(locationKey).get(0).getTemperature().getMetric().getValue());
+        Temperatura temperatura = new Temperatura(obtenerTemperaturaActual(locationKey)
+        		.get(0)
+        		.getTemperature()
+        		.getMetric()
+        		.getValue());
         return temperatura;
     }
 

@@ -24,8 +24,7 @@ public class ClienteTest extends Cliente implements ApiDeClima{
 
     @Override
     public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
-    	Temperatura temperatura = new Temperatura();
-    	temperatura.setTemperatura(TEMPERATURA_FIJA);
+    	Temperatura temperatura = new Temperatura(TEMPERATURA_FIJA);
         return temperatura;
     }
 
