@@ -8,8 +8,9 @@ public class UsuarioGratuito implements TipoUsuario{
 	
 	public void agregarPrenda(Prenda prenda, Guardarropa guardarropa) {
 		
-		if(limiteDeCapacidad <= guardarropa.cantidadDePrendas())
+		if(limiteDeCapacidad <= guardarropa.cantidadDePrendas()) {
 			throw new LimiteDeGuardarropasException();
+		}
 		
 		guardarropa.agregarPrenda(prenda);
 	}

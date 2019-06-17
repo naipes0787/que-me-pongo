@@ -16,11 +16,11 @@ public class Usuario {
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
-    };
+    }
 
     public Usuario(TipoUsuario nuevaSuscripcion) {
     	tipoUsuario = nuevaSuscripcion;
-    };
+    }
     
 	  public void agregarGuardarropa(Guardarropa guardarropa) {
         guardarropas.add(guardarropa);
@@ -36,12 +36,12 @@ public class Usuario {
     }
     
     public TipoUsuario getTipoUsuario() {
-		    return tipoUsuario;
-	  }
+    	return tipoUsuario;
+    }
     
-	  public void cambiarSuscripcion(TipoUsuario tipoUsuario) {
-		    this.tipoUsuario = tipoUsuario;
-	  }
+    public void cambiarSuscripcion(TipoUsuario tipoUsuario) {
+    	this.tipoUsuario = tipoUsuario;
+	}
 	
     public void agregarPrenda(Prenda prenda, Guardarropa guardarropa) {
     	  tipoUsuario.agregarPrenda(prenda, guardarropa);

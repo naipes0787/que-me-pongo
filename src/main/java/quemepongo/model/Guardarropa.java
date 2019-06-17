@@ -78,8 +78,12 @@ public class Guardarropa {
         return prendas.size();
     }
 
-    private double getMargenError(){return margenError;}
+    private double getMargenError(){
+    	return margenError;
+    }
 
-    private double ampliarMargen(double margenError){return margenError + 0.1;}
+    private double ampliarMargen(double margenError){
+    	return margenError + 0.1;
+    }
 
 }

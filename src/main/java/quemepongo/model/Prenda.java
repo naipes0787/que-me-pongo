@@ -6,13 +6,9 @@ import java.awt.image.BufferedImage;
 public class Prenda {
 	
 	private TipoPrenda tipo;
-    @SuppressWarnings("unused")
 	private Material material;
-    @SuppressWarnings("unused")
     private Color colorPrincipal;
-    @SuppressWarnings("unused")
     private Color colorSecundario;
-    @SuppressWarnings("unused")
     private BufferedImage foto;
 
     public Prenda(TipoPrenda tipo, Material material, Color colorPrincipal, Color colorSecundario, 
@@ -28,7 +24,11 @@ public class Prenda {
         return this.tipo.getCategoria();
     }
 
-    public double getNivelAbrigo() { return this.tipo.getNivelAbrigo();}
+    public double getNivelAbrigo() {
+    	return this.tipo.getNivelAbrigo();
+    }
 
-    public Capa getCapa(){ return this.tipo.getCapa();}
+    public Capa getCapa(){
+    	return this.tipo.getCapa();
+    }
 }

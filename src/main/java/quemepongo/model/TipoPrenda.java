@@ -29,11 +29,15 @@ public class TipoPrenda {
         return this.categoria;
     }
 
-    public double getNivelAbrigo() { return this.nivelAbrigo;}
+    public double getNivelAbrigo() {
+    	return this.nivelAbrigo;
+    }
     
     public Set<Material> getMaterialesValidos(){
     	return this.materialesValidos;
     }
 
-    public Capa getCapa() { return this.capa;}
+    public Capa getCapa() {
+    	return this.capa;
+    }
 }
