@@ -10,7 +10,7 @@ Categoria y listado de materiales validos que corresponde.
 
 public class TipoPrenda {
     public Categoria categoria;
-    public Set<Material> materialesValidos = new HashSet<>();
+    public Set<Material> materialesValidos;
     public double nivelAbrigo;
     public Capa capa;
 
