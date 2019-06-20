@@ -7,7 +7,7 @@ public class SelectorDeProveedorDeClima {
 
     private static SelectorDeProveedorDeClima selector;
 
-    private ApiDeClima proovedorDeClima = new ClienteAccuWeather();
+    private ApiDeClima proveedorDeClima = new ClienteAccuWeather();
 
     public static SelectorDeProveedorDeClima getInstancia() {
         if (selector == null) {
@@ -17,11 +17,11 @@ public class SelectorDeProveedorDeClima {
     }
 
     public ApiDeClima getProovedorDeClima() {
-        return proovedorDeClima;
+        return proveedorDeClima;
     }
 
     public void setProovedorDeClima(ApiDeClima proovedorDeClima) {
-        this.proovedorDeClima = proovedorDeClima;
+        this.proveedorDeClima = proovedorDeClima;
     }
 
 }
