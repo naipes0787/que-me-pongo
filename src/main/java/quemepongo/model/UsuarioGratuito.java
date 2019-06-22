@@ -1,6 +1,8 @@
 package quemepongo.model;
 
-import quemepongo.exceptions.LimiteDeGuardarropasException;;
+import quemepongo.exceptions.LimiteDeGuardarropasException;
+
+;
 
 public class UsuarioGratuito implements TipoUsuario{
 	

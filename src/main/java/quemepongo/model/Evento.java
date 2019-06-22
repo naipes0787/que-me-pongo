@@ -1,8 +1,8 @@
 package quemepongo.model;
 
-import java.time.LocalDateTime;
-
 import quemepongo.exceptions.FechaEventoNoValidaException;
+
+import java.time.LocalDateTime;
 
 public class Evento{
 	private Localizacion lugar;

@@ -46,16 +46,15 @@ public class ClienteAccuWeather implements ApiDeClima{
     @Override
     public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
         String locationKey = getLocationKey(localizacion);
-        Temperatura temperatura = new Temperatura(obtenerTemperaturaActual(locationKey)
-        		.get(0)
-        		.getTemperature()
-        		.getMetric()
-        		.getValue());
-        return temperatura;
+        Double temperaturaObtenida = obtenerTemperaturaActual(locationKey)
+                .get(0).getTemperature().getMetric().getValue();
+        if (temperaturaObtenida == null) throw new ApiDeClimaException("Pronostico Actual");
+        return new Temperatura(temperaturaObtenida);
     }
 
     private String getLocationKey(Localizacion localizacion) {
-        //TODO la idea es tener un mapa, propio de AccuWeather, cuya key sea una localizacion y el valor sea el id
+        //TODO la idea es tener un mapa, propio de AccuWeather,
+        // cuya key sea una localizacion y el valor sea el id
         return "7894";
     }
 

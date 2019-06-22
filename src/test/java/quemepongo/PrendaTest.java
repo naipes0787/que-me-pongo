@@ -1,16 +1,15 @@
 package quemepongo;
 
-import static org.junit.Assert.assertEquals;
-
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-
 import org.junit.Test;
-
 import quemepongo.exceptions.ColoresRepetidosException;
 import quemepongo.exceptions.MaterialInvalidoException;
 import quemepongo.exceptions.PathInvalidoException;
 import quemepongo.model.*;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test de la construcción y el uso de la clase Prenda

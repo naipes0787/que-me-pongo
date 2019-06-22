@@ -13,8 +13,6 @@ public class ClienteTest implements ApiDeClima{
 
     private static final Double TEMPERATURA_FIJA = 10D;
 
-    public ClienteTest() {}
-
     @Override
     public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
     	return new Temperatura(TEMPERATURA_FIJA);

@@ -18,16 +18,24 @@ public class Cliente {
         this.host = host;
     }
 
-    private HttpResponse get(String path) throws IOException{
+    private HttpResponse get(String path){
         String url = host + path;
         HttpGet httpGetRequest = new HttpGet(url);
-        return cliente.execute(httpGetRequest);
+        try{
+            return cliente.execute(httpGetRequest);
+        }catch (IOException exc){
+            throw new ClienteHttpException(path);
+        }
     }
 
-    public String getAsString(String path) throws IOException{
+    public String getAsString(String path){
         HttpResponse respuesta = this.get(path);
         if (terminoEnError(respuesta)) throw new ClienteHttpException(path);
-        return respuesta.getEntity().getContent().toString();
+        try{
+            return respuesta.getEntity().getContent().toString();
+        }catch (IOException exc){
+            throw new ClienteHttpException(path);
+        }
     }
 
     private Boolean terminoEnError(HttpResponse respuesta){

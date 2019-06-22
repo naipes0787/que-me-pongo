@@ -1,23 +1,13 @@
 package quemepongo;
 
-import static org.junit.Assert.assertEquals;
-
-import java.awt.Color;
-import java.util.Set;
-
 import org.junit.Before;
 import org.junit.Test;
+import quemepongo.model.*;
 
-import quemepongo.model.Atuendo;
-import quemepongo.model.CreadorDePrenda;
-import quemepongo.model.FabricadorTipoAccesorio;
-import quemepongo.model.FabricadorTipoCalzado;
-import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.FabricadorTipoSuperiorBase;
-import quemepongo.model.Guardarropa;
-import quemepongo.model.Material;
-import quemepongo.model.Temperatura;
-import quemepongo.model.TipoPrenda;
+import java.awt.*;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 public class SugerenciasTest {
 

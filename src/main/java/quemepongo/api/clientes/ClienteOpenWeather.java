@@ -44,14 +44,15 @@ public class ClienteOpenWeather implements ApiDeClima {
     @Override
     public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
         String locationKey = getLocationKey(localizacion);
-        Temperatura temperatura = new Temperatura(obtenerTemperaturaActual(locationKey)
-        		.getMain()
-        		.getTemp());
-        return temperatura;
+        Double temperaturaObtenida = obtenerTemperaturaActual(locationKey)
+                .getMain().getTemp();
+        if (temperaturaObtenida == null) throw new ApiDeClimaException("Pronostico Actual");
+        return new Temperatura(temperaturaObtenida);
     }
 
     private String getLocationKey(Localizacion localizacion) {
-        //TODO la idea es tener un mapa, propio de OpenWeather, cuya key sea una localizacion y el valor sea el id
+        //TODO la idea es tener un mapa, propio de OpenWeather,
+        // cuya key sea una localizacion y el valor sea el id
         return "3433955";
     }
 
