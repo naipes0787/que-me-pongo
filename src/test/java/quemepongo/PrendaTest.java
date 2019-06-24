@@ -6,7 +6,7 @@ import quemepongo.exceptions.MaterialInvalidoException;
 import quemepongo.exceptions.PathInvalidoException;
 import quemepongo.model.*;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import static org.junit.Assert.assertEquals;

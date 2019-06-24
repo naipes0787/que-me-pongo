@@ -7,7 +7,7 @@ import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.model.*;
 
-import java.awt.*;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.util.Set;
 
