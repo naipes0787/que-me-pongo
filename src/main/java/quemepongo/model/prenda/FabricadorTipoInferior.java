@@ -1,28 +1,34 @@
-package quemepongo.model;
+package quemepongo.model.prenda;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FabricadorTipoSuperiorBase extends FabricaTipoPrenda {
+public class FabricadorTipoInferior extends FabricaTipoPrenda {
 
-    public FabricadorTipoSuperiorBase(double nivelAbrigo){
+    public FabricadorTipoInferior(double nivelAbrigo ){
         super.nivelAbrigo = nivelAbrigo;
     }
 
     public Categoria getCategoria() {
-        return Categoria.PRENDA_SUPERIOR;
+        return Categoria.PRENDA_INFERIOR;
     }
 
     public Set<Material> getMaterialesValidos() {
         return Stream.of(
                 Material.ALGODON,
-                Material.PIQUE,
+                Material.CUERO,
                 Material.LINO,
                 Material.GABARDINA,
                 Material.SEDA,
-                Material.OXFORD
+                Material.OXFORD)
+                .collect(Collectors.toCollection(HashSet::new));
+    }
+
+    public Set<Capa> getCapasValidas() {
+        return Stream.of(
+                Capa.BASE
         )
                 .collect(Collectors.toCollection(HashSet::new));
     }
@@ -32,5 +38,3 @@ public class FabricadorTipoSuperiorBase extends FabricaTipoPrenda {
     }
 
 }
-
-

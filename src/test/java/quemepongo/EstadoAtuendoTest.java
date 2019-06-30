@@ -4,6 +4,14 @@ import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
 import quemepongo.model.*;
+import quemepongo.model.prenda.CombinacionPrenda;
+import quemepongo.model.prenda.CreadorDePrenda;
+import quemepongo.model.prenda.FabricadorTipoCalzado;
+import quemepongo.model.prenda.FabricadorTipoInferior;
+import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
+import quemepongo.model.prenda.Material;
+import quemepongo.model.prenda.TipoPrenda;
+import quemepongo.model.usuario.Usuario;
 
 import java.awt.*;
 

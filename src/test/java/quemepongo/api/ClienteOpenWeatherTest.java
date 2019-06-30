@@ -10,8 +10,8 @@ import quemepongo.api.clientes.Cliente;
 import quemepongo.api.clientes.ClienteOpenWeather;
 import quemepongo.exceptions.ApiDeClimaException;
 import quemepongo.exceptions.ClienteHttpException;
-import quemepongo.model.Localizacion;
 import quemepongo.model.Temperatura;
+import quemepongo.model.evento.Localizacion;
 
 public class ClienteOpenWeatherTest {
 

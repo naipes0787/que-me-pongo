@@ -1,7 +1,15 @@
-package quemepongo.model;
+package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
+import quemepongo.model.Atuendo;
+import quemepongo.model.Guardarropa;
+import quemepongo.model.Temperatura;
+import quemepongo.model.evento.Evento;
+import quemepongo.model.notificador.Alertador;
+import quemepongo.model.notificador.AlertadorEmail;
+import quemepongo.model.notificador.TipoAlerta;
+import quemepongo.model.prenda.Prenda;
 
 import java.util.Set;
 import java.util.stream.Collectors;

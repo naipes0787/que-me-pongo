@@ -3,8 +3,8 @@ package quemepongo.api;
 import org.junit.Assert;
 import org.junit.Test;
 import quemepongo.api.clientes.ApiDeClima;
-import quemepongo.model.Localizacion;
 import quemepongo.model.Temperatura;
+import quemepongo.model.evento.Localizacion;
 
 /**
  * Cliente utilizado para simular una API de Clima y realizar así los tests

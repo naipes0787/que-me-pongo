@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.notificador;
 
 public class AlertadorSms implements Alertador{
 

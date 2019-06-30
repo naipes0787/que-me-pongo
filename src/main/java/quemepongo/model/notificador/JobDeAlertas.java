@@ -1,6 +1,9 @@
-package quemepongo.model;
+package quemepongo.model.notificador;
 
 import java.util.Set;
+
+import quemepongo.model.usuario.RepositorioUsuario;
+import quemepongo.model.usuario.Usuario;
 
 public class JobDeAlertas {
 

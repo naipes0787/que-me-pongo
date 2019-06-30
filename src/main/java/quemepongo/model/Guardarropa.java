@@ -2,6 +2,10 @@ package quemepongo.model;
 
 import com.google.common.collect.Sets;
 
+import quemepongo.model.prenda.Categoria;
+import quemepongo.model.prenda.Combinador;
+import quemepongo.model.prenda.Prenda;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 

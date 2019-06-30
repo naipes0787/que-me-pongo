@@ -1,13 +1,13 @@
-package quemepongo.model;
+package quemepongo.model.prenda;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FabricadorTipoSuperiorUltimaPrenda extends FabricaTipoPrenda{
+public class FabricadorTipoSuperiorBase extends FabricaTipoPrenda {
 
-    public FabricadorTipoSuperiorUltimaPrenda(double nivelAbrigo){
+    public FabricadorTipoSuperiorBase(double nivelAbrigo){
         super.nivelAbrigo = nivelAbrigo;
     }
 
@@ -28,6 +28,9 @@ public class FabricadorTipoSuperiorUltimaPrenda extends FabricaTipoPrenda{
     }
 
     public Capa getCapa() {
-    	return Capa.ULTIMA_PRENDA;
+    	return Capa.BASE;
     }
+
 }
+
+

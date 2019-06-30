@@ -1,9 +1,18 @@
 package quemepongo;
 
-import org.junit.Test;
-import quemepongo.model.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+
+import quemepongo.model.prenda.Categoria;
+import quemepongo.model.prenda.FabricadorTipoAccesorio;
+import quemepongo.model.prenda.FabricadorTipoCalzado;
+import quemepongo.model.prenda.FabricadorTipoInferior;
+import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
+import quemepongo.model.prenda.Material;
+import quemepongo.model.prenda.TipoPrenda;
 
 public class TipoPrendaTest {
 

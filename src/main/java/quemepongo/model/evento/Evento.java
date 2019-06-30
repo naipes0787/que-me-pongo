@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.evento;
 
 import quemepongo.exceptions.FechaEventoNoValidaException;
 

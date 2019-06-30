@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.prenda;
 
 import com.google.common.collect.Sets;
 

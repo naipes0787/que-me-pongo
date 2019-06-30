@@ -2,6 +2,8 @@ package quemepongo.model;
 
 import com.google.common.collect.Sets;
 
+import quemepongo.model.prenda.CombinacionPrenda;
+
 public class Atuendo {
 
     private CombinacionPrenda prendasSuperiores;

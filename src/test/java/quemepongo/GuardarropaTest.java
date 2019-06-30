@@ -6,6 +6,17 @@ import quemepongo.api.ClienteTest;
 import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.model.*;
+import quemepongo.model.evento.Evento;
+import quemepongo.model.evento.Localizacion;
+import quemepongo.model.prenda.CreadorDePrenda;
+import quemepongo.model.prenda.FabricadorTipoAccesorio;
+import quemepongo.model.prenda.FabricadorTipoCalzado;
+import quemepongo.model.prenda.FabricadorTipoInferior;
+import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
+import quemepongo.model.prenda.Material;
+import quemepongo.model.prenda.Prenda;
+import quemepongo.model.prenda.TipoPrenda;
+import quemepongo.model.usuario.Usuario;
 
 import java.awt.Color;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.usuario;
 
 import java.util.Set;
 

@@ -2,8 +2,8 @@ package quemepongo;
 
 import org.junit.Test;
 import quemepongo.exceptions.FechaEventoNoValidaException;
-import quemepongo.model.Evento;
-import quemepongo.model.Localizacion;
+import quemepongo.model.evento.Evento;
+import quemepongo.model.evento.Localizacion;
 
 import java.time.LocalDateTime;
 

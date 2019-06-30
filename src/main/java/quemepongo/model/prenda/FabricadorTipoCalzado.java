@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.prenda;
 
 import java.util.HashSet;
 import java.util.Set;

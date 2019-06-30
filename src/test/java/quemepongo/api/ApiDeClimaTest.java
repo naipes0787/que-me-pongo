@@ -9,8 +9,8 @@ import org.mockito.MockitoAnnotations;
 import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.exceptions.ApiDeClimaException;
-import quemepongo.model.Localizacion;
 import quemepongo.model.Temperatura;
+import quemepongo.model.evento.Localizacion;
 
 public class ApiDeClimaTest {
 

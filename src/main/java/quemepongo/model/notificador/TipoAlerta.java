@@ -1,4 +1,6 @@
-package quemepongo.model;
+package quemepongo.model.notificador;
+
+import quemepongo.model.usuario.Usuario;
 
 public enum TipoAlerta {
 

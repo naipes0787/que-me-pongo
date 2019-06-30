@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.prenda;
 
 public enum Categoria {
     ACCESORIO,
