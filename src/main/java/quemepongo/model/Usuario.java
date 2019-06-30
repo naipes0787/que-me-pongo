@@ -9,13 +9,15 @@ import java.util.stream.Collectors;
 public class Usuario {
 
     private Set<Guardarropa> guardarropas = Sets.newHashSet();
-
     private Set<Evento> eventos = Sets.newHashSet();
-
     private TipoUsuario tipoUsuario;
+    private Alertador alertador;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
+    	// Por default se crea con un alertador por Email
+    	alertador = new AlertadorEmail();
+    	RepositorioUsuario.getInstancia().agregarUsuario(this);
     }
 
     public Usuario(TipoUsuario nuevaSuscripcion) {
@@ -57,6 +59,18 @@ public class Usuario {
 
     public void deshacerUltimaOperacion(Atuendo atuendo) {
         atuendo.deshacerDecision();
+    }
+    
+    public void setAlertador(Alertador alertador) {
+    	this.alertador = alertador;
+    }
+    
+    public Alertador getAlertador() {
+    	return this.alertador;
+    }
+    
+    public void actuarAnte(TipoAlerta tipoAlerta) {
+    	tipoAlerta.alertar(this);
     }
 }
 
