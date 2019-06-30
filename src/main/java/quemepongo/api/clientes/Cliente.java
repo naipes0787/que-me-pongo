@@ -1,6 +1,5 @@
 package quemepongo.api.clientes;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -9,31 +8,37 @@ import quemepongo.exceptions.ClienteHttpException;
 
 import java.io.IOException;
 
-public abstract class Cliente {
+public class Cliente {
 
     private HttpClient cliente;
     private String host;
-    protected ObjectMapper mapper;
 
     public Cliente(String host){
         this.cliente = HttpClients.createDefault();
         this.host = host;
-        this.mapper = buildMapper();
     }
 
-    public abstract ObjectMapper buildMapper();
-
-    public HttpResponse get(String path) {
+    private HttpResponse get(String path){
         String url = host + path;
         HttpGet httpGetRequest = new HttpGet(url);
         try{
             return cliente.execute(httpGetRequest);
         }catch (IOException exc){
-            throw new ClienteHttpException(url);
+            throw new ClienteHttpException(path);
         }
     }
 
-    protected Boolean terminoEnError(HttpResponse respuesta){
+    public String getAsString(String path){
+        HttpResponse respuesta = this.get(path);
+        if (terminoEnError(respuesta)) throw new ClienteHttpException(path);
+        try{
+            return respuesta.getEntity().getContent().toString();
+        }catch (IOException exc){
+            throw new ClienteHttpException(path);
+        }
+    }
+
+    private Boolean terminoEnError(HttpResponse respuesta){
         int statusCode = respuesta.getStatusLine().getStatusCode();
         return 400 <= statusCode && statusCode <= 599;
     }

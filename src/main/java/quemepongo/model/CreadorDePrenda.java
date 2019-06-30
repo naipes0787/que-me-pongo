@@ -1,18 +1,16 @@
 package quemepongo.model;
 
+import net.coobird.thumbnailator.Thumbnails;
 import quemepongo.exceptions.ColoresRepetidosException;
 import quemepongo.exceptions.MaterialInvalidoException;
 import quemepongo.exceptions.PathInvalidoException;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
-
-import javax.imageio.ImageIO;
-
-import net.coobird.thumbnailator.Thumbnails;
 
 public class CreadorDePrenda {
 

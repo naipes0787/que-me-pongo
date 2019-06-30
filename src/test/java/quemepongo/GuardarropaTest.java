@@ -1,18 +1,17 @@
 package quemepongo;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+import quemepongo.api.ClienteTest;
+import quemepongo.api.clientes.ApiDeClima;
+import quemepongo.api.servicio.SelectorDeProveedorDeClima;
+import quemepongo.model.*;
 
 import java.awt.Color;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import quemepongo.api.ClienteTest;
-import quemepongo.api.clientes.ApiDeClima;
-import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.*;
+import static org.junit.Assert.assertEquals;
 
 public class GuardarropaTest {
 

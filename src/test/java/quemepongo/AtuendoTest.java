@@ -1,24 +1,14 @@
 package quemepongo;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import com.google.common.collect.Sets;
+import org.junit.Before;
+import org.junit.Test;
+import quemepongo.model.*;
 
 import java.awt.Color;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.google.common.collect.Sets;
-
-import quemepongo.model.Atuendo;
-import quemepongo.model.CombinacionPrenda;
-import quemepongo.model.CreadorDePrenda;
-import quemepongo.model.FabricadorTipoCalzado;
-import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.FabricadorTipoSuperiorBase;
-import quemepongo.model.Material;
-import quemepongo.model.Temperatura;
-import quemepongo.model.TipoPrenda;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test de la Atuendo

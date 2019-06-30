@@ -1,14 +1,7 @@
 package quemepongo;
+
 import org.junit.Test;
-
-import quemepongo.model.Categoria;
-import quemepongo.model.Material;
-import quemepongo.model.FabricadorTipoAccesorio;
-import quemepongo.model.FabricadorTipoCalzado;
-import quemepongo.model.FabricadorTipoInferior;
-import quemepongo.model.TipoPrenda;
-import quemepongo.model.FabricadorTipoSuperiorBase;
-
+import quemepongo.model.*;
 
 import static org.junit.Assert.*;
 

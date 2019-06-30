@@ -22,11 +22,11 @@ public class ApiDeClimaTest {
     private static final Localizacion LOCALIZACION = Localizacion.CABA;
     private static final String MENSAJE_EXCEPTION_TEMPERATURA_ACTUAL = "Pronostico Actual";
     private static Temperatura temperatura;
-    private static final Double VALOR_TEMPERATURA = 10.0;
+    private static final Double VALOR_TEMPERATURA = 10D;
     private static Temperatura temperaturaSecundaria;
-    private static final Double VALOR_TEMPERATURA_SECUNDARIA = 20.0;
+    private static final Double VALOR_TEMPERATURA_SECUNDARIA = 20D;
 
-    SelectorDeProveedorDeClima selector = SelectorDeProveedorDeClima.getInstancia();
+    private SelectorDeProveedorDeClima selector = SelectorDeProveedorDeClima.getInstancia();
 
     @Before
     public void setUp() {
