@@ -7,10 +7,12 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import quemepongo.api.dto.AccuweatherResponseDTO;
 import quemepongo.exceptions.ApiDeClimaException;
 import quemepongo.exceptions.ObjectMapperException;
+import quemepongo.model.Alerta;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Localizacion;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class ClienteAccuWeather implements ApiDeClima{
@@ -50,6 +52,11 @@ public class ClienteAccuWeather implements ApiDeClima{
                 .get(0).getTemperature().getMetric().getValue();
         if (temperaturaObtenida == null) throw new ApiDeClimaException("Pronostico Actual");
         return new Temperatura(temperaturaObtenida);
+    }
+
+    @Override
+    public List<Alerta> obtenerAlertasActuales(Localizacion localizacion) {
+        return Arrays.asList();
     }
 
     private String getLocationKey(Localizacion localizacion) {
