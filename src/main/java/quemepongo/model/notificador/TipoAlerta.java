@@ -4,19 +4,19 @@ import quemepongo.model.usuario.Usuario;
 
 public enum TipoAlerta {
 
-	METEOROLOGICA{
+	METEOROLOGICA {
+		@Override
 		public void alertar(Usuario usuario){
 			usuario.getAlertador().notificarAlertaMeteorologica();
 		}
 	},
-	EVENTO_PROXIMO{
+	EVENTO_PROXIMO {
+		@Override
 		public void alertar(Usuario usuario){
 			usuario.getAlertador().notificarAlertaEventoProximo();
 		}
 	};
 	
-	public void alertar(Usuario usuario) {
-		
-	}
-	
+	abstract public void alertar(Usuario usuario);
+
 }
