@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import quemepongo.model.prenda.Categoria;
 import quemepongo.model.prenda.Combinador;
 import quemepongo.model.prenda.Prenda;
+import quemepongo.model.sugerencia.Atuendo;
 
 import java.util.Set;
 import java.util.stream.Collectors;

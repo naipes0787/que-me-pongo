@@ -1,7 +1,8 @@
-package quemepongo.model;
+package quemepongo.model.sugerencia;
 
 import com.google.common.collect.Sets;
 
+import quemepongo.model.Temperatura;
 import quemepongo.model.prenda.CombinacionPrenda;
 
 public class Atuendo {

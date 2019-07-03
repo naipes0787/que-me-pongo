@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model.usuario;
 
 import org.junit.Test;
 import quemepongo.exceptions.LimiteDeGuardarropasException;
