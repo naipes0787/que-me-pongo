@@ -7,7 +7,12 @@ public class SelectorDeProveedorDeClima {
 
     private static SelectorDeProveedorDeClima selector;
 
-    private ApiDeClima proveedorDeClima = new ClienteAccuWeather();
+    private ApiDeClima proveedorDeClima;
+    
+    private SelectorDeProveedorDeClima() {
+    	// Por default se utiliza AccuWeather
+    	this.proveedorDeClima = new ClienteAccuWeather();
+    }
 
     public static SelectorDeProveedorDeClima getInstancia() {
         if (selector == null) {

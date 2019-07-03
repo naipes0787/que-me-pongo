@@ -1,6 +1,6 @@
 package quemepongo.exceptions;
 
-import quemepongo.model.Material;
+import quemepongo.model.prenda.Material;
 
 @SuppressWarnings("serial")
 public class MaterialInvalidoException extends RuntimeException {

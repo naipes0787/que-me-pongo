@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.evento;
 
 public enum Localizacion {
     CABA("Ciudad Autónoma de Buenos Aires");

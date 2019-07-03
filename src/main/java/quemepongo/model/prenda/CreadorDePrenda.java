@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.prenda;
 
 import net.coobird.thumbnailator.Thumbnails;
 import quemepongo.exceptions.ColoresRepetidosException;

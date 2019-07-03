@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import quemepongo.api.dto.AccuweatherResponseDTO;
 import quemepongo.exceptions.ApiDeClimaException;
 import quemepongo.exceptions.ObjectMapperException;
-import quemepongo.model.Localizacion;
 import quemepongo.model.Temperatura;
+import quemepongo.model.evento.Localizacion;
 
 import java.io.IOException;
 import java.util.List;

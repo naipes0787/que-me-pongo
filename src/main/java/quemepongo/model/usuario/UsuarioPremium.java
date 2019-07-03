@@ -1,4 +1,7 @@
-package quemepongo.model;
+package quemepongo.model.usuario;
+
+import quemepongo.model.Guardarropa;
+import quemepongo.model.prenda.Prenda;
 
 public class UsuarioPremium implements TipoUsuario{
 	
