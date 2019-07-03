@@ -13,7 +13,7 @@ public class RepositorioUsuario {
 	private Set<Usuario> usuarios;
 	
 	private RepositorioUsuario() {
-		Sets.newHashSet();
+		usuarios = Sets.newHashSet();
 	}
 	
     public static RepositorioUsuario getInstancia() {

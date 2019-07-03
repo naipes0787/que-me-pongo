@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +16,7 @@ import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
 import quemepongo.model.prenda.Material;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.prenda.TipoPrenda;
+import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
 
 import java.awt.Color;

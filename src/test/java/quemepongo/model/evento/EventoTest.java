@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model.evento;
 
 import org.junit.Test;
 import quemepongo.exceptions.FechaEventoNoValidaException;
