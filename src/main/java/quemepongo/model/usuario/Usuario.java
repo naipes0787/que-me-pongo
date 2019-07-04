@@ -2,6 +2,7 @@ package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
+import quemepongo.model.GuardarropaCompartido;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.Guardarropa;
 import quemepongo.model.Temperatura;
@@ -32,7 +33,11 @@ public class Usuario {
     	tipoUsuario = nuevaSuscripcion;
     }
     
-	  public void agregarGuardarropa(Guardarropa guardarropa) {
+    public void agregarGuardarropa(Guardarropa guardarropa) {
+        guardarropas.add(guardarropa);
+    }
+
+    public void agregarGuardarropaCompartido(GuardarropaCompartido guardarropa) {
         guardarropas.add(guardarropa);
     }
 
@@ -79,6 +84,13 @@ public class Usuario {
     
     public void actuarAnte(TipoAlerta tipoAlerta) {
     	tipoAlerta.alertar(this);
+    }
+
+    public boolean aceptoAlgunaPrendaDe(Atuendo atuendo) {
+        Set<Prenda> prendasAceptadas = eventos.stream().map(Evento::getSugerenciaAceptada)
+                                                       .flatMap(a -> a.prendas().stream())
+                                                       .collect(Collectors.toSet());
+        return atuendo.prendas().stream().anyMatch(p -> prendasAceptadas.contains(p));
     }
 }
 

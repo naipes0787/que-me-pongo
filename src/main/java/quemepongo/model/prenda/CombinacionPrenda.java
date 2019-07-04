@@ -5,7 +5,7 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 
 public class CombinacionPrenda {
-    Set<Prenda> prendas = Sets.newHashSet();
+    private Set<Prenda> prendas = Sets.newHashSet();
 
     public CombinacionPrenda(Set<Prenda> prendas){
         this.prendas = prendas;
@@ -19,4 +19,7 @@ public class CombinacionPrenda {
     	return prendas.size();
     }
 
+    public Set<Prenda> getPrendas() {
+        return prendas;
+    }
 }
