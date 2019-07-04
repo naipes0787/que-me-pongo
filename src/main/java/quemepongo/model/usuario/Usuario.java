@@ -2,9 +2,9 @@ package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.GuardarropaCompartido;
+import quemepongo.model.guardarropa.GuardarropaCompartido;
 import quemepongo.model.sugerencia.Atuendo;
-import quemepongo.model.Guardarropa;
+import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.notificador.Alertador;
