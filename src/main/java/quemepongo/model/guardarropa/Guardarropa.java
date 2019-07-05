@@ -2,14 +2,19 @@ package quemepongo.model.guardarropa;
 
 import com.google.common.collect.Sets;
 
-import quemepongo.model.Temperatura;
 import quemepongo.model.prenda.Categoria;
+import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.Combinador;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.model.usuario.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Guardarropa {
 	
@@ -26,27 +31,51 @@ public class Guardarropa {
                 .collect(Collectors.toSet());
     }
 
-    public Set<Atuendo> sugerencias(Temperatura temperatura) {
-        return filtrarAtuendosPorTemperatura(generarAtuendos(), temperatura);
+    public Set<Atuendo> sugerencias(Usuario usuario, double nivelAbrigo) {
+        List<Categoria> accesoriosAIncluir = new ArrayList<>();
+        if (usuario.esFriolentoDeManos() && poseeAccesorioDeManos()){
+            accesoriosAIncluir.add(Categoria.ACCESORIO_MANOS);
+        }
+        if (usuario.esFriolentoDeCuello() && poseeAccesorioDeCuello()){
+            accesoriosAIncluir.add(Categoria.ACCESORIO_CUELLO);
+        }
+        if (usuario.esFriolentoDeCabeza() && poseeAccesorioDeCabeza()){
+            accesoriosAIncluir.add(Categoria.ACCESORIO_CABEZA);
+        }
+        return filtrarAtuendosPorNivelAbrigo(generarAtuendos(accesoriosAIncluir), nivelAbrigo);
     }
 
-    public Set<Atuendo> sugerenciasConAccesorios(Temperatura temperatura) {
-        return filtrarAtuendosPorTemperatura(generarAtuendosConAccesorios(), temperatura);
+/* YA NO APLICA:
+    public Set<Atuendo> sugerenciasConAccesorios(double nivelAbrigo) {
+        return filtrarAtuendosPorNivelAbrigo(generarAtuendosConAccesorios(), nivelAbrigo);
     }
 
-    private Set<Atuendo> generarAtuendos(){
-        return Sets.cartesianProduct(
-                Combinador.combinarMultiple(
-                        this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)),
-                Combinador.combinarSimple(
-                        this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)),
-                Combinador.combinarSimple(
-                        this.prendasDeCategoria(Categoria.CALZADO)))
+ */
+
+    private Set<Atuendo> generarAtuendos(List<Categoria> accesoriosAIncluir){
+        List<Set<CombinacionPrenda>> listadoACombinar = new ArrayList();
+        listadoACombinar.add(Combinador.combinarMultiple(this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)));
+        listadoACombinar.add(Combinador.combinarSimple(this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)));
+        listadoACombinar.add(Combinador.combinarSimple(this.prendasDeCategoria(Categoria.CALZADO)));
+
+        accesoriosAIncluir.stream()
+                .forEach(cat -> listadoACombinar.add(Combinador.combinarSimple(this.prendasDeCategoria(cat))));
+        final Integer cantAccesorios = accesoriosAIncluir.size();
+
+        return Sets.cartesianProduct(listadoACombinar)
                 .stream()
-                .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)))
+                .map(c -> convertirCombinacionEnAtuendo(c, cantAccesorios))
                 .collect(Collectors.toSet());
     }
 
+    private Atuendo convertirCombinacionEnAtuendo(List<CombinacionPrenda> c, Integer cantAccesorios){
+        Atuendo atuendo = new Atuendo(c.get(0), c.get(1), c.get(2));
+        for (int i = 0; i < cantAccesorios; i++) {
+            atuendo.agregarAccesorio(c.get(i + 3));
+        }
+        return atuendo;
+    }
+/* Ya no aplica
     private Set<Atuendo> generarAtuendosConAccesorios(){
         return Sets.cartesianProduct(
                 Combinador.combinarMultiple(
@@ -61,21 +90,22 @@ public class Guardarropa {
                 .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)).conAccesorio(c.get(3)))
                 .collect(Collectors.toSet());
     }
+    */
 
-    private Set<Atuendo> filtrarAtuendosPorTemperatura(Set<Atuendo> atuendos, Temperatura temperatura){
+    private Set<Atuendo> filtrarAtuendosPorNivelAbrigo(Set<Atuendo> atuendos, double nivelAbrigo){
         if(atuendos.size() == 0) {
             return Sets.newHashSet();
         }else{
-            return sugerenciasSegunMargen(atuendos, temperatura, getMargenError());
+            return sugerenciasSegunMargen(atuendos, nivelAbrigo, getMargenError());
         }
     }
 
-    public Set<Atuendo> sugerenciasSegunMargen(Set<Atuendo> atuendos, Temperatura temperatura, double margen) {
+    public Set<Atuendo> sugerenciasSegunMargen(Set<Atuendo> atuendos, double nivelAbrigo, double margen) {
         Set<Atuendo> atuendosFiltrados = atuendos.stream()
-                .filter(atuendo -> atuendo.abrigaLoSuficiente(temperatura, margen))
+                .filter(atuendo -> atuendo.abrigaLoSuficiente(nivelAbrigo, margen))
                 .collect(Collectors.toSet());
         if (atuendosFiltrados.size() == 0)
-        {return sugerenciasSegunMargen(atuendos, temperatura, ampliarMargen(margen));}
+        {return sugerenciasSegunMargen(atuendos, nivelAbrigo, ampliarMargen(margen));}
         else
         {return atuendosFiltrados;}
     }
@@ -92,4 +122,13 @@ public class Guardarropa {
     	return margenError + 0.1;
     }
 
+    private boolean poseeAccesorioDeManos(){
+        return prendas.stream().anyMatch(p -> p.getCategoria() == Categoria.ACCESORIO_MANOS);
+    }
+    private boolean poseeAccesorioDeCuello(){
+        return prendas.stream().anyMatch(p -> p.getCategoria() == Categoria.ACCESORIO_CUELLO);
+    }
+    private boolean poseeAccesorioDeCabeza(){
+        return prendas.stream().anyMatch(p -> p.getCategoria() == Categoria.ACCESORIO_CABEZA);
+    }
 }

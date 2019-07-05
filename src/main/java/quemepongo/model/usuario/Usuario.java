@@ -21,6 +21,7 @@ public class Usuario {
     private Set<Evento> eventos = Sets.newHashSet();
     private TipoUsuario tipoUsuario;
     private Alertador alertador;
+    private double sensibilidadClima = 1;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
@@ -43,7 +44,7 @@ public class Usuario {
 
     public Set<Atuendo> sugerencias(Evento evento) {
         Temperatura temperatura = SelectorDeProveedorDeClima.getInstancia().getProovedorDeClima().obtenerTemperaturaActual(evento.getLugar());
-        return guardarropas.stream().flatMap(g -> g.sugerencias(temperatura).stream()).collect(Collectors.toSet());
+        return guardarropas.stream().flatMap(g -> g.sugerencias(this, obtenerNivelDeAbrigo(temperatura)).stream()).collect(Collectors.toSet());
     }
 
     public void agregarEvento(Evento evento) {
@@ -92,5 +93,23 @@ public class Usuario {
                                                        .collect(Collectors.toSet());
         return atuendo.prendas().stream().anyMatch(p -> prendasAceptadas.contains(p));
     }
+    public double getSensibilidadclima(){
+        return sensibilidadClima;
+    }
+    public double obtenerNivelDeAbrigo(Temperatura temperatura) {
+        return temperatura.convertirANivelDeAbrigo() * getSensibilidadclima();
+    }
+
+    //En los siguientes 3 metodos se tiene que merguear con la logica que armo Andy en base a las calificaciones
+    public boolean esFriolentoDeManos(){
+        return true;
+    }
+    public boolean esFriolentoDeCuello(){
+        return true;
+    }
+    public boolean esFriolentoDeCabeza(){
+        return true;
+    }
+
 }
 

@@ -2,7 +2,6 @@ package quemepongo.model.sugerencia;
 
 import com.google.common.collect.Sets;
 
-import quemepongo.model.Temperatura;
 import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.Prenda;
 
@@ -30,13 +29,17 @@ public class Atuendo {
         return this;
     }
 
+    public void agregarAccesorio(CombinacionPrenda nuevoAccesorio){
+        nuevoAccesorio.getPrendas().stream().forEach(prenda -> this.accesorio.agregarPrenda(prenda));
+    }
+
     public double getNivelAbrigo(){
         return (prendasSuperiores.getNivelAbrigo() + prendaInferior.getNivelAbrigo() + calzado.getNivelAbrigo());
     }
 
-    public boolean abrigaLoSuficiente(Temperatura temperatura, double margenError){
-        return (margenInferior(temperatura.convertirANivelDeAbrigo(), margenError) <= getNivelAbrigo()
-                && getNivelAbrigo() <= margenSuperior(temperatura.convertirANivelDeAbrigo(), margenError));
+    public boolean abrigaLoSuficiente(double nivelAbrigo, double margenError){
+        return (margenInferior(nivelAbrigo, margenError) <= getNivelAbrigo()
+                && getNivelAbrigo() <= margenSuperior(nivelAbrigo, margenError));
     }
 
     private double margenInferior(double nivelAbrigoNecesario, double margenError){

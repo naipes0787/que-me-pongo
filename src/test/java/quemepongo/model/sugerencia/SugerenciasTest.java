@@ -5,12 +5,13 @@ import org.junit.Test;
 import quemepongo.model.*;
 import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.CreadorDePrenda;
-import quemepongo.model.prenda.FabricadorTipoAccesorio;
 import quemepongo.model.prenda.FabricadorTipoCalzado;
 import quemepongo.model.prenda.FabricadorTipoInferior;
 import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
 import quemepongo.model.prenda.Material;
 import quemepongo.model.prenda.TipoPrenda;
+import quemepongo.model.usuario.Usuario;
+import quemepongo.model.usuario.UsuarioGratuito;
 
 import java.awt.Color;
 import java.util.Set;
@@ -33,9 +34,6 @@ public class SugerenciasTest {
     private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
     private static final TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
     private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
-
-    private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
-    private static final TipoPrenda PULSERA = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
 
     private Temperatura temperatura;
     
@@ -98,24 +96,11 @@ public class SugerenciasTest {
 
     @Test
     public void guardarropaSinAccesorios() {
-        Set<Atuendo> sugerencias = guardarropa.sugerencias(temperatura);
+    	Usuario usuario = new Usuario();
+        Set<Atuendo> sugerencias = guardarropa.sugerencias(usuario, temperatura.convertirANivelDeAbrigo());
         assertEquals(4 * 3 * 3, sugerencias.size());
     }
 
-    @Test
-    public void guardarropaConAccesorios() {
-        guardarropa.agregarPrenda(new CreadorDePrenda()
-				.setTipoPrenda(ANTEOJOS)
-				.setMaterial(Material.PLASTICO)
-				.setColorPrincipal(Color.BLACK)
-				.build());
-        guardarropa.agregarPrenda(new CreadorDePrenda()
-				.setTipoPrenda(PULSERA)
-				.setMaterial(Material.PLATA)
-				.setColorPrincipal(Color.GRAY)
-				.build());
-        Set<Atuendo> sugerencias = guardarropa.sugerenciasConAccesorios(temperatura);
-        assertEquals(4 * 3 * 3 * 2, sugerencias.size());
-    }
+
 
 }
