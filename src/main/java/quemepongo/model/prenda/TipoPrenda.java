@@ -1,5 +1,6 @@
 package quemepongo.model.prenda;
 
+import com.google.common.collect.Sets;
 import quemepongo.model.FactorClimatico;
 
 import java.util.Set;
@@ -18,7 +19,11 @@ public class TipoPrenda {
     private Set<FactorClimatico> aptoPara;
 
     public static TipoPrenda diseniarTipo(FabricaTipoPrenda tipo) {
-        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), tipo.aptoPara());
+        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), Sets.newHashSet());
+    }
+
+    public static TipoPrenda diseniarTipo(FabricaTipoPrenda tipo, Set<FactorClimatico> aptoPara) {
+        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), aptoPara);
     }
 
     private TipoPrenda(Categoria categoria, Set<Material> materialesValidos, double nivelAbrigo, Capa capa, Set<FactorClimatico> noAptoPara) {
