@@ -3,6 +3,7 @@ package quemepongo.model.usuario;
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.model.Temperatura;
+import quemepongo.model.calificacion.Calificacion;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.guardarropa.GuardarropaCompartido;
@@ -22,6 +23,9 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
     private Notificador notificador;
     private double sensibilidadClima = 1;
+    private double sensibilidadManos;
+    private double sensibilidadCuello;
+    private double sensibilidadCabeza;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
@@ -83,7 +87,7 @@ public class Usuario {
     public Notificador getNotificador() {
     	return this.notificador;
     }
-    
+
     public boolean estaUsandoAlgunaPrendaDe(Atuendo atuendo) {
         Set<Prenda> prendasEnUso = eventos.stream().filter(Evento::tieneSugerenciaAceptada)
                                                    .map(Evento::getSugerenciaAceptada)
@@ -95,22 +99,32 @@ public class Usuario {
     public Set<Evento> eventosProximos(Duration tiempoDeAnticipacion) {
         return eventos.stream().filter(e -> e.estaProximoAOcurrir(tiempoDeAnticipacion)).collect(Collectors.toSet());
     }
-    public double getSensibilidadclima(){
-        return sensibilidadClima;
-    }
-    public double obtenerNivelDeAbrigo(Temperatura temperatura) {
-        return temperatura.convertirANivelDeAbrigo() * getSensibilidadclima();
+
+    public double getSensibilidadClima() {
+        return this.sensibilidadClima;
     }
 
-    //En los siguientes 3 metodos se tiene que merguear con la logica que armo Andy en base a las calificaciones
+    public void calificar(Calificacion calificacion){
+        this.sensibilidadClima += calificacion.getCalificacionGlobal().varianzaSensibilidad;
+        this.sensibilidadManos += calificacion.getCalificacionManos().varianzaSensibilidad;
+        this.sensibilidadCuello += calificacion.getCalificacionCuello().varianzaSensibilidad;
+        this.sensibilidadCabeza += calificacion.getCalificacionCabeza().varianzaSensibilidad;
+    }
+
     public boolean esFriolentoDeManos(){
-        return true;
+        return sensibilidadManos > 0;
     }
+
     public boolean esFriolentoDeCuello(){
-        return true;
+        return sensibilidadCuello > 0;
     }
+
     public boolean esFriolentoDeCabeza(){
-        return true;
+        return sensibilidadCabeza > 0;
+    }
+
+    public double obtenerNivelDeAbrigo(Temperatura temperatura) {
+        return temperatura.convertirANivelDeAbrigo() * getSensibilidadClima();
     }
 
 }
