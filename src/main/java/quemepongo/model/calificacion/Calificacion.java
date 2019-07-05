@@ -18,15 +18,15 @@ public class Calificacion {
         return calificacionGlobal;
     }
 
-    public OpcionesCalificacion calificacionManos() {
+    public OpcionesCalificacion getCalificacionManos() {
         return calificacionManos;
     }
 
-    public OpcionesCalificacion calificacionCuello() {
+    public OpcionesCalificacion getCalificacionCuello() {
         return calificacionCuello;
     }
 
-    public OpcionesCalificacion calificacionCabeza() {
+    public OpcionesCalificacion getCalificacionCabeza() {
         return calificacionCabeza;
     }
 }

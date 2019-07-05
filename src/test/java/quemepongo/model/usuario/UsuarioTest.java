@@ -14,7 +14,7 @@ import quemepongo.model.guardarropa.Guardarropa;
 
 import java.awt.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class UsuarioTest {
 
@@ -114,5 +114,25 @@ public class UsuarioTest {
 		johnnyBravo.calificar(calurosoGeneral);
 
 		assertEquals( 0.9, johnnyBravo.getSensibilidadClima(), 0);
+	}
+
+	@Test
+	public void siUnUsuarioCalificaMuchasAtuendosCongeladosEnLasManos_EsFrioLentoEnLasManos(){
+
+		johnnyBravo.calificar(congeladoGeneral);
+		johnnyBravo.calificar(congeladoGeneral);
+		johnnyBravo.calificar(congeladoGeneral);
+
+		assertTrue( johnnyBravo.esFriolentoDeManos() );
+	}
+
+	@Test
+	public void siUnUsuarioCalificaMuchasAtuendosCalurososEnLasManos_NoEsFrioLentoEnLasManos(){
+
+		johnnyBravo.calificar(calurosoGeneral);
+		johnnyBravo.calificar(congeladoGeneral);
+		johnnyBravo.calificar(calurosoGeneral);
+
+		assertFalse( johnnyBravo.esFriolentoDeManos() );
 	}
 }
