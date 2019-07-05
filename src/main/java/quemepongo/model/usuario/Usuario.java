@@ -11,6 +11,7 @@ import quemepongo.model.notificador.Alertador;
 import quemepongo.model.notificador.AlertadorEmail;
 import quemepongo.model.notificador.TipoAlerta;
 import quemepongo.model.prenda.Prenda;
+import quemepongo.model.calificacion.Calificacion;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,6 +23,9 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
     private Alertador alertador;
     private double sensibilidadClima = 1;
+    private double sensibilidadManos;
+    private double sensibilidadCuello;
+    private double sensibilidadCabeza;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
@@ -82,9 +86,32 @@ public class Usuario {
     public Alertador getAlertador() {
     	return this.alertador;
     }
-    
+
+    public double getSensibilidadClima() {
+        return this.sensibilidadClima;
+    }
+
     public void actuarAnte(TipoAlerta tipoAlerta) {
     	tipoAlerta.alertar(this);
+    }
+
+    public void calificar(Calificacion calificacion){
+        this.sensibilidadClima += calificacion.getCalificacionGlobal().varianzaSensibilidad;
+        this.sensibilidadManos += calificacion.getCalificacionManos().varianzaSensibilidad;
+        this.sensibilidadCuello += calificacion.getCalificacionCuello().varianzaSensibilidad;
+        this.sensibilidadCabeza += calificacion.getCalificacionCabeza().varianzaSensibilidad;
+    }
+
+    public boolean esFriolentoDeManos(){
+        return sensibilidadManos > 0;
+    }
+
+    public boolean esFriolentoDeCuello(){
+        return sensibilidadCuello > 0;
+    }
+
+    public boolean esFriolentoDeCabeza(){
+        return sensibilidadCabeza > 0;
     }
 
     public boolean aceptoAlgunaPrendaDe(Atuendo atuendo) {
