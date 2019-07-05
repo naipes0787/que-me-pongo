@@ -30,18 +30,9 @@ public class Combinador {
         combinaciones.addAll(
                 Sets.cartesianProduct(
                         prendasPorCapa(Capa.BASE, prendas),
-                        prendasPorCapa(Capa.INTERMEDIO, prendas))
+                        prendasPorCapa(Capa.ABRIGO, prendas))
                         .stream()
                         .map(c -> new CombinacionPrenda(Sets.newHashSet(c.get(0), c.get(1))))
-                        .collect(Collectors.toSet())
-        );
-        combinaciones.addAll(
-                Sets.cartesianProduct(
-                        prendasPorCapa(Capa.BASE, prendas),
-                        prendasPorCapa(Capa.INTERMEDIO, prendas),
-                        prendasPorCapa(Capa.ULTIMA_PRENDA, prendas))
-                        .stream()
-                        .map(c -> new CombinacionPrenda(Sets.newHashSet(c.get(0), c.get(1), c.get(2))))
                         .collect(Collectors.toSet())
         );
         return combinaciones;

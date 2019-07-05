@@ -53,9 +53,10 @@ public class AtuendoTest {
 	@Test
 	public void atuendoAbrigaLoSuficiente() {
 		Temperatura temperatura = new Temperatura(34D);;
+
 		/* El atuendo brinda 32 de nivel de abrigo (15+10+7), necesitaría 
 		 * 27 como mínimo y 33 como máximo, así que daría TRUE */
-		assertTrue(atuendo.abrigaLoSuficiente(temperatura, 0.1D));
+		assertTrue(atuendo.abrigaLoSuficiente(temperatura.convertirANivelDeAbrigo(), 0.1D));
 	}
 	
 	@Test
@@ -63,7 +64,7 @@ public class AtuendoTest {
 		Temperatura temperatura = new Temperatura(25D);;
 		/* El atuendo brinda 32 de nivel de abrigo (15+10+7), necesitaría 
 		 * 67.5 como mínimo y 82.5 como máximo, así que daría FALSE */
-		assertFalse(atuendo.abrigaLoSuficiente(temperatura, 0.1D));
+		assertFalse(atuendo.abrigaLoSuficiente(temperatura.convertirANivelDeAbrigo(), 0.1D));
 	}
 	
 	@Test
