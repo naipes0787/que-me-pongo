@@ -2,6 +2,7 @@ package quemepongo.model.sugerencia;
 
 import com.google.common.collect.Sets;
 
+import quemepongo.model.FactorClimatico;
 import quemepongo.model.Temperatura;
 import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.Prenda;
@@ -97,5 +98,9 @@ public class Atuendo {
         combinaciones.add(prendaInferior);
         combinaciones.add(calzado);
         return combinaciones.stream().flatMap(c -> c.getPrendas().stream()).collect(Collectors.toSet());
+    }
+
+    public boolean esAptoPara(FactorClimatico factorClimatico) {
+        return prendas().stream().allMatch(p -> p.esAptaPara(factorClimatico));
     }
 }

@@ -1,6 +1,6 @@
 package quemepongo.model.notificador;
 
-public class AlertadorSms implements Alertador{
+public class NotificadorSms implements Notificador {
 
 	// TODO: Implementar el envío de mensajes vía SMS
 	@Override
@@ -9,7 +9,7 @@ public class AlertadorSms implements Alertador{
 	}
 
 	@Override
-	public void notificarAlertaEventoProximo() {
+	public void notificarSugerenciasListas() {
 		System.out.println("Avisando alerta evento próximo por SMS");
 	}
 	

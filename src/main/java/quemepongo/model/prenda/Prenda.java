@@ -1,5 +1,7 @@
 package quemepongo.model.prenda;
 
+import quemepongo.model.FactorClimatico;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
@@ -30,5 +32,9 @@ public class Prenda {
 
     public Capa getCapa(){
     	return this.tipo.getCapa();
+    }
+
+    public boolean esAptaPara(FactorClimatico factorClimatico) {
+        return tipo.esAptoPara(factorClimatico);
     }
 }

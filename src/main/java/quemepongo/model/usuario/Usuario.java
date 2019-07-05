@@ -2,16 +2,16 @@ package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
-import quemepongo.model.sugerencia.Atuendo;
-import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Evento;
-import quemepongo.model.notificador.Alertador;
-import quemepongo.model.notificador.AlertadorEmail;
-import quemepongo.model.notificador.TipoAlerta;
+import quemepongo.model.guardarropa.Guardarropa;
+import quemepongo.model.guardarropa.GuardarropaCompartido;
+import quemepongo.model.notificador.Notificador;
+import quemepongo.model.notificador.NotificadorEmail;
 import quemepongo.model.prenda.Prenda;
+import quemepongo.model.sugerencia.Atuendo;
 
+import java.time.Duration;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,12 +20,12 @@ public class Usuario {
     private Set<Guardarropa> guardarropas = Sets.newHashSet();
     private Set<Evento> eventos = Sets.newHashSet();
     private TipoUsuario tipoUsuario;
-    private Alertador alertador;
+    private Notificador notificador;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
-    	// Por default se crea con un alertador por Email
-    	alertador = new AlertadorEmail();
+    	// Por default se crea con un notificador por Email
+    	notificador = new NotificadorEmail();
     	RepositorioUsuario.getInstancia().agregarUsuario(this);
     }
 
@@ -62,8 +62,9 @@ public class Usuario {
     	  tipoUsuario.agregarPrenda(prenda, guardarropa);
     }
 
-    public void aceptarSugerencia(Atuendo atuendo) {
+    public void aceptarSugerencia(Evento evento, Atuendo atuendo) {
         atuendo.aceptar();
+        evento.setSugerenciaAceptada(atuendo);
     }
 
     public void rechazarSugerencia(Atuendo atuendo) {
@@ -74,23 +75,23 @@ public class Usuario {
         atuendo.deshacerDecision();
     }
     
-    public void setAlertador(Alertador alertador) {
-    	this.alertador = alertador;
+    public void setNotificador(Notificador notificador) {
+    	this.notificador = notificador;
     }
     
-    public Alertador getAlertador() {
-    	return this.alertador;
+    public Notificador getNotificador() {
+    	return this.notificador;
     }
     
-    public void actuarAnte(TipoAlerta tipoAlerta) {
-    	tipoAlerta.alertar(this);
-    }
-
     public boolean aceptoAlgunaPrendaDe(Atuendo atuendo) {
         Set<Prenda> prendasAceptadas = eventos.stream().map(Evento::getSugerenciaAceptada)
                                                        .flatMap(a -> a.prendas().stream())
                                                        .collect(Collectors.toSet());
-        return atuendo.prendas().stream().anyMatch(p -> prendasAceptadas.contains(p));
+        return atuendo.prendas().stream().anyMatch(prendasAceptadas::contains);
+    }
+
+    public Set<Evento> eventosProximos(Duration tiempoDeAnticipacion) {
+        return eventos.stream().filter(e -> e.estaProximoAOcurrir(tiempoDeAnticipacion)).collect(Collectors.toSet());
     }
 }
 
