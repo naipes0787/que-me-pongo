@@ -60,7 +60,7 @@ public class ClienteAccuWeather implements ApiDeClima{
     }
 
     private Boolean hayAlertaDeViento(AccuweatherResponseDTO climaActual){
-        Double VELOCIDAD_DE_VIENTO_MAXIMA = 10D;
+        Double VELOCIDAD_DE_VIENTO_MAXIMA = 5.5;
         //definir a partir de cuanto se considera que hay alerta, la velocidad esta en Km/h por default
         return climaActual.getWind().getSpeed().getMetric().getValue() > VELOCIDAD_DE_VIENTO_MAXIMA;
     }
@@ -68,7 +68,7 @@ public class ClienteAccuWeather implements ApiDeClima{
     private Boolean hayAlertaDeSol(AccuweatherResponseDTO climaActual){
         Integer INDICE_UV_MAXIMO = 3;
         //definir a partir de cuanto se considera que hay alerta de sol
-        return climaActual.getUVIndex() > INDICE_UV_MAXIMO;
+        return climaActual.getUVIndex() != null && climaActual.getUVIndex() > INDICE_UV_MAXIMO;
     }
 
     private List<Alerta> definirAlertasActuales(AccuweatherResponseDTO climaActual){

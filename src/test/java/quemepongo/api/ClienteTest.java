@@ -1,13 +1,11 @@
 package quemepongo.api;
 
-import org.junit.Assert;
-import org.junit.Test;
 import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.model.Alerta;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Localizacion;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +14,7 @@ import java.util.List;
 public class ClienteTest implements ApiDeClima{
 
     private static final Double TEMPERATURA_FIJA = 10D;
+    private List<Alerta> alertasAMandar = new ArrayList<>();
 
     @Override
     public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
@@ -24,12 +23,10 @@ public class ClienteTest implements ApiDeClima{
 
     @Override
     public List<Alerta> obtenerAlertasActuales(Localizacion localizacion) {
-        return Arrays.asList();
+        return alertasAMandar;
     }
 
-    @Test
-    public void devuelvaTemperaturaCorrecta(){
-    	Temperatura temperatura = this.obtenerTemperaturaActual(Localizacion.CABA);
-        Assert.assertEquals(temperatura.getTemperatura(), TEMPERATURA_FIJA);
+    public void setAlertasAMandar(List<Alerta> alertasAMandar) {
+        this.alertasAMandar = alertasAMandar;
     }
 }

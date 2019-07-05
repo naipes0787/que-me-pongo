@@ -1,5 +1,7 @@
 package quemepongo.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class AccuweatherResponseDTO {
 
     private String LocalObservationDateTime;
@@ -28,6 +30,7 @@ public class AccuweatherResponseDTO {
         return UVIndex;
     }
 
+    @JsonProperty("UVIndex")
     public void setUVIndex(Integer UVIndex) {
         this.UVIndex = UVIndex;
     }

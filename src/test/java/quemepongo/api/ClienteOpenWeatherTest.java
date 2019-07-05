@@ -21,7 +21,7 @@ public class ClienteOpenWeatherTest {
     private static final Localizacion LOCALIZACION = Localizacion.CABA;
     private static final String PATH = "/weather?id=3433955&appid=d0f7630cb095c3adf9622fdb01cd87c9&units=metric&lang=es";
     private String TEMPERATURA_CORRECTA = "10";
-    private String RESPUESTA_CORRECTA = "{\"main\":{\"temp\":"+TEMPERATURA_CORRECTA+"}}";
+    private String RESPUESTA_BIEN_FORMADA = "{\"main\":{\"temp\":"+TEMPERATURA_CORRECTA+"}}";
     private String RESPUESTA_MAL_FORMADA = "{\"main\":{}";
 
     @Before
@@ -33,7 +33,7 @@ public class ClienteOpenWeatherTest {
 
     @Test
     public void retorneRespuestaCorrecta(){
-        Mockito.when(clienteTest.getAsString(PATH)).thenReturn(RESPUESTA_CORRECTA);
+        Mockito.when(clienteTest.getAsString(PATH)).thenReturn(RESPUESTA_BIEN_FORMADA);
 
         Temperatura temperatura = clienteOpenWeather.obtenerTemperaturaActual(LOCALIZACION);
 
