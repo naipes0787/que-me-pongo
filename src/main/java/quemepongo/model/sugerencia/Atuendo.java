@@ -4,6 +4,10 @@ import com.google.common.collect.Sets;
 
 import quemepongo.model.Temperatura;
 import quemepongo.model.prenda.CombinacionPrenda;
+import quemepongo.model.prenda.Prenda;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Atuendo {
 
@@ -20,7 +24,7 @@ public class Atuendo {
         this.calzado = calzado;
         this.accesorio = new CombinacionPrenda(Sets.newHashSet());
     }
-  
+
     public Atuendo conAccesorio(CombinacionPrenda accesorio) {
         this.accesorio = accesorio;
         return this;
@@ -86,4 +90,12 @@ public class Atuendo {
                 + getAccesorio().getCantPrendas();
     }
 
+    public Set<Prenda> prendas() {
+        Set<CombinacionPrenda> combinaciones = Sets.newHashSet();
+        combinaciones.add(prendaInferior);
+        combinaciones.add(prendasSuperiores);
+        combinaciones.add(prendaInferior);
+        combinaciones.add(calzado);
+        return combinaciones.stream().flatMap(c -> c.getPrendas().stream()).collect(Collectors.toSet());
+    }
 }

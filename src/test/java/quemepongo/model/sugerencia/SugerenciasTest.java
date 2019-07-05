@@ -3,6 +3,7 @@ package quemepongo.model.sugerencia;
 import org.junit.Before;
 import org.junit.Test;
 import quemepongo.model.*;
+import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.CreadorDePrenda;
 import quemepongo.model.prenda.FabricadorTipoAccesorio;
 import quemepongo.model.prenda.FabricadorTipoCalzado;
@@ -10,7 +11,6 @@ import quemepongo.model.prenda.FabricadorTipoInferior;
 import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
 import quemepongo.model.prenda.Material;
 import quemepongo.model.prenda.TipoPrenda;
-import quemepongo.model.sugerencia.Atuendo;
 
 import java.awt.Color;
 import java.util.Set;

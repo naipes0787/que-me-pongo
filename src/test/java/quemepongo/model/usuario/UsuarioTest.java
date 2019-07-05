@@ -2,14 +2,12 @@ package quemepongo.model.usuario;
 
 import org.junit.Test;
 import quemepongo.exceptions.LimiteDeGuardarropasException;
-import quemepongo.model.*;
+import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.CreadorDePrenda;
 import quemepongo.model.prenda.FabricadorTipoCalzado;
 import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
 import quemepongo.model.prenda.Material;
 import quemepongo.model.prenda.TipoPrenda;
-import quemepongo.model.usuario.Usuario;
-import quemepongo.model.usuario.UsuarioPremium;
 
 import java.awt.*;
 

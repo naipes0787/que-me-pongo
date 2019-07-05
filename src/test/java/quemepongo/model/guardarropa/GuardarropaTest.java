@@ -1,4 +1,4 @@
-package quemepongo.model;
+package quemepongo.model.guardarropa;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,6 +12,7 @@ import org.junit.Test;
 import quemepongo.api.ClienteTest;
 import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
+import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.evento.Localizacion;
 import quemepongo.model.prenda.CreadorDePrenda;

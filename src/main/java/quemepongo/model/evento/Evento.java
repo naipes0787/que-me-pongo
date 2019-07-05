@@ -1,6 +1,7 @@
 package quemepongo.model.evento;
 
 import quemepongo.exceptions.FechaEventoNoValidaException;
+import quemepongo.model.sugerencia.Atuendo;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ public class Evento{
 	private String descripcion;
 	private Localizacion lugar;
 	private LocalDateTime fecha;
+	private Atuendo sugerenciaAceptada;
 	
 	public Evento(Localizacion nuevoLugar, LocalDateTime nuevaFecha, String descripcion) {
 		if(nuevaFecha.toLocalDate().isBefore(LocalDateTime.now().toLocalDate())) {
@@ -35,4 +37,7 @@ public class Evento{
 		return this.descripcion;
 	}
 	
+	public Atuendo getSugerenciaAceptada() {
+		return sugerenciaAceptada;
+	}
 }
