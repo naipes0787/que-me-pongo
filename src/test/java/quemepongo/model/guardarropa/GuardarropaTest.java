@@ -69,7 +69,7 @@ public class GuardarropaTest {
 			.setMaterial(Material.CUERO)
 			.setColorPrincipal(Color.BLACK)
 			.build();
-	private static final Prenda BufandaDePlastico = new CreadorDePrenda()
+	private static final Prenda BufandaDeLana = new CreadorDePrenda()
 			.setTipoPrenda(BUFANDA)
 			.setMaterial(Material.LANA)
 			.setColorPrincipal(Color.BLACK)
@@ -103,7 +103,7 @@ public class GuardarropaTest {
 		guardarropa2.agregarPrenda(ZapatillasDeLonaNegras);
 		guardarropa2.agregarPrenda(BotasDeCueroNegras);
 		guardarropa3.agregarPrenda(ZapatillasDeLonaNegras);
-		guardarropa3.agregarPrenda(BufandaDePlastico);
+		guardarropa3.agregarPrenda(BufandaDeLana);
 
 		usuario1.agregarGuardarropa(guardarropa1);
 		usuario1.agregarGuardarropa(guardarropa2);
