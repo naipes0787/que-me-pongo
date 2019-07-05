@@ -23,6 +23,8 @@ public class ComprobadorDeAlertas implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) {
+        System.out.println("Comprobando alertas...");
+
         Set<Usuario> usuarios = RepositorioUsuario.getInstancia().getUsuarios();
 
         usuarios.forEach(u ->
@@ -34,7 +36,7 @@ public class ComprobadorDeAlertas implements Job {
                     }
                 })
         );
-
+        System.out.println("Comprobación finalizada...");
     }
 
     private void sugerir(Evento evento, Usuario usuario) {

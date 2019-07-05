@@ -5,11 +5,12 @@ import org.quartz.impl.StdSchedulerFactory;
 
 public class DisparadorComprobadorAlertas {
 
-    private static final int frecuenciaEnSegundos = 10;
+    private static final int frecuenciaEnSegundos = 2;
 
     public void disparar() throws SchedulerException {
         Scheduler scheduler = new StdSchedulerFactory().getScheduler();
         JobDetail comprobarAlertas = JobBuilder.newJob(ComprobadorDeAlertas.class).build();
+        scheduler.start();
         scheduler.scheduleJob(comprobarAlertas, cadaCiertoTiempo());
     }
 

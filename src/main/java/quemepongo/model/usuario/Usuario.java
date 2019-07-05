@@ -12,6 +12,7 @@ import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
 
 import java.time.Duration;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class Usuario {
         guardarropas.add(guardarropa);
     }
 
-    public void agregarGuardarropaCompartido(GuardarropaCompartido guardarropa) {
+    public void agregarGuardarropa(GuardarropaCompartido guardarropa) {
         guardarropas.add(guardarropa);
     }
 
@@ -83,11 +84,12 @@ public class Usuario {
     	return this.notificador;
     }
     
-    public boolean aceptoAlgunaPrendaDe(Atuendo atuendo) {
-        Set<Prenda> prendasAceptadas = eventos.stream().map(Evento::getSugerenciaAceptada)
-                                                       .flatMap(a -> a.prendas().stream())
-                                                       .collect(Collectors.toSet());
-        return atuendo.prendas().stream().anyMatch(prendasAceptadas::contains);
+    public boolean estaUsandoAlgunaPrendaDe(Atuendo atuendo) {
+        Set<Prenda> prendasEnUso = eventos.stream().filter(Evento::tieneSugerenciaAceptada)
+                                                   .map(Evento::getSugerenciaAceptada)
+                                                   .flatMap(a -> a.prendas().stream())
+                                                   .collect(Collectors.toSet());
+        return atuendo.prendas().stream().anyMatch(prendasEnUso::contains);
     }
 
     public Set<Evento> eventosProximos(Duration tiempoDeAnticipacion) {

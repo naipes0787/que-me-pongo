@@ -18,6 +18,6 @@ public class GuardarropaCompartido extends Guardarropa {
     @Override
     public Set<Atuendo> sugerencias(Temperatura temperatura) {
         Set<Atuendo> atuendos = super.sugerencias(temperatura);
-        return atuendos.stream().filter(a -> usuarios.stream().noneMatch(u -> u.aceptoAlgunaPrendaDe(a))).collect(Collectors.toSet());
+        return atuendos.stream().filter(a -> usuarios.stream().noneMatch(u -> u.estaUsandoAlgunaPrendaDe(a))).collect(Collectors.toSet());
     }
 }
