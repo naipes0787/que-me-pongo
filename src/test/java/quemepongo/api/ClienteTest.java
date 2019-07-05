@@ -1,7 +1,7 @@
 package quemepongo.api;
 
 import quemepongo.api.clientes.ApiDeClima;
-import quemepongo.model.Alerta;
+import quemepongo.model.FactorClimatico;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Localizacion;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class ClienteTest implements ApiDeClima{
 
     private static final Double TEMPERATURA_FIJA = 10D;
-    private List<Alerta> alertasAMandar = new ArrayList<>();
+    private List<FactorClimatico> alertasAMandar = new ArrayList<>();
 
     @Override
     public Temperatura obtenerTemperaturaActual(Localizacion localizacion) {
@@ -22,11 +22,11 @@ public class ClienteTest implements ApiDeClima{
     }
 
     @Override
-    public List<Alerta> obtenerAlertasActuales(Localizacion localizacion) {
+    public List<FactorClimatico> obtenerAlertasActuales(Localizacion localizacion) {
         return alertasAMandar;
     }
 
-    public void setAlertasAMandar(List<Alerta> alertasAMandar) {
+    public void setAlertasAMandar(List<FactorClimatico> alertasAMandar) {
         this.alertasAMandar = alertasAMandar;
     }
 }

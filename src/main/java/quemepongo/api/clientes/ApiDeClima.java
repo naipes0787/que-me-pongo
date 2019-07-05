@@ -1,6 +1,6 @@
 package quemepongo.api.clientes;
 
-import quemepongo.model.Alerta;
+import quemepongo.model.FactorClimatico;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Localizacion;
 
@@ -10,5 +10,5 @@ public interface ApiDeClima {
 
     Temperatura obtenerTemperaturaActual(Localizacion localizacion);
 
-    List<Alerta> obtenerAlertasActuales(Localizacion localizacion);
+    List<FactorClimatico> obtenerAlertasActuales(Localizacion localizacion);
 }

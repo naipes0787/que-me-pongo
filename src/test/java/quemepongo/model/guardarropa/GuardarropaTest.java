@@ -1,25 +1,19 @@
-package quemepongo.model;
+package quemepongo.model.guardarropa;
 
 import org.junit.Before;
 import org.junit.Test;
 import quemepongo.api.ClienteTest;
 import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.*;
+import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Evento;
+import quemepongo.model.evento.FechaEspecifica;
 import quemepongo.model.evento.Localizacion;
-import quemepongo.model.prenda.CreadorDePrenda;
-import quemepongo.model.prenda.FabricadorTipoAccesorio;
-import quemepongo.model.prenda.FabricadorTipoCalzado;
-import quemepongo.model.prenda.FabricadorTipoInferior;
-import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
-import quemepongo.model.prenda.Material;
-import quemepongo.model.prenda.Prenda;
-import quemepongo.model.prenda.TipoPrenda;
+import quemepongo.model.prenda.*;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
 
-import java.awt.Color;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -34,10 +28,11 @@ public class GuardarropaTest {
 	private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(50));
 	private static final TipoPrenda ZAPATILLAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(50));
 	private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(50));
-	private static final TipoPrenda ANTEOJOS = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
+	private static final TipoPrenda BUFANDA = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorioCuello());
 
 	private Temperatura temperatura;
 	private Evento eventoBasico;
+	private double nivelAbrigo;
 
 
 	private static final Prenda JeanDeOxfordNegro = new CreadorDePrenda()
@@ -75,16 +70,17 @@ public class GuardarropaTest {
 			.setMaterial(Material.CUERO)
 			.setColorPrincipal(Color.BLACK)
 			.build();
-	private static final Prenda AnteojosDePlasticoNegros = new CreadorDePrenda()
-			.setTipoPrenda(ANTEOJOS)
-			.setMaterial(Material.PLASTICO)
+	private static final Prenda BufandaDeLana = new CreadorDePrenda()
+			.setTipoPrenda(BUFANDA)
+			.setMaterial(Material.LANA)
 			.setColorPrincipal(Color.BLACK)
 			.build();
 
 	@Before
 	public void preparar(){
 		temperatura = new Temperatura(20.0);
-		eventoBasico = new Evento(Localizacion.CABA, LocalDateTime.now());
+		eventoBasico = new Evento("unEvento", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now()));
+		nivelAbrigo = temperatura.convertirANivelDeAbrigo();
 		ApiDeClima proovedorDeClima = new ClienteTest();
 		SelectorDeProveedorDeClima.getInstancia().setProovedorDeClima(proovedorDeClima);
 	}
@@ -108,7 +104,7 @@ public class GuardarropaTest {
 		guardarropa2.agregarPrenda(ZapatillasDeLonaNegras);
 		guardarropa2.agregarPrenda(BotasDeCueroNegras);
 		guardarropa3.agregarPrenda(ZapatillasDeLonaNegras);
-		guardarropa3.agregarPrenda(AnteojosDePlasticoNegros);
+		guardarropa3.agregarPrenda(BufandaDeLana);
 
 		usuario1.agregarGuardarropa(guardarropa1);
 		usuario1.agregarGuardarropa(guardarropa2);
@@ -143,7 +139,7 @@ public class GuardarropaTest {
 		guardarropaSinPrendasSuperiores.agregarPrenda(ZapatillasDeLonaNegras);
 		guardarropaSinPrendasSuperiores.agregarPrenda(BotasDeCueroNegras);
 		
-		Set<Atuendo> sugerencias = guardarropaSinPrendasSuperiores.sugerencias(temperatura);
+		Set<Atuendo> sugerencias = guardarropaSinPrendasSuperiores.sugerencias(new Usuario(), nivelAbrigo);
 		assertEquals(0, sugerencias.size());
 	}
 
@@ -156,7 +152,7 @@ public class GuardarropaTest {
 		guardarropaSinPrendasInferiores.agregarPrenda(ZapatillasDeLonaNegras);
 		guardarropaSinPrendasInferiores.agregarPrenda(BotasDeCueroNegras);
 		
-		Set<Atuendo> sugerencias = guardarropaSinPrendasInferiores.sugerencias(temperatura);
+		Set<Atuendo> sugerencias = guardarropaSinPrendasInferiores.sugerencias(new Usuario(), nivelAbrigo);
 		assertEquals(0, sugerencias.size());
 	}
 
@@ -169,7 +165,7 @@ public class GuardarropaTest {
 		guardarropaSinCalzados.agregarPrenda(JeanDeOxfordNegro);
 		guardarropaSinCalzados.agregarPrenda(PolleraDeAlgodonNegra);
 
-		Set<Atuendo> sugerencias = guardarropaSinCalzados.sugerencias(temperatura);
+		Set<Atuendo> sugerencias = guardarropaSinCalzados.sugerencias(new Usuario(), nivelAbrigo);
 		assertEquals(0, sugerencias.size());
 	}
 

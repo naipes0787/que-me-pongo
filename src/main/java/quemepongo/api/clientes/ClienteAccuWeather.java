@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import quemepongo.api.dto.AccuweatherResponseDTO;
 import quemepongo.exceptions.ApiDeClimaException;
 import quemepongo.exceptions.ObjectMapperException;
-import quemepongo.model.Alerta;
+import quemepongo.model.FactorClimatico;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Localizacion;
 
@@ -71,16 +71,16 @@ public class ClienteAccuWeather implements ApiDeClima{
         return climaActual.getUVIndex() != null && climaActual.getUVIndex() > INDICE_UV_MAXIMO;
     }
 
-    private List<Alerta> definirAlertasActuales(AccuweatherResponseDTO climaActual){
-        List<Alerta> alertas= new ArrayList<>();
+    private List<FactorClimatico> definirAlertasActuales(AccuweatherResponseDTO climaActual){
+        List<FactorClimatico> alertas= new ArrayList<>();
         if(hayAlertaDeLluvia(climaActual)){
-            alertas.add(Alerta.LLUVIA);
+            alertas.add(FactorClimatico.LLUVIA);
         }
         if(hayAlertaDeViento(climaActual)){
-            alertas.add(Alerta.VIENTO);
+            alertas.add(FactorClimatico.VIENTO);
         }
         if(hayAlertaDeSol(climaActual)){
-            alertas.add(Alerta.SOL);
+            alertas.add(FactorClimatico.SOL);
         }
         return alertas;
     }
@@ -95,7 +95,7 @@ public class ClienteAccuWeather implements ApiDeClima{
     }
 
     @Override
-    public List<Alerta> obtenerAlertasActuales(Localizacion localizacion) {
+    public List<FactorClimatico> obtenerAlertasActuales(Localizacion localizacion) {
         String locationKey = getLocationKey(localizacion);
         AccuweatherResponseDTO climaActual = obtenerClimaActual(locationKey).get(0);
         return definirAlertasActuales(climaActual);

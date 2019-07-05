@@ -1,5 +1,5 @@
 package quemepongo.model;
 
-public enum Alerta {
+public enum FactorClimatico {
     LLUVIA, VIENTO, SOL
 }

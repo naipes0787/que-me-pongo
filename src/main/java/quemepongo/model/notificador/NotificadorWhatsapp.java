@@ -1,6 +1,6 @@
 package quemepongo.model.notificador;
 
-public class AlertadorWhatsapp implements Alertador{
+public class NotificadorWhatsapp implements Notificador {
 
 	// TODO: Implementar el envío de mensajes vía whatsapp
 	@Override
@@ -9,7 +9,7 @@ public class AlertadorWhatsapp implements Alertador{
 	}
 
 	@Override
-	public void notificarAlertaEventoProximo() {
+	public void notificarSugerenciasListas() {
 		System.out.println("Avisando alerta evento próximo por Whatsapp");
 	}
 	

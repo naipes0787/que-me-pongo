@@ -5,28 +5,24 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FabricadorTipoAccesorio extends FabricaTipoPrenda {
+public class FabricadorTipoAccesorioManos  extends FabricaTipoPrenda {
 
-    public FabricadorTipoAccesorio(){
+    public FabricadorTipoAccesorioManos(){
         super.nivelAbrigo = 0;
     }
 
     public Categoria getCategoria() {
-        return Categoria.ACCESORIO;
+        return Categoria.ACCESORIO_MANOS;
     }
 
     public Set<Material> getMaterialesValidos() {
         return Stream.of(
-                Material.ORO,
-                Material.PLATA,
-                Material.BRONCE,
-                Material.PLASTICO)
+                Material.LANA)
                 .collect(Collectors.toCollection(HashSet::new));
     }
 
     public Capa getCapa() {
-    	return Capa.BASE;
+        return Capa.BASE;
     }
 
 }
-

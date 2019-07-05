@@ -1,9 +1,12 @@
 package quemepongo.model.sugerencia;
 
 import com.google.common.collect.Sets;
-
-import quemepongo.model.Temperatura;
+import quemepongo.model.FactorClimatico;
 import quemepongo.model.prenda.CombinacionPrenda;
+import quemepongo.model.prenda.Prenda;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Atuendo {
 
@@ -20,19 +23,23 @@ public class Atuendo {
         this.calzado = calzado;
         this.accesorio = new CombinacionPrenda(Sets.newHashSet());
     }
-  
+
     public Atuendo conAccesorio(CombinacionPrenda accesorio) {
         this.accesorio = accesorio;
         return this;
+    }
+
+    public void agregarAccesorio(CombinacionPrenda nuevoAccesorio){
+        nuevoAccesorio.getPrendas().stream().forEach(prenda -> this.accesorio.agregarPrenda(prenda));
     }
 
     public double getNivelAbrigo(){
         return (prendasSuperiores.getNivelAbrigo() + prendaInferior.getNivelAbrigo() + calzado.getNivelAbrigo());
     }
 
-    public boolean abrigaLoSuficiente(Temperatura temperatura, double margenError){
-        return (margenInferior(temperatura.convertirANivelDeAbrigo(), margenError) <= getNivelAbrigo()
-                && getNivelAbrigo() <= margenSuperior(temperatura.convertirANivelDeAbrigo(), margenError));
+    public boolean abrigaLoSuficiente(double nivelAbrigo, double margenError){
+        return (margenInferior(nivelAbrigo, margenError) <= getNivelAbrigo()
+                && getNivelAbrigo() <= margenSuperior(nivelAbrigo, margenError));
     }
 
     private double margenInferior(double nivelAbrigoNecesario, double margenError){
@@ -86,4 +93,16 @@ public class Atuendo {
                 + getAccesorio().getCantPrendas();
     }
 
+    public Set<Prenda> prendas() {
+        Set<CombinacionPrenda> combinaciones = Sets.newHashSet();
+        combinaciones.add(prendaInferior);
+        combinaciones.add(prendasSuperiores);
+        combinaciones.add(prendaInferior);
+        combinaciones.add(calzado);
+        return combinaciones.stream().flatMap(c -> c.getPrendas().stream()).collect(Collectors.toSet());
+    }
+
+    public boolean esAptoPara(FactorClimatico factorClimatico) {
+        return prendas().stream().anyMatch(p -> p.esAptaPara(factorClimatico));
+    }
 }

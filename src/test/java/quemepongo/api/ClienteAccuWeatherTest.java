@@ -1,6 +1,5 @@
 package quemepongo.api;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,14 +10,12 @@ import quemepongo.api.clientes.Cliente;
 import quemepongo.api.clientes.ClienteAccuWeather;
 import quemepongo.exceptions.ApiDeClimaException;
 import quemepongo.exceptions.ClienteHttpException;
-import quemepongo.model.Alerta;
+import quemepongo.model.FactorClimatico;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Localizacion;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static quemepongo.model.Alerta.VIENTO;
 
 public class ClienteAccuWeatherTest {
 
@@ -75,10 +72,10 @@ public class ClienteAccuWeatherTest {
         String RESPUESTA_SOLO_CON_ALERTA_DE_SOL= String.format(RESPUESTA_CON_ALERTAS_A_DEFINIR, SIN_LLUVIA, SIN_VIENTO, CON_SOL);
         Mockito.when(clienteTest.getAsString(PATH)).thenReturn(RESPUESTA_SOLO_CON_ALERTA_DE_SOL);
 
-        List<Alerta> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
+        List<FactorClimatico> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
 
         Assert.assertEquals(1, alertasObtenidas.size());
-        Assert.assertEquals(Alerta.SOL, alertasObtenidas.get(0));
+        Assert.assertEquals(FactorClimatico.SOL, alertasObtenidas.get(0));
         Mockito.verify(clienteTest).getAsString(PATH);
         Mockito.verifyNoMoreInteractions(clienteTest);
     }
@@ -88,10 +85,10 @@ public class ClienteAccuWeatherTest {
         String RESPUESTA_SOLO_CON_ALERTA_DE_VIENTO= String.format(RESPUESTA_CON_ALERTAS_A_DEFINIR, SIN_LLUVIA, CON_VIENTO, SIN_SOL);
         Mockito.when(clienteTest.getAsString(PATH)).thenReturn(RESPUESTA_SOLO_CON_ALERTA_DE_VIENTO);
 
-        List<Alerta> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
+        List<FactorClimatico> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
 
         Assert.assertEquals(1, alertasObtenidas.size());
-        Assert.assertEquals(VIENTO, alertasObtenidas.get(0));
+        Assert.assertEquals(FactorClimatico.VIENTO, alertasObtenidas.get(0));
         Mockito.verify(clienteTest).getAsString(PATH);
         Mockito.verifyNoMoreInteractions(clienteTest);
     }
@@ -101,10 +98,10 @@ public class ClienteAccuWeatherTest {
         String RESPUESTA_SOLO_CON_ALERTA_DE_LLUVIA= String.format(RESPUESTA_CON_ALERTAS_A_DEFINIR, CON_LLUVIA, SIN_VIENTO, SIN_SOL);
         Mockito.when(clienteTest.getAsString(PATH)).thenReturn(RESPUESTA_SOLO_CON_ALERTA_DE_LLUVIA);
 
-        List<Alerta> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
+        List<FactorClimatico> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
 
         Assert.assertEquals(1, alertasObtenidas.size());
-        Assert.assertEquals(Alerta.LLUVIA, alertasObtenidas.get(0));
+        Assert.assertEquals(FactorClimatico.LLUVIA, alertasObtenidas.get(0));
         Mockito.verify(clienteTest).getAsString(PATH);
         Mockito.verifyNoMoreInteractions(clienteTest);
     }
@@ -112,10 +109,10 @@ public class ClienteAccuWeatherTest {
     @Test
     public void retorneLasTresAlertas(){
         String RESPUESTA_CON_TODAS_LAS_ALERTAS= String.format(RESPUESTA_CON_ALERTAS_A_DEFINIR, CON_LLUVIA, CON_VIENTO, CON_SOL);
-        List<Alerta> TODAS_LAS_ALERTAS = Arrays.asList(Alerta.LLUVIA, Alerta.SOL, Alerta.VIENTO);
+        List<FactorClimatico> TODAS_LAS_ALERTAS = Arrays.asList(FactorClimatico.LLUVIA, FactorClimatico.SOL, FactorClimatico.VIENTO);
         Mockito.when(clienteTest.getAsString(PATH)).thenReturn(RESPUESTA_CON_TODAS_LAS_ALERTAS);
 
-        List<Alerta> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
+        List<FactorClimatico> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
 
         Assert.assertEquals(3, alertasObtenidas.size());
         Assert.assertTrue(alertasObtenidas.containsAll(TODAS_LAS_ALERTAS));
@@ -128,7 +125,7 @@ public class ClienteAccuWeatherTest {
         String RESPUESTA_SIN_ALERTAS= String.format(RESPUESTA_CON_ALERTAS_A_DEFINIR, SIN_LLUVIA, SIN_VIENTO, SIN_SOL);
         Mockito.when(clienteTest.getAsString(PATH)).thenReturn(RESPUESTA_SIN_ALERTAS);
 
-        List<Alerta> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
+        List<FactorClimatico> alertasObtenidas = clienteAccuWeather.obtenerAlertasActuales(LOCALIZACION);
 
         Assert.assertEquals(0, alertasObtenidas.size());
         Mockito.verify(clienteTest).getAsString(PATH);
