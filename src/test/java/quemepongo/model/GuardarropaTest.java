@@ -1,11 +1,17 @@
 package quemepongo.model;
 
+import static org.junit.Assert.assertEquals;
+
+import java.awt.Color;
+import java.time.LocalDateTime;
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import quemepongo.api.ClienteTest;
 import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.*;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.evento.Localizacion;
 import quemepongo.model.prenda.CreadorDePrenda;
@@ -18,12 +24,6 @@ import quemepongo.model.prenda.Prenda;
 import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
-
-import java.awt.Color;
-import java.time.LocalDateTime;
-import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
 
 public class GuardarropaTest {
 
