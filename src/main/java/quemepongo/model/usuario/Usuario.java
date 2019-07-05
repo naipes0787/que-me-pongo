@@ -11,6 +11,7 @@ import quemepongo.model.notificador.Alertador;
 import quemepongo.model.notificador.AlertadorEmail;
 import quemepongo.model.notificador.TipoAlerta;
 import quemepongo.model.prenda.Prenda;
+import quemepongo.model.calificacion.Calificacion;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ public class Usuario {
     private Set<Evento> eventos = Sets.newHashSet();
     private TipoUsuario tipoUsuario;
     private Alertador alertador;
+    private double sensibilidadClima = 1;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
@@ -81,9 +83,17 @@ public class Usuario {
     public Alertador getAlertador() {
     	return this.alertador;
     }
-    
+
+    public double getSensibilidadClima() {
+        return this.sensibilidadClima;
+    }
+
     public void actuarAnte(TipoAlerta tipoAlerta) {
     	tipoAlerta.alertar(this);
+    }
+
+    public void calificar(Calificacion calificacion){
+        this.sensibilidadClima += calificacion.getCalificacionGlobal().varianzaSensibilidad;
     }
 
     public boolean aceptoAlgunaPrendaDe(Atuendo atuendo) {
