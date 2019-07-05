@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import quemepongo.model.prenda.Categoria;
-import quemepongo.model.prenda.FabricadorTipoAccesorio;
 import quemepongo.model.prenda.FabricadorTipoCalzado;
 import quemepongo.model.prenda.FabricadorTipoInferior;
 import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
@@ -37,12 +36,6 @@ public class TipoPrendaTest {
         tipoPrendaContieneMaterialesValidos(zapatos, Material.CUERO, Material.BRONCE);
     }
 
-    @Test
-    public void tipoAccesorio(){
-        TipoPrenda cadenita = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorio());
-        assertEquals(cadenita.getCategoria(), Categoria.ACCESORIO);
-        tipoPrendaContieneMaterialesValidos(cadenita, Material.ORO, Material.LANA);
-    }
 
     private void tipoPrendaContieneMaterialesValidos(TipoPrenda tipo, Material materialValido, Material materialInvalido) {
         assertTrue(tipo.getMaterialesValidos().contains(materialValido));
