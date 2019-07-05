@@ -1,9 +1,9 @@
 package quemepongo.api.dto;
 
-public class TemperaturaConSistema {
+public class ValorConSistemaDeUnidad {
 
     private Double Value;
-    private UnidadDeTemperatura Unit;
+    private Unidad Unit;
 
     public Double getValue() {
         return Value;
@@ -13,11 +13,11 @@ public class TemperaturaConSistema {
         Value = value;
     }
 
-    public UnidadDeTemperatura getUnit() {
+    public Unidad getUnit() {
         return Unit;
     }
 
-    public void setUnit(UnidadDeTemperatura unit) {
+    public void setUnit(Unidad unit) {
         Unit = unit;
     }
 }

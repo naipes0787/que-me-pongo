@@ -4,6 +4,33 @@ public class AccuweatherResponseDTO {
 
     private String LocalObservationDateTime;
     private TemperaturaAccuWeather Temperature;
+    private Boolean HasPrecipitation;
+    private Integer UVIndex;
+    private VientoAccuWeather Wind;
+
+    public VientoAccuWeather getWind() {
+        return Wind;
+    }
+
+    public void setWind(VientoAccuWeather wind) {
+        Wind = wind;
+    }
+
+    public Boolean getHasPrecipitation() {
+        return HasPrecipitation;
+    }
+
+    public void setHasPrecipitation(Boolean hasPrecipitation) {
+        HasPrecipitation = hasPrecipitation;
+    }
+
+    public Integer getUVIndex() {
+        return UVIndex;
+    }
+
+    public void setUVIndex(Integer UVIndex) {
+        this.UVIndex = UVIndex;
+    }
 
     public String getLocalObservationDateTime() {
         return LocalObservationDateTime;

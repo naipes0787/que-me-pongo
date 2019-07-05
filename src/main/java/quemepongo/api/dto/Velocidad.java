@@ -1,6 +1,6 @@
 package quemepongo.api.dto;
 
-public class TemperaturaAccuWeather {
+public class Velocidad {
 
     private ValorConSistemaDeUnidad Metric;
     private ValorConSistemaDeUnidad Imperial;

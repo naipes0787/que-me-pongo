@@ -68,7 +68,8 @@ public class ClienteOpenWeather implements ApiDeClima {
     }
 
     private Boolean hayAlertaDeViento(OpenWeatherResponseDTO climaActual){
-        Double VELOCIDAD_MAXIMA_DE_VIENTO = 1D; //TODO verificar a partir de que velocidad de viento se considera como alerta
+        Double VELOCIDAD_MAXIMA_DE_VIENTO = 1D;
+        //verificar a partir de que velocidad de viento se considera como alerta
         //la velocidad esta en m/s
         return climaActual.getWind().getSpeed() > VELOCIDAD_MAXIMA_DE_VIENTO;
     }

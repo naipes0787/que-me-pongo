@@ -1,6 +1,6 @@
 package quemepongo.api.dto;
 
-public class Viento {
+public class VientoOpenWeather {
 
     private Double speed;
 

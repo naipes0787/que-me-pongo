@@ -4,15 +4,15 @@ public class OpenWeatherResponseDTO {
 
     private TemperaturaOpenWeather main;
     private Long dt;
-    private Viento wind;
+    private VientoOpenWeather wind;
     private Nubes clouds;
     private Lluvia rain;
 
-    public Viento getWind() {
+    public VientoOpenWeather getWind() {
         return wind;
     }
 
-    public void setWind(Viento wind) {
+    public void setWind(VientoOpenWeather wind) {
         this.wind = wind;
     }
 
