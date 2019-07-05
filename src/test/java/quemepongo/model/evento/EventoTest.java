@@ -11,6 +11,6 @@ public class EventoTest {
 	
 	@Test(expected = FechaEventoNoValidaException.class)
 	public void arrojarExcepcionSiSeIntentaCrearUnEventoConUnaFechaAnteriorALaActual(){
-		new Evento(Localizacion.CABA, LocalDateTime.now().minusDays(1));
+		new Evento("unEvento", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now().minusDays(1)));
 	}
 }
