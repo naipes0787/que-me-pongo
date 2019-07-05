@@ -15,10 +15,10 @@ public class TipoPrenda {
     public Set<Material> materialesValidos;
     public double nivelAbrigo;
     public Capa capa;
-    private Set<FactorClimatico> noAptoPara;
+    private Set<FactorClimatico> aptoPara;
 
     public static TipoPrenda diseniarTipo(FabricaTipoPrenda tipo) {
-        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), tipo.noAptoPara());
+        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), tipo.aptoPara());
     }
 
     private TipoPrenda(Categoria categoria, Set<Material> materialesValidos, double nivelAbrigo, Capa capa, Set<FactorClimatico> noAptoPara) {
@@ -26,7 +26,7 @@ public class TipoPrenda {
         this.materialesValidos = materialesValidos;
         this.nivelAbrigo = nivelAbrigo;
         this.capa = capa;
-        this.noAptoPara = noAptoPara;
+        this.aptoPara = noAptoPara;
     }
 
     public Categoria getCategoria() {
@@ -46,6 +46,6 @@ public class TipoPrenda {
     }
 
     public boolean esAptoPara(FactorClimatico factorClimatico) {
-        return !noAptoPara.contains(factorClimatico);
+        return aptoPara.contains(factorClimatico);
     }
 }

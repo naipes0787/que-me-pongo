@@ -13,8 +13,7 @@ public abstract class FabricaTipoPrenda {
     public abstract Categoria getCategoria();
     public abstract Set<Material> getMaterialesValidos();
     public abstract Capa getCapa();
-    public Set<FactorClimatico> noAptoPara() {
-        // TODO Hardcodeado
+    public Set<FactorClimatico> aptoPara() {
         return new HashSet<>(Arrays.asList(FactorClimatico.values()));
     }
 

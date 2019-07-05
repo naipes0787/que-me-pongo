@@ -103,6 +103,6 @@ public class Atuendo {
     }
 
     public boolean esAptoPara(FactorClimatico factorClimatico) {
-        return prendas().stream().allMatch(p -> p.esAptaPara(factorClimatico));
+        return prendas().stream().anyMatch(p -> p.esAptaPara(factorClimatico));
     }
 }
