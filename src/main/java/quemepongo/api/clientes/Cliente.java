@@ -4,6 +4,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import quemepongo.exceptions.ClienteHttpException;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class Cliente {
         HttpResponse respuesta = this.get(path);
         if (terminoEnError(respuesta)) throw new ClienteHttpException(path);
         try{
-            return respuesta.getEntity().getContent().toString();
+            return EntityUtils.toString(respuesta.getEntity());
         }catch (IOException exc){
             throw new ClienteHttpException(path);
         }
