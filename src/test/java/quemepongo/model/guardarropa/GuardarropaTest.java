@@ -1,13 +1,14 @@
-package quemepongo.model;
+package quemepongo.model.guardarropa;
 
 import org.junit.Before;
 import org.junit.Test;
 import quemepongo.api.ClienteTest;
 import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.*;
+import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.evento.Localizacion;
+import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.CreadorDePrenda;
 import quemepongo.model.prenda.FabricadorTipoAccesorio;
 import quemepongo.model.prenda.FabricadorTipoCalzado;

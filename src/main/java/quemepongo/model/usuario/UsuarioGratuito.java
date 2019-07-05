@@ -1,7 +1,7 @@
 package quemepongo.model.usuario;
 
 import quemepongo.exceptions.LimiteDeGuardarropasException;
-import quemepongo.model.Guardarropa;
+import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.Prenda;
 
 public class UsuarioGratuito implements TipoUsuario{

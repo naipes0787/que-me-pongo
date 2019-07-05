@@ -1,7 +1,8 @@
-package quemepongo.model;
+package quemepongo.model.guardarropa;
 
 import com.google.common.collect.Sets;
 
+import quemepongo.model.Temperatura;
 import quemepongo.model.prenda.Categoria;
 import quemepongo.model.prenda.Combinador;
 import quemepongo.model.prenda.Prenda;
