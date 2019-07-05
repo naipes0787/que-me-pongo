@@ -4,23 +4,35 @@ import quemepongo.exceptions.FechaEventoNoValidaException;
 
 import java.time.LocalDateTime;
 
+import org.uqbar.commons.model.annotations.Observable;
+
+@Observable
 public class Evento{
+	
+	private String descripcion;
 	private Localizacion lugar;
 	private LocalDateTime fecha;
 	
-	public Evento(Localizacion nuevoLugar, LocalDateTime nuevaFecha) {
-		lugar = nuevoLugar;
+	public Evento(Localizacion nuevoLugar, LocalDateTime nuevaFecha, String descripcion) {
 		if(nuevaFecha.toLocalDate().isBefore(LocalDateTime.now().toLocalDate())) {
 			throw new FechaEventoNoValidaException();
 		}
-		fecha = nuevaFecha;
+		this.lugar = nuevoLugar;
+		this.fecha = nuevaFecha;
+		this.descripcion = descripcion;
+		RepositorioEvento.getInstancia().agregarEvento(this);
 	}
 	
 	public Localizacion getLugar() {
-		return lugar;
+		return this.lugar;
 	}
 
 	public LocalDateTime getFecha() {
-		return fecha;
+		return this.fecha;
 	}
+
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+	
 }

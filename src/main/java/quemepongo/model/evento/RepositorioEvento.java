@@ -23,7 +23,7 @@ public class RepositorioEvento {
         return repositorioEventos;
     }
 
-	void agregarEvento(Evento evento) {
+	public void agregarEvento(Evento evento) {
 		eventos.add(evento);
 	}
 	
