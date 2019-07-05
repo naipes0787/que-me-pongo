@@ -1,11 +1,11 @@
 package quemepongo.model.evento;
 
-import quemepongo.exceptions.FechaEventoNoValidaException;
-import quemepongo.model.sugerencia.Atuendo;
-
 import java.time.LocalDateTime;
 
 import org.uqbar.commons.model.annotations.Observable;
+
+import quemepongo.exceptions.FechaEventoNoValidaException;
+import quemepongo.model.sugerencia.Atuendo;
 
 @Observable
 public class Evento{
@@ -37,7 +37,12 @@ public class Evento{
 		return this.descripcion;
 	}
 	
+	public void setSugerenciaAceptada(Atuendo atuendo) {
+		this.sugerenciaAceptada = atuendo;
+	}
+	
 	public Atuendo getSugerenciaAceptada() {
 		return sugerenciaAceptada;
 	}
+
 }

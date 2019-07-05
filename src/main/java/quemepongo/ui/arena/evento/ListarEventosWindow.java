@@ -1,4 +1,4 @@
-package quemepongo.ui.arena;
+package quemepongo.ui.arena.evento;
 
 import java.awt.Color;
 
@@ -17,12 +17,14 @@ import quemepongo.model.evento.Evento;
 /**
  * Ventana de listado de eventos.
  * 
- * @see ListarEventos - El modelo subyacente.
+ * @see ListarEventos - Modelo del listado de eventos.
  * 
  */
 @SuppressWarnings("serial")
 public class ListarEventosWindow extends MainWindow<ListarEventos> {
 
+	private final static Integer ANCHO_CAMPOS = 70;
+	
 	public ListarEventosWindow() {
 		super(new ListarEventos());
 	}
@@ -53,46 +55,46 @@ public class ListarEventosWindow extends MainWindow<ListarEventos> {
 	private void generarFiltro(Panel mainPanel) {
 		Panel filterPanel = new Panel(mainPanel);
 		filterPanel.setLayout(new HorizontalLayout());
-		new Label(filterPanel).setText("Desde:");
+		new Label(filterPanel).setText("Desde:   ");
 		new Label(filterPanel)
-			.setText("Día");
+			.setText("Día ");
 		new TextBox(filterPanel)
 			.alignRight()
-	    	.setWidth(30)
+	    	.setWidth(ANCHO_CAMPOS)
 	    	.bindValueToProperty("diaDesde");
 		new Label(filterPanel)
-			.setText("Mes");
+			.setText("Mes ");
 		new TextBox(filterPanel)
 			.alignRight()
-	    	.setWidth(30)
+	    	.setWidth(ANCHO_CAMPOS)
 	    	.bindValueToProperty("mesDesde");
 		new Label(filterPanel)
-			.setText("Año");
+			.setText("Año ");
 		new TextBox(filterPanel)
 			.alignRight()
-	    	.setWidth(30)
+	    	.setWidth(ANCHO_CAMPOS)
 	    	.bindValueToProperty("anioDesde");
 		
 		Panel filterPanel2 = new Panel(mainPanel);
 		filterPanel2.setLayout(new HorizontalLayout());
-		new Label(filterPanel2).setText("Hasta:");
+		new Label(filterPanel2).setText("Hasta:   ");
 		new Label(filterPanel2)
-			.setText("Día");
+			.setText("Día ");
 		new TextBox(filterPanel2)
 			.alignRight()
-	    	.setWidth(30)
+	    	.setWidth(ANCHO_CAMPOS)
 	    	.bindValueToProperty("diaHasta");
 		new Label(filterPanel2)
-			.setText("Mes");
+			.setText("Mes ");
 		new TextBox(filterPanel2)
 			.alignRight()
-	    	.setWidth(30)
+	    	.setWidth(ANCHO_CAMPOS)
 	    	.bindValueToProperty("mesHasta");
 		new Label(filterPanel2)
-			.setText("Año");
+			.setText("Año ");
 		new TextBox(filterPanel2)
 			.alignRight()
-	    	.setWidth(30)
+	    	.setWidth(ANCHO_CAMPOS)
 	    	.bindValueToProperty("anioHasta");
 	}
 
@@ -100,18 +102,18 @@ public class ListarEventosWindow extends MainWindow<ListarEventos> {
 		Table<Evento> tableEventos = new Table<Evento>(mainPanel, Evento.class);
 		tableEventos.bindItemsToProperty("resultados");
 		tableEventos.bindValueToProperty("eventoSeleccionado");
-		new Column<Evento>(tableEventos) //
+		new Column<Evento>(tableEventos)
 		    .setTitle("Descripción")
 		    .setFixedSize(250)
 		    .bindContentsToProperty("descripcion");
-		new Column<Evento>(tableEventos) //
+		new Column<Evento>(tableEventos)
 		    .setTitle("Fecha")
-		    .setFixedSize(250)
-		    .bindContentsToProperty("fecha");
-		new Column<Evento>(tableEventos) //
+		    .setFixedSize(200)
+		    .bindContentsToProperty("fecha").setTransformer(new FechaToImprimibleTransformer());
+		new Column<Evento>(tableEventos)
+	    	.setFixedSize(50)
 		    .setTitle("Sugerencias")
-		    .setFixedSize(250)
-		    .bindContentsToProperty("descripcion");
+		    .bindContentsToProperty("sugerenciaAceptada").setTransformer(new AtuendoToSiNoTransformer());
 	}
 	
 	private void generarWindowFooter(Panel mainPanel) {

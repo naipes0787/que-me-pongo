@@ -1,4 +1,4 @@
-package quemepongo.ui.arena;
+package quemepongo.ui.arena.evento;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -11,6 +11,10 @@ import org.uqbar.commons.model.annotations.Observable;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.evento.RepositorioEvento;
 
+/**
+ * Clase encargada de listar eventos, mapeando a Evento
+ * 
+ */
 @Observable
 public class ListarEventos {
 	
