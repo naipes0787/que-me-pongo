@@ -22,4 +22,8 @@ public class CombinacionPrenda {
     public Set<Prenda> getPrendas() {
         return prendas;
     }
+
+    public void agregarPrenda(Prenda prenda){
+        prendas.add(prenda);
+    }
 }
