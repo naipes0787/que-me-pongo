@@ -3,7 +3,7 @@ package quemepongo.api;
 import org.junit.Assert;
 import org.junit.Test;
 import quemepongo.api.clientes.ApiDeClima;
-import quemepongo.model.Alerta;
+import quemepongo.model.FactorClimatico;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Localizacion;
 
@@ -23,7 +23,7 @@ public class ClienteTest implements ApiDeClima{
     }
 
     @Override
-    public List<Alerta> obtenerAlertasActuales(Localizacion localizacion) {
+    public List<FactorClimatico> obtenerAlertasActuales(Localizacion localizacion) {
         return Arrays.asList();
     }
 

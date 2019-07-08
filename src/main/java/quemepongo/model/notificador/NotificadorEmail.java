@@ -1,6 +1,6 @@
 package quemepongo.model.notificador;
 
-public class AlertadorEmail implements Alertador{
+public class NotificadorEmail implements Notificador {
 
 	// TODO: Implementar el envío de mensajes vía Email
 	@Override
@@ -9,7 +9,7 @@ public class AlertadorEmail implements Alertador{
 	}
 
 	@Override
-	public void notificarAlertaEventoProximo() {
+	public void notificarSugerenciasListas() {
 		System.out.println("Avisando alerta evento próximo por Email");
 	}
 

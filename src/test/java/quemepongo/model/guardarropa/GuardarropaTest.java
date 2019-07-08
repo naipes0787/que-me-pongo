@@ -7,12 +7,13 @@ import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.model.Temperatura;
 import quemepongo.model.evento.Evento;
+import quemepongo.model.evento.FechaEspecifica;
 import quemepongo.model.evento.Localizacion;
 import quemepongo.model.prenda.*;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
 
-import java.awt.Color;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -78,8 +79,8 @@ public class GuardarropaTest {
 	@Before
 	public void preparar(){
 		temperatura = new Temperatura(20.0);
+		eventoBasico = new Evento("unEvento", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now()));
 		nivelAbrigo = temperatura.convertirANivelDeAbrigo();
-		eventoBasico = new Evento(Localizacion.CABA, LocalDateTime.now());
 		ApiDeClima proovedorDeClima = new ClienteTest();
 		SelectorDeProveedorDeClima.getInstancia().setProovedorDeClima(proovedorDeClima);
 	}

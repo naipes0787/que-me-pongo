@@ -1,21 +1,21 @@
 package quemepongo.model.evento;
 
-import quemepongo.exceptions.FechaEventoNoValidaException;
 import quemepongo.model.sugerencia.Atuendo;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Evento{
+public class Evento {
+
+	private String titulo;
 	private Localizacion lugar;
-	private LocalDateTime fecha;
+	private Ocurrencia ocurrencia;
 	private Atuendo sugerenciaAceptada;
-	
-	public Evento(Localizacion nuevoLugar, LocalDateTime nuevaFecha) {
-		lugar = nuevoLugar;
-		if(nuevaFecha.toLocalDate().isBefore(LocalDateTime.now().toLocalDate())) {
-			throw new FechaEventoNoValidaException();
-		}
-		fecha = nuevaFecha;
+
+	public Evento(String titulo, Localizacion lugar, Ocurrencia ocurrencia) {
+		this.titulo = titulo;
+		this.lugar = lugar;
+		this.ocurrencia = ocurrencia;
 	}
 	
 	public Localizacion getLugar() {
@@ -23,10 +23,26 @@ public class Evento{
 	}
 
 	public LocalDateTime getFecha() {
-		return fecha;
+		return ocurrencia.fechaDelEvento();
 	}
 
 	public Atuendo getSugerenciaAceptada() {
 		return sugerenciaAceptada;
+	}
+
+	public void setSugerenciaAceptada(Atuendo sugerenciaAceptada) {
+		this.sugerenciaAceptada = sugerenciaAceptada;
+	}
+
+	public boolean estaProximoAOcurrir(Duration tiempoDeAnticipacion) {
+		return ocurrencia.estaProxima(tiempoDeAnticipacion);
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public boolean tieneSugerenciaAceptada() {
+		return sugerenciaAceptada != null;
 	}
 }

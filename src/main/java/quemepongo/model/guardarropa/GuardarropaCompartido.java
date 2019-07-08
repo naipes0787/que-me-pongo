@@ -1,6 +1,5 @@
 package quemepongo.model.guardarropa;
 
-import quemepongo.model.Temperatura;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
 
@@ -19,6 +18,6 @@ public class GuardarropaCompartido extends Guardarropa {
     @Override
     public Set<Atuendo> sugerencias(Usuario usuario, double nivelAbrigo) {
         Set<Atuendo> atuendos = super.sugerencias(usuario, nivelAbrigo);
-        return atuendos.stream().filter(a -> usuarios.stream().noneMatch(u -> u.aceptoAlgunaPrendaDe(a))).collect(Collectors.toSet());
+        return atuendos.stream().filter(a -> usuarios.stream().noneMatch(u -> u.estaUsandoAlgunaPrendaDe(a))).collect(Collectors.toSet());
     }
 }

@@ -22,7 +22,8 @@ public class FabricadorTipoSuperiorAbrigo extends FabricaTipoPrenda{
                 Material.LINO,
                 Material.GABARDINA,
                 Material.SEDA,
-                Material.OXFORD
+                Material.OXFORD,
+                Material.PLASTICO
         )
                 .collect(Collectors.toCollection(HashSet::new));
     }

@@ -3,6 +3,9 @@ package quemepongo.model.sugerencia;
 import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
+import quemepongo.model.evento.Evento;
+import quemepongo.model.evento.FechaEspecifica;
+import quemepongo.model.evento.Localizacion;
 import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.CreadorDePrenda;
 import quemepongo.model.prenda.FabricadorTipoCalzado;
@@ -15,6 +18,7 @@ import quemepongo.model.sugerencia.EstadoAtuendo;
 import quemepongo.model.usuario.Usuario;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,6 +29,7 @@ public class EstadoAtuendoTest {
 
     private Atuendo atuendo;
     private Usuario usuario;
+    private Evento evento;
 
     @Before
     public void setup() {
@@ -46,6 +51,8 @@ public class EstadoAtuendoTest {
                 .build()));
         atuendo = new Atuendo(remera, jean, botas);
         usuario = new Usuario();
+        evento = new Evento("unEvento", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now()));
+
     }
 
     @Test
@@ -57,7 +64,7 @@ public class EstadoAtuendoTest {
 
     @Test
     public void usuarioAceptaSugerenciaYDeshace() {
-        usuario.aceptarSugerencia(atuendo);
+        usuario.aceptarSugerencia(evento, atuendo);
         assertEquals(EstadoAtuendo.ACEPTADO, atuendo.getEstado());
         usuario.deshacerUltimaOperacion(atuendo);
         assertEquals(EstadoAtuendo.NUEVO, atuendo.getEstado());
@@ -73,7 +80,7 @@ public class EstadoAtuendoTest {
 
     @Test
     public void noSePasaDeAceptadoARechazado() {
-        usuario.aceptarSugerencia(atuendo);
+        usuario.aceptarSugerencia(evento, atuendo);
         usuario.rechazarSugerencia(atuendo);
         assertEquals(EstadoAtuendo.ACEPTADO, atuendo.getEstado());
     }
@@ -81,7 +88,7 @@ public class EstadoAtuendoTest {
     @Test
     public void noSePasaRechazadoAAceptado() {
         usuario.rechazarSugerencia(atuendo);
-        usuario.aceptarSugerencia(atuendo);
+        usuario.aceptarSugerencia(evento, atuendo);
         assertEquals(EstadoAtuendo.RECHAZADO, atuendo.getEstado());
     }
 }
