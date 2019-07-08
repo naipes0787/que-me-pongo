@@ -13,6 +13,7 @@ public class GuardarropaCompartido extends Guardarropa {
 
     public GuardarropaCompartido(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
+        usuarios.forEach(usuario -> usuario.agregarGuardarropa(this));
     }
 
     @Override

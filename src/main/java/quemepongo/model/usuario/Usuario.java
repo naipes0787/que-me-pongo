@@ -2,6 +2,7 @@ package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
+import quemepongo.exceptions.GuardarropaNoPerteneceAlUsuarioException;
 import quemepongo.model.guardarropa.GuardarropaCompartido;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.guardarropa.Guardarropa;
@@ -22,10 +23,7 @@ public class Usuario {
     private Set<Evento> eventos = Sets.newHashSet();
     private TipoUsuario tipoUsuario;
     private Alertador alertador;
-    private double sensibilidadClima = 1;
-    private double sensibilidadManos;
-    private double sensibilidadCuello;
-    private double sensibilidadCabeza;
+    private Sensibilidad sensibilidad = new Sensibilidad();
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
@@ -36,6 +34,8 @@ public class Usuario {
 
     public Usuario(TipoUsuario nuevaSuscripcion) {
     	tipoUsuario = nuevaSuscripcion;
+        alertador = new AlertadorEmail();
+        RepositorioUsuario.getInstancia().agregarUsuario(this);
     }
     
     public void agregarGuardarropa(Guardarropa guardarropa) {
@@ -55,17 +55,18 @@ public class Usuario {
         eventos.add(evento);
     }
     
-    public TipoUsuario getTipoUsuario() {
-    	return tipoUsuario;
-    }
-    
     public void cambiarSuscripcion(TipoUsuario tipoUsuario) {
     	this.tipoUsuario = tipoUsuario;
 	}
 	
     public void agregarPrenda(Prenda prenda, Guardarropa guardarropa) {
-    	  tipoUsuario.agregarPrenda(prenda, guardarropa);
+        if(!tieneGuardarropa(guardarropa))
+            throw new GuardarropaNoPerteneceAlUsuarioException();
+
+    	tipoUsuario.agregarPrenda(prenda, guardarropa);
     }
+
+    public boolean tieneGuardarropa(Guardarropa guardarropa){ return guardarropas.contains(guardarropa); }
 
     public void aceptarSugerencia(Atuendo atuendo) {
         atuendo.aceptar();
@@ -79,16 +80,8 @@ public class Usuario {
         atuendo.deshacerDecision();
     }
     
-    public void setAlertador(Alertador alertador) {
-    	this.alertador = alertador;
-    }
-    
     public Alertador getAlertador() {
     	return this.alertador;
-    }
-
-    public double getSensibilidadClima() {
-        return this.sensibilidadClima;
     }
 
     public void actuarAnte(TipoAlerta tipoAlerta) {
@@ -96,23 +89,18 @@ public class Usuario {
     }
 
     public void calificar(Calificacion calificacion){
-        this.sensibilidadClima += calificacion.getCalificacionGlobal().varianzaSensibilidad;
-        this.sensibilidadManos += calificacion.getCalificacionManos().varianzaSensibilidad;
-        this.sensibilidadCuello += calificacion.getCalificacionCuello().varianzaSensibilidad;
-        this.sensibilidadCabeza += calificacion.getCalificacionCabeza().varianzaSensibilidad;
+        sensibilidad.modificarSensibilidad(calificacion);
     }
 
     public boolean esFriolentoDeManos(){
-        return sensibilidadManos > 0;
+        return sensibilidad.getSensibilidadManos() > 0;
     }
 
     public boolean esFriolentoDeCuello(){
-        return sensibilidadCuello > 0;
+        return sensibilidad.getSensibilidadCuello() > 0;
     }
 
-    public boolean esFriolentoDeCabeza(){
-        return sensibilidadCabeza > 0;
-    }
+    public boolean esFriolentoDeCabeza() { return sensibilidad.getSensibilidadCabeza() > 0; }
 
     public boolean aceptoAlgunaPrendaDe(Atuendo atuendo) {
         Set<Prenda> prendasAceptadas = eventos.stream().map(Evento::getSugerenciaAceptada)
@@ -121,22 +109,22 @@ public class Usuario {
         return atuendo.prendas().stream().anyMatch(p -> prendasAceptadas.contains(p));
     }
     public double getSensibilidadclima(){
-        return sensibilidadClima;
+        return sensibilidad.getSensibilidadClima();
     }
     public double obtenerNivelDeAbrigo(Temperatura temperatura) {
         return temperatura.convertirANivelDeAbrigo() * getSensibilidadclima();
     }
 
-    //En los siguientes 3 metodos se tiene que merguear con la logica que armo Andy en base a las calificaciones
-    public boolean esFriolentoDeManos(){
-        return true;
-    }
-    public boolean esFriolentoDeCuello(){
-        return true;
-    }
-    public boolean esFriolentoDeCabeza(){
-        return true;
+    public double getSensibilidadClima() {
+        return this.getSensibilidadclima();
     }
 
+    public void setAlertador(Alertador alertador) {
+        this.alertador = alertador;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
 }
 
