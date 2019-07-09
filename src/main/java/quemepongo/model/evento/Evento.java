@@ -1,10 +1,13 @@
 package quemepongo.model.evento;
 
-import quemepongo.model.sugerencia.Atuendo;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+import org.uqbar.commons.model.annotations.Observable;
+
+import quemepongo.model.sugerencia.Atuendo;
+
+@Observable
 public class Evento {
 
 	private String titulo;
@@ -16,16 +19,17 @@ public class Evento {
 		this.titulo = titulo;
 		this.lugar = lugar;
 		this.ocurrencia = ocurrencia;
+		RepositorioEvento.getInstancia().agregarEvento(this);
 	}
 	
 	public Localizacion getLugar() {
-		return lugar;
+		return this.lugar;
 	}
 
 	public LocalDateTime getFecha() {
 		return ocurrencia.fechaDelEvento();
 	}
-
+	
 	public Atuendo getSugerenciaAceptada() {
 		return sugerenciaAceptada;
 	}
@@ -45,4 +49,9 @@ public class Evento {
 	public boolean tieneSugerenciaAceptada() {
 		return sugerenciaAceptada != null;
 	}
+
+	public Ocurrencia getOcurrencia() {
+		return ocurrencia;
+	}
+
 }
