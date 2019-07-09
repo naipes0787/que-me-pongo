@@ -3,6 +3,7 @@ package quemepongo.ui.arena.evento;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,42 +33,44 @@ public class ListarEventos {
 		resultados = new LinkedHashSet<Evento>();
 		// FIN WORKAROUND
 		Set<Evento> eventosTotales = RepositorioEvento.getInstancia().getEventos();
-		LocalDateTime fechaDesde = LocalDateTime.MIN;
-		LocalDateTime fechaHasta = LocalDateTime.MAX;
-		if(diaDesde != null && mesDesde != null && anioDesde != null) {
-			try {
-				Integer diaDesdeInt = Integer.valueOf(diaDesde);
-				Integer mesDesdeInt = Integer.valueOf(mesDesde);
-				Integer anioDesdeInt = Integer.valueOf(anioDesde);
-				fechaDesde = LocalDateTime.of(anioDesdeInt, Month.of(mesDesdeInt), diaDesdeInt, 0, 0);
-			} catch(NumberFormatException e) {
-				// TODO: Averiguar qué hacer en caso de excepción
-			}
-		}
-			
-		if(diaHasta != null && mesHasta != null && anioHasta != null) {
-			try {
-				Integer diaHastaInt = Integer.valueOf(diaHasta);
-				Integer mesHastaInt = Integer.valueOf(mesHasta);
-				Integer anioHastaInt = Integer.valueOf(anioHasta);
-				fechaHasta = LocalDateTime.of(anioHastaInt, Month.of(mesHastaInt), diaHastaInt, 0, 0);
-			} catch(NumberFormatException e) {
-				// TODO: Averiguar qué hacer en caso de excepción
-			}
-		}
-		
-		final LocalDateTime finalFechaDesde = fechaDesde;
-		final LocalDateTime finalFechaHasta = fechaHasta;
+
+		final LocalDateTime fechaDesde = getFechaDesdeInput(diaDesde, mesDesde, anioDesde)
+				.orElse(LocalDateTime.MIN);
+		final LocalDateTime fechaHasta = getFechaDesdeInput(diaHasta, mesHasta, anioHasta)
+				.orElse(LocalDateTime.MAX);
 		
 		resultados = eventosTotales
 			.stream()
 			.filter(evento -> (
-						evento.getFecha().isAfter(finalFechaDesde) && 
-						evento.getFecha().isBefore(finalFechaHasta)
+						evento.getFecha().isAfter(fechaDesde) && 
+						evento.getFecha().isBefore(fechaHasta)
 					))
 			.collect(Collectors.toSet());
 	}
 
+	/**
+	 * Devuelve un Optional con la fecha generada a partir del input brindado, en caso de que 
+	 * con el input no pueda generarse una fecha se devolverá un Optional vacío
+	 * @param dia
+	 * @param mes
+	 * @param anio
+	 * @return Optional<LocalDateTime>
+	 */
+	private Optional<LocalDateTime> getFechaDesdeInput(String dia, String mes, String anio) {
+		LocalDateTime fecha = null;
+		if(dia != null && mes != null && anio != null) {
+			try {
+				Integer diaInt = Integer.valueOf(dia);
+				Integer mesInt = Integer.valueOf(mes);
+				Integer anioInt = Integer.valueOf(anio);
+				fecha = LocalDateTime.of(anioInt, Month.of(mesInt), diaInt, 0, 0);
+			} catch(NumberFormatException e) {
+				fecha = null;
+			}
+		}
+		return Optional.ofNullable(fecha);
+	}
+	
 	public void clear(){
 		this.diaDesde = null;
 		this.mesDesde = null;

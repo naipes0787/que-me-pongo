@@ -36,12 +36,12 @@ public class ListarEventosWindow extends MainWindow<ListarEventos> {
 		
 		// FILTRO DE FECHAS		
 		generarFiltro(mainPanel);
+		
+		// BOTÓN DE BÚSQUEDA
+		generarWindowFooter(mainPanel);
 
 		// TABLA DE EVENTOS
 		generarTablaEventos(mainPanel);
-
-		// BOTÓN DE BÚSQUEDA
-		generarWindowFooter(mainPanel);
 	}
 
 	private void generarHeader(Panel mainPanel) {
