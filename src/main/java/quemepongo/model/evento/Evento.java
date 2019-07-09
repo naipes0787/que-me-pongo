@@ -1,27 +1,24 @@
 package quemepongo.model.evento;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import org.uqbar.commons.model.annotations.Observable;
 
-import quemepongo.exceptions.FechaEventoNoValidaException;
 import quemepongo.model.sugerencia.Atuendo;
 
 @Observable
-public class Evento{
-	
-	private String descripcion;
+public class Evento {
+
+	private String titulo;
 	private Localizacion lugar;
-	private LocalDateTime fecha;
+	private Ocurrencia ocurrencia;
 	private Atuendo sugerenciaAceptada;
-	
-	public Evento(Localizacion nuevoLugar, LocalDateTime nuevaFecha, String descripcion) {
-		if(nuevaFecha.toLocalDate().isBefore(LocalDateTime.now().toLocalDate())) {
-			throw new FechaEventoNoValidaException();
-		}
-		this.lugar = nuevoLugar;
-		this.fecha = nuevaFecha;
-		this.descripcion = descripcion;
+
+	public Evento(String titulo, Localizacion lugar, Ocurrencia ocurrencia) {
+		this.titulo = titulo;
+		this.lugar = lugar;
+		this.ocurrencia = ocurrencia;
 		RepositorioEvento.getInstancia().agregarEvento(this);
 	}
 	
@@ -30,19 +27,31 @@ public class Evento{
 	}
 
 	public LocalDateTime getFecha() {
-		return this.fecha;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-	
-	public void setSugerenciaAceptada(Atuendo atuendo) {
-		this.sugerenciaAceptada = atuendo;
+		return ocurrencia.fechaDelEvento();
 	}
 	
 	public Atuendo getSugerenciaAceptada() {
 		return sugerenciaAceptada;
+	}
+
+	public void setSugerenciaAceptada(Atuendo sugerenciaAceptada) {
+		this.sugerenciaAceptada = sugerenciaAceptada;
+	}
+
+	public boolean estaProximoAOcurrir(Duration tiempoDeAnticipacion) {
+		return ocurrencia.estaProxima(tiempoDeAnticipacion);
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public boolean tieneSugerenciaAceptada() {
+		return sugerenciaAceptada != null;
+	}
+
+	public Ocurrencia getOcurrencia() {
+		return ocurrencia;
 	}
 
 }

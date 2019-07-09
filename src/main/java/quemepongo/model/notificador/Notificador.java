@@ -1,9 +1,9 @@
 package quemepongo.model.notificador;
 
-public interface Alertador {
+public interface Notificador {
 
 	void notificarAlertaMeteorologica();
 
-	void notificarAlertaEventoProximo();
-	
+	void notificarSugerenciasListas();
+
 }

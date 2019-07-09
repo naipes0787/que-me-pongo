@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import com.google.common.collect.Sets;
 
 import quemepongo.model.evento.Evento;
+import quemepongo.model.evento.FechaEspecifica;
 import quemepongo.model.evento.Localizacion;
 import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.CreadorDePrenda;
@@ -43,10 +44,12 @@ public class QueMePongoApplication {
                 .setColorPrincipal(Color.BLACK)
                 .build()));
         Atuendo atuendo = new Atuendo(remera, jean, botas);
-		
-        Evento evento1 = new Evento(Localizacion.CABA, LocalDateTime.now().plusDays(10), "Evento random");
-		Evento evento2 = new Evento(Localizacion.CABA, LocalDateTime.now().plusDays(30), "Evento random 2");
-		Evento evento3 = new Evento(Localizacion.CABA, LocalDateTime.now().plusDays(90), "Evento random 3");
+        Evento evento1 = new Evento("Evento random", Localizacion.CABA, 
+        		new FechaEspecifica(LocalDateTime.now().plusDays(10)));
+		Evento evento2 = new Evento("Evento random 2", Localizacion.CABA, 
+				new FechaEspecifica(LocalDateTime.now().plusDays(30)));
+		Evento evento3 = new Evento("Evento random 3", Localizacion.CABA, 
+				new FechaEspecifica(LocalDateTime.now().plusDays(90)));
 		evento2.setSugerenciaAceptada(atuendo);
 		/**************************************** FIN EVENTOS DE PRUEBA ****************************************/
 		

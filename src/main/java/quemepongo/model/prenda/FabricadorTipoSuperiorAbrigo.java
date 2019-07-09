@@ -5,9 +5,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FabricadorTipoSuperiorUltimaPrenda extends FabricaTipoPrenda{
+public class FabricadorTipoSuperiorAbrigo extends FabricaTipoPrenda{
 
-    public FabricadorTipoSuperiorUltimaPrenda(double nivelAbrigo){
+    public FabricadorTipoSuperiorAbrigo(double nivelAbrigo){
         super.nivelAbrigo = nivelAbrigo;
     }
 
@@ -22,12 +22,13 @@ public class FabricadorTipoSuperiorUltimaPrenda extends FabricaTipoPrenda{
                 Material.LINO,
                 Material.GABARDINA,
                 Material.SEDA,
-                Material.OXFORD
+                Material.OXFORD,
+                Material.PLASTICO
         )
                 .collect(Collectors.toCollection(HashSet::new));
     }
 
     public Capa getCapa() {
-    	return Capa.ULTIMA_PRENDA;
+    	return Capa.ABRIGO;
     }
 }

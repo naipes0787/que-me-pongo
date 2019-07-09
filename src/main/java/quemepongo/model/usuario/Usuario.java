@@ -2,16 +2,17 @@ package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
-import quemepongo.model.sugerencia.Atuendo;
-import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.Temperatura;
+import quemepongo.model.calificacion.Calificacion;
 import quemepongo.model.evento.Evento;
-import quemepongo.model.notificador.Alertador;
-import quemepongo.model.notificador.AlertadorEmail;
-import quemepongo.model.notificador.TipoAlerta;
+import quemepongo.model.guardarropa.Guardarropa;
+import quemepongo.model.guardarropa.GuardarropaCompartido;
+import quemepongo.model.notificador.Notificador;
+import quemepongo.model.notificador.NotificadorEmail;
 import quemepongo.model.prenda.Prenda;
+import quemepongo.model.sugerencia.Atuendo;
 
+import java.time.Duration;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,12 +21,16 @@ public class Usuario {
     private Set<Guardarropa> guardarropas = Sets.newHashSet();
     private Set<Evento> eventos = Sets.newHashSet();
     private TipoUsuario tipoUsuario;
-    private Alertador alertador;
+    private Notificador notificador;
+    private double sensibilidadClima = 1;
+    private double sensibilidadManos;
+    private double sensibilidadCuello;
+    private double sensibilidadCabeza;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
-    	// Por default se crea con un alertador por Email
-    	alertador = new AlertadorEmail();
+    	// Por default se crea con un notificador por Email
+    	notificador = new NotificadorEmail();
     	RepositorioUsuario.getInstancia().agregarUsuario(this);
     }
 
@@ -37,13 +42,13 @@ public class Usuario {
         guardarropas.add(guardarropa);
     }
 
-    public void agregarGuardarropaCompartido(GuardarropaCompartido guardarropa) {
+    public void agregarGuardarropa(GuardarropaCompartido guardarropa) {
         guardarropas.add(guardarropa);
     }
 
     public Set<Atuendo> sugerencias(Evento evento) {
         Temperatura temperatura = SelectorDeProveedorDeClima.getInstancia().getProovedorDeClima().obtenerTemperaturaActual(evento.getLugar());
-        return guardarropas.stream().flatMap(g -> g.sugerencias(temperatura).stream()).collect(Collectors.toSet());
+        return guardarropas.stream().flatMap(g -> g.sugerencias(this, obtenerNivelDeAbrigo(temperatura)).stream()).collect(Collectors.toSet());
     }
 
     public void agregarEvento(Evento evento) {
@@ -62,8 +67,9 @@ public class Usuario {
     	  tipoUsuario.agregarPrenda(prenda, guardarropa);
     }
 
-    public void aceptarSugerencia(Atuendo atuendo) {
+    public void aceptarSugerencia(Evento evento, Atuendo atuendo) {
         atuendo.aceptar();
+        evento.setSugerenciaAceptada(atuendo);
     }
 
     public void rechazarSugerencia(Atuendo atuendo) {
@@ -74,23 +80,52 @@ public class Usuario {
         atuendo.deshacerDecision();
     }
     
-    public void setAlertador(Alertador alertador) {
-    	this.alertador = alertador;
+    public void setNotificador(Notificador notificador) {
+    	this.notificador = notificador;
     }
     
-    public Alertador getAlertador() {
-    	return this.alertador;
-    }
-    
-    public void actuarAnte(TipoAlerta tipoAlerta) {
-    	tipoAlerta.alertar(this);
+    public Notificador getNotificador() {
+    	return this.notificador;
     }
 
-    public boolean aceptoAlgunaPrendaDe(Atuendo atuendo) {
-        Set<Prenda> prendasAceptadas = eventos.stream().map(Evento::getSugerenciaAceptada)
-                                                       .flatMap(a -> a.prendas().stream())
-                                                       .collect(Collectors.toSet());
-        return atuendo.prendas().stream().anyMatch(p -> prendasAceptadas.contains(p));
+    public boolean estaUsandoAlgunaPrendaDe(Atuendo atuendo) {
+        Set<Prenda> prendasEnUso = eventos.stream().filter(Evento::tieneSugerenciaAceptada)
+                                                   .map(Evento::getSugerenciaAceptada)
+                                                   .flatMap(a -> a.prendas().stream())
+                                                   .collect(Collectors.toSet());
+        return atuendo.prendas().stream().anyMatch(prendasEnUso::contains);
     }
+
+    public Set<Evento> eventosProximos(Duration tiempoDeAnticipacion) {
+        return eventos.stream().filter(e -> e.estaProximoAOcurrir(tiempoDeAnticipacion)).collect(Collectors.toSet());
+    }
+
+    public double getSensibilidadClima() {
+        return this.sensibilidadClima;
+    }
+
+    public void calificar(Calificacion calificacion){
+        this.sensibilidadClima += calificacion.getCalificacionGlobal().varianzaSensibilidad;
+        this.sensibilidadManos += calificacion.getCalificacionManos().varianzaSensibilidad;
+        this.sensibilidadCuello += calificacion.getCalificacionCuello().varianzaSensibilidad;
+        this.sensibilidadCabeza += calificacion.getCalificacionCabeza().varianzaSensibilidad;
+    }
+
+    public boolean esFriolentoDeManos(){
+        return sensibilidadManos > 0;
+    }
+
+    public boolean esFriolentoDeCuello(){
+        return sensibilidadCuello > 0;
+    }
+
+    public boolean esFriolentoDeCabeza(){
+        return sensibilidadCabeza > 0;
+    }
+
+    public double obtenerNivelDeAbrigo(Temperatura temperatura) {
+        return temperatura.convertirANivelDeAbrigo() * getSensibilidadClima();
+    }
+
 }
 

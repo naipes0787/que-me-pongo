@@ -105,11 +105,11 @@ public class ListarEventosWindow extends MainWindow<ListarEventos> {
 		new Column<Evento>(tableEventos)
 		    .setTitle("Descripción")
 		    .setFixedSize(250)
-		    .bindContentsToProperty("descripcion");
+		    .bindContentsToProperty("titulo");
 		new Column<Evento>(tableEventos)
 		    .setTitle("Fecha")
 		    .setFixedSize(200)
-		    .bindContentsToProperty("fecha").setTransformer(new FechaToImprimibleTransformer());
+		    .bindContentsToProperty("ocurrencia").setTransformer(new FechaToImprimibleTransformer());
 		new Column<Evento>(tableEventos)
 	    	.setFixedSize(50)
 		    .setTitle("Sugerencias")

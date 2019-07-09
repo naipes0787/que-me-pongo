@@ -1,18 +1,19 @@
 package quemepongo.ui.arena.evento;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.collections15.Transformer;
+
+import quemepongo.model.evento.Ocurrencia;
 
 /**
  * Formatea la fecha en un formato más legible
  * 
  */
-public final class FechaToImprimibleTransformer implements Transformer<LocalDateTime, String> {
+public final class FechaToImprimibleTransformer implements Transformer<Ocurrencia, String> {
 	@Override
-	public String transform(LocalDateTime fecha) {
+	public String transform(Ocurrencia ocurrencia) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		return (fecha.format(formatter));
+		return (ocurrencia.fechaDelEvento().format(formatter));
 	}
 }

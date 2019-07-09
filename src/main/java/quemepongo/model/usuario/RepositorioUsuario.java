@@ -23,7 +23,7 @@ public class RepositorioUsuario {
         return repositorioUsuario;
     }
 
-	void agregarUsuario(Usuario usuario) {
+	public void agregarUsuario(Usuario usuario) {
 		usuarios.add(usuario);
 	}
 	

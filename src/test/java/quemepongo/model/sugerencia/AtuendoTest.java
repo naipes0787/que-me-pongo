@@ -4,13 +4,7 @@ import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
 import quemepongo.model.*;
-import quemepongo.model.prenda.CombinacionPrenda;
-import quemepongo.model.prenda.CreadorDePrenda;
-import quemepongo.model.prenda.FabricadorTipoCalzado;
-import quemepongo.model.prenda.FabricadorTipoInferior;
-import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
-import quemepongo.model.prenda.Material;
-import quemepongo.model.prenda.TipoPrenda;
+import quemepongo.model.prenda.*;
 import quemepongo.model.sugerencia.Atuendo;
 
 import java.awt.Color;
@@ -53,9 +47,10 @@ public class AtuendoTest {
 	@Test
 	public void atuendoAbrigaLoSuficiente() {
 		Temperatura temperatura = new Temperatura(34D);;
+
 		/* El atuendo brinda 32 de nivel de abrigo (15+10+7), necesitaría 
 		 * 27 como mínimo y 33 como máximo, así que daría TRUE */
-		assertTrue(atuendo.abrigaLoSuficiente(temperatura, 0.1D));
+		assertTrue(atuendo.abrigaLoSuficiente(temperatura.convertirANivelDeAbrigo(), 0.1D));
 	}
 	
 	@Test
@@ -63,12 +58,45 @@ public class AtuendoTest {
 		Temperatura temperatura = new Temperatura(25D);;
 		/* El atuendo brinda 32 de nivel de abrigo (15+10+7), necesitaría 
 		 * 67.5 como mínimo y 82.5 como máximo, así que daría FALSE */
-		assertFalse(atuendo.abrigaLoSuficiente(temperatura, 0.1D));
+		assertFalse(atuendo.abrigaLoSuficiente(temperatura.convertirANivelDeAbrigo(), 0.1D));
 	}
 	
 	@Test
 	public void obtenerCantidadPrendasCorrectamente() {
 		assertTrue(atuendo.getCantidadPrendas() == 3);
+	}
+
+	@Test
+	public void atuendoAptoParaLluvia() {
+		assertFalse(atuendo.esAptoPara(FactorClimatico.LLUVIA));
+	}
+
+	@Test
+	public void atuendoNoAptoParaLluvia() {
+		TipoPrenda piloto = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorAbrigo(10), Sets.newHashSet(FactorClimatico.LLUVIA));
+		CombinacionPrenda jean = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
+				.setTipoPrenda(JEAN)
+				.setMaterial(Material.OXFORD)
+				.setColorPrincipal(Color.BLACK)
+				.build()));
+		CombinacionPrenda prendasSuperiores = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
+						.setTipoPrenda(REMERA)
+						.setMaterial(Material.ALGODON)
+						.setColorPrincipal(Color.BLACK)
+						.build(),
+				new CreadorDePrenda()
+						.setTipoPrenda(piloto)
+						.setMaterial(Material.PLASTICO)
+						.setColorPrincipal(Color.BLACK)
+						.build()));
+
+		CombinacionPrenda botas = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
+				.setTipoPrenda(BOTAS)
+				.setMaterial(Material.CUERO)
+				.setColorPrincipal(Color.BLACK)
+				.build()));
+		Atuendo atuendo = new Atuendo(prendasSuperiores, jean, botas);
+		assertTrue(atuendo.esAptoPara(FactorClimatico.LLUVIA));
 	}
 
 }
