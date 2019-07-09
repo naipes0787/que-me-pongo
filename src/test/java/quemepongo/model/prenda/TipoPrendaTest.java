@@ -4,17 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.google.common.collect.Sets;
 import org.junit.Test;
-
-import quemepongo.model.FactorClimatico;
-import quemepongo.model.prenda.Categoria;
-import quemepongo.model.prenda.FabricadorTipoCalzado;
-import quemepongo.model.prenda.FabricadorTipoInferior;
-import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
-import quemepongo.model.prenda.Material;
-import quemepongo.model.prenda.TipoPrenda;
-import quemepongo.model.sugerencia.Atuendo;
 
 public class TipoPrendaTest {
 

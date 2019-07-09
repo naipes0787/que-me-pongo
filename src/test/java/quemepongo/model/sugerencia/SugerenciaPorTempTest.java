@@ -1,29 +1,25 @@
 package quemepongo.model.sugerencia;
 
-import com.google.common.collect.Sets;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.awt.Color;
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
-import quemepongo.model.*;
+
+import quemepongo.model.Temperatura;
 import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.CreadorDePrenda;
 import quemepongo.model.prenda.FabricadorTipoCalzado;
 import quemepongo.model.prenda.FabricadorTipoInferior;
-import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
 import quemepongo.model.prenda.FabricadorTipoSuperiorAbrigo;
+import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
 import quemepongo.model.prenda.Material;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.usuario.Usuario;
-
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class SugerenciaPorTempTest {
 

@@ -1,5 +1,10 @@
 package quemepongo.model.guardarropa;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.google.common.collect.Sets;
 
 import quemepongo.model.prenda.Categoria;
@@ -8,13 +13,6 @@ import quemepongo.model.prenda.Combinador;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Guardarropa {
 	
@@ -53,7 +51,7 @@ public class Guardarropa {
  */
 
     private Set<Atuendo> generarAtuendos(List<Categoria> accesoriosAIncluir){
-        List<Set<CombinacionPrenda>> listadoACombinar = new ArrayList();
+        List<Set<CombinacionPrenda>> listadoACombinar = new ArrayList<Set<CombinacionPrenda>>();
         listadoACombinar.add(Combinador.combinarMultiple(this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)));
         listadoACombinar.add(Combinador.combinarSimple(this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)));
         listadoACombinar.add(Combinador.combinarSimple(this.prendasDeCategoria(Categoria.CALZADO)));

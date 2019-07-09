@@ -1,8 +1,14 @@
 package quemepongo.model.sugerencia;
 
+import static org.junit.Assert.assertEquals;
+
+import java.awt.Color;
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
-import quemepongo.model.*;
+
+import quemepongo.model.Temperatura;
 import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.CreadorDePrenda;
 import quemepongo.model.prenda.FabricadorTipoCalzado;
@@ -11,12 +17,6 @@ import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
 import quemepongo.model.prenda.Material;
 import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.usuario.Usuario;
-import quemepongo.model.usuario.UsuarioGratuito;
-
-import java.awt.Color;
-import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
 
 public class SugerenciasTest {
 
