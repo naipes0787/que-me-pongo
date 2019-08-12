@@ -105,4 +105,8 @@ public class Atuendo {
     public boolean esAptoPara(FactorClimatico factorClimatico) {
         return prendas().stream().anyMatch(p -> p.esAptaPara(factorClimatico));
     }
+
+    public void setEstado(EstadoAtuendo estadoAtuendo){
+        this.estado = estadoAtuendo;
+    }
 }
