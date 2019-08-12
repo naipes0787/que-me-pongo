@@ -29,8 +29,9 @@ public class Usuario {
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
-    	// Por default se crea con un notificador por Email
-    	notificador = new NotificadorEmail();
+    	/* Por default se crea con un notificador por Email, se utiliza un mail inventado ya que no creamos al usuario
+         * con datos de contacto aún */
+    	notificador = new NotificadorEmail("untestdeprueba@test.com.ar");
     	RepositorioUsuario.getInstancia().agregarUsuario(this);
     }
 
