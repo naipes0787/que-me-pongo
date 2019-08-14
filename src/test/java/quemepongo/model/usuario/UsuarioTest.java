@@ -1,44 +1,17 @@
 package quemepongo.model.usuario;
 
-import org.junit.Before;
 import org.junit.Test;
+import quemepongo.config.UsuarioTestConfig;
 import quemepongo.exceptions.LimiteDeGuardarropasException;
-import quemepongo.model.calificacion.Calificacion;
-import quemepongo.model.calificacion.OpcionesCalificacion;
-import quemepongo.model.prenda.CreadorDePrenda;
-import quemepongo.model.prenda.FabricadorTipoCalzado;
-import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
-import quemepongo.model.prenda.Material;
-import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.guardarropa.Guardarropa;
+import quemepongo.model.prenda.CreadorDePrenda;
+import quemepongo.model.prenda.Material;
 
 import java.awt.*;
 
 import static org.junit.Assert.*;
 
-public class UsuarioTest {
-
-	//Usuario de Prueba
-	Usuario johnnyBravo = new Usuario();
-	Usuario montgomeryBurns = new Usuario(new UsuarioPremium());
-
-	//TipoPrenda
-	private TipoPrenda REMERA_NEGRA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10));
-	private TipoPrenda PANTUFLAS_CORTE_FINO_DE_RINOCERONTE_ALBINO = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
-
-	//Calificaciones de Prueba
-	private Calificacion agradableGeneral = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
-			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE);
-	private Calificacion calurosoGeneral = new Calificacion(OpcionesCalificacion.CALUROSO, OpcionesCalificacion.CALUROSO,
-			OpcionesCalificacion.CALUROSO, OpcionesCalificacion.CALUROSO);
-	private Calificacion  congeladoGeneral = new Calificacion(OpcionesCalificacion.CONGELADO, OpcionesCalificacion.CONGELADO,
-			OpcionesCalificacion.CONGELADO, OpcionesCalificacion.CONGELADO);
-
-	@Before
-	public void ejecutarAntesDeCadaTest() {
-		johnnyBravo = new Usuario();
-		montgomeryBurns = new Usuario(new UsuarioPremium());
-	}
+public class UsuarioTest extends UsuarioTestConfig {
 
 	@Test(expected = LimiteDeGuardarropasException.class)
 	public void arrojarExcepcionSiElUsuarioGratuitoAgregaMasPrendasAlGuardarropasDeLoPermitido(){
@@ -48,13 +21,7 @@ public class UsuarioTest {
 		johnnyBravo.agregarGuardarropa(guardarropa1);
 
 		for(int i = 0;i < 200;i++) {
-			johnnyBravo.agregarPrenda(
-					new CreadorDePrenda()
-							.setTipoPrenda(REMERA_NEGRA)
-							.setMaterial(Material.ALGODON)
-							.setColorPrincipal(Color.BLACK)
-							.build(),
-					guardarropa1);
+			johnnyBravo.agregarPrenda(crearPrenda(REMERA), guardarropa1);
 		}
 	}
 
@@ -64,13 +31,7 @@ public class UsuarioTest {
 		Guardarropa guardarropa1 = new Guardarropa();
 
 		for(int i = 0;i < 200;i++) {
-			montgomeryBurns.agregarPrenda(
-					new CreadorDePrenda()
-							.setTipoPrenda(PANTUFLAS_CORTE_FINO_DE_RINOCERONTE_ALBINO)
-							.setMaterial(Material.CUERO)
-							.setColorPrincipal(Color.WHITE)
-							.build(),
-					guardarropa1);
+			montgomeryBurns.agregarPrenda(crearPrenda(PANTUFLAS_CORTE_FINO_DE_RINOCERONTE_ALBINO), guardarropa1);
 		}
 
 		assertEquals(200, guardarropa1.cantidadDePrendas());
@@ -84,13 +45,7 @@ public class UsuarioTest {
 		johnnyBravo.cambiarSuscripcion(new UsuarioPremium());
 
 		for(int i = 0;i < 200;i++) {
-			johnnyBravo.agregarPrenda(
-					new CreadorDePrenda()
-							.setTipoPrenda(REMERA_NEGRA)
-							.setMaterial(Material.ALGODON)
-							.setColorPrincipal(Color.BLACK)
-							.build(),
-					guardarropa1);
+			johnnyBravo.agregarPrenda(crearPrenda(REMERA), guardarropa1);
 		}
 
 		assertEquals(200, guardarropa1.cantidadDePrendas());
