@@ -12,7 +12,6 @@ import quemepongo.model.notificador.NotificadorEmail;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
 
-import java.time.Duration;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -96,10 +95,6 @@ public class Usuario {
         return atuendo.prendas().stream().anyMatch(prendasEnUso::contains);
     }
 
-    public Set<Evento> eventosProximos(Duration tiempoDeAnticipacion) {
-        return eventos.stream().filter(e -> e.estaProximoAOcurrir(tiempoDeAnticipacion)).collect(Collectors.toSet());
-    }
-
     public double getSensibilidadClima() {
         return this.sensibilidadClima;
     }
@@ -127,5 +122,8 @@ public class Usuario {
         return temperatura.convertirANivelDeAbrigo() * getSensibilidadClima();
     }
 
+    public Set<Evento> getEventos() {
+        return eventos;
+    }
 }
 

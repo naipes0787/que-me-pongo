@@ -26,12 +26,12 @@ public class TipoPrenda {
         return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), aptoPara);
     }
 
-    private TipoPrenda(Categoria categoria, Set<Material> materialesValidos, double nivelAbrigo, Capa capa, Set<FactorClimatico> noAptoPara) {
+    private TipoPrenda(Categoria categoria, Set<Material> materialesValidos, double nivelAbrigo, Capa capa, Set<FactorClimatico> aptoPara) {
         this.categoria = categoria;
         this.materialesValidos = materialesValidos;
         this.nivelAbrigo = nivelAbrigo;
         this.capa = capa;
-        this.aptoPara = noAptoPara;
+        this.aptoPara = aptoPara;
     }
 
     public Categoria getCategoria() {
