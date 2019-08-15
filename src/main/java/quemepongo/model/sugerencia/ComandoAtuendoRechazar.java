@@ -8,7 +8,10 @@ public class ComandoAtuendoRechazar extends ComandoAtuendo {
 
     @Override
     public void ejecutar(){
-        this.atuendo.setEstado(EstadoAtuendo.RECHAZADO);
+        if(this.atuendo.getEstado().equals(EstadoAtuendo.NUEVO)) {
+            this.atuendo.setEstado(EstadoAtuendo.RECHAZADO);
+            this.atuendo.setUltimoComando(this);
+        }
     }
 
     @Override

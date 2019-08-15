@@ -14,14 +14,16 @@ public class Atuendo {
     private CombinacionPrenda prendaInferior;
     private CombinacionPrenda calzado;
     private CombinacionPrenda accesorio;
-    
-    private EstadoAtuendo estado = EstadoAtuendo.NUEVO;  
+    private ComandoAtuendo ultimoComando;
+    private EstadoAtuendo estado;
   
     public Atuendo(CombinacionPrenda prendasSuperiores, CombinacionPrenda prendaInferior, CombinacionPrenda calzado){
         this.prendasSuperiores = prendasSuperiores;
         this.prendaInferior = prendaInferior;
         this.calzado = calzado;
         this.accesorio = new CombinacionPrenda(Sets.newHashSet());
+        this.ultimoComando = new ComandoAtuendoNuevo(this);
+        this.estado = EstadoAtuendo.NUEVO;
     }
 
     public Atuendo conAccesorio(CombinacionPrenda accesorio) {
@@ -48,22 +50,6 @@ public class Atuendo {
     
     private double margenSuperior(double nivelAbrigoNecesario, double margenError){
     	return nivelAbrigoNecesario * (1 + margenError);
-    }
-    
-    public void aceptar() {
-        if (EstadoAtuendo.NUEVO.equals(estado)) {
-            estado = EstadoAtuendo.ACEPTADO;
-        }
-    }
-
-    public void rechazar() {
-        if (EstadoAtuendo.NUEVO.equals(estado)) {
-            estado = EstadoAtuendo.RECHAZADO;
-        }
-    }
-
-    public void deshacerDecision() {
-        estado = EstadoAtuendo.NUEVO;
     }
 
     public EstadoAtuendo getEstado() {
@@ -108,5 +94,13 @@ public class Atuendo {
 
     public void setEstado(EstadoAtuendo estadoAtuendo){
         this.estado = estadoAtuendo;
+    }
+
+    public ComandoAtuendo getUltimoComando() {
+        return ultimoComando;
+    }
+
+    public void setUltimoComando(ComandoAtuendo comandoAtuendo) {
+        this.ultimoComando = comandoAtuendo;
     }
 }

@@ -11,6 +11,9 @@ import quemepongo.model.notificador.Notificador;
 import quemepongo.model.notificador.NotificadorEmail;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.model.sugerencia.ComandoAtuendo;
+import quemepongo.model.sugerencia.ComandoAtuendoAceptar;
+import quemepongo.model.sugerencia.ComandoAtuendoRechazar;
 
 import java.time.Duration;
 import java.util.Set;
@@ -68,16 +71,18 @@ public class Usuario {
     }
 
     public void aceptarSugerencia(Evento evento, Atuendo atuendo) {
-        atuendo.aceptar();
+        ComandoAtuendo comandoAtuendo = new ComandoAtuendoAceptar(atuendo);
+        comandoAtuendo.ejecutar();
         evento.setSugerenciaAceptada(atuendo);
     }
 
     public void rechazarSugerencia(Atuendo atuendo) {
-        atuendo.rechazar();
+        ComandoAtuendo comandoAtuendo = new ComandoAtuendoRechazar(atuendo);
+        comandoAtuendo.ejecutar();
     }
 
     public void deshacerUltimaOperacion(Atuendo atuendo) {
-        atuendo.deshacerDecision();
+        atuendo.getUltimoComando().deshacer();
     }
     
     public void setNotificador(Notificador notificador) {

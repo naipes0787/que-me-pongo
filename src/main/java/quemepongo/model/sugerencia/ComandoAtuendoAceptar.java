@@ -8,7 +8,10 @@ public class ComandoAtuendoAceptar extends ComandoAtuendo {
 
     @Override
     public void ejecutar(){
-        this.atuendo.setEstado(EstadoAtuendo.ACEPTADO);
+        if(this.atuendo.getEstado().equals(EstadoAtuendo.NUEVO)) {
+            this.atuendo.setEstado(EstadoAtuendo.ACEPTADO);
+            this.atuendo.setUltimoComando(this);
+        }
     }
 
     @Override
