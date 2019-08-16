@@ -2,7 +2,7 @@ package quemepongo.config;
 
 import quemepongo.model.prenda.*;
 
-public class SugerenciasTestConfig extends TestConfig {
+public class SugerenciasTestConfig extends TestConfigGeneral {
 
     private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(20));
     private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(20));

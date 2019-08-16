@@ -7,7 +7,7 @@ import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.usuario.Usuario;
 import quemepongo.model.usuario.UsuarioPremium;
 
-public class UsuarioTestConfig extends TestConfig {
+public class UsuarioTestConfig extends TestConfigGeneral {
 
     //Usuario de Prueba
     protected Usuario johnnyBravo = usuarioBasico();

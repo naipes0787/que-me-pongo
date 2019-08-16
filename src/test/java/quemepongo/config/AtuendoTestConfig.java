@@ -4,7 +4,7 @@ import org.junit.Before;
 import quemepongo.model.prenda.*;
 import quemepongo.model.sugerencia.Atuendo;
 
-public abstract class AtuendoTestConfig extends TestConfig {
+public abstract class AtuendoTestConfig extends TestConfigGeneral {
 
     private static final TipoPrenda INFERIOR = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15));
     private static final TipoPrenda SUPERIOR = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10));

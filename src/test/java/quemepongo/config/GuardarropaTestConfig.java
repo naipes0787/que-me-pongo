@@ -7,7 +7,7 @@ import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.model.Temperatura;
 import quemepongo.model.guardarropa.Guardarropa;
 
-public abstract class GuardarropaTestConfig extends TestConfig {
+public abstract class GuardarropaTestConfig extends TestConfigGeneral {
 
     protected double nivelAbrigo;
 

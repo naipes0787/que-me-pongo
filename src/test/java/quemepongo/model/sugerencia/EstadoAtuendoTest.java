@@ -1,11 +1,26 @@
 package quemepongo.model.sugerencia;
 
+import org.junit.Before;
 import org.junit.Test;
-import quemepongo.config.EstadoAtuendoTestConfig;
+import quemepongo.config.TestConfigGeneral;
+import quemepongo.model.evento.Evento;
+import quemepongo.model.usuario.Usuario;
 
 import static org.junit.Assert.assertEquals;
 
-public class EstadoAtuendoTest extends EstadoAtuendoTestConfig {
+public class EstadoAtuendoTest extends TestConfigGeneral {
+
+    private Atuendo atuendo;
+    private Usuario usuario;
+    private Evento evento;
+
+    @Before
+    public void setup() {
+        atuendo = atuendoBasico();
+        usuario = usuarioBasico();
+        evento = eventoBasico();
+
+    }
 
     @Test
     public void sinDecision() {
