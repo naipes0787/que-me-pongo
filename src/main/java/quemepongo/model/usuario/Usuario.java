@@ -34,8 +34,6 @@ public class Usuario {
 
     public Usuario(TipoUsuario nuevaSuscripcion) {
     	tipoUsuario = nuevaSuscripcion;
-        alertador = new AlertadorEmail();
-        RepositorioUsuario.getInstancia().agregarUsuario(this);
     }
     
     public void agregarGuardarropa(Guardarropa guardarropa) {

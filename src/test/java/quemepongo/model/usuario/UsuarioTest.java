@@ -88,7 +88,7 @@ public class UsuarioTest {
 	}
 
 	@Test(expected = LimiteDeGuardarropasException.class)
-	public void johnny_quiereAgregarMuchasPrendasASuGuardarropa_PeroEncontraraEncontraraExcepcionPorLimiteAlSerGratuito(){
+	public void johnny_quiereAgregarMuchasPrendasASuGuardarropa_PeroEncontraraExcepcionPorLimiteAlSerGratuito(){
 		johnnyBravo.agregarGuardarropa(guardarropa);
 
 		for(int i = 0;i < 200;i++) {
@@ -97,7 +97,7 @@ public class UsuarioTest {
 	}
 
 	@Test(expected = LimiteDeGuardarropasException.class)
-	public void johnny_quiereAgregarMuchasPrendasASuGuardarropaCompartido_PeroEncontraraEncontraraExcepcionPorLimiteAlSerGratuito(){
+	public void johnny_quiereAgregarMuchasPrendasASuGuardarropaCompartido_PeroEncontraraExcepcionPorLimiteAlSerGratuito(){
 
 		for(int i = 0;i < 200;i++) {
 			johnnyAgregaUnaPredaNueva(guardarropaCompartidoEntreJohnnyYBurns);
@@ -105,7 +105,7 @@ public class UsuarioTest {
 	}
 
 	@Test
-	public void burns_quiereAgregarMuchasPrendasASuGuardarropa_YNoEncontraraEncontraraExcepcionPorLimiteAlSerPremium(){
+	public void burns_quiereAgregarMuchasPrendasASuGuardarropa_YNoEncontraraExcepcionPorLimiteAlSerPremium(){
 		montgomeryBurns.agregarGuardarropa(guardarropa);
 		for(int i = 0;i < 200;i++) {
 			burnsAgregaUnaPredaNueva(guardarropa);
@@ -115,7 +115,7 @@ public class UsuarioTest {
 	}
 
 	@Test
-	public void burns_quiereAgregarMuchasPrendasASuGuardarropaCompartido_YNoEncontraraEncontraraExcepcionPorLimiteAlSerPremium(){
+	public void burns_quiereAgregarMuchasPrendasASuGuardarropaCompartido_YNoEncontraraExcepcionPorLimiteAlSerPremium(){
 		for(int i = 0;i < 200;i++) {
 			burnsAgregaUnaPredaNueva(guardarropaCompartidoEntreJohnnyYBurns);
 		}
@@ -159,6 +159,14 @@ public class UsuarioTest {
 		assertFalse(johnnyBravo.esFriolentoDeCabeza());
 		assertFalse(johnnyBravo.esFriolentoDeManos());
 		assertFalse(johnnyBravo.esFriolentoDeCuello());
+	}
+
+	@Test
+	public void siBurnsNoRealizaCalificacionAlguna_NoSeraFrioLentoYSuSensibilidadAlClimaSeraDe1(){
+		assertEquals(1, montgomeryBurns.getSensibilidadClima(), 0);
+		assertFalse(montgomeryBurns.esFriolentoDeCabeza());
+		assertFalse(montgomeryBurns.esFriolentoDeManos());
+		assertFalse(montgomeryBurns.esFriolentoDeCuello());
 	}
 
 	@Test
@@ -210,5 +218,41 @@ public class UsuarioTest {
 		montgomeryBurns.calificar(calurosoGeneral);
 
 		assertFalse( montgomeryBurns.esFriolentoDeManos() );
+	}
+
+	@Test
+	public void siJohnnyCalificaMuchosAtuendosCongeladosEnElCuello_EsFrioLentoEnElCuello(){
+		johnnyBravo.calificar(congeladoGeneral);
+		johnnyBravo.calificar(congeladoGeneral);
+		johnnyBravo.calificar(congeladoGeneral);
+
+		assertTrue( johnnyBravo.esFriolentoDeCuello() );
+	}
+
+	@Test
+	public void siBurnsCalificaMuchosAtuendosCalurososElCuello_NoEsFrioLentoElCuello(){
+		montgomeryBurns.calificar(calurosoGeneral);
+		montgomeryBurns.calificar(congeladoGeneral);
+		montgomeryBurns.calificar(calurosoGeneral);
+
+		assertFalse( montgomeryBurns.esFriolentoDeCuello() );
+	}
+
+	@Test
+	public void siBurnsCalificaMuchosAtuendosCongeladosEnLaCabeza_EsFrioLentoEnLaCabeza(){
+		montgomeryBurns.calificar(congeladoGeneral);
+		montgomeryBurns.calificar(congeladoGeneral);
+		montgomeryBurns.calificar(congeladoGeneral);
+
+		assertTrue( montgomeryBurns.esFriolentoDeCabeza() );
+	}
+
+	@Test
+	public void siJohnnyCalificaMuchosAtuendosCalurososLaCabeza_NoEsFrioLentoLaCabeza(){
+		johnnyBravo.calificar(calurosoGeneral);
+		johnnyBravo.calificar(congeladoGeneral);
+		johnnyBravo.calificar(calurosoGeneral);
+
+		assertFalse( johnnyBravo.esFriolentoDeCuello() );
 	}
 }

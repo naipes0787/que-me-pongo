@@ -9,7 +9,7 @@ public class Sensibilidad {
     private double sensibilidadCabeza;
 
     public void modificarSensibilidad(Calificacion calificacion){
-        sensibilidadClima += calificacion.getCalificacionManos().varianzaSensibilidad;
+        sensibilidadClima += calificacion.getCalificacionGlobal().varianzaSensibilidad;
         sensibilidadManos += calificacion.getCalificacionManos().varianzaSensibilidad;
         sensibilidadCuello += calificacion.getCalificacionCuello().varianzaSensibilidad;
         sensibilidadCabeza += calificacion.getCalificacionCabeza().varianzaSensibilidad;
