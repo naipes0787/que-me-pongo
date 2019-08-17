@@ -40,6 +40,18 @@ public class UsuarioTest {
 			OpcionesCalificacion.CALUROSO, OpcionesCalificacion.CALUROSO);
 	private Calificacion  congeladoGeneral = new Calificacion(OpcionesCalificacion.CONGELADO, OpcionesCalificacion.CONGELADO,
 			OpcionesCalificacion.CONGELADO, OpcionesCalificacion.CONGELADO);
+	private Calificacion calurosoSoloCabeza = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
+			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.CALUROSO);
+	private Calificacion calurosoSoloManos = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.CALUROSO,
+			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE);
+	private Calificacion calurosoSoloCuello = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
+			OpcionesCalificacion.CALUROSO, OpcionesCalificacion.AGRADABLE);
+	private Calificacion congeladoSoloCabeza = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
+			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.CONGELADO);
+	private Calificacion congeladoSoloManos = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.CONGELADO,
+			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE);
+	private Calificacion congeladoSoloCuello = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
+			OpcionesCalificacion.CONGELADO, OpcionesCalificacion.AGRADABLE);
 
 	//Metodos
 	private void johnnyAgregaUnaPredaNueva(Guardarropa guardarropa){
@@ -204,55 +216,64 @@ public class UsuarioTest {
 
 	@Test
 	public void siJohnnyCalificaMuchosAtuendosCongeladosEnLasManos_EsFrioLentoEnLasManos(){
-		johnnyBravo.calificar(congeladoGeneral);
-		johnnyBravo.calificar(congeladoGeneral);
-		johnnyBravo.calificar(congeladoGeneral);
+		johnnyBravo.calificar(congeladoSoloManos);
+		johnnyBravo.calificar(congeladoSoloManos);
+		johnnyBravo.calificar(congeladoSoloManos);
 
 		assertTrue( johnnyBravo.esFriolentoDeManos() );
+		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
+		assertFalse( johnnyBravo.esFriolentoDeCuello() );
+		assertFalse( johnnyBravo.esFriolentoDeCabeza() );
 	}
 
 	@Test
 	public void siBurnsCalificaMuchosAtuendosCalurososEnLasManos_NoEsFrioLentoEnLasManos(){
-		montgomeryBurns.calificar(calurosoGeneral);
-		montgomeryBurns.calificar(congeladoGeneral);
-		montgomeryBurns.calificar(calurosoGeneral);
+		montgomeryBurns.calificar(calurosoSoloManos);
+		montgomeryBurns.calificar(calurosoSoloManos);
+		montgomeryBurns.calificar(calurosoSoloManos);
 
 		assertFalse( montgomeryBurns.esFriolentoDeManos() );
 	}
 
 	@Test
 	public void siJohnnyCalificaMuchosAtuendosCongeladosEnElCuello_EsFrioLentoEnElCuello(){
-		johnnyBravo.calificar(congeladoGeneral);
-		johnnyBravo.calificar(congeladoGeneral);
-		johnnyBravo.calificar(congeladoGeneral);
+		johnnyBravo.calificar(congeladoSoloCuello);
+		johnnyBravo.calificar(congeladoSoloCuello);
+		johnnyBravo.calificar(congeladoSoloCuello);
 
 		assertTrue( johnnyBravo.esFriolentoDeCuello() );
+		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
+		assertFalse( johnnyBravo.esFriolentoDeManos() );
+		assertFalse( johnnyBravo.esFriolentoDeCabeza() );
 	}
 
 	@Test
 	public void siBurnsCalificaMuchosAtuendosCalurososElCuello_NoEsFrioLentoElCuello(){
-		montgomeryBurns.calificar(calurosoGeneral);
-		montgomeryBurns.calificar(congeladoGeneral);
-		montgomeryBurns.calificar(calurosoGeneral);
+		montgomeryBurns.calificar(calurosoSoloCuello);
+		montgomeryBurns.calificar(calurosoSoloCuello);
+		montgomeryBurns.calificar(calurosoSoloCuello);
 
 		assertFalse( montgomeryBurns.esFriolentoDeCuello() );
 	}
 
 	@Test
-	public void siBurnsCalificaMuchosAtuendosCongeladosEnLaCabeza_EsFrioLentoEnLaCabeza(){
-		montgomeryBurns.calificar(congeladoGeneral);
-		montgomeryBurns.calificar(congeladoGeneral);
-		montgomeryBurns.calificar(congeladoGeneral);
+	public void siBurnsCalificaMuchosAtuendosCongeladosEnLaCabeza_EsFrioLentoEnLaCabezaPeroNoEnElRestoDelCuerpo(){
+		montgomeryBurns.calificar(congeladoSoloCabeza);
+		montgomeryBurns.calificar(congeladoSoloCabeza);
+		montgomeryBurns.calificar(congeladoSoloCabeza);
 
 		assertTrue( montgomeryBurns.esFriolentoDeCabeza() );
+		assertEquals(1, montgomeryBurns.getSensibilidadClima(), 0);
+		assertFalse( montgomeryBurns.esFriolentoDeManos() );
+		assertFalse( montgomeryBurns.esFriolentoDeCuello() );
 	}
 
 	@Test
 	public void siJohnnyCalificaMuchosAtuendosCalurososLaCabeza_NoEsFrioLentoLaCabeza(){
-		johnnyBravo.calificar(calurosoGeneral);
-		johnnyBravo.calificar(congeladoGeneral);
-		johnnyBravo.calificar(calurosoGeneral);
+		johnnyBravo.calificar(calurosoSoloCabeza);
+		johnnyBravo.calificar(calurosoSoloCabeza);
+		johnnyBravo.calificar(calurosoSoloCabeza);
 
-		assertFalse( johnnyBravo.esFriolentoDeCuello() );
+		assertFalse( johnnyBravo.esFriolentoDeCabeza() );
 	}
 }
