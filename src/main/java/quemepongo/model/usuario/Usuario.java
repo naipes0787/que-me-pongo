@@ -16,7 +16,6 @@ import quemepongo.model.sugerencia.ComandoAtuendo;
 import quemepongo.model.sugerencia.ComandoAtuendoAceptar;
 import quemepongo.model.sugerencia.ComandoAtuendoRechazar;
 
-import java.time.Duration;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -100,10 +99,6 @@ public class Usuario {
         return atuendo.prendas().stream().anyMatch(prendasEnUso::contains);
     }
 
-    public Set<Evento> eventosProximos(Duration tiempoDeAnticipacion) {
-        return eventos.stream().filter(e -> e.estaProximoAOcurrir(tiempoDeAnticipacion)).collect(Collectors.toSet());
-    }
-
     public void calificar(Calificacion calificacion){
         sensibilidad.modificarSensibilidad(calificacion);
     }
@@ -122,7 +117,7 @@ public class Usuario {
         return temperatura.convertirANivelDeAbrigo() * getSensibilidadClima();
     }
 
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
+    public Set<Evento> getEventos() {
+        return eventos;
     }
 }

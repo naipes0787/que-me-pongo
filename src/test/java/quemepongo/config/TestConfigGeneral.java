@@ -11,6 +11,7 @@ import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
 
 import java.awt.Color;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -69,7 +70,7 @@ public abstract class TestConfigGeneral {
     }
 
     protected Evento eventoBasico() {
-        return new Evento("unEvento", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now()));
+        return new Evento("unEvento", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now()), Duration.ofHours(1));
     }
 
     protected CombinacionPrenda combinacionDe(Prenda... prendas) {

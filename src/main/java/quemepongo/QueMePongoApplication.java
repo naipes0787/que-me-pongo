@@ -2,6 +2,7 @@
 package quemepongo;
 
 import java.awt.Color;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import com.google.common.collect.Sets;
@@ -44,12 +45,9 @@ public class QueMePongoApplication {
                 .setColorPrincipal(Color.BLACK)
                 .build()));
         Atuendo atuendo = new Atuendo(remera, jean, botas);
-        Evento evento1 = new Evento("Evento random", Localizacion.CABA, 
-        		new FechaEspecifica(LocalDateTime.now().plusDays(10)));
-		Evento evento2 = new Evento("Evento random 2", Localizacion.CABA, 
-				new FechaEspecifica(LocalDateTime.now().plusDays(30)));
-		Evento evento3 = new Evento("Evento random 3", Localizacion.CABA, 
-				new FechaEspecifica(LocalDateTime.now().plusDays(90)));
+        Evento evento1 = new Evento("Evento random", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now().plusDays(10)), Duration.ofHours(1));
+		Evento evento2 = new Evento("Evento random 2", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now().plusDays(30)), Duration.ofHours(1));
+		Evento evento3 = new Evento("Evento random 3", Localizacion.CABA, new FechaEspecifica(LocalDateTime.now().plusDays(90)), Duration.ofHours(1));
 		evento2.setSugerenciaAceptada(atuendo);
 		/**************************************** FIN EVENTOS DE PRUEBA ****************************************/
 		
