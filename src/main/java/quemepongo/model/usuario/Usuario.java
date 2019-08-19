@@ -2,6 +2,7 @@ package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
+import quemepongo.exceptions.GuardarropaNoPerteneceAlUsuarioException;
 import quemepongo.model.Temperatura;
 import quemepongo.model.calificacion.Calificacion;
 import quemepongo.model.evento.Evento;
@@ -11,6 +12,9 @@ import quemepongo.model.notificador.Notificador;
 import quemepongo.model.notificador.NotificadorEmail;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.model.sugerencia.ComandoAtuendo;
+import quemepongo.model.sugerencia.ComandoAtuendoAceptar;
+import quemepongo.model.sugerencia.ComandoAtuendoRechazar;
 
 import java.time.Duration;
 import java.util.Set;
@@ -21,11 +25,8 @@ public class Usuario {
     private Set<Guardarropa> guardarropas = Sets.newHashSet();
     private Set<Evento> eventos = Sets.newHashSet();
     private TipoUsuario tipoUsuario;
+    private Sensibilidad sensibilidad = new Sensibilidad();
     private Notificador notificador;
-    private double sensibilidadClima = 1;
-    private double sensibilidadManos;
-    private double sensibilidadCuello;
-    private double sensibilidadCabeza;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
@@ -55,29 +56,32 @@ public class Usuario {
         eventos.add(evento);
     }
     
-    public TipoUsuario getTipoUsuario() {
-    	return tipoUsuario;
-    }
-    
     public void cambiarSuscripcion(TipoUsuario tipoUsuario) {
     	this.tipoUsuario = tipoUsuario;
 	}
 	
     public void agregarPrenda(Prenda prenda, Guardarropa guardarropa) {
-    	  tipoUsuario.agregarPrenda(prenda, guardarropa);
+        if(!tieneGuardarropa(guardarropa))
+            throw new GuardarropaNoPerteneceAlUsuarioException();
+
+    	tipoUsuario.agregarPrenda(prenda, guardarropa);
     }
 
+    public boolean tieneGuardarropa(Guardarropa guardarropa){ return guardarropas.contains(guardarropa); }
+  
     public void aceptarSugerencia(Evento evento, Atuendo atuendo) {
-        atuendo.aceptar();
+        ComandoAtuendo comandoAtuendo = new ComandoAtuendoAceptar(atuendo);
+        comandoAtuendo.ejecutar();
         evento.setSugerenciaAceptada(atuendo);
     }
 
     public void rechazarSugerencia(Atuendo atuendo) {
-        atuendo.rechazar();
+        ComandoAtuendo comandoAtuendo = new ComandoAtuendoRechazar(atuendo);
+        comandoAtuendo.ejecutar();
     }
 
     public void deshacerUltimaOperacion(Atuendo atuendo) {
-        atuendo.deshacerDecision();
+        atuendo.getUltimoComando().deshacer();
     }
     
     public void setNotificador(Notificador notificador) {
@@ -100,32 +104,25 @@ public class Usuario {
         return eventos.stream().filter(e -> e.estaProximoAOcurrir(tiempoDeAnticipacion)).collect(Collectors.toSet());
     }
 
-    public double getSensibilidadClima() {
-        return this.sensibilidadClima;
-    }
-
     public void calificar(Calificacion calificacion){
-        this.sensibilidadClima += calificacion.getCalificacionGlobal().varianzaSensibilidad;
-        this.sensibilidadManos += calificacion.getCalificacionManos().varianzaSensibilidad;
-        this.sensibilidadCuello += calificacion.getCalificacionCuello().varianzaSensibilidad;
-        this.sensibilidadCabeza += calificacion.getCalificacionCabeza().varianzaSensibilidad;
+        sensibilidad.modificarSensibilidad(calificacion);
     }
 
-    public boolean esFriolentoDeManos(){
-        return sensibilidadManos > 0;
-    }
+    public boolean esFriolentoDeManos(){ return sensibilidad.getSensibilidadManos() > 0; }
 
-    public boolean esFriolentoDeCuello(){
-        return sensibilidadCuello > 0;
-    }
+    public boolean esFriolentoDeCuello(){ return sensibilidad.getSensibilidadCuello() > 0; }
 
-    public boolean esFriolentoDeCabeza(){
-        return sensibilidadCabeza > 0;
+    public boolean esFriolentoDeCabeza() { return sensibilidad.getSensibilidadCabeza() > 0; }
+
+    public double getSensibilidadClima(){
+        return sensibilidad.getSensibilidadClima();
     }
 
     public double obtenerNivelDeAbrigo(Temperatura temperatura) {
         return temperatura.convertirANivelDeAbrigo() * getSensibilidadClima();
     }
 
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
 }
-
