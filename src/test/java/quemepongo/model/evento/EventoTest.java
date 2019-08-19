@@ -1,7 +1,6 @@
 package quemepongo.model.evento;
 
 import org.junit.Test;
-import quemepongo.config.EventoTestConfig;
 import quemepongo.exceptions.FechaEventoNoValidaException;
 
 import java.time.Duration;
@@ -11,7 +10,7 @@ import java.time.temporal.ChronoUnit;
 
 import static org.junit.Assert.assertEquals;
 
-public class EventoTest extends EventoTestConfig {
+public class EventoTest {
 
     @Test(expected = FechaEventoNoValidaException.class)
     public void arrojarExcepcionSiSeIntentaCrearUnEventoConUnaFechaAnteriorALaActual() {
@@ -35,5 +34,9 @@ public class EventoTest extends EventoTestConfig {
         Evento evento = evento(new CadaCiertoTiempo(frecuencia, fechaInicio.toLocalTime()));
 
         assertEquals(fechaInicio, evento.getFecha());
+    }
+
+    private Evento evento(Ocurrencia ocurrencia) {
+        return new Evento("unEvento", Localizacion.CABA, ocurrencia);
     }
 }

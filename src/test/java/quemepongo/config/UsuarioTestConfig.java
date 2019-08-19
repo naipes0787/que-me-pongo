@@ -12,7 +12,7 @@ import quemepongo.model.usuario.UsuarioPremium;
 
 import static quemepongo.model.calificacion.OpcionesCalificacion.*;
 
-public class UsuarioTestConfig extends TestConfig {
+public class UsuarioTestConfig extends TestConfigGeneral {
 
     //Calificaciones de Prueba
     protected static final Calificacion agradableGeneral = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, AGRADABLE);

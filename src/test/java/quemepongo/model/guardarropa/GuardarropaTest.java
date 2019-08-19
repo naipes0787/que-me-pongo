@@ -39,19 +39,19 @@ public class GuardarropaTest extends GuardarropaTestConfig {
 	
 	@Test // Este guardarropa no tendrá Prendas superiores, por ende se espera que no de ninguna sugerencia
 	public void sugerenciasDeGuardarropasSinPrendasSuperiores() {
-		Set<Atuendo> sugerencias = guardarropaSinPrendasSuperiores().sugerencias(new Usuario(), nivelAbrigo);
+		Set<Atuendo> sugerencias = guardarropaSinPrendasSuperiores().sugerencias(usuarioBasico(), nivelAbrigo);
 		assertEquals(0, sugerencias.size());
 	}
 
 	@Test // Este guardarropa no tendrá Prendas inferiores, por ende se espera que no de ninguna sugerencia
 	public void sugerenciasDeGuardarropasSinPrendasInferiores() {
-		Set<Atuendo> sugerencias = guardarropaSinPrendasInferiores().sugerencias(new Usuario(), nivelAbrigo);
+		Set<Atuendo> sugerencias = guardarropaSinPrendasInferiores().sugerencias(usuarioBasico(), nivelAbrigo);
 		assertEquals(0, sugerencias.size());
 	}
 
 	@Test // Este guardarropa no tendrá Prendas de calzado, por ende se espera que no de ninguna sugerencia
 	public void sugerenciasDeGuardarropasSinCalzados() {
-		Set<Atuendo> sugerencias = guardarropaSinCalzados().sugerencias(new Usuario(), nivelAbrigo);
+		Set<Atuendo> sugerencias = guardarropaSinCalzados().sugerencias(usuarioBasico(), nivelAbrigo);
 		assertEquals(0, sugerencias.size());
 	}
 

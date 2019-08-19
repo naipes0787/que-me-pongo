@@ -10,14 +10,14 @@ import quemepongo.model.prenda.*;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
 
-import java.awt.*;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import static java.awt.Color.BLACK;
 import static quemepongo.model.prenda.Material.*;
 
-abstract class TestConfig {
+public abstract class TestConfigGeneral {
 
     protected static final double NIVEL_ABRIGO_DEFAULT = 50;
     protected static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(NIVEL_ABRIGO_DEFAULT));
