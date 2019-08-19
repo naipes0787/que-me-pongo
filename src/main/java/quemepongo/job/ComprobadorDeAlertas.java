@@ -4,6 +4,7 @@ import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.model.FactorClimatico;
 import quemepongo.model.evento.Evento;
+import quemepongo.model.notificador.Notificador;
 import quemepongo.model.usuario.Usuario;
 
 import java.util.List;
@@ -21,7 +22,8 @@ class ComprobadorDeAlertas extends ProcesadorDeEventosProximos {
         List<FactorClimatico> factoresClimaticos = proovedorDeClima.obtenerAlertasActuales(evento.getLugar());
 
         if (factoresClimaticos.stream().anyMatch(fc -> !evento.getSugerenciaAceptada().esAptoPara(fc))) {  // TODO REVISAR
-            usuario.getNotificador().notificarAlertaMeteorologica();
+            usuario.getNotificador()
+                    .ifPresent(Notificador::notificarAlertaMeteorologica);
         }
     }
 

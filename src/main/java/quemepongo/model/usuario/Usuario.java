@@ -16,6 +16,7 @@ import quemepongo.model.sugerencia.ComandoAtuendo;
 import quemepongo.model.sugerencia.ComandoAtuendoAceptar;
 import quemepongo.model.sugerencia.ComandoAtuendoRechazar;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,10 +30,6 @@ public class Usuario {
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
-    	/* TODO: Por default se crea con un notificador por Email, se utiliza un mail inventado ya que no creamos al usuario
-         * con datos de contacto aún. Si no queremos almacenar Emails, podríamos hacer que notificador sea un Optional y
-         * en un principio sea Optional.empty() */
-    	notificador = new NotificadorEmail("untestdeprueba@test.com.ar");
     	RepositorioUsuario.getInstancia().agregarUsuario(this);
     }
 
@@ -89,8 +86,8 @@ public class Usuario {
     	this.notificador = notificador;
     }
     
-    public Notificador getNotificador() {
-    	return this.notificador;
+    public Optional<Notificador> getNotificador() {
+    	return Optional.ofNullable(this.notificador);
     }
 
     public boolean estaUsandoAlgunaPrendaDe(Atuendo atuendo) {
