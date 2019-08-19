@@ -1,23 +1,14 @@
 package quemepongo.model.prenda;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import quemepongo.exceptions.ColoresRepetidosException;
+import quemepongo.exceptions.MaterialInvalidoException;
+import quemepongo.exceptions.PathInvalidoException;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-import org.junit.Test;
-
-import quemepongo.exceptions.ColoresRepetidosException;
-import quemepongo.exceptions.MaterialInvalidoException;
-import quemepongo.exceptions.PathInvalidoException;
-import quemepongo.model.prenda.Categoria;
-import quemepongo.model.prenda.CreadorDePrenda;
-import quemepongo.model.prenda.FabricadorTipoCalzado;
-import quemepongo.model.prenda.FabricadorTipoInferior;
-import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
-import quemepongo.model.prenda.Material;
-import quemepongo.model.prenda.Prenda;
-import quemepongo.model.prenda.TipoPrenda;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test de la construcción y el uso de la clase Prenda
