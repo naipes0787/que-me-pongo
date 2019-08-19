@@ -13,13 +13,10 @@ import static org.junit.Assert.assertEquals;
 public class GuardarropaCompartidoTest extends GuardarropaCompartidoTestConfig {
 
     @Test
-    public void guardarropaCompartidoConDosUsuariosNoPuedeUsarLasPrendasDeOtro() {
+    public void siUsuarioAceptaSugerenciaDeGuardarropaCompartido_EsasPrendasQuedanDescartadasParaProximaSugerencia() {
         Usuario usuario1 = usuarioBasico();
         Usuario usuario2 = usuarioBasico();
-
-        GuardarropaCompartido guardarropa = guardarropaCompartido(usuario1, usuario2);
-        usuario1.agregarGuardarropa(guardarropa);
-        usuario2.agregarGuardarropa(guardarropa);
+        guardarropaCompartido(usuario1, usuario2);
 
         Evento evento = eventoBasico();
         Set<Atuendo> sugerenciasEvento = usuario1.sugerencias(evento);
@@ -37,8 +34,7 @@ public class GuardarropaCompartidoTest extends GuardarropaCompartidoTestConfig {
         Set<Atuendo> sugerenciasOtroEvento = usuario2.sugerencias(otroEvento);
 
         /* No se deberian generar sugerencias porque cualquiera de las dos
-            que haya aceptado usuario1 contiene jean y zapatillas, que no podran ser usados por usuario2:
-         */
+            que haya aceptado usuario1 contiene jean y zapatillas, que no podran ser usados por usuario2 */
         assertEquals(0, sugerenciasOtroEvento.size());
     }
 
