@@ -1,52 +1,20 @@
 package quemepongo.model.sugerencia;
 
-import com.google.common.collect.Sets;
-import org.junit.Before;
 import org.junit.Test;
-import quemepongo.model.*;
-import quemepongo.model.prenda.*;
-import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.config.AtuendoTestConfig;
+import quemepongo.model.FactorClimatico;
+import quemepongo.model.Temperatura;
 
-import java.awt.Color;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Test de la Atuendo
  */
-public class AtuendoTest {
+public class AtuendoTest extends AtuendoTestConfig {
 
-    private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15));
-    private static final TipoPrenda REMERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10));
-    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(7));
-
-    private Atuendo atuendo;
-	
-    @Before
-    public void setup() {
-        CombinacionPrenda jean = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
-                                                .setTipoPrenda(JEAN)
-                                                .setMaterial(Material.OXFORD)
-                                                .setColorPrincipal(Color.BLACK)
-                                                .build()));
-        CombinacionPrenda remera = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
-                .setTipoPrenda(REMERA)
-                .setMaterial(Material.ALGODON)
-                .setColorPrincipal(Color.BLACK)
-                .build()));
-
-        CombinacionPrenda botas = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
-                .setTipoPrenda(BOTAS)
-                .setMaterial(Material.CUERO)
-                .setColorPrincipal(Color.BLACK)
-                .build()));
-        atuendo = new Atuendo(remera, jean, botas);
-    }
-	
 	@Test
 	public void atuendoAbrigaLoSuficiente() {
-		Temperatura temperatura = new Temperatura(34D);;
+		Temperatura temperatura = new Temperatura(34D);
 
 		/* El atuendo brinda 32 de nivel de abrigo (15+10+7), necesitaría 
 		 * 27 como mínimo y 33 como máximo, así que daría TRUE */
@@ -63,40 +31,17 @@ public class AtuendoTest {
 	
 	@Test
 	public void obtenerCantidadPrendasCorrectamente() {
-		assertTrue(atuendo.getCantidadPrendas() == 3);
+		assertEquals(3, atuendo.getCantidadPrendas());
 	}
 
 	@Test
-	public void atuendoAptoParaLluvia() {
+	public void atuendoConPilotoDeberiaSerAptoParaLluvia() {
+		assertTrue(atuendoAptoParaLluvia().esAptoPara(FactorClimatico.LLUVIA));
+	}
+
+	@Test
+	public void atuendoBasicoNoDeberiaSerAptoParaLluvia() {
 		assertFalse(atuendo.esAptoPara(FactorClimatico.LLUVIA));
-	}
-
-	@Test
-	public void atuendoNoAptoParaLluvia() {
-		TipoPrenda piloto = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorAbrigo(10), Sets.newHashSet(FactorClimatico.LLUVIA));
-		CombinacionPrenda jean = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
-				.setTipoPrenda(JEAN)
-				.setMaterial(Material.OXFORD)
-				.setColorPrincipal(Color.BLACK)
-				.build()));
-		CombinacionPrenda prendasSuperiores = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
-						.setTipoPrenda(REMERA)
-						.setMaterial(Material.ALGODON)
-						.setColorPrincipal(Color.BLACK)
-						.build(),
-				new CreadorDePrenda()
-						.setTipoPrenda(piloto)
-						.setMaterial(Material.PLASTICO)
-						.setColorPrincipal(Color.BLACK)
-						.build()));
-
-		CombinacionPrenda botas = new CombinacionPrenda(Sets.newHashSet(new CreadorDePrenda()
-				.setTipoPrenda(BOTAS)
-				.setMaterial(Material.CUERO)
-				.setColorPrincipal(Color.BLACK)
-				.build()));
-		Atuendo atuendo = new Atuendo(prendasSuperiores, jean, botas);
-		assertTrue(atuendo.esAptoPara(FactorClimatico.LLUVIA));
 	}
 
 }

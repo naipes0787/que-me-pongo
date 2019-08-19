@@ -1,86 +1,15 @@
 package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
-import org.junit.Before;
 import org.junit.Test;
+import quemepongo.config.UsuarioTestConfig;
 import quemepongo.exceptions.GuardarropaNoPerteneceAlUsuarioException;
 import quemepongo.exceptions.LimiteDeGuardarropasException;
-import quemepongo.model.calificacion.Calificacion;
-import quemepongo.model.calificacion.OpcionesCalificacion;
 import quemepongo.model.guardarropa.GuardarropaCompartido;
-import quemepongo.model.prenda.CreadorDePrenda;
-import quemepongo.model.prenda.FabricadorTipoCalzado;
-import quemepongo.model.prenda.FabricadorTipoSuperiorBase;
-import quemepongo.model.prenda.Material;
-import quemepongo.model.prenda.TipoPrenda;
-import quemepongo.model.guardarropa.Guardarropa;
-
-import java.awt.*;
 
 import static org.junit.Assert.*;
 
-public class UsuarioTest {
-
-	//Usuario de Prueba
-	Usuario johnnyBravo = new Usuario();
-	Usuario montgomeryBurns = new Usuario(new UsuarioPremium());
-
-	//Guardarropa
-	Guardarropa guardarropa = new Guardarropa();
-	GuardarropaCompartido guardarropaCompartidoEntreJohnnyYBurns = new GuardarropaCompartido(Sets.newHashSet(johnnyBravo, montgomeryBurns));
-
-	//TipoPrenda
-	private TipoPrenda REMERA_NEGRA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10));
-	private TipoPrenda PANTUFLAS_CORTE_FINO_DE_RINOCERONTE_ALBINO = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
-
-	//Calificaciones de Prueba
-	private Calificacion agradableGeneral = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
-			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE);
-	private Calificacion calurosoGeneral = new Calificacion(OpcionesCalificacion.CALUROSO, OpcionesCalificacion.CALUROSO,
-			OpcionesCalificacion.CALUROSO, OpcionesCalificacion.CALUROSO);
-	private Calificacion  congeladoGeneral = new Calificacion(OpcionesCalificacion.CONGELADO, OpcionesCalificacion.CONGELADO,
-			OpcionesCalificacion.CONGELADO, OpcionesCalificacion.CONGELADO);
-	private Calificacion calurosoSoloCabeza = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
-			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.CALUROSO);
-	private Calificacion calurosoSoloManos = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.CALUROSO,
-			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE);
-	private Calificacion calurosoSoloCuello = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
-			OpcionesCalificacion.CALUROSO, OpcionesCalificacion.AGRADABLE);
-	private Calificacion congeladoSoloCabeza = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
-			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.CONGELADO);
-	private Calificacion congeladoSoloManos = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.CONGELADO,
-			OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE);
-	private Calificacion congeladoSoloCuello = new Calificacion(OpcionesCalificacion.AGRADABLE, OpcionesCalificacion.AGRADABLE,
-			OpcionesCalificacion.CONGELADO, OpcionesCalificacion.AGRADABLE);
-
-	//Metodos
-	private void johnnyAgregaUnaPredaNueva(Guardarropa guardarropa){
-		johnnyBravo.agregarPrenda(
-				new CreadorDePrenda()
-						.setTipoPrenda(REMERA_NEGRA)
-						.setMaterial(Material.ALGODON)
-						.setColorPrincipal(Color.BLACK)
-						.build(),
-				guardarropa);
-	}
-
-	private void burnsAgregaUnaPredaNueva(Guardarropa guardarropa){
-		montgomeryBurns.agregarPrenda(
-				new CreadorDePrenda()
-						.setTipoPrenda(PANTUFLAS_CORTE_FINO_DE_RINOCERONTE_ALBINO)
-						.setMaterial(Material.CUERO)
-						.setColorPrincipal(Color.WHITE)
-						.build(),
-				guardarropa);
-	}
-
-	@Before
-	public void ejecutarAntesDeCadaTest() {
-		johnnyBravo = new Usuario();
-		montgomeryBurns = new Usuario(new UsuarioPremium());
-		guardarropa = new Guardarropa();
-		guardarropaCompartidoEntreJohnnyYBurns = new GuardarropaCompartido(Sets.newHashSet(johnnyBravo, montgomeryBurns));
-	}
+public class UsuarioTest extends UsuarioTestConfig {
 
 	@Test
 	public void johnny_TendraUnGuardarropasSiLoAgrega(){
