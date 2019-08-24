@@ -109,6 +109,11 @@ public class ListarEventosWindow extends MainWindow<ListarEventos> {
 		new Column<Evento>(tableEventos)
 		    .setTitle("Fecha")
 		    .setFixedSize(200)
+
+
+				// TODO: No debería recibir una ocurrencia sino la fecha del evento me parece
+
+
 		    .bindContentsToProperty("ocurrencia").setTransformer(new FechaToImprimibleTransformer());
 		new Column<Evento>(tableEventos)
 	    	.setFixedSize(50)
