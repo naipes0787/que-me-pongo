@@ -83,6 +83,28 @@
 			<artifactId>quartz</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+
+		<!-- JPA Persistence Dependencies -->
+		<dependency>
+			<groupId>org.uqbar-project</groupId>
+			<artifactId>jpa-java8-extras</artifactId>
+			<version>1.0-alpha-1</version>
+		</dependency>
+
+		<!-- DRIVERS JDBC -->
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.17</version>
+		</dependency>
+
+		<!-- postgresql -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
