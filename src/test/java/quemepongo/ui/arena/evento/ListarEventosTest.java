@@ -27,13 +27,10 @@ public class ListarEventosTest {
                 new FechaEspecifica(LocalDateTime.of(2020, Month.NOVEMBER, 1, 0, 0))
                 , Duration.ofHours(1));
 
-        int cantidadEventos2020 = 0;
         Set<Evento> eventos = RepositorioEvento.getInstancia().getEventos();
-        for(Evento evento: eventos){
-            if(evento.getFecha().getYear() == 2020){
-                cantidadEventos2020++;
-            }
-        }
+
+        long cantidadEventos2020 = eventos.stream()
+                .filter(evento -> evento.getFecha().getYear() == 2020).count();
 
         ListarEventos listarEventos = new ListarEventos();
         listarEventos.setDiaDesde("01");
