@@ -11,9 +11,6 @@ import static org.junit.Assert.*;
 
 public class UsuarioTest extends UsuarioTestConfig {
 
-	private static int CANTIDAD_LIMITE_PRENDAS_USUARIO_GRATUITO = 25;
-	private static int CANTIDAD_PRENDAS_EJEMPLO_PREMIUM = 200;
-
 	@Test
 	public void siUsuarioAgregaUnGuardarropas_LoTendraAsociado(){
 		assertFalse(johnnyBravo.tieneGuardarropa(guardarropa));
