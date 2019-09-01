@@ -109,7 +109,7 @@ public class PrendaTest {
 	 * Se permite crear prendas con fotos que estén en ubicaciones válidas
 	 */
 	@Test
-	public void construirPrendaCompletaConFoto() {
+	public void siSeConstruyePrendaCompletaConFotoCorrecta_PrendaSeCreaCorrectamente() {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
@@ -124,7 +124,7 @@ public class PrendaTest {
 	 * Si se utiliza una ubicación inválida para la foto, se arroja PathInvalidoException
 	 */
 	@Test(expected = PathInvalidoException.class)
-	public void construirPrendaConFotoInvalida() {
+	public void siSeConstruyePrendaConFotoDePathInvalido_PathInvalidoException() {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
@@ -139,7 +139,7 @@ public class PrendaTest {
 	 * Al crear prendas con foto, la foto se normaliza
 	 */
 	@Test
-	public void construirPrendaCompletaConFoto2() {
+	public void siSeConstruyePrendaCompletaConFoto_LaFotoSeNormaliza() {
 		CreadorDePrenda creadorPrenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)

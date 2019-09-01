@@ -73,22 +73,6 @@ public class Guardarropa {
         }
         return atuendo;
     }
-/* Ya no aplica
-    private Set<Atuendo> generarAtuendosConAccesorios(){
-        return Sets.cartesianProduct(
-                Combinador.combinarMultiple(
-                        this.prendasDeCategoria(Categoria.PRENDA_SUPERIOR)),
-                Combinador.combinarSimple(
-                        this.prendasDeCategoria(Categoria.PRENDA_INFERIOR)),
-                Combinador.combinarSimple(
-                        this.prendasDeCategoria(Categoria.CALZADO)),
-                Combinador.combinarSimple(
-                        this.prendasDeCategoria(Categoria.ACCESORIO)))
-                .stream()
-                .map(c -> new Atuendo(c.get(0), c.get(1), c.get(2)).conAccesorio(c.get(3)))
-                .collect(Collectors.toSet());
-    }
-    */
 
     private Set<Atuendo> filtrarAtuendosPorNivelAbrigo(Set<Atuendo> atuendos, double nivelAbrigo){
         if(atuendos.size() == 0) {

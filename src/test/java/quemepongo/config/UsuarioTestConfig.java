@@ -24,6 +24,8 @@ public class UsuarioTestConfig extends TestConfigGeneral {
     protected static final Calificacion congeladoSoloCabeza = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, CONGELADO);
     protected static final Calificacion congeladoSoloManos = new Calificacion(AGRADABLE, CONGELADO, AGRADABLE, AGRADABLE);
     protected static final Calificacion congeladoSoloCuello = new Calificacion(AGRADABLE, AGRADABLE, CONGELADO, AGRADABLE);
+    protected static final int CANTIDAD_LIMITE_PRENDAS_USUARIO_GRATUITO = 25;
+    protected static final int CANTIDAD_PRENDAS_EJEMPLO_PREMIUM = 200;
 
     private static final TipoPrenda PANTUFLAS_CORTE_FINO_DE_RINOCERONTE_ALBINO = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
 

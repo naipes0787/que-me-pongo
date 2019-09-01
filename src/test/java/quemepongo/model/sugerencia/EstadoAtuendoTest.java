@@ -23,14 +23,14 @@ public class EstadoAtuendoTest extends TestConfigGeneral {
     }
 
     @Test
-    public void sinDecision() {
+    public void alDeshacerAtuendoSinCalificar_SeMantieneEnEstadoNuevo() {
         assertEquals(EstadoAtuendo.NUEVO, atuendo.getEstado());
         usuario.deshacerUltimaOperacion(atuendo);
         assertEquals(EstadoAtuendo.NUEVO, atuendo.getEstado());
     }
 
     @Test
-    public void usuarioAceptaSugerenciaYDeshace() {
+    public void alDeshacerAtuendoAceptado_VuelveAEstadoNuevo() {
         usuario.aceptarSugerencia(evento, atuendo);
         assertEquals(EstadoAtuendo.ACEPTADO, atuendo.getEstado());
         usuario.deshacerUltimaOperacion(atuendo);
@@ -38,7 +38,7 @@ public class EstadoAtuendoTest extends TestConfigGeneral {
     }
 
     @Test
-    public void usuarioRechazaSugerenciaYDeshace() {
+    public void alDeshacerAtuendoRechazado_VuelveAEstadoNuevo() {
         usuario.rechazarSugerencia(atuendo);
         assertEquals(EstadoAtuendo.RECHAZADO, atuendo.getEstado());
         usuario.deshacerUltimaOperacion(atuendo);
@@ -46,14 +46,14 @@ public class EstadoAtuendoTest extends TestConfigGeneral {
     }
 
     @Test
-    public void noSePasaDeAceptadoARechazado() {
+    public void alRechazarAtuendoAceptado_NoSeCambiaEstado() {
         usuario.aceptarSugerencia(evento, atuendo);
         usuario.rechazarSugerencia(atuendo);
         assertEquals(EstadoAtuendo.ACEPTADO, atuendo.getEstado());
     }
 
     @Test
-    public void noSePasaRechazadoAAceptado() {
+    public void alAceptarAtuendoRechazado_NoSeCambiaEstado() {
         usuario.rechazarSugerencia(atuendo);
         usuario.aceptarSugerencia(evento, atuendo);
         assertEquals(EstadoAtuendo.RECHAZADO, atuendo.getEstado());
