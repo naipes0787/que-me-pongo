@@ -3,6 +3,8 @@ package quemepongo.model.evento;
 import org.junit.Test;
 import quemepongo.config.EventoTestConfig;
 import quemepongo.exceptions.FechaEventoNoValidaException;
+import quemepongo.model.evento.tipo.EventoRepetitivo;
+import quemepongo.model.evento.tipo.EventoUnico;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -15,7 +17,7 @@ public class EventoTest extends EventoTestConfig {
 
     @Test(expected = FechaEventoNoValidaException.class)
     public void arrojarExcepcionSiSeIntentaCrearUnEventoConUnaFechaAnteriorALaActual() {
-        evento(new FechaEspecifica(LocalDateTime.now().minusDays(1)));
+        evento(new EventoUnico(LocalDateTime.now().minusDays(1)));
     }
 
     @Test
@@ -23,7 +25,7 @@ public class EventoTest extends EventoTestConfig {
         Duration frecuencia = Duration.of(1, ChronoUnit.DAYS);
         LocalDateTime ahora = LocalDateTime.now();
         LocalTime horaInicio = ahora.minus(2, ChronoUnit.HOURS).toLocalTime();
-        Evento evento = evento(new CadaCiertoTiempo(frecuencia, horaInicio));
+        Evento evento = evento(new EventoRepetitivo(frecuencia, horaInicio));
 
         assertEquals(ahora.minus(2, ChronoUnit.HOURS).plus(1, ChronoUnit.DAYS), evento.getFecha());
     }
@@ -32,7 +34,7 @@ public class EventoTest extends EventoTestConfig {
     public void eventoRepetitivoConHoraDeInicioPosteriorAActual() {
         Duration frecuencia = Duration.of(1, ChronoUnit.DAYS);
         LocalDateTime fechaInicio = LocalDateTime.now().plus(2, ChronoUnit.HOURS);
-        Evento evento = evento(new CadaCiertoTiempo(frecuencia, fechaInicio.toLocalTime()));
+        Evento evento = evento(new EventoRepetitivo(frecuencia, fechaInicio.toLocalTime()));
 
         assertEquals(fechaInicio, evento.getFecha());
     }
