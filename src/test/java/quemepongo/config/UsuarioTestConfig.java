@@ -14,16 +14,7 @@ import static quemepongo.model.calificacion.OpcionesCalificacion.*;
 
 public class UsuarioTestConfig extends TestConfigGeneral {
 
-    //Calificaciones de Prueba
-    protected static final Calificacion agradableGeneral = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, AGRADABLE);
-    protected static final Calificacion calurosoGeneral = new Calificacion(CALUROSO, CALUROSO, CALUROSO, CALUROSO);
-    protected static final Calificacion congeladoGeneral = new Calificacion(CONGELADO, CONGELADO, CONGELADO, CONGELADO);
-    protected static final Calificacion calurosoSoloCabeza = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, CALUROSO);
-    protected static final Calificacion calurosoSoloManos = new Calificacion(AGRADABLE, CALUROSO, AGRADABLE, AGRADABLE);
-    protected static final Calificacion calurosoSoloCuello = new Calificacion(AGRADABLE, AGRADABLE, CALUROSO, AGRADABLE);
-    protected static final Calificacion congeladoSoloCabeza = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, CONGELADO);
-    protected static final Calificacion congeladoSoloManos = new Calificacion(AGRADABLE, CONGELADO, AGRADABLE, AGRADABLE);
-    protected static final Calificacion congeladoSoloCuello = new Calificacion(AGRADABLE, AGRADABLE, CONGELADO, AGRADABLE);
+    // Límites en guardarropas
     protected static final int CANTIDAD_LIMITE_PRENDAS_USUARIO_GRATUITO = 25;
     protected static final int CANTIDAD_PRENDAS_EJEMPLO_PREMIUM = 200;
 
