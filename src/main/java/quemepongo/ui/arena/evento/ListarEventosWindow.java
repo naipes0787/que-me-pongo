@@ -102,15 +102,15 @@ public class ListarEventosWindow extends MainWindow<ListarEventos> {
 		Table<Evento> tableEventos = new Table<Evento>(mainPanel, Evento.class);
 		tableEventos.bindItemsToProperty("resultados");
 		tableEventos.bindValueToProperty("eventoSeleccionado");
-		new Column<Evento>(tableEventos)
+		new Column<>(tableEventos)
 		    .setTitle("Descripción")
 		    .setFixedSize(250)
 		    .bindContentsToProperty("titulo");
-		new Column<Evento>(tableEventos)
+		new Column<>(tableEventos)
 		    .setTitle("Fecha")
 		    .setFixedSize(200)
-		    .bindContentsToProperty("ocurrencia").setTransformer(new FechaToImprimibleTransformer());
-		new Column<Evento>(tableEventos)
+			.bindContentsToProperty("fecha").setTransformer(new FechaToImprimibleTransformer());
+		new Column<>(tableEventos)
 	    	.setFixedSize(50)
 		    .setTitle("Sugerencias")
 		    .bindContentsToProperty("sugerenciaAceptada").setTransformer(new AtuendoToSiNoTransformer());

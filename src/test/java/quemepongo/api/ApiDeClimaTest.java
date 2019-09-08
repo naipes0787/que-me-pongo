@@ -48,7 +48,7 @@ public class ApiDeClimaTest {
     }
 
     @Test(expected = ApiDeClimaException.class)
-    public void llamadoFalleSiLaApiRetornaError(){
+    public void siLaAPIDevuelveError_SeArrojaExcepcion(){
         Mockito.when(apiDeClima.obtenerTemperaturaActual(LOCALIZACION))
                 .thenThrow(new ApiDeClimaException(MENSAJE_EXCEPTION_TEMPERATURA_ACTUAL));
 
@@ -56,7 +56,7 @@ public class ApiDeClimaTest {
     }
 
     @Test
-    public void cambiarApisDeClima(){
+    public void siCambiaLaAPIDeClima_SePuedeObtenerCorrectamenteLaTemperatura(){
         Mockito.when(apiDeClima.obtenerTemperaturaActual(LOCALIZACION)).thenReturn(temperatura);
         Mockito.when(apiDeClimaSecundario.obtenerTemperaturaActual(LOCALIZACION)).thenReturn(temperaturaSecundaria);
 

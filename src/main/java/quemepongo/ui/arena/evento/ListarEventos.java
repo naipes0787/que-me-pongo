@@ -18,15 +18,15 @@ import quemepongo.model.evento.RepositorioEvento;
  */
 @Observable
 public class ListarEventos {
-	
-	String diaDesde;
-	String mesDesde;
-	String anioDesde;
-	String diaHasta;
-	String mesHasta;
-	String anioHasta;
-	Set<Evento> resultados;
-	Evento eventoSeleccionado;
+
+	private String diaDesde;
+	private String mesDesde;
+	private String anioDesde;
+	private String diaHasta;
+	private String mesHasta;
+	private String anioHasta;
+	private Set<Evento> resultados;
+	private Evento eventoSeleccionado;
 	
 	public void search(){ 
 		// WORKAROUND para que refresque la grilla en las actualizaciones

@@ -9,21 +9,21 @@ import org.junit.Test;
 public class TipoPrendaTest {
 
     @Test
-    public void tipoPrendaSuperior(){
+    public void siSeGeneraUnaPrendaSuperior_SeCreaConLaCategoriaYMaterialesCorrectos(){
         TipoPrenda remera = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(12));
         assertEquals(remera.getCategoria(), Categoria.PRENDA_SUPERIOR);
         tipoPrendaContieneMaterialesValidos(remera, Material.ALGODON, Material.BRONCE);
     }
 
     @Test
-    public void tipoPrendaInferior(){
+    public void siSeGeneraUnaPrendaInferior_SeCreaConLaCategoriaYMaterialesCorrectos(){
         TipoPrenda pantalon = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(20));
         assertEquals(pantalon.getCategoria(), Categoria.PRENDA_INFERIOR);
         tipoPrendaContieneMaterialesValidos(pantalon, Material.OXFORD, Material.BRONCE);
     }
 
     @Test
-    public void tipoCalzado(){
+    public void siSeGeneraUnCalzado_SeCreaConLaCategoriaYMaterialesCorrectos(){
         TipoPrenda zapatos = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10));
         assertEquals(zapatos.getCategoria(), Categoria.CALZADO);
         tipoPrendaContieneMaterialesValidos(zapatos, Material.CUERO, Material.BRONCE);

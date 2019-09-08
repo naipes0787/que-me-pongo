@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class SugerenciasTest extends SugerenciasTestConfig {
 
     @Test
-    public void sugerenciasCon3Capas() {
+    public void siSeVanAgregandooPrendas_SeSugierenMasAtuendos() {
 
         Temperatura temperatura = new Temperatura(10.0);
         double nivelAbrigo = temperatura.convertirANivelDeAbrigo();
@@ -64,7 +64,7 @@ public class SugerenciasTest extends SugerenciasTestConfig {
     }
 
     @Test
-    public void sugerenciasUnicaCapa() {
+    public void siGuardarropaTieneAbrigosYHaceCalor_SeSugiereNoUsarAbrigos() {
         Temperatura temperatura = new Temperatura(31.0);
         double nivelAbrigo = temperatura.convertirANivelDeAbrigo();
 

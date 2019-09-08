@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class UsuarioTest extends UsuarioTestConfig {
 
 	@Test
-	public void johnny_TendraUnGuardarropasSiLoAgrega(){
+	public void siUsuarioAgregaUnGuardarropas_LoTendraAsociado(){
 		assertFalse(johnnyBravo.tieneGuardarropa(guardarropa));
 
 		johnnyBravo.agregarGuardarropa(guardarropa);
@@ -21,7 +21,7 @@ public class UsuarioTest extends UsuarioTestConfig {
 	}
 
 	@Test
-	public void johnnyYBurns__YaTendranUnGuardarropasCompartidoAlCrearse(){
+	public void siSeCreaUnGuardarropaCompartido_AmbosUsuariosLoTendranAsociado(){
 		GuardarropaCompartido guardarropaNuevoCompartido = new GuardarropaCompartido(Sets.newHashSet(johnnyBravo, montgomeryBurns));
 
 		assertTrue(johnnyBravo.tieneGuardarropa(guardarropaNuevoCompartido));
@@ -29,180 +29,63 @@ public class UsuarioTest extends UsuarioTestConfig {
 	}
 
 	@Test(expected = LimiteDeGuardarropasException.class)
-	public void johnny_quiereAgregarMuchasPrendasASuGuardarropa_PeroEncontraraExcepcionPorLimiteAlSerGratuito(){
+	public void siUsuarioGratuitoAgregaMasDe25PrendasAGuardarropa_ExcepcionPorLimite(){
 		johnnyBravo.agregarGuardarropa(guardarropa);
 
-		for(int i = 0;i < 200;i++) {
+		for(int i = 0; i <= CANTIDAD_LIMITE_PRENDAS_USUARIO_GRATUITO; i++) {
 			johnnyAgregaUnaPredaNueva(guardarropa);
 		}
 	}
 
 	@Test(expected = LimiteDeGuardarropasException.class)
-	public void johnny_quiereAgregarMuchasPrendasASuGuardarropaCompartido_PeroEncontraraExcepcionPorLimiteAlSerGratuito(){
+	public void siUsuarioGratuitoAgregaMasDe25PrendasAGuardarropaCompartido_ExcepcionPorLimite(){
 
-		for(int i = 0;i < 200;i++) {
+		for(int i = 0; i <= CANTIDAD_LIMITE_PRENDAS_USUARIO_GRATUITO; i++) {
 			johnnyAgregaUnaPredaNueva(guardarropaCompartidoEntreJohnnyYBurns);
 		}
 	}
 
 	@Test
-	public void burns_quiereAgregarMuchasPrendasASuGuardarropa_YNoEncontraraExcepcionPorLimiteAlSerPremium(){
+	public void siUsuarioPremiumAgregaMasDe25PrendasAGuardarropa_PermiteElAgregado(){
 		montgomeryBurns.agregarGuardarropa(guardarropa);
-		for(int i = 0;i < 200;i++) {
+		for(int i = 0; i < CANTIDAD_PRENDAS_EJEMPLO_PREMIUM; i++) {
 			burnsAgregaUnaPredaNueva(guardarropa);
 		}
 
-		assertEquals(200, guardarropa.cantidadDePrendas());
+		assertEquals(CANTIDAD_PRENDAS_EJEMPLO_PREMIUM, guardarropa.cantidadDePrendas());
 	}
 
 	@Test
-	public void burns_quiereAgregarMuchasPrendasASuGuardarropaCompartido_YNoEncontraraExcepcionPorLimiteAlSerPremium(){
-		for(int i = 0;i < 200;i++) {
+	public void siUsuarioPremiumAgregaMasDe25PrendasAGuardarropaCompartido_PermiteElAgregado(){
+		for(int i = 0; i < CANTIDAD_PRENDAS_EJEMPLO_PREMIUM; i++) {
 			burnsAgregaUnaPredaNueva(guardarropaCompartidoEntreJohnnyYBurns);
 		}
 
-		assertEquals(200, guardarropaCompartidoEntreJohnnyYBurns.cantidadDePrendas());
+		assertEquals(CANTIDAD_PRENDAS_EJEMPLO_PREMIUM, guardarropaCompartidoEntreJohnnyYBurns.cantidadDePrendas());
 	}
 
 	@Test(expected = GuardarropaNoPerteneceAlUsuarioException.class)
-	public void johnneQuiereAgregarUnaPrendaAUnGuardarropa_EncontraExcepcionSiNoTieneEseGuardarropa(){
+	public void siUsuarioGratuitoAgregaPrendaAGuardarropaAjeno_Excepcion(){
 		assertFalse(johnnyBravo.tieneGuardarropa(guardarropa));
-
-		for(int i = 0;i < 200;i++) {
-			johnnyAgregaUnaPredaNueva(guardarropa);
-		}
+		johnnyAgregaUnaPredaNueva(guardarropa);
 	}
 
 	@Test(expected = GuardarropaNoPerteneceAlUsuarioException.class)
-	public void burnsQuiereAgregarUnaPrendaAUnGuardarropa_EncontraExcepcionSiNoTieneEseGuardarropa(){
+	public void siUsuarioPremiumAgregaPrendaAGuardarropaAjeno_Excepcion(){
 		assertFalse(montgomeryBurns.tieneGuardarropa(guardarropa));
-
-		for(int i = 0;i < 200;i++) {
-			burnsAgregaUnaPredaNueva(guardarropa);
-		}
+		burnsAgregaUnaPredaNueva(guardarropa);
 	}
 
 	@Test
-	public void siJohnnyCambiaSuSuscripcionAPremiumYAgrega200PrendasASuGuardarropa_SuGuardarropaTendra200Prendas(){
+	public void siUsuarioGratuitoCambiaAPremium_PuedeAgregarMasPrendas(){
 		johnnyBravo.cambiarSuscripcion(new UsuarioPremium());
 		johnnyBravo.agregarGuardarropa(guardarropa);
 
-		for(int i = 0;i < 200;i++) {
+		for(int i = 0; i < CANTIDAD_PRENDAS_EJEMPLO_PREMIUM; i++) {
 			johnnyAgregaUnaPredaNueva(guardarropa);
 		}
 
-		assertEquals(200, guardarropa.cantidadDePrendas());
+		assertEquals(CANTIDAD_PRENDAS_EJEMPLO_PREMIUM, guardarropa.cantidadDePrendas());
 	}
 
-	@Test
-	public void siJohnnyNoRealizaCalificacionAlguna_NoSeraFrioLentoYSuSensibilidadAlClimaSeraDe1(){
-		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
-		assertFalse(johnnyBravo.esFriolentoDeCabeza());
-		assertFalse(johnnyBravo.esFriolentoDeManos());
-		assertFalse(johnnyBravo.esFriolentoDeCuello());
-	}
-
-	@Test
-	public void siBurnsNoRealizaCalificacionAlguna_NoSeraFrioLentoYSuSensibilidadAlClimaSeraDe1(){
-		assertEquals(1, montgomeryBurns.getSensibilidadClima(), 0);
-		assertFalse(montgomeryBurns.esFriolentoDeCabeza());
-		assertFalse(montgomeryBurns.esFriolentoDeManos());
-		assertFalse(montgomeryBurns.esFriolentoDeCuello());
-	}
-
-	@Test
-	public void lasCalificacionesAgragablesDeUnUsuarioNoModificanLaSensibilidadDelClima(){
-		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
-
-		johnnyBravo.calificar(agradableGeneral);
-		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
-
-		johnnyBravo.calificar(agradableGeneral);
-		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
-
-		johnnyBravo.calificar(agradableGeneral);
-		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
-	}
-
-	@Test
-	public void jonnhyRealizaDosCalificacionesCalurosasYUnaCongelada_SuSensibilidadClimaDaria0_9(){
-		johnnyBravo.calificar(calurosoGeneral);
-		johnnyBravo.calificar(congeladoGeneral);
-		johnnyBravo.calificar(calurosoGeneral);
-
-		assertEquals( 0.9, johnnyBravo.getSensibilidadClima(), 0);
-	}
-
-	@Test
-	public void burnsRealizaQuinceCalificacionesCalurosasYUnaCongelada_SuSensibilidadClimaDaria_Negativo0_4(){
-		for(int i = 0; i < 15; i++){
-			johnnyBravo.calificar(calurosoGeneral);
-		}
-		johnnyBravo.calificar(congeladoGeneral);
-
-		assertEquals( -0.4, johnnyBravo.getSensibilidadClima(), 0.01);
-	}
-
-	@Test
-	public void siJohnnyCalificaMuchosAtuendosCongeladosEnLasManos_EsFrioLentoEnLasManos(){
-		johnnyBravo.calificar(congeladoSoloManos);
-		johnnyBravo.calificar(congeladoSoloManos);
-		johnnyBravo.calificar(congeladoSoloManos);
-
-		assertTrue( johnnyBravo.esFriolentoDeManos() );
-		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
-		assertFalse( johnnyBravo.esFriolentoDeCuello() );
-		assertFalse( johnnyBravo.esFriolentoDeCabeza() );
-	}
-
-	@Test
-	public void siBurnsCalificaMuchosAtuendosCalurososEnLasManos_NoEsFrioLentoEnLasManos(){
-		montgomeryBurns.calificar(calurosoSoloManos);
-		montgomeryBurns.calificar(calurosoSoloManos);
-		montgomeryBurns.calificar(calurosoSoloManos);
-
-		assertFalse( montgomeryBurns.esFriolentoDeManos() );
-	}
-
-	@Test
-	public void siJohnnyCalificaMuchosAtuendosCongeladosEnElCuello_EsFrioLentoEnElCuello(){
-		johnnyBravo.calificar(congeladoSoloCuello);
-		johnnyBravo.calificar(congeladoSoloCuello);
-		johnnyBravo.calificar(congeladoSoloCuello);
-
-		assertTrue( johnnyBravo.esFriolentoDeCuello() );
-		assertEquals(1, johnnyBravo.getSensibilidadClima(), 0);
-		assertFalse( johnnyBravo.esFriolentoDeManos() );
-		assertFalse( johnnyBravo.esFriolentoDeCabeza() );
-	}
-
-	@Test
-	public void siBurnsCalificaMuchosAtuendosCalurososElCuello_NoEsFrioLentoElCuello(){
-		montgomeryBurns.calificar(calurosoSoloCuello);
-		montgomeryBurns.calificar(calurosoSoloCuello);
-		montgomeryBurns.calificar(calurosoSoloCuello);
-
-		assertFalse( montgomeryBurns.esFriolentoDeCuello() );
-	}
-
-	@Test
-	public void siBurnsCalificaMuchosAtuendosCongeladosEnLaCabeza_EsFrioLentoEnLaCabezaPeroNoEnElRestoDelCuerpo(){
-		montgomeryBurns.calificar(congeladoSoloCabeza);
-		montgomeryBurns.calificar(congeladoSoloCabeza);
-		montgomeryBurns.calificar(congeladoSoloCabeza);
-
-		assertTrue( montgomeryBurns.esFriolentoDeCabeza() );
-		assertEquals(1, montgomeryBurns.getSensibilidadClima(), 0);
-		assertFalse( montgomeryBurns.esFriolentoDeManos() );
-		assertFalse( montgomeryBurns.esFriolentoDeCuello() );
-	}
-
-	@Test
-	public void siJohnnyCalificaMuchosAtuendosCalurososLaCabeza_NoEsFrioLentoLaCabeza(){
-		johnnyBravo.calificar(calurosoSoloCabeza);
-		johnnyBravo.calificar(calurosoSoloCabeza);
-		johnnyBravo.calificar(calurosoSoloCabeza);
-
-		assertFalse( johnnyBravo.esFriolentoDeCabeza() );
-	}
 }
