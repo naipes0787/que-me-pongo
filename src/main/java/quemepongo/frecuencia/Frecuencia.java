@@ -1,11 +1,6 @@
 package quemepongo.frecuencia;
 
 import com.cronutils.model.Cron;
-import com.cronutils.model.time.ExecutionTime;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 public class Frecuencia {
     private FormatoFrecuencia formato;
@@ -74,10 +69,7 @@ public class Frecuencia {
         return anio;
     }
 
-    public LocalDateTime proximaOcurrencia() {
-        Cron cron = formato.obtenerExpresionCron(this);
-        ZonedDateTime ahora = LocalDateTime.now().atZone(ZoneId.systemDefault());
-        ZonedDateTime proxima = ExecutionTime.forCron(cron).nextExecution(ahora).orElseThrow(() -> new RuntimeException(""));
-        return proxima.toLocalDateTime();
+    public Cron obtenerExpresionCron() {
+        return formato.obtenerExpresionCron(this);
     }
 }
