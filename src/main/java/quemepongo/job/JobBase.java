@@ -3,11 +3,11 @@ package quemepongo.job;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
-abstract public class Cron implements Job {
+abstract public class JobBase implements Job {
 
     private int frecuencia;
 
-    Cron(int frencuenciaEnSegundos) {
+    JobBase(int frencuenciaEnSegundos) {
         frecuencia = frencuenciaEnSegundos;
     }
 

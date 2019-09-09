@@ -21,7 +21,8 @@ public class Evento {
 		this.lugar = lugar;
 		this.tipo = tipo;
 		this.anticipacion = anticipacion;
-		RepositorioEvento.getInstancia().agregarEvento(this); }
+		RepositorioEvento.getInstancia().agregarEvento(this);
+	}
 
 	public Localizacion getLugar() {
 		return this.lugar;

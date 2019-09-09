@@ -1,23 +1,19 @@
 package quemepongo.model.evento.tipo;
 
-import java.time.Duration;
+import quemepongo.frecuencia.Frecuencia;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class EventoRepetitivo implements TipoEvento {
 
-    private Duration frecuencia;
-    private LocalTime horario;
+    private Frecuencia frecuencia;
 
-    public EventoRepetitivo(Duration frecuencia, LocalTime horario) {
+    public EventoRepetitivo(Frecuencia frecuencia) {
         this.frecuencia = frecuencia;
-        this.horario = horario;
     }
 
     @Override
     public LocalDateTime getFecha() {
-        LocalDateTime ahora = LocalDateTime.now();
-        LocalDateTime hoyAlHorario = ahora.with(horario);
-        return ahora.isAfter(hoyAlHorario) ? hoyAlHorario.plus(frecuencia) : hoyAlHorario;
+        return frecuencia.proximaOcurrencia();
     }
 }
