@@ -3,6 +3,7 @@ package quemepongo.config;
 import org.junit.Before;
 import quemepongo.frecuencia.FormatoFrecuencia;
 import quemepongo.frecuencia.Frecuencia;
+import quemepongo.frecuencia.FrecuenciaBuilder;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.evento.Localizacion;
 import quemepongo.model.evento.tipo.EventoRepetitivo;
@@ -41,17 +42,19 @@ public abstract class EventoTestConfig {
     }
 
     protected Evento eventoDiario(LocalTime horario) {
-        Frecuencia frecuencia = new Frecuencia(FormatoFrecuencia.DIARIA)
+        Frecuencia frecuencia = new FrecuenciaBuilder(FormatoFrecuencia.DIARIA)
                                     .setMinuto(horario.getMinute())
-                                    .setHora(horario.getHour());
+                                    .setHora(horario.getHour())
+                                    .build();
         return evento(new EventoRepetitivo(frecuencia));
     }
 
     protected Evento eventoMensual(int diaDelMes, LocalTime horario) {
-        Frecuencia frecuencia = new Frecuencia(FormatoFrecuencia.MENSUAL)
-                .setMinuto(horario.getMinute())
-                .setHora(horario.getHour())
-                .setDiaDelMes(diaDelMes);
+        Frecuencia frecuencia = new FrecuenciaBuilder(FormatoFrecuencia.MENSUAL)
+                                    .setMinuto(horario.getMinute())
+                                    .setHora(horario.getHour())
+                                    .setDiaDelMes(diaDelMes)
+                                    .build();
         return evento(new EventoRepetitivo(frecuencia));
     }
 }
