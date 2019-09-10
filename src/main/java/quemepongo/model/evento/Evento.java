@@ -2,6 +2,7 @@ package quemepongo.model.evento;
 
 import org.uqbar.commons.model.annotations.Observable;
 import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.persistencia.RepositorioEvento;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

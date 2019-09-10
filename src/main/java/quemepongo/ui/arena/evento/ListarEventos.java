@@ -3,6 +3,7 @@ package quemepongo.ui.arena.evento;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 import org.uqbar.commons.model.annotations.Observable;
 
 import quemepongo.model.evento.Evento;
-import quemepongo.model.evento.RepositorioEvento;
+import quemepongo.persistencia.RepositorioEvento;
 
 /**
  * Clase encargada de listar eventos, mapeando a Evento
@@ -32,7 +33,7 @@ public class ListarEventos {
 		// WORKAROUND para que refresque la grilla en las actualizaciones
 		resultados = new LinkedHashSet<Evento>();
 		// FIN WORKAROUND
-		Set<Evento> eventosTotales = RepositorioEvento.getInstancia().getEventos();
+		List<Evento> eventosTotales = RepositorioEvento.instancia().obtenerTodos();
 
 		final LocalDateTime fechaDesde = getFechaDesdeInput(diaDesde, mesDesde, anioDesde)
 				.orElse(LocalDateTime.MIN);

@@ -4,12 +4,12 @@ import org.junit.Test;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.evento.FechaEspecifica;
 import quemepongo.model.evento.Localizacion;
-import quemepongo.model.evento.RepositorioEvento;
+import quemepongo.persistencia.RepositorioEvento;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.Set;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,7 +27,7 @@ public class ListarEventosTest {
                 new FechaEspecifica(LocalDateTime.of(2020, Month.NOVEMBER, 1, 0, 0))
                 , Duration.ofHours(1));
 
-        Set<Evento> eventos = RepositorioEvento.getInstancia().getEventos();
+        List<Evento> eventos = RepositorioEvento.instancia().obtenerTodos();
 
         long cantidadEventos2020 = eventos.stream()
                 .filter(evento -> evento.getFecha().getYear() == 2020).count();
