@@ -1,4 +1,4 @@
-package quemepongo.model.prenda.converter;
+package quemepongo.model.prenda.conversor;
 
 import java.awt.Color;
 
@@ -6,7 +6,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter
-public class ColorConverter implements AttributeConverter<Color, String> {
+public class ConversorColor implements AttributeConverter<Color, String> {
 
     private static final String SEPARATOR = "|";
 
