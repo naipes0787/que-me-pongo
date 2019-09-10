@@ -1,6 +1,7 @@
 package quemepongo.model.prenda;
 
 import quemepongo.model.FactorClimatico;
+import quemepongo.model.prenda.converter.ColorConverter;
 
 import javax.persistence.*;
 import java.awt.Color;
@@ -21,10 +22,12 @@ public class Prenda {
     @Column(columnDefinition = "smallint")
 	private Material material;
 
-    @Transient
+    @Column
+    @Convert(converter = ColorConverter.class)
     private Color colorPrincipal;
 
-    @Transient
+    @Column
+    @Convert(converter = ColorConverter.class)
     private Color colorSecundario;
 
     @Transient
