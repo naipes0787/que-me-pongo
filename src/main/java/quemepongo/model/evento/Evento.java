@@ -40,11 +40,19 @@ public class Evento {
 		this.sugerenciaAceptada = sugerenciaAceptada;
 	}
 
+	/**
+	 * @return
+	 * true si la fecha del evento se encuentra a x tiempo de su fecha (indicado por el campo anticipacion) y
+	 * false si el evento ya pasó
+	 */
 	public boolean estaProximo() {
 		LocalDateTime fechaDelEvento = tipo.getFecha();
-		LocalDateTime fechaAnticipacion = fechaDelEvento.minus(anticipacion);
 		LocalDateTime ahora = LocalDateTime.now();
-		return ahora.isAfter(fechaAnticipacion) && ahora.isBefore(fechaDelEvento);
+		if (ahora.isAfter(fechaDelEvento)) {
+			return false;
+		}
+		LocalDateTime fechaAnticipacion = fechaDelEvento.minus(anticipacion);
+		return ahora.isAfter(fechaAnticipacion);
 	}
 
 	public String getTitulo() {
