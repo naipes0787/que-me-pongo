@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.collections15.Transformer;
 
-import quemepongo.model.evento.Ocurrencia;
-
 /**
  * Formatea la fecha en un formato más legible
  * 

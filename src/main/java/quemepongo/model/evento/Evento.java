@@ -1,6 +1,7 @@
 package quemepongo.model.evento;
 
 import org.uqbar.commons.model.annotations.Observable;
+import quemepongo.model.evento.tipo.TipoEvento;
 import quemepongo.model.sugerencia.Atuendo;
 
 import java.time.Duration;
@@ -11,23 +12,24 @@ public class Evento {
 
 	private String titulo;
 	private Localizacion lugar;
-	private Ocurrencia ocurrencia;
+	private TipoEvento tipo;
 	private Atuendo sugerenciaAceptada;
 	private Duration anticipacion;
 
-	public Evento(String titulo, Localizacion lugar, Ocurrencia ocurrencia, Duration anticipacion) {
+	public Evento(String titulo, Localizacion lugar, TipoEvento tipo, Duration anticipacion) {
 		this.titulo = titulo;
 		this.lugar = lugar;
-		this.ocurrencia = ocurrencia;
+		this.tipo = tipo;
 		this.anticipacion = anticipacion;
-		RepositorioEvento.getInstancia().agregarEvento(this); }
+		RepositorioEvento.getInstancia().agregarEvento(this);
+	}
 
 	public Localizacion getLugar() {
 		return this.lugar;
 	}
 
 	public LocalDateTime getFecha() {
-		return ocurrencia.fechaDelEvento();
+		return tipo.getFecha();
 	}
 
 	public Atuendo getSugerenciaAceptada() {
@@ -38,8 +40,19 @@ public class Evento {
 		this.sugerenciaAceptada = sugerenciaAceptada;
 	}
 
+	/**
+	 * @return
+	 * true si la fecha del evento se encuentra a x tiempo de su fecha (indicado por el campo anticipacion) y
+	 * false si el evento ya pasó
+	 */
 	public boolean estaProximo() {
-		return ocurrencia.estaProxima(anticipacion);
+		LocalDateTime fechaDelEvento = tipo.getFecha();
+		LocalDateTime ahora = LocalDateTime.now();
+		if (ahora.isAfter(fechaDelEvento)) {
+			return false;
+		}
+		LocalDateTime fechaAnticipacion = fechaDelEvento.minus(anticipacion);
+		return ahora.isAfter(fechaAnticipacion);
 	}
 
 	public String getTitulo() {
@@ -48,10 +61,6 @@ public class Evento {
 
 	public boolean tieneSugerenciaAceptada() {
 		return sugerenciaAceptada != null;
-	}
-
-	public Ocurrencia getOcurrencia() {
-		return ocurrencia;
 	}
 
 }
