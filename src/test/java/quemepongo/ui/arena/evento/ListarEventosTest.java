@@ -1,31 +1,19 @@
 package quemepongo.ui.arena.evento;
 
 import org.junit.Test;
+import quemepongo.config.ListarEventosTestConfig;
 import quemepongo.model.evento.Evento;
-import quemepongo.model.evento.FechaEspecifica;
-import quemepongo.model.evento.Localizacion;
 import quemepongo.model.evento.RepositorioEvento;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-public class ListarEventosTest {
+public class ListarEventosTest extends ListarEventosTestConfig {
 
     @Test
     public void siBuscamosEventosConElMetodoDeLaUI_SeDevuelvenSegunLaFechaIngresada(){
-        Evento evento1 = new Evento("Casamiento de Roberto Carlos", Localizacion.CABA,
-                new FechaEspecifica(LocalDateTime.of(2020, Month.JANUARY, 15, 0, 0))
-                , Duration.ofHours(1));
-        Evento evento2 = new Evento("Cumpleaños de Martita", Localizacion.CABA,
-                new FechaEspecifica(LocalDateTime.of(2020, Month.JULY, 1, 0, 0))
-                , Duration.ofHours(1));
-        Evento evento3 = new Evento("Hackaton UTN", Localizacion.CABA,
-                new FechaEspecifica(LocalDateTime.of(2020, Month.NOVEMBER, 1, 0, 0))
-                , Duration.ofHours(1));
+        generarEventosDe2020();
 
         Set<Evento> eventos = RepositorioEvento.getInstancia().getEventos();
 

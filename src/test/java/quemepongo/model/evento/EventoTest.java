@@ -3,37 +3,46 @@ package quemepongo.model.evento;
 import org.junit.Test;
 import quemepongo.config.EventoTestConfig;
 import quemepongo.exceptions.FechaEventoNoValidaException;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
+import quemepongo.model.evento.tipo.EventoUnico;
 
 import static org.junit.Assert.assertEquals;
 
 public class EventoTest extends EventoTestConfig {
 
     @Test(expected = FechaEventoNoValidaException.class)
-    public void arrojarExcepcionSiSeIntentaCrearUnEventoConUnaFechaAnteriorALaActual() {
-        evento(new FechaEspecifica(LocalDateTime.now().minusDays(1)));
+    public void siSeIntentaCrearUnEventoConUnaFechaAnteriorALaActual_seArrojaExcepcion() {
+        evento(new EventoUnico(fechaHaceDosDias));
     }
 
     @Test
-    public void eventoRepetitivoConHoraDeInicioPreviaAActual() {
-        Duration frecuencia = Duration.of(1, ChronoUnit.DAYS);
-        LocalDateTime ahora = LocalDateTime.now();
-        LocalTime horaInicio = ahora.minus(2, ChronoUnit.HOURS).toLocalTime();
-        Evento evento = evento(new CadaCiertoTiempo(frecuencia, horaInicio));
-
-        assertEquals(ahora.minus(2, ChronoUnit.HOURS).plus(1, ChronoUnit.DAYS), evento.getFecha());
+    public void siUnEventoUnicoSeCreaConFechaDentroDeDosDias_suFechaDeberiaSerEsa() {
+        Evento evento = evento(new EventoUnico(fechaEnDosDias));
+        assertEquals(fechaEnDosDias, evento.getFecha());
     }
 
     @Test
-    public void eventoRepetitivoConHoraDeInicioPosteriorAActual() {
-        Duration frecuencia = Duration.of(1, ChronoUnit.DAYS);
-        LocalDateTime fechaInicio = LocalDateTime.now().plus(2, ChronoUnit.HOURS);
-        Evento evento = evento(new CadaCiertoTiempo(frecuencia, fechaInicio.toLocalTime()));
-
-        assertEquals(fechaInicio, evento.getFecha());
+    public void siUnEventoDiarioTieneHorarioPrevioAlActual_suFechaDeberiaSerElDiaSiguiente() {
+        Evento evento = eventoDiario(horarioHaceDosHoras);
+        assertEquals(fechaHaceDosHoras.plusDays(1), evento.getFecha());
     }
+
+    @Test
+    public void siUnEventoDiarioTieneHorarioPosteriorAlActual_suFechaDeberiaSerHoy() {
+        Evento evento = eventoDiario(horarioEnDosHoras);
+        assertEquals(fechaEnDosHoras, evento.getFecha());
+    }
+
+    @Test
+    public void siYaPasoElDiaDeUnEventoMensual_suFechaDeberiaSerElMesSiguiente() {
+        Evento evento = eventoMensual(fechaHaceDosDias.getDayOfMonth(), horarioAhora);
+        assertEquals(fechaHaceDosDias.plusMonths(1), evento.getFecha());
+    }
+
+    @Test
+    public void siNoPasoElDiaDeUnEventoMensual_suFechaDeberiaSerEsteMes() {
+        Evento evento = eventoMensual(fechaEnDosDias.getDayOfMonth(), horarioAhora);
+        assertEquals(fechaEnDosDias, evento.getFecha());
+    }
+
+
 }
