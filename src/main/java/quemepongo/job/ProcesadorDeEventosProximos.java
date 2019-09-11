@@ -7,7 +7,7 @@ import quemepongo.model.usuario.Usuario;
 
 import java.util.Set;
 
-public abstract class ProcesadorDeEventosProximos extends Cron {
+public abstract class ProcesadorDeEventosProximos extends JobBase {
 
     ProcesadorDeEventosProximos(int frencuenciaEnSegundos) {
         super(frencuenciaEnSegundos);
