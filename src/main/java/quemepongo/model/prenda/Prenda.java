@@ -1,21 +1,22 @@
 package quemepongo.model.prenda;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import quemepongo.model.FactorClimatico;
+import quemepongo.model.PersistentEntity;
 import quemepongo.model.prenda.conversor.ConversorColor;
+import quemepongo.model.prenda.conversor.ConversorImagen;
 
 import javax.persistence.*;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 @Entity
-public class Prenda {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Prenda extends PersistentEntity {
 
     @OneToOne
     @JoinColumn(name = "tipo_prenda_id", referencedColumnName = "id")
+    @Cascade(CascadeType.ALL)
 	private TipoPrenda tipo;
 
     @Enumerated
@@ -30,6 +31,8 @@ public class Prenda {
     @Convert(converter = ConversorColor.class)
     private Color colorSecundario;
 
+    @Column
+    @Convert(converter = ConversorImagen.class)
     @Transient
     private BufferedImage foto;
 

@@ -2,6 +2,7 @@ package quemepongo.model.prenda;
 
 import com.google.common.collect.Sets;
 import quemepongo.model.FactorClimatico;
+import quemepongo.model.PersistentEntity;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,11 +13,7 @@ un Fabricador de Tipo (TipoSuperior, TipoInferior, TipoCalzado, TipoAccesorio), 
 Categoria y listado de materiales validos que corresponde.
  */
 @Entity
-public class TipoPrenda {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class TipoPrenda extends PersistentEntity {
 
     @Enumerated
     @Column(columnDefinition = "smallint")
