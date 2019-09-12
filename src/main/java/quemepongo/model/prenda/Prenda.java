@@ -1,6 +1,7 @@
 package quemepongo.model.prenda;
 
 import quemepongo.model.FactorClimatico;
+import quemepongo.model.PersistentEntity;
 import quemepongo.model.prenda.conversor.ConversorColor;
 
 import javax.persistence.*;
@@ -8,11 +9,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 @Entity
-public class Prenda {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Prenda extends PersistentEntity {
 
     @OneToOne
     @JoinColumn(name = "tipo_prenda_id", referencedColumnName = "id")
