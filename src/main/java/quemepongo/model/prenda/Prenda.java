@@ -33,6 +33,7 @@ public class Prenda extends PersistentEntity {
 
     @Column
     @Convert(converter = ConversorImagen.class)
+    @Transient
     private BufferedImage foto;
 
     public Prenda(TipoPrenda tipo, Material material, Color colorPrincipal, Color colorSecundario, 
