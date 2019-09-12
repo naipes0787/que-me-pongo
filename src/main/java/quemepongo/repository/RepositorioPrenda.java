@@ -3,8 +3,6 @@ package quemepongo.repository;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import quemepongo.model.prenda.Prenda;
 
-import javax.transaction.Transactional;
-
 /**
  * Repositorio de las {@link Prenda}s del sistema
  */
