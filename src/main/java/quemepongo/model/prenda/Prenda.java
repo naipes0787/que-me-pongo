@@ -3,6 +3,7 @@ package quemepongo.model.prenda;
 import quemepongo.model.FactorClimatico;
 import quemepongo.model.PersistentEntity;
 import quemepongo.model.prenda.conversor.ConversorColor;
+import quemepongo.model.prenda.conversor.ConversorImagen;
 
 import javax.persistence.*;
 import java.awt.Color;
@@ -27,7 +28,8 @@ public class Prenda extends PersistentEntity {
     @Convert(converter = ConversorColor.class)
     private Color colorSecundario;
 
-    @Transient
+    @Column
+    @Convert(converter = ConversorImagen.class)
     private BufferedImage foto;
 
     public Prenda(TipoPrenda tipo, Material material, Color colorPrincipal, Color colorSecundario, 
