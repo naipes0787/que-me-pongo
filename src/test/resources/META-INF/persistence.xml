@@ -6,11 +6,14 @@
              version="2.0">
 
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
         <class>quemepongo.model.prenda.TipoPrenda</class>
         <class>quemepongo.model.prenda.Prenda</class>
         <class>quemepongo.model.evento.Evento</class>
+        <class>quemepongo.model.evento.tipo.TipoEvento</class>
+        <class>quemepongo.model.evento.tipo.EventoRepetitivo</class>
+        <class>quemepongo.model.evento.tipo.EventoUnico</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

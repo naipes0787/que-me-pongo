@@ -2,9 +2,13 @@ package quemepongo.model.evento.tipo;
 
 import quemepongo.exceptions.FechaEventoNoValidaException;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
-public class EventoUnico implements TipoEvento {
+@Entity
+public class EventoUnico extends TipoEvento {
 
     private LocalDateTime fecha;
 
