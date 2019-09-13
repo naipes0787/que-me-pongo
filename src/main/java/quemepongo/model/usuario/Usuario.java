@@ -9,7 +9,6 @@ import quemepongo.model.evento.Evento;
 import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.guardarropa.GuardarropaCompartido;
 import quemepongo.model.notificador.Notificador;
-import quemepongo.model.notificador.NotificadorEmail;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.sugerencia.ComandoAtuendo;
