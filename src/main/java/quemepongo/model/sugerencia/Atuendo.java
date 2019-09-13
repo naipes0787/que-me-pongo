@@ -6,13 +6,11 @@ import quemepongo.model.FactorClimatico;
 import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.Prenda;
 
-import javax.persistence.Column;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Entity
 public class Atuendo extends Entidad {
     @OneToOne
     private CombinacionPrenda prendasSuperiores;

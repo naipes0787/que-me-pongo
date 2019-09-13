@@ -3,9 +3,11 @@ package quemepongo.model.prenda;
 import com.google.common.collect.Sets;
 import quemepongo.model.Entidad;
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.Set;
 
+@Entity
 public class CombinacionPrenda extends Entidad {
 
     public CombinacionPrenda(){//Para Habernite
