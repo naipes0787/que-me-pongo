@@ -1,4 +1,4 @@
-package quemepongo.repository;
+package quemepongo.persistencia;
 
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;

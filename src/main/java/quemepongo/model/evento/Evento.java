@@ -1,28 +1,37 @@
 package quemepongo.model.evento;
 
 import org.uqbar.commons.model.annotations.Observable;
+import quemepongo.model.Entidad;
+import quemepongo.model.evento.tipo.Anticipacion;
+import quemepongo.model.evento.tipo.ConversorAnticipacion;
 import quemepongo.model.evento.tipo.TipoEvento;
 import quemepongo.model.sugerencia.Atuendo;
 
-import java.time.Duration;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Observable
-public class Evento {
+@Entity
+public class Evento extends Entidad {
 
 	private String titulo;
+	@Enumerated
 	private Localizacion lugar;
+	@OneToOne(cascade = CascadeType.ALL)
 	private TipoEvento tipo;
+	@Transient
 	private Atuendo sugerenciaAceptada;
-	private Duration anticipacion;
+	@Convert(converter = ConversorAnticipacion.class)
+	private Anticipacion anticipacion;
 
-	public Evento(String titulo, Localizacion lugar, TipoEvento tipo, Duration anticipacion) {
+	public Evento(String titulo, Localizacion lugar, TipoEvento tipo, Anticipacion anticipacion) {
 		this.titulo = titulo;
 		this.lugar = lugar;
 		this.tipo = tipo;
 		this.anticipacion = anticipacion;
-		RepositorioEvento.getInstancia().agregarEvento(this);
 	}
+
+	public Evento() {}
 
 	public Localizacion getLugar() {
 		return this.lugar;
@@ -51,12 +60,16 @@ public class Evento {
 		if (ahora.isAfter(fechaDelEvento)) {
 			return false;
 		}
-		LocalDateTime fechaAnticipacion = fechaDelEvento.minus(anticipacion);
+		LocalDateTime fechaAnticipacion = anticipacion.getFecha(fechaDelEvento);
 		return ahora.isAfter(fechaAnticipacion);
 	}
 
 	public String getTitulo() {
 		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public boolean tieneSugerenciaAceptada() {

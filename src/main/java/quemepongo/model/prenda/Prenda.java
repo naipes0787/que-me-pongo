@@ -3,7 +3,7 @@ package quemepongo.model.prenda;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import quemepongo.model.FactorClimatico;
-import quemepongo.model.PersistentEntity;
+import quemepongo.model.Entidad;
 import quemepongo.model.prenda.conversor.ConversorColor;
 import quemepongo.model.prenda.conversor.ConversorImagen;
 
@@ -12,7 +12,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 @Entity
-public class Prenda extends PersistentEntity {
+public class Prenda extends Entidad {
 
     @OneToOne
     @JoinColumn(name = "tipo_prenda_id", referencedColumnName = "id")

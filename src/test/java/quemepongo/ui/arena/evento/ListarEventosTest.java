@@ -3,9 +3,9 @@ package quemepongo.ui.arena.evento;
 import org.junit.Test;
 import quemepongo.config.ListarEventosTestConfig;
 import quemepongo.model.evento.Evento;
-import quemepongo.model.evento.RepositorioEvento;
+import quemepongo.persistencia.RepositorioEvento;
 
-import java.util.Set;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,7 +15,7 @@ public class ListarEventosTest extends ListarEventosTestConfig {
     public void siBuscamosEventosConElMetodoDeLaUI_SeDevuelvenSegunLaFechaIngresada(){
         generarEventosDe2020();
 
-        Set<Evento> eventos = RepositorioEvento.getInstancia().getEventos();
+        List<Evento> eventos = RepositorioEvento.instancia().getEventos();
 
         long cantidadEventos2020 = eventos.stream()
                 .filter(evento -> evento.getFecha().getYear() == 2020).count();

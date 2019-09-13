@@ -3,6 +3,7 @@ package quemepongo.config;
 import com.google.common.collect.Sets;
 import quemepongo.model.FactorClimatico;
 import quemepongo.model.evento.Evento;
+import quemepongo.model.evento.tipo.Anticipacion;
 import quemepongo.model.evento.tipo.EventoUnico;
 import quemepongo.model.evento.Localizacion;
 import quemepongo.model.guardarropa.Guardarropa;
@@ -70,7 +71,7 @@ public abstract class TestConfigGeneral {
     }
 
     protected Evento eventoBasico() {
-        return new Evento("unEvento", Localizacion.CABA, new EventoUnico(LocalDateTime.now()), Duration.ofHours(1));
+        return new Evento("unEvento", Localizacion.CABA, new EventoUnico(LocalDateTime.now()), Anticipacion.UNA_HORA_ANTES);
     }
 
     protected CombinacionPrenda combinacionDe(Prenda... prendas) {
