@@ -4,7 +4,12 @@ import quemepongo.exceptions.LimiteDeGuardarropasException;
 import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.Prenda;
 
-public class UsuarioGratuito implements TipoUsuario{
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("GRATUITO")
+public class UsuarioGratuito extends TipoUsuario{
 	
 	private int limiteDeCapacidad = 25;
 	

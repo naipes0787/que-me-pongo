@@ -2,10 +2,10 @@ package quemepongo.job;
 
 import org.quartz.JobExecutionContext;
 import quemepongo.model.evento.Evento;
-import quemepongo.model.usuario.RepositorioUsuario;
 import quemepongo.model.usuario.Usuario;
+import quemepongo.persistencia.RepositorioUsuario;
 
-import java.util.Set;
+import java.util.List;
 
 public abstract class ProcesadorDeEventosProximos extends JobBase {
 
@@ -15,7 +15,7 @@ public abstract class ProcesadorDeEventosProximos extends JobBase {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) {
-        Set<Usuario> usuarios = RepositorioUsuario.getInstancia().getUsuarios();
+        List<Usuario> usuarios = RepositorioUsuario.instancia().getUsuarios();
 
         usuarios.forEach(usuario ->
                 usuario.getEventos().stream().filter(Evento::estaProximo).forEach(evento ->
