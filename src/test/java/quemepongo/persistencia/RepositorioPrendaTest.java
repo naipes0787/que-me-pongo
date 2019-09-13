@@ -1,4 +1,4 @@
-package quemepongo.repository;
+package quemepongo.persistencia;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,14 +12,14 @@ public class RepositorioPrendaTest extends TestConfigGeneral {
     @Test
     public void siSeGuardaUnaPrenda_SeAsignaIdCorrectamente(){
         RepositorioPrenda repositorioPrenda = new RepositorioPrenda();
-        repositorioPrenda.guardarPrenda(JeanDeOxfordNegro);
+        repositorioPrenda.guardar(JeanDeOxfordNegro);
         Assert.assertNotNull(JeanDeOxfordNegro.getId());
     }
 
     @Test
     public void siSeGuardaUnaPrenda_PuedeSerObtenidoDeLaDB(){
         RepositorioPrenda repositorioPrenda = new RepositorioPrenda();
-        repositorioPrenda.guardarPrenda(PolleraDeAlgodonNegra);
+        repositorioPrenda.guardar(PolleraDeAlgodonNegra);
         Prenda prendaRecuperada = repositorioPrenda.obtenerPrenda(PolleraDeAlgodonNegra.getId());
         Assert.assertEquals(prendaRecuperada.getCapa(), PolleraDeAlgodonNegra.getCapa());
         Assert.assertEquals(prendaRecuperada.getCategoria(), PolleraDeAlgodonNegra.getCategoria());
@@ -35,7 +35,7 @@ public class RepositorioPrendaTest extends TestConfigGeneral {
                 .setColorSecundario(Color.WHITE)
                 .setFoto("./src/test/resources/test-foto.jpg")
                 .build();
-        repositorioPrenda.guardarPrenda(prenda);
+        repositorioPrenda.guardar(prenda);
         Prenda prendaRecuperada = repositorioPrenda.obtenerPrenda(prenda.getId());
         Assert.assertEquals(prendaRecuperada.getCapa(), prenda.getCapa());
         Assert.assertEquals(prendaRecuperada.getCategoria(), prenda.getCategoria());

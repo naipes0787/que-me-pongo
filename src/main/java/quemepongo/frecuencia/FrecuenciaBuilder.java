@@ -4,12 +4,12 @@ public class FrecuenciaBuilder {
     
     private FormatoFrecuencia formato;
 
-    private int minuto;
-    private int hora;
-    private int mes;
-    private int diaDelMes;
-    private int diaDeLaSemana;
-    private int anio;
+    private Integer minuto;
+    private Integer hora;
+    private Integer mes;
+    private Integer diaDelMes;
+    private Integer diaDeLaSemana;
+    private Integer anio;
     
     public FrecuenciaBuilder(FormatoFrecuencia formato) {
         this.formato = formato;
@@ -20,7 +20,7 @@ public class FrecuenciaBuilder {
         return this;
     }
 
-    public int getMinuto() {
+    public Integer getMinuto() {
         return minuto;
     }
 
@@ -29,7 +29,7 @@ public class FrecuenciaBuilder {
         return this;
     }
 
-    public int getHora() {
+    public Integer getHora() {
         return hora;
     }
 
@@ -38,7 +38,7 @@ public class FrecuenciaBuilder {
         return this;
     }
 
-    public int getMes() {
+    public Integer getMes() {
         return mes;
     }
 
@@ -47,7 +47,7 @@ public class FrecuenciaBuilder {
         return this;
     }
 
-    public int getDiaDelMes() {
+    public Integer getDiaDelMes() {
         return diaDelMes;
     }
 
@@ -56,7 +56,7 @@ public class FrecuenciaBuilder {
         return this;
     }
 
-    public int getDiaDeLaSemana() {
+    public Integer getDiaDeLaSemana() {
         return diaDeLaSemana;
     }
 
@@ -65,7 +65,7 @@ public class FrecuenciaBuilder {
         return this;
     }
 
-    public int getAnio() {
+    public Integer getAnio() {
         return anio;
     }
 

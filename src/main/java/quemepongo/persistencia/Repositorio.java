@@ -5,7 +5,6 @@ import quemepongo.model.Entidad;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.util.List;
 import java.util.function.Consumer;
 
 public abstract class Repositorio<T extends Entidad> implements WithGlobalEntityManager {
@@ -23,13 +22,13 @@ public abstract class Repositorio<T extends Entidad> implements WithGlobalEntity
         transaccional(em -> em.remove(entidad));
     }
 
-    public abstract List<T> obtenerTodos();
-
-    private void transaccional(Consumer<EntityManager> action) {
-        EntityTransaction tx = entityManager().getTransaction();
+    private void transaccional(Consumer<EntityManager> accion) {
+        EntityManager em = entityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            action.accept(entityManager());
+            accion.accept(em);
+            em.flush();
             tx.commit();
         } catch (RuntimeException e) {
             tx.rollback();

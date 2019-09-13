@@ -6,6 +6,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Entidad {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -14,7 +15,5 @@ public abstract class Entidad {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
+

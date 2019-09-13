@@ -10,7 +10,6 @@ import quemepongo.model.evento.tipo.Anticipacion;
 import quemepongo.model.evento.tipo.EventoRepetitivo;
 import quemepongo.model.evento.tipo.TipoEvento;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;

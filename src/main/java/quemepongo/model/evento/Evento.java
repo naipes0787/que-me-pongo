@@ -6,12 +6,8 @@ import quemepongo.model.evento.tipo.Anticipacion;
 import quemepongo.model.evento.tipo.ConversorAnticipacion;
 import quemepongo.model.evento.tipo.TipoEvento;
 import quemepongo.model.sugerencia.Atuendo;
-import quemepongo.persistencia.RepositorioEvento;
 
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Observable
@@ -21,6 +17,7 @@ public class Evento extends Entidad {
 	private String titulo;
 	@Enumerated
 	private Localizacion lugar;
+	@OneToOne(cascade = CascadeType.ALL)
 	private TipoEvento tipo;
 	@Transient
 	private Atuendo sugerenciaAceptada;
@@ -32,8 +29,9 @@ public class Evento extends Entidad {
 		this.lugar = lugar;
 		this.tipo = tipo;
 		this.anticipacion = anticipacion;
-		RepositorioEvento.instancia().guardar(this);
 	}
+
+	public Evento() {}
 
 	public Localizacion getLugar() {
 		return this.lugar;
@@ -68,6 +66,10 @@ public class Evento extends Entidad {
 
 	public String getTitulo() {
 		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public boolean tieneSugerenciaAceptada() {

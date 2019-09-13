@@ -28,7 +28,6 @@ public class Frecuencia {
         return proxima.toLocalDateTime();
     }
 
-    // TODO: se deja listo este método para cuando se tenga que usar desde el converter de hibernate
     public String expresion() {
         return cron.asString();
     }

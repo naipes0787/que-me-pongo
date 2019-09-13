@@ -15,7 +15,7 @@ public class ListarEventosTest extends ListarEventosTestConfig {
     public void siBuscamosEventosConElMetodoDeLaUI_SeDevuelvenSegunLaFechaIngresada(){
         generarEventosDe2020();
 
-        List<Evento> eventos = RepositorioEvento.instancia().obtenerTodos();
+        List<Evento> eventos = RepositorioEvento.instancia().getEventos();
 
         long cantidadEventos2020 = eventos.stream()
                 .filter(evento -> evento.getFecha().getYear() == 2020).count();

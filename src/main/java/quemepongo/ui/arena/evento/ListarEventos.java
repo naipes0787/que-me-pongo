@@ -1,17 +1,16 @@
 package quemepongo.ui.arena.evento;
 
+import com.google.common.collect.Sets;
+import org.uqbar.commons.model.annotations.Observable;
+import quemepongo.model.evento.Evento;
+import quemepongo.persistencia.RepositorioEvento;
+
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.uqbar.commons.model.annotations.Observable;
-
-import quemepongo.model.evento.Evento;
-import quemepongo.persistencia.RepositorioEvento;
 
 /**
  * Clase encargada de listar eventos, mapeando a Evento
@@ -26,14 +25,11 @@ public class ListarEventos {
 	private String diaHasta;
 	private String mesHasta;
 	private String anioHasta;
-	private Set<Evento> resultados;
+	private Set<Evento> resultados = Sets.newHashSet();
 	private Evento eventoSeleccionado;
 	
 	public void search(){ 
-		// WORKAROUND para que refresque la grilla en las actualizaciones
-		resultados = new LinkedHashSet<Evento>();
-		// FIN WORKAROUND
-		List<Evento> eventosTotales = RepositorioEvento.instancia().obtenerTodos();
+		List<Evento> eventosTotales = RepositorioEvento.instancia().getEventos();
 
 		final LocalDateTime fechaDesde = getFechaDesdeInput(diaDesde, mesDesde, anioDesde)
 				.orElse(LocalDateTime.MIN);
@@ -79,7 +75,7 @@ public class ListarEventos {
 		this.diaHasta = null;
 		this.mesHasta = null;
 		this.anioHasta = null;
-		this.resultados = null;
+		this.resultados = Sets.newHashSet();
 		this.eventoSeleccionado = null;
 	}
 

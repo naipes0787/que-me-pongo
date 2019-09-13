@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Entity
+@DiscriminatorValue("UNICO")
 public class EventoUnico extends TipoEvento {
 
     private LocalDateTime fecha;
@@ -18,6 +19,8 @@ public class EventoUnico extends TipoEvento {
         }
         this.fecha = fecha;
     }
+
+    public EventoUnico() {}
 
     @Override
     public LocalDateTime getFecha() {

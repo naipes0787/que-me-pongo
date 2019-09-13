@@ -19,9 +19,8 @@ public class RepositorioEvento extends Repositorio<Evento> {
         return instancia;
     }
 
-    @Override
-    public List<Evento> obtenerTodos() {
-        TypedQuery<Evento> query = entityManager().createQuery("select * from Evento", Evento.class);
+    public List<Evento> getEventos() {
+        TypedQuery<Evento> query = entityManager().createQuery("from Evento", Evento.class);
         return query.getResultList();
     }
 }
