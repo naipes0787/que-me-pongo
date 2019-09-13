@@ -14,6 +14,11 @@
         <class>quemepongo.model.evento.tipo.TipoEvento</class>
         <class>quemepongo.model.evento.tipo.EventoRepetitivo</class>
         <class>quemepongo.model.evento.tipo.EventoUnico</class>
+        <class>quemepongo.model.usuario.Usuario</class>
+        <class>quemepongo.model.usuario.UsuarioPremium</class>
+        <class>quemepongo.model.usuario.UsuarioGratuito</class>
+        <class>quemepongo.model.usuario.TipoUsuario</class>
+        <class>quemepongo.model.guardarropa.Guardarropa</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
