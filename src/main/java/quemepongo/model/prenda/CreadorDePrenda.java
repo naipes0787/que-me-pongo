@@ -6,8 +6,7 @@ import quemepongo.exceptions.MaterialInvalidoException;
 import quemepongo.exceptions.PathInvalidoException;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -18,9 +17,7 @@ public class CreadorDePrenda {
 	private Material material;
 	private Color colorPrincipal;
 	private Color colorSecundario;
-	private BufferedImage foto;
-	public static final Integer ANCHO_FOTO = 200;
-	public static final Integer ALTO_FOTO = 200;
+	private String urlFoto;
 
 	public CreadorDePrenda setTipoPrenda(TipoPrenda tipoPrenda) {
 		this.tipoPrenda = tipoPrenda;
@@ -42,18 +39,18 @@ public class CreadorDePrenda {
 		return this;
 	}
 	
-    public CreadorDePrenda setFoto(String path) {
-    	try {
-    		this.foto = Thumbnails.of(ImageIO.read(new File(path))).
-    				forceSize(ANCHO_FOTO, ALTO_FOTO).asBufferedImage();
+    public CreadorDePrenda setUrlFoto(String path) {
+		try {
+    		Thumbnails.of(ImageIO.read(new File(path)));
+    		this.urlFoto = path;
         	return this;
     	} catch(IOException ex) {
     		throw new PathInvalidoException(path);
     	}
     }
     
-    public BufferedImage getFoto() {
-    	return this.foto;
+    public String getUrlFoto() {
+    	return this.urlFoto;
     }
 
 	/**
@@ -86,7 +83,7 @@ public class CreadorDePrenda {
 		this.validarMaterial();
 		this.validarColores();
 		return new Prenda(this.tipoPrenda, this.material, this.colorPrincipal, 
-				this.colorSecundario, this.foto);
+				this.colorSecundario, this.urlFoto);
 	}
 
 }

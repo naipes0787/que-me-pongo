@@ -115,7 +115,7 @@ public class PrendaTest {
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.WHITE)
-				.setFoto("./src/test/resources/test-foto.jpg")
+				.setUrlFoto("./src/test/resources/test-foto.jpg")
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
 	}
@@ -130,7 +130,7 @@ public class PrendaTest {
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.WHITE)
-				.setFoto("./src/test/resources/test-foto-no-existe.jpg")
+				.setUrlFoto("./src/test/resources/test-foto-no-existe.jpg")
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
 	}
@@ -140,15 +140,16 @@ public class PrendaTest {
 	 */
 	@Test
 	public void siSeConstruyePrendaCompletaConFoto_LaFotoSeNormaliza() {
-		CreadorDePrenda creadorPrenda = new CreadorDePrenda()
+		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
 				.setColorPrincipal(Color.BLACK)
 				.setColorSecundario(Color.WHITE)
-				.setFoto("./src/test/resources/test-foto.jpg");
-		BufferedImage foto = creadorPrenda.getFoto();
-		assertEquals(foto.getWidth(), CreadorDePrenda.ANCHO_FOTO.intValue());
-		assertEquals(foto.getHeight(), CreadorDePrenda.ALTO_FOTO.intValue());
+				.setUrlFoto("./src/test/resources/test-foto.jpg")
+				.build();
+		BufferedImage foto = prenda.getFoto();
+		assertEquals(foto.getWidth(), Prenda.ANCHO_FOTO.intValue());
+		assertEquals(foto.getHeight(), Prenda.ALTO_FOTO.intValue());
 	}
 
 }
