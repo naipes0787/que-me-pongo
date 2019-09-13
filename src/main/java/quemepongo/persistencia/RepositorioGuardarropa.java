@@ -1,6 +1,6 @@
 package quemepongo.persistencia;
 
-import quemepongo.model.guardarropa.EntidadGuardarropa;
+import quemepongo.model.guardarropa.Guardarropa;
 
-public class RepositorioGuardarropa extends Repositorio<EntidadGuardarropa> {
+public class RepositorioGuardarropa extends Repositorio<Guardarropa> {
 }

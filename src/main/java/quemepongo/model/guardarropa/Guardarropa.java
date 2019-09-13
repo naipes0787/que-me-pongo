@@ -1,12 +1,7 @@
 package quemepongo.model.guardarropa;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.google.common.collect.Sets;
-
+import quemepongo.model.Entidad;
 import quemepongo.model.prenda.Categoria;
 import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.Combinador;
@@ -14,9 +9,19 @@ import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
 
-public class Guardarropa {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@Entity
+public class Guardarropa extends Entidad {
 	
     private double margenError = 0.1;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Prenda> prendas = Sets.newHashSet();
 
     public void agregarPrenda(Prenda prenda) {
