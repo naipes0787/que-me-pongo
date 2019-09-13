@@ -1,22 +1,37 @@
 package quemepongo.model.sugerencia;
 
 import com.google.common.collect.Sets;
+import quemepongo.model.Entidad;
 import quemepongo.model.FactorClimatico;
 import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.Prenda;
 
+import javax.persistence.Column;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Atuendo {
-
+public class Atuendo extends Entidad {
+    @OneToOne
     private CombinacionPrenda prendasSuperiores;
+    @OneToOne
     private CombinacionPrenda prendaInferior;
+    @OneToOne
     private CombinacionPrenda calzado;
+    @OneToOne
     private CombinacionPrenda accesorio;
+    @Transient
     private ComandoAtuendo ultimoComando;
+    @Enumerated
+    @Column(columnDefinition = "smallint")
     private EstadoAtuendo estado;
-  
+
+    public Atuendo(){
+        // Constructor para Hibernate
+    }
+
     public Atuendo(CombinacionPrenda prendasSuperiores, CombinacionPrenda prendaInferior, CombinacionPrenda calzado){
         this.prendasSuperiores = prendasSuperiores;
         this.prendaInferior = prendaInferior;
@@ -24,11 +39,6 @@ public class Atuendo {
         this.accesorio = new CombinacionPrenda(Sets.newHashSet());
         this.ultimoComando = new ComandoAtuendoNuevo(this);
         this.estado = EstadoAtuendo.NUEVO;
-    }
-
-    public Atuendo conAccesorio(CombinacionPrenda accesorio) {
-        this.accesorio = accesorio;
-        return this;
     }
 
     public void agregarAccesorio(CombinacionPrenda nuevoAccesorio){

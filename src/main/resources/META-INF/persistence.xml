@@ -10,6 +10,7 @@
 
         <class>quemepongo.model.prenda.TipoPrenda</class>
         <class>quemepongo.model.prenda.Prenda</class>
+        <class>quemepongo.model.sugerencia.Atuendo</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
