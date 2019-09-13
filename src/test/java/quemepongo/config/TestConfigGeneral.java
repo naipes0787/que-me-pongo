@@ -3,16 +3,15 @@ package quemepongo.config;
 import com.google.common.collect.Sets;
 import quemepongo.model.FactorClimatico;
 import quemepongo.model.evento.Evento;
+import quemepongo.model.evento.Localizacion;
 import quemepongo.model.evento.tipo.Anticipacion;
 import quemepongo.model.evento.tipo.EventoUnico;
-import quemepongo.model.evento.Localizacion;
 import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.prenda.*;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.usuario.Usuario;
 
-import java.awt.Color;
-import java.time.Duration;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 

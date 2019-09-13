@@ -3,34 +3,49 @@ package quemepongo.model.usuario;
 import com.google.common.collect.Sets;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.exceptions.GuardarropaNoPerteneceAlUsuarioException;
+import quemepongo.model.Entidad;
 import quemepongo.model.Temperatura;
 import quemepongo.model.calificacion.Calificacion;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.guardarropa.GuardarropaCompartido;
 import quemepongo.model.notificador.Notificador;
-import quemepongo.model.notificador.NotificadorEmail;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
 import quemepongo.model.sugerencia.ComandoAtuendo;
 import quemepongo.model.sugerencia.ComandoAtuendoAceptar;
 import quemepongo.model.sugerencia.ComandoAtuendoRechazar;
 
+import javax.persistence.*;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Usuario {
+@Entity
+public class Usuario extends Entidad {
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "usuario_guardarropa",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "guardarropa_id")
+    )
     private Set<Guardarropa> guardarropas = Sets.newHashSet();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "usuario_id")
     private Set<Evento> eventos = Sets.newHashSet();
+
+    @OneToOne(cascade = CascadeType.ALL)
     private TipoUsuario tipoUsuario;
+
+    @Transient
     private Sensibilidad sensibilidad = new Sensibilidad();
+
+    @Transient
     private Notificador notificador;
 
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
-    	RepositorioUsuario.getInstancia().agregarUsuario(this);
     }
 
     public Usuario(TipoUsuario nuevaSuscripcion) {
@@ -118,5 +133,9 @@ public class Usuario {
 
     public Set<Evento> getEventos() {
         return eventos;
+    }
+
+    public Set<Guardarropa> guardarropas() {
+        return guardarropas;
     }
 }
