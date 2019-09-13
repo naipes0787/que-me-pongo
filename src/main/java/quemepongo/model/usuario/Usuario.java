@@ -32,9 +32,10 @@ public class Usuario extends Entidad {
     private Set<Guardarropa> guardarropas = Sets.newHashSet();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "usuario_id")
     private Set<Evento> eventos = Sets.newHashSet();
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
     private TipoUsuario tipoUsuario;
 
     @Transient
@@ -132,5 +133,9 @@ public class Usuario extends Entidad {
 
     public Set<Evento> getEventos() {
         return eventos;
+    }
+
+    public Set<Guardarropa> guardarropas() {
+        return guardarropas;
     }
 }
