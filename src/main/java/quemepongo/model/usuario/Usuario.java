@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Entity
 public class Usuario extends Entidad {
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "usuario_guardarropa",
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "guardarropa_id")
