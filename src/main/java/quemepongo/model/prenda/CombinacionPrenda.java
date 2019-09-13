@@ -1,5 +1,7 @@
 package quemepongo.model.prenda;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import quemepongo.model.Entidad;
 
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import java.util.Set;
 public class CombinacionPrenda extends Entidad {
 
     @OneToMany
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private Set<Prenda> prendas;
 
     public CombinacionPrenda(Set<Prenda> prendas){

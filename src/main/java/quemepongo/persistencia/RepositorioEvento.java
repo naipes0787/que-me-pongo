@@ -5,6 +5,9 @@ import quemepongo.model.evento.Evento;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * Repositorio de las {@link Evento}s del sistema
+ */
 public class RepositorioEvento extends Repositorio<Evento> {
 
 	private static RepositorioEvento instancia;

@@ -1,6 +1,8 @@
 package quemepongo.model.sugerencia;
 
 import com.google.common.collect.Sets;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import quemepongo.model.Entidad;
 import quemepongo.model.FactorClimatico;
 import quemepongo.model.prenda.CombinacionPrenda;
@@ -14,15 +16,19 @@ import java.util.stream.Collectors;
 public class Atuendo extends Entidad {
 
     @ManyToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private CombinacionPrenda prendasSuperiores;
 
     @ManyToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private CombinacionPrenda prendaInferior;
 
     @ManyToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private CombinacionPrenda calzado;
 
     @ManyToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private CombinacionPrenda accesorio;
 
     @Transient
