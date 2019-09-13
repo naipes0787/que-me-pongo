@@ -40,10 +40,9 @@ public class RepositorioPrendaTest extends TestConfigGeneral {
 
     @Test
     public void siSeGuardaUnaPrenda_PuedeSerEliminadaDeLaDB(){
-        RepositorioPrenda repositorioPrenda = new RepositorioPrenda();
-        repositorioPrenda.guardar(MusculosaDeAlgodonNegra);
-        repositorioPrenda.borrar(MusculosaDeAlgodonNegra);
-        Assert.assertEquals(repositorioPrenda.obtenerPrenda(MusculosaDeAlgodonNegra.getId()), null);
+        RepositorioPrenda.instancia().guardar(MusculosaDeAlgodonNegra);
+        RepositorioPrenda.instancia().borrar(MusculosaDeAlgodonNegra);
+        Assert.assertEquals(RepositorioPrenda.instancia().obtenerPrenda(MusculosaDeAlgodonNegra.getId()), null);
     }
 
 }
