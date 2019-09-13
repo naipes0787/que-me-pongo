@@ -33,12 +33,20 @@ public class RepositorioPrendaTest extends TestConfigGeneral {
                 .setMaterial(Material.ALGODON)
                 .setColorPrincipal(Color.BLACK)
                 .setColorSecundario(Color.WHITE)
-                .setFoto("./src/test/resources/test-foto.jpg")
+                .setUrlFoto("./src/test/resources/test-foto.jpg")
                 .build();
         repositorioPrenda.guardar(prenda);
         Prenda prendaRecuperada = repositorioPrenda.obtenerPrenda(prenda.getId());
         Assert.assertEquals(prendaRecuperada.getCapa(), prenda.getCapa());
         Assert.assertEquals(prendaRecuperada.getCategoria(), prenda.getCategoria());
+    }
+
+    @Test
+    public void siSeGuardaUnaPrenda_PuedeSerEliminadaDeLaDB(){
+        RepositorioPrenda repositorioPrenda = new RepositorioPrenda();
+        repositorioPrenda.guardar(MusculosaDeAlgodonNegra);
+        repositorioPrenda.borrar(MusculosaDeAlgodonNegra);
+        Assert.assertEquals(repositorioPrenda.obtenerPrenda(MusculosaDeAlgodonNegra.getId()), null);
     }
 
 }
