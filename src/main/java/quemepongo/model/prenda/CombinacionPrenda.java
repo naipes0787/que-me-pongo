@@ -1,24 +1,20 @@
 package quemepongo.model.prenda;
 
-import com.google.common.collect.Sets;
 import quemepongo.model.Entidad;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Entity
 public class CombinacionPrenda extends Entidad {
 
-    public CombinacionPrenda(){//Para Habernite
-         }
+    @OneToMany
+    private Set<Prenda> prendas;
 
     public CombinacionPrenda(Set<Prenda> prendas){
         this.prendas = prendas;
     }
-
-    @ManyToMany
-    private Set<Prenda> prendas = Sets.newHashSet();
 
     public double getNivelAbrigo() {
         return prendas.stream().mapToDouble(prenda -> prenda.getNivelAbrigo()).sum();

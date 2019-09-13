@@ -12,23 +12,25 @@ import java.util.stream.Collectors;
 
 @Entity
 public class Atuendo extends Entidad {
-    @OneToOne
+
+    @ManyToOne
     private CombinacionPrenda prendasSuperiores;
-    @OneToOne
+
+    @ManyToOne
     private CombinacionPrenda prendaInferior;
-    @OneToOne
+
+    @ManyToOne
     private CombinacionPrenda calzado;
-    @OneToOne
+
+    @ManyToOne
     private CombinacionPrenda accesorio;
+
     @Transient
     private ComandoAtuendo ultimoComando;
+
     @Enumerated
     @Column(columnDefinition = "smallint")
     private EstadoAtuendo estado;
-
-    public Atuendo(){
-        // Constructor para Hibernate
-    }
 
     public Atuendo(CombinacionPrenda prendasSuperiores, CombinacionPrenda prendaInferior, CombinacionPrenda calzado){
         this.prendasSuperiores = prendasSuperiores;

@@ -10,7 +10,12 @@
 
         <class>quemepongo.model.prenda.TipoPrenda</class>
         <class>quemepongo.model.prenda.Prenda</class>
+        <class>quemepongo.model.evento.Evento</class>
+        <class>quemepongo.model.evento.tipo.TipoEvento</class>
+        <class>quemepongo.model.evento.tipo.EventoRepetitivo</class>
+        <class>quemepongo.model.evento.tipo.EventoUnico</class>
         <class>quemepongo.model.sugerencia.Atuendo</class>
+        <class>quemepongo.model.prenda.CombinacionPrenda</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
@@ -20,10 +25,10 @@
             <property name="hibernate.connection.username" value="userdb" />
             <property name="hibernate.connection.password" value="mypass" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
-            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="true" />
             <property name="use_sql_comments" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
 
         </properties>
 
