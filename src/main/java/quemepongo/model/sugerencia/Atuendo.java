@@ -1,22 +1,43 @@
 package quemepongo.model.sugerencia;
 
 import com.google.common.collect.Sets;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import quemepongo.model.Entidad;
 import quemepongo.model.FactorClimatico;
 import quemepongo.model.prenda.CombinacionPrenda;
 import quemepongo.model.prenda.Prenda;
 
+import javax.persistence.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Atuendo {
+@Entity
+public class Atuendo extends Entidad {
 
+    @ManyToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private CombinacionPrenda prendasSuperiores;
+
+    @ManyToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private CombinacionPrenda prendaInferior;
+
+    @ManyToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private CombinacionPrenda calzado;
+
+    @ManyToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private CombinacionPrenda accesorio;
+
+    @Transient
     private ComandoAtuendo ultimoComando;
+
+    @Enumerated
+    @Column(columnDefinition = "smallint")
     private EstadoAtuendo estado;
-  
+
     public Atuendo(CombinacionPrenda prendasSuperiores, CombinacionPrenda prendaInferior, CombinacionPrenda calzado){
         this.prendasSuperiores = prendasSuperiores;
         this.prendaInferior = prendaInferior;
@@ -24,11 +45,6 @@ public class Atuendo {
         this.accesorio = new CombinacionPrenda(Sets.newHashSet());
         this.ultimoComando = new ComandoAtuendoNuevo(this);
         this.estado = EstadoAtuendo.NUEVO;
-    }
-
-    public Atuendo conAccesorio(CombinacionPrenda accesorio) {
-        this.accesorio = accesorio;
-        return this;
     }
 
     public void agregarAccesorio(CombinacionPrenda nuevoAccesorio){

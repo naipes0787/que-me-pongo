@@ -11,23 +11,20 @@ public class RepositorioPrendaTest extends TestConfigGeneral {
 
     @Test
     public void siSeGuardaUnaPrenda_SeAsignaIdCorrectamente(){
-        RepositorioPrenda repositorioPrenda = new RepositorioPrenda();
-        repositorioPrenda.guardar(JeanDeOxfordNegro);
+        RepositorioPrenda.instancia().guardar(JeanDeOxfordNegro);
         Assert.assertNotNull(JeanDeOxfordNegro.getId());
     }
 
     @Test
     public void siSeGuardaUnaPrenda_PuedeSerObtenidoDeLaDB(){
-        RepositorioPrenda repositorioPrenda = new RepositorioPrenda();
-        repositorioPrenda.guardar(PolleraDeAlgodonNegra);
-        Prenda prendaRecuperada = repositorioPrenda.obtenerPrenda(PolleraDeAlgodonNegra.getId());
+        RepositorioPrenda.instancia().guardar(PolleraDeAlgodonNegra);
+        Prenda prendaRecuperada = RepositorioPrenda.instancia().obtenerPrenda(PolleraDeAlgodonNegra.getId());
         Assert.assertEquals(prendaRecuperada.getCapa(), PolleraDeAlgodonNegra.getCapa());
         Assert.assertEquals(prendaRecuperada.getCategoria(), PolleraDeAlgodonNegra.getCategoria());
     }
 
     @Test
     public void siSeGuardaUnaPrendaConFoto_LaFotoVieneDeLaDB(){
-        RepositorioPrenda repositorioPrenda = new RepositorioPrenda();
         Prenda prenda = new CreadorDePrenda()
                 .setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
                 .setMaterial(Material.ALGODON)
@@ -35,18 +32,17 @@ public class RepositorioPrendaTest extends TestConfigGeneral {
                 .setColorSecundario(Color.WHITE)
                 .setUrlFoto("./src/test/resources/test-foto.jpg")
                 .build();
-        repositorioPrenda.guardar(prenda);
-        Prenda prendaRecuperada = repositorioPrenda.obtenerPrenda(prenda.getId());
+        RepositorioPrenda.instancia().guardar(prenda);
+        Prenda prendaRecuperada = RepositorioPrenda.instancia().obtenerPrenda(prenda.getId());
         Assert.assertEquals(prendaRecuperada.getCapa(), prenda.getCapa());
         Assert.assertEquals(prendaRecuperada.getCategoria(), prenda.getCategoria());
     }
 
     @Test
     public void siSeGuardaUnaPrenda_PuedeSerEliminadaDeLaDB(){
-        RepositorioPrenda repositorioPrenda = new RepositorioPrenda();
-        repositorioPrenda.guardar(MusculosaDeAlgodonNegra);
-        repositorioPrenda.borrar(MusculosaDeAlgodonNegra);
-        Assert.assertEquals(repositorioPrenda.obtenerPrenda(MusculosaDeAlgodonNegra.getId()), null);
+        RepositorioPrenda.instancia().guardar(MusculosaDeAlgodonNegra);
+        RepositorioPrenda.instancia().borrar(MusculosaDeAlgodonNegra);
+        Assert.assertEquals(RepositorioPrenda.instancia().obtenerPrenda(MusculosaDeAlgodonNegra.getId()), null);
     }
 
 }

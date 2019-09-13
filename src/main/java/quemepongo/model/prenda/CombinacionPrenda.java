@@ -1,11 +1,19 @@
 package quemepongo.model.prenda;
 
-import com.google.common.collect.Sets;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import quemepongo.model.Entidad;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
-public class CombinacionPrenda {
-    private Set<Prenda> prendas = Sets.newHashSet();
+@Entity
+public class CombinacionPrenda extends Entidad {
+
+    @OneToMany
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    private Set<Prenda> prendas;
 
     public CombinacionPrenda(Set<Prenda> prendas){
         this.prendas = prendas;
