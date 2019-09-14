@@ -17,9 +17,8 @@ Por último se dan todos los permisos a dicho usuario para la base de datos en c
 
 ---
 
-### Versión entregable del diagrama de clases:
-https://www.lucidchart.com/invitations/accept/aeea09b0-f948-43b8-b9ac-f52843991a38
+### DER
+https://www.lucidchart.com/invitations/accept/ff3ffe0e-75bf-4900-a7fc-a4db119df8ee
 
-
-### Diagrama de clases en progreso:
+### Diagrama de clases:
 https://www.lucidchart.com/invitations/accept/24ede451-befc-456d-b021-42805038e22e
