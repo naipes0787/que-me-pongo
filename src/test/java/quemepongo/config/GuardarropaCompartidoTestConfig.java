@@ -5,7 +5,7 @@ import org.junit.Before;
 import quemepongo.api.ClienteTest;
 import quemepongo.api.clientes.ApiDeClima;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
+import quemepongo.model.guardarropa.Guardarropa;
 import quemepongo.model.usuario.Usuario;
 
 import java.util.Arrays;
@@ -19,14 +19,15 @@ public abstract class GuardarropaCompartidoTestConfig extends TestConfigGeneral 
         SelectorDeProveedorDeClima.getInstancia().setProovedorDeClima(proovedorDeClima);
     }
 
-    protected GuardarropaCompartido guardarropaCompartido(Usuario... usuarios) {
+    protected Guardarropa guardarropaCompartido(Usuario... usuarios) {
         Set<Usuario> setUsuarios = Sets.newHashSet(Arrays.asList(usuarios));
-        GuardarropaCompartido guardarropa = new GuardarropaCompartido(setUsuarios);
+        Guardarropa guardarropa = new Guardarropa();
         guardarropa.agregarPrenda(JeanDeOxfordNegro);
         guardarropa.agregarPrenda(CamisaDeAlgodonNegra);
         guardarropa.agregarPrenda(RemeraDeAlgodonNegra);
         guardarropa.agregarPrenda(ZapatillasDeLonaNegras);
         setUsuarios.forEach(u -> u.agregarGuardarropa(guardarropa));
+        guardarropa.setUsuarios(setUsuarios);
         return guardarropa;
     }
 

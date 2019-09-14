@@ -11,6 +11,7 @@ import quemepongo.model.usuario.Usuario;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,9 @@ public class Guardarropa extends Entidad {
     private double margenError = 0.1;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Prenda> prendas = Sets.newHashSet();
+
+    @ManyToMany(mappedBy = "guardarropas")
+    private Set<Usuario> usuarios = Sets.newHashSet();
 
     public void agregarPrenda(Prenda prenda) {
         prendas.add(prenda);
@@ -45,7 +49,9 @@ public class Guardarropa extends Entidad {
         if (usuario.esFriolentoDeCabeza() && poseeAccesorioDeCabeza()){
             accesoriosAIncluir.add(Categoria.ACCESORIO_CABEZA);
         }
-        return filtrarAtuendosPorNivelAbrigo(generarAtuendos(accesoriosAIncluir), nivelAbrigo);
+
+        Set<Atuendo> sugerencias = filtrarAtuendosPorNivelAbrigo(generarAtuendos(accesoriosAIncluir), nivelAbrigo);
+        return sugerencias.stream().filter(a -> usuarios.stream().noneMatch(u -> u.estaUsandoAlgunaPrendaDe(a))).collect(Collectors.toSet());
     }
 
 /* YA NO APLICA:
@@ -117,5 +123,9 @@ public class Guardarropa extends Entidad {
     }
     private boolean poseeAccesorioDeCabeza(){
         return prendas.stream().anyMatch(p -> p.getCategoria() == Categoria.ACCESORIO_CABEZA);
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }

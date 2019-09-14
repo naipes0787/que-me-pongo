@@ -1,12 +1,7 @@
 package quemepongo.config;
 
-import com.google.common.collect.Sets;
 import org.junit.Before;
 import quemepongo.model.calificacion.Calificacion;
-import quemepongo.model.guardarropa.Guardarropa;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
-import quemepongo.model.prenda.FabricadorTipoCalzado;
-import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.usuario.Usuario;
 import quemepongo.model.usuario.UsuarioPremium;
 

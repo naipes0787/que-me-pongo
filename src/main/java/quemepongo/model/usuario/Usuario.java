@@ -8,7 +8,6 @@ import quemepongo.model.Temperatura;
 import quemepongo.model.calificacion.Calificacion;
 import quemepongo.model.evento.Evento;
 import quemepongo.model.guardarropa.Guardarropa;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
 import quemepongo.model.notificador.Notificador;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.sugerencia.Atuendo;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 public class Usuario extends Entidad {
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "usuario_guardarropa",
+    @JoinTable(name = "Usuario_Guardarropa",
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "guardarropa_id")
     )
@@ -56,9 +55,9 @@ public class Usuario extends Entidad {
         guardarropas.add(guardarropa);
     }
 
-    public void agregarGuardarropa(GuardarropaCompartido guardarropa) {
+    /*public void agregarGuardarropa(GuardarropaCompartido guardarropa) {
         guardarropas.add(guardarropa);
-    }
+    }*/
 
     public Set<Atuendo> sugerencias(Evento evento) {
         Temperatura temperatura = SelectorDeProveedorDeClima.getInstancia().getProovedorDeClima().obtenerTemperaturaActual(evento.getLugar());

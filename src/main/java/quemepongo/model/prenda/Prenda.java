@@ -50,6 +50,8 @@ public class Prenda extends Entidad {
         this.urlFoto = urlFoto;
     }
 
+    public Prenda(){}
+
     public BufferedImage getFoto(){
     	try {
     		return Thumbnails.of(ImageIO.read(new File(this.urlFoto))).

@@ -1,11 +1,10 @@
 package quemepongo.model.usuario;
 
-import com.google.common.collect.Sets;
 import org.junit.Test;
 import quemepongo.config.UsuarioTestConfig;
 import quemepongo.exceptions.GuardarropaNoPerteneceAlUsuarioException;
 import quemepongo.exceptions.LimiteDeGuardarropasException;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
+import quemepongo.model.guardarropa.Guardarropa;
 
 import static org.junit.Assert.*;
 
@@ -22,7 +21,9 @@ public class UsuarioTest extends UsuarioTestConfig {
 
 	@Test
 	public void siSeCreaUnGuardarropaCompartido_AmbosUsuariosLoTendranAsociado(){
-		GuardarropaCompartido guardarropaNuevoCompartido = new GuardarropaCompartido(Sets.newHashSet(johnnyBravo, montgomeryBurns));
+		Guardarropa guardarropaNuevoCompartido = new Guardarropa();
+		montgomeryBurns.agregarGuardarropa(guardarropaNuevoCompartido);
+		johnnyBravo.agregarGuardarropa(guardarropaNuevoCompartido);
 
 		assertTrue(johnnyBravo.tieneGuardarropa(guardarropaNuevoCompartido));
 		assertTrue(montgomeryBurns.tieneGuardarropa(guardarropaNuevoCompartido));

@@ -2,17 +2,13 @@ package quemepongo.config;
 
 import com.google.common.collect.Sets;
 import org.junit.Before;
-import quemepongo.model.calificacion.Calificacion;
 import quemepongo.model.guardarropa.Guardarropa;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
 import quemepongo.model.prenda.FabricadorTipoCalzado;
 import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.usuario.Usuario;
 import quemepongo.model.usuario.UsuarioPremium;
 
-import static quemepongo.model.calificacion.OpcionesCalificacion.*;
-
-public class UsuarioTestConfig extends TestConfigGeneral {
+public class UsuarioTestConfig extends GuardarropaCompartidoTestConfig {
 
     // Límites en guardarropas
     protected static final int CANTIDAD_LIMITE_PRENDAS_USUARIO_GRATUITO = 25;
@@ -26,14 +22,18 @@ public class UsuarioTestConfig extends TestConfigGeneral {
 
     //Guardarropa
     protected Guardarropa guardarropa;
-    protected GuardarropaCompartido guardarropaCompartidoEntreJohnnyYBurns;
+    protected Guardarropa guardarropaCompartidoEntreJohnnyYBurns;
 
     @Before
     public void ejecutarAntesDeCadaTest() {
         johnnyBravo = usuarioBasico();
         montgomeryBurns = new Usuario(new UsuarioPremium());
         guardarropa = guardarropaCon();
-        guardarropaCompartidoEntreJohnnyYBurns = new GuardarropaCompartido(Sets.newHashSet(johnnyBravo, montgomeryBurns));
+        Guardarropa g = new Guardarropa();
+        g.setUsuarios(Sets.newHashSet(johnnyBravo, montgomeryBurns));
+        johnnyBravo.agregarGuardarropa(g);
+        montgomeryBurns.agregarGuardarropa(g);
+        guardarropaCompartidoEntreJohnnyYBurns = g;
     }
 
     protected void johnnyAgregaUnaPredaNueva(Guardarropa guardarropa) {
