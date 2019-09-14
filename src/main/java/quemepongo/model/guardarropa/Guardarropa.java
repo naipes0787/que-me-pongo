@@ -128,4 +128,8 @@ public class Guardarropa extends Entidad {
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
+
+    public Set<Usuario> getUsuarios() {
+        return usuarios;
+    }
 }
