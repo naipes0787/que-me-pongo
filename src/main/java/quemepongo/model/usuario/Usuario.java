@@ -1,6 +1,7 @@
 package quemepongo.model.usuario;
 
 import com.google.common.collect.Sets;
+import org.hibernate.annotations.Cascade;
 import quemepongo.api.servicio.SelectorDeProveedorDeClima;
 import quemepongo.exceptions.GuardarropaNoPerteneceAlUsuarioException;
 import quemepongo.model.Entidad;
@@ -23,7 +24,8 @@ import java.util.stream.Collectors;
 @Entity
 public class Usuario extends Entidad {
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+    @Cascade({org.hibernate.annotations.CascadeType.PERSIST, org.hibernate.annotations.CascadeType.REFRESH, org.hibernate.annotations.CascadeType.MERGE})
     @JoinTable(name = "Usuario_Guardarropa",
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "guardarropa_id")
