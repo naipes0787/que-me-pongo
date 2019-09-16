@@ -15,6 +15,8 @@ public class CombinacionPrenda extends Entidad {
     @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private Set<Prenda> prendas;
 
+    public CombinacionPrenda(){}
+
     public CombinacionPrenda(Set<Prenda> prendas){
         this.prendas = prendas;
     }
