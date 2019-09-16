@@ -21,7 +21,7 @@ public class TipoPrenda extends Entidad {
 
     @ElementCollection(targetClass = Material.class)
     @CollectionTable(name = "material", joinColumns = @JoinColumn(name = "tipo_prenda_id"))
-    @Column(name = "material_id", nullable = false)
+    @Column(name = "material", nullable = false)
     @Enumerated(EnumType.STRING)
     public Set<Material> materialesValidos;
 
@@ -34,7 +34,7 @@ public class TipoPrenda extends Entidad {
 
     @ElementCollection(targetClass = FactorClimatico.class)
     @CollectionTable(name = "factor_climatico", joinColumns = @JoinColumn(name = "tipo_prenda_id"))
-    @Column(name = "factor_climatico_id", nullable = false)
+    @Column(name = "factor_climatico", nullable = false)
     @Enumerated(EnumType.STRING)
     private Set<FactorClimatico> aptoPara;
 
