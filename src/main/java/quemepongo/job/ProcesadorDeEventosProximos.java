@@ -1,8 +1,8 @@
 package quemepongo.job;
 
 import org.quartz.JobExecutionContext;
-import quemepongo.model.evento.Evento;
-import quemepongo.model.usuario.Usuario;
+import quemepongo.dominio.evento.Evento;
+import quemepongo.dominio.usuario.Usuario;
 import quemepongo.persistencia.RepositorioUsuario;
 
 import java.util.List;

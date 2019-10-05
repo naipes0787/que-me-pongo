@@ -2,7 +2,7 @@ package quemepongo.ui.arena.evento;
 
 import org.apache.commons.collections15.Transformer;
 
-import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.dominio.sugerencia.Atuendo;
 
 /**
  * En el caso de existir un atuendo, devuelve sí. Caso contrario, devuelve no

@@ -1,11 +1,11 @@
 package quemepongo.job;
 
-import quemepongo.api.clientes.ApiDeClima;
-import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.FactorClimatico;
-import quemepongo.model.evento.Evento;
-import quemepongo.model.notificador.Notificador;
-import quemepongo.model.usuario.Usuario;
+import quemepongo.servicio.clima.ApiDeClima;
+import quemepongo.servicio.clima.SelectorDeProveedorDeClima;
+import quemepongo.dominio.FactorClimatico;
+import quemepongo.dominio.evento.Evento;
+import quemepongo.dominio.notificador.Notificador;
+import quemepongo.dominio.usuario.Usuario;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package quemepongo.ui.arena.evento;
 
 import org.junit.Test;
 import quemepongo.config.ListarEventosTestConfig;
-import quemepongo.model.evento.Evento;
+import quemepongo.dominio.evento.Evento;
 import quemepongo.persistencia.RepositorioEvento;
 
 import java.util.List;

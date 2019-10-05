@@ -1,7 +1,7 @@
 package quemepongo.persistencia;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import quemepongo.model.Entidad;
+import quemepongo.dominio.Entidad;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -15,7 +15,6 @@ public abstract class Repositorio<T extends Entidad> implements WithGlobalEntity
         } else {
             transaccional(em -> em.merge(entidad));
         }
-
     }
 
     public void borrar(T entidad) {

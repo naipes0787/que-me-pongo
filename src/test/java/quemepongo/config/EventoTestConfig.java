@@ -1,14 +1,14 @@
 package quemepongo.config;
 
 import org.junit.Before;
-import quemepongo.frecuencia.FormatoFrecuencia;
-import quemepongo.frecuencia.Frecuencia;
-import quemepongo.frecuencia.FrecuenciaBuilder;
-import quemepongo.model.evento.Evento;
-import quemepongo.model.evento.Localizacion;
-import quemepongo.model.evento.tipo.Anticipacion;
-import quemepongo.model.evento.tipo.EventoRepetitivo;
-import quemepongo.model.evento.tipo.TipoEvento;
+import quemepongo.dominio.frecuencia.FormatoFrecuencia;
+import quemepongo.dominio.frecuencia.Frecuencia;
+import quemepongo.dominio.frecuencia.FrecuenciaBuilder;
+import quemepongo.dominio.evento.Evento;
+import quemepongo.dominio.evento.Localizacion;
+import quemepongo.dominio.evento.tipo.Anticipacion;
+import quemepongo.dominio.evento.tipo.EventoRepetitivo;
+import quemepongo.dominio.evento.tipo.TipoEvento;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;

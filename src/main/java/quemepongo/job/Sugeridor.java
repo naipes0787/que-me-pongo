@@ -1,8 +1,8 @@
 package quemepongo.job;
 
-import quemepongo.model.evento.Evento;
-import quemepongo.model.notificador.Notificador;
-import quemepongo.model.usuario.Usuario;
+import quemepongo.dominio.evento.Evento;
+import quemepongo.dominio.notificador.Notificador;
+import quemepongo.dominio.usuario.Usuario;
 
 class Sugeridor extends ProcesadorDeEventosProximos {
 

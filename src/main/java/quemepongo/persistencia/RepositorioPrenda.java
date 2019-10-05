@@ -1,6 +1,6 @@
 package quemepongo.persistencia;
 
-import quemepongo.model.prenda.Prenda;
+import quemepongo.dominio.prenda.Prenda;
 
 /**
  * Repositorio de las {@link Prenda}s del sistema

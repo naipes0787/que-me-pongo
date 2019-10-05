@@ -1,6 +1,6 @@
 package quemepongo.persistencia;
 
-import quemepongo.model.usuario.Usuario;
+import quemepongo.dominio.usuario.Usuario;
 
 import javax.persistence.TypedQuery;
 import java.util.List;

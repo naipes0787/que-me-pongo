@@ -1,6 +1,6 @@
 package quemepongo.persistencia;
 
-import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.dominio.sugerencia.Atuendo;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
