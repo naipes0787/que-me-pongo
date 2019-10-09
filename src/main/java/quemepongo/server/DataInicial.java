@@ -8,15 +8,15 @@ import quemepongo.dominio.prenda.Material;
 import quemepongo.dominio.prenda.TipoPrenda;
 import quemepongo.persistencia.RepositorioGuardarropa;
 
-public class Bootstrap {
+public class DataInicial {
 
     private RepositorioGuardarropa repositorioGuardarropa = RepositorioGuardarropa.instancia();
 
-    public void ejecutar() {
-        cargarGuardarropas();
+    public void cargar() {
+        cargarGuardarropa();
     }
 
-    private void cargarGuardarropas() {
+    private void cargarGuardarropa() {
         Guardarropa guardarropa = new Guardarropa("Guardarropa informal");
         guardarropa.agregarPrenda(
             new CreadorDePrenda()

@@ -85,7 +85,7 @@ public class Prenda extends Entidad {
     }
 
     public Color getColorPrincipal() {
-        return colorPrincipal;
+        return colorPrincipal; //TODO se usa desde el handlebars, ver cómo hacer para que se muestre el nombre del color (capaz tengamos que hacer una clase Color nuestra)
     }
 
     public String getUrlFoto() {
