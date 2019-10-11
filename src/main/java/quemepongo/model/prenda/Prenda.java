@@ -21,8 +21,8 @@ public class Prenda extends Entidad {
     public static final Integer ANCHO_FOTO = 200;
     public static final Integer ALTO_FOTO = 200;
 
-    @OneToOne
-    @JoinColumn(name = "tipo_prenda_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "tipo_prenda_id")
     @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	private TipoPrenda tipo;
 
