@@ -1,6 +1,6 @@
 package quemepongo.persistencia;
 
-import quemepongo.model.evento.Evento;
+import quemepongo.dominio.evento.Evento;
 
 import javax.persistence.TypedQuery;
 import java.util.List;

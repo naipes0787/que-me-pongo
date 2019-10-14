@@ -2,7 +2,7 @@ package quemepongo.ui.arena.evento;
 
 import com.google.common.collect.Sets;
 import org.uqbar.commons.model.annotations.Observable;
-import quemepongo.model.evento.Evento;
+import quemepongo.dominio.evento.Evento;
 import quemepongo.persistencia.RepositorioEvento;
 
 import java.time.LocalDateTime;

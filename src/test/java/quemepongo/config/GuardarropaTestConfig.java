@@ -1,11 +1,11 @@
 package quemepongo.config;
 
 import org.junit.Before;
-import quemepongo.api.ClienteTest;
-import quemepongo.api.clientes.ApiDeClima;
-import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.Temperatura;
-import quemepongo.model.guardarropa.Guardarropa;
+import quemepongo.servicio.ClienteTest;
+import quemepongo.servicio.clima.ApiDeClima;
+import quemepongo.servicio.clima.SelectorDeProveedorDeClima;
+import quemepongo.dominio.Temperatura;
+import quemepongo.dominio.guardarropa.Guardarropa;
 
 public abstract class GuardarropaTestConfig extends TestConfigGeneral {
 

@@ -2,11 +2,11 @@ package quemepongo.config;
 
 import com.google.common.collect.Sets;
 import org.junit.Before;
-import quemepongo.api.ClienteTest;
-import quemepongo.api.clientes.ApiDeClima;
-import quemepongo.api.servicio.SelectorDeProveedorDeClima;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
-import quemepongo.model.usuario.Usuario;
+import quemepongo.servicio.ClienteTest;
+import quemepongo.servicio.clima.ApiDeClima;
+import quemepongo.servicio.clima.SelectorDeProveedorDeClima;
+import quemepongo.dominio.guardarropa.GuardarropaCompartido;
+import quemepongo.dominio.usuario.Usuario;
 
 import java.util.Arrays;
 import java.util.Set;

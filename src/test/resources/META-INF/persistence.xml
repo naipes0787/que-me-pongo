@@ -8,19 +8,19 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>quemepongo.model.prenda.TipoPrenda</class>
-        <class>quemepongo.model.prenda.Prenda</class>
-        <class>quemepongo.model.evento.Evento</class>
-        <class>quemepongo.model.evento.tipo.TipoEvento</class>
-        <class>quemepongo.model.evento.tipo.EventoRepetitivo</class>
-        <class>quemepongo.model.evento.tipo.EventoUnico</class>
-        <class>quemepongo.model.usuario.Usuario</class>
-        <class>quemepongo.model.usuario.UsuarioPremium</class>
-        <class>quemepongo.model.usuario.UsuarioGratuito</class>
-        <class>quemepongo.model.usuario.TipoUsuario</class>
-        <class>quemepongo.model.guardarropa.Guardarropa</class>
-        <class>quemepongo.model.sugerencia.Atuendo</class>
-        <class>quemepongo.model.prenda.CombinacionPrenda</class>
+        <class>quemepongo.dominio.prenda.TipoPrenda</class>
+        <class>quemepongo.dominio.prenda.Prenda</class>
+        <class>quemepongo.dominio.evento.Evento</class>
+        <class>quemepongo.dominio.evento.tipo.TipoEvento</class>
+        <class>quemepongo.dominio.evento.tipo.EventoRepetitivo</class>
+        <class>quemepongo.dominio.evento.tipo.EventoUnico</class>
+        <class>quemepongo.dominio.usuario.Usuario</class>
+        <class>quemepongo.dominio.usuario.UsuarioPremium</class>
+        <class>quemepongo.dominio.usuario.UsuarioGratuito</class>
+        <class>quemepongo.dominio.usuario.TipoUsuario</class>
+        <class>quemepongo.dominio.guardarropa.Guardarropa</class>
+        <class>quemepongo.dominio.sugerencia.Atuendo</class>
+        <class>quemepongo.dominio.prenda.CombinacionPrenda</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
@@ -30,6 +30,14 @@
             <property name="hibernate.connection.username" value="userdb" />
             <property name="hibernate.connection.password" value="mypass" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
+
+            <!--
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/quemepongo" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="root" />
+            -->
+
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="use_sql_comments" value="true" />

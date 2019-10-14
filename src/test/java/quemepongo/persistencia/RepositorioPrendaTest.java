@@ -1,11 +1,10 @@
 package quemepongo.persistencia;
 
+import javafx.scene.paint.Color;
 import org.junit.Assert;
 import org.junit.Test;
 import quemepongo.config.TestConfigGeneral;
-import quemepongo.model.prenda.*;
-
-import java.awt.*;
+import quemepongo.dominio.prenda.*;
 
 public class RepositorioPrendaTest extends TestConfigGeneral {
 

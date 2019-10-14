@@ -2,7 +2,7 @@ package quemepongo.persistencia;
 
 import org.junit.Test;
 import quemepongo.config.RepositorioEventoTestConfig;
-import quemepongo.model.evento.Evento;
+import quemepongo.dominio.evento.Evento;
 
 import static org.junit.Assert.*;
 

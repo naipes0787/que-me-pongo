@@ -1,8 +1,8 @@
 package quemepongo.config;
 
 import org.junit.Before;
-import quemepongo.model.prenda.*;
-import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.dominio.prenda.*;
+import quemepongo.dominio.sugerencia.Atuendo;
 
 public abstract class AtuendoTestConfig extends TestConfigGeneral {
 

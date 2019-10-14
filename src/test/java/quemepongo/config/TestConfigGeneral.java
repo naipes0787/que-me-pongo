@@ -1,22 +1,22 @@
 package quemepongo.config;
 
 import com.google.common.collect.Sets;
-import quemepongo.model.FactorClimatico;
-import quemepongo.model.evento.Evento;
-import quemepongo.model.evento.Localizacion;
-import quemepongo.model.evento.tipo.Anticipacion;
-import quemepongo.model.evento.tipo.EventoUnico;
-import quemepongo.model.guardarropa.Guardarropa;
-import quemepongo.model.prenda.*;
-import quemepongo.model.sugerencia.Atuendo;
-import quemepongo.model.usuario.Usuario;
+import javafx.scene.paint.Color;
+import quemepongo.dominio.FactorClimatico;
+import quemepongo.dominio.evento.Evento;
+import quemepongo.dominio.evento.Localizacion;
+import quemepongo.dominio.evento.tipo.Anticipacion;
+import quemepongo.dominio.evento.tipo.EventoUnico;
+import quemepongo.dominio.guardarropa.Guardarropa;
+import quemepongo.dominio.prenda.*;
+import quemepongo.dominio.sugerencia.Atuendo;
+import quemepongo.dominio.usuario.Usuario;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-import static java.awt.Color.BLACK;
-import static quemepongo.model.prenda.Material.*;
+import static javafx.scene.paint.Color.BLACK;
+import static quemepongo.dominio.prenda.Material.*;
 
 public abstract class TestConfigGeneral {
 

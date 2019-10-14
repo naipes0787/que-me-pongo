@@ -3,7 +3,7 @@ package quemepongo.persistencia;
 import org.junit.Assert;
 import org.junit.Test;
 import quemepongo.config.AtuendoTestConfig;
-import quemepongo.model.sugerencia.Atuendo;
+import quemepongo.dominio.sugerencia.Atuendo;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package quemepongo.config;
 
-import quemepongo.model.prenda.*;
+import quemepongo.dominio.prenda.*;
 
 public class SugerenciasTestConfig extends TestConfigGeneral {
 

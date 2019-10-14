@@ -2,15 +2,12 @@ package quemepongo.config;
 
 import com.google.common.collect.Sets;
 import org.junit.Before;
-import quemepongo.model.calificacion.Calificacion;
-import quemepongo.model.guardarropa.Guardarropa;
-import quemepongo.model.guardarropa.GuardarropaCompartido;
-import quemepongo.model.prenda.FabricadorTipoCalzado;
-import quemepongo.model.prenda.TipoPrenda;
-import quemepongo.model.usuario.Usuario;
-import quemepongo.model.usuario.UsuarioPremium;
-
-import static quemepongo.model.calificacion.OpcionesCalificacion.*;
+import quemepongo.dominio.guardarropa.Guardarropa;
+import quemepongo.dominio.guardarropa.GuardarropaCompartido;
+import quemepongo.dominio.prenda.FabricadorTipoCalzado;
+import quemepongo.dominio.prenda.TipoPrenda;
+import quemepongo.dominio.usuario.Usuario;
+import quemepongo.dominio.usuario.UsuarioPremium;
 
 public class UsuarioTestConfig extends TestConfigGeneral {
 
