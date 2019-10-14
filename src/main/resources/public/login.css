@@ -1,0 +1,10 @@
+.title{
+    color: blue;
+    margin: 10px 20px;
+}
+
+.login-input{
+    border-radius: 4px;
+    margin: 10px 25px;
+    padding: 5px;
+}

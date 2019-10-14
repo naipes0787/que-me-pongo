@@ -3,6 +3,7 @@ package quemepongo.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import quemepongo.server.rutas.RutasGuardarropa;
+import quemepongo.server.rutas.RutasLogin;
 import spark.Spark;
 
 public class Server {
@@ -17,8 +18,11 @@ public class Server {
         Spark.port(9000);
         Spark.staticFiles.location("/public");
         Spark.init();
-        Spark.exception(Exception.class, (e, req, res) -> logger.error("Ocurrió un error", e));
+        Spark.exception(Exception.class,
+                (e, req, res) -> logger.error("Ocurrió un error", e)
+        );
         new RutasGuardarropa().registrar();
+        new RutasLogin().registrar();
     }
 
 }

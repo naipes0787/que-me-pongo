@@ -20,4 +20,10 @@ public class RepositorioUsuario extends Repositorio<Usuario>{
         TypedQuery<Usuario> query = entityManager().createQuery("from Usuario", Usuario.class);
         return query.getResultList();
     }
+
+    // TODO: Es solo un mock, falta agregar el método real
+    public Usuario getUsuarioByUsername(String username) {
+        return new Usuario();
+    }
+
 }

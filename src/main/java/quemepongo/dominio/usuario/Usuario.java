@@ -44,6 +44,10 @@ public class Usuario extends Entidad {
     @Transient
     private Notificador notificador;
 
+    private String password;
+
+    private String username;
+
     public Usuario() {
     	tipoUsuario = new UsuarioGratuito();
     }
@@ -137,5 +141,22 @@ public class Usuario extends Entidad {
 
     public Set<Guardarropa> guardarropas() {
         return guardarropas;
+    }
+
+    // TODO: Se mockea el password como prueba de concepto
+    public String getPassword() {
+        return "prueba";
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
