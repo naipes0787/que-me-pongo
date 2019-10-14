@@ -23,8 +23,8 @@ public class Prenda extends Entidad {
 
     private String nombre;
 
-    @OneToOne
-    @JoinColumn(name = "tipo_prenda_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "tipo_prenda_id")
     @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	private TipoPrenda tipo;
 
