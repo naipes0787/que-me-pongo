@@ -24,8 +24,8 @@ public class RepositorioEventoTest extends RepositorioEventoTestConfig {
         evento.setTitulo("Otro titulo");
         repositorio.entityManager().detach(evento);
         repositorio.guardar(evento);
-        assertEquals(1, repositorio.getEventos().size());
-        assertEquals("Otro titulo", repositorio.getEventos().get(0).getTitulo());
+        Integer indexUltimoEvento = repositorio.getEventos().size() - 1;
+        assertEquals("Otro titulo", repositorio.getEventos().get(indexUltimoEvento).getTitulo());
     }
 
 }

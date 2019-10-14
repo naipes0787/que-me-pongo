@@ -38,6 +38,8 @@ public class Atuendo extends Entidad {
     @Column(columnDefinition = "smallint")
     private EstadoAtuendo estado;
 
+    public Atuendo(){}
+
     public Atuendo(CombinacionPrenda prendasSuperiores, CombinacionPrenda prendaInferior, CombinacionPrenda calzado){
         this.prendasSuperiores = prendasSuperiores;
         this.prendaInferior = prendaInferior;
