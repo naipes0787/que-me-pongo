@@ -17,7 +17,7 @@ public class RepositorioUsuario extends Repositorio<Usuario>{
     }
 
     public List<Usuario> getUsuarios() {
-        TypedQuery<Usuario> query = entityManager().createQuery("from Usuario", Usuario.class);
+        TypedQuery<Usuario> query = createQuery("from Usuario", Usuario.class);
         return query.getResultList();
     }
 

@@ -9,7 +9,7 @@ import quemepongo.dominio.prenda.TipoPrenda;
 import quemepongo.dominio.usuario.Usuario;
 import quemepongo.dominio.usuario.UsuarioPremium;
 
-public class UsuarioTestConfig extends TestConfigGeneral {
+public class UsuarioTestConfig extends TestBase {
 
     // Límites en guardarropas
     protected static final int CANTIDAD_LIMITE_PRENDAS_USUARIO_GRATUITO = 25;

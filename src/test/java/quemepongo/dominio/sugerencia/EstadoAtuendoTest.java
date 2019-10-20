@@ -2,13 +2,13 @@ package quemepongo.dominio.sugerencia;
 
 import org.junit.Before;
 import org.junit.Test;
-import quemepongo.config.TestConfigGeneral;
+import quemepongo.config.TestBase;
 import quemepongo.dominio.evento.Evento;
 import quemepongo.dominio.usuario.Usuario;
 
 import static org.junit.Assert.assertEquals;
 
-public class EstadoAtuendoTest extends TestConfigGeneral {
+public class EstadoAtuendoTest extends TestBase {
 
     private Atuendo atuendo;
     private Usuario usuario;

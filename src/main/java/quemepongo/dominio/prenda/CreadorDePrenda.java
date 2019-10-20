@@ -46,18 +46,14 @@ public class CreadorDePrenda {
 	}
 	
     public CreadorDePrenda setUrlFoto(String path) {
-		/* TODO saqué esta validación para que funcione la prueba,
-		    pero en realidad esto lo tendríamos que cambiar para que la foto se guarde en la base de datos */
-
-		/*try {
-    		Thumbnails.of(ImageIO.read(new File(path)));
-    		this.urlFoto = path;
+		try {
+			File foto = new File(path);
+    		Thumbnails.of(ImageIO.read(foto));
+    		this.urlFoto = foto.getAbsolutePath();
         	return this;
     	} catch(IOException ex) {
     		throw new PathInvalidoException(path);
-    	}*/
-		this.urlFoto = path;
-		return this;
+    	}
     }
     
     public String getUrlFoto() {

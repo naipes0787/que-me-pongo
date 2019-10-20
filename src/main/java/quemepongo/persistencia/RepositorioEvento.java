@@ -23,7 +23,7 @@ public class RepositorioEvento extends Repositorio<Evento> {
     }
 
     public List<Evento> getEventos() {
-        TypedQuery<Evento> query = entityManager().createQuery("from Evento", Evento.class);
+        TypedQuery<Evento> query = createQuery("from Evento", Evento.class);
         return query.getResultList();
     }
 }
