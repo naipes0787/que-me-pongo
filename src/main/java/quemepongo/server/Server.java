@@ -29,7 +29,6 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
                 rollbackTransaction();
             }
         );
-
         new RutasGuardarropa().registrar();
         new RutasLogin().registrar();
     }
