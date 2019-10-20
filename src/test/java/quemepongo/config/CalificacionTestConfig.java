@@ -7,7 +7,7 @@ import quemepongo.dominio.usuario.UsuarioPremium;
 
 import static quemepongo.dominio.calificacion.OpcionesCalificacion.*;
 
-public class CalificacionTestConfig extends TestConfigGeneral {
+public class CalificacionTestConfig extends TestBase {
 
     //Calificaciones de Prueba
     protected static final Calificacion agradableGeneral = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, AGRADABLE);

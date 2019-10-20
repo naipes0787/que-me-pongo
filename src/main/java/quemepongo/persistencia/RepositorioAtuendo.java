@@ -23,12 +23,12 @@ public class RepositorioAtuendo extends Repositorio<Atuendo> {
         return instancia;
     }
 
-    public Atuendo obtenerAtuendo(Long atuendoId){
-        return entityManager().find(Atuendo.class, atuendoId);
+    public Atuendo buscarAtuendo(Long atuendoId){
+        return find(Atuendo.class, atuendoId);
     }
 
-    public List<Atuendo> getAtuendo() {
-        TypedQuery<Atuendo> query = entityManager().createQuery("from Atuendo", Atuendo.class);
+    public List<Atuendo> atuendos() {
+        TypedQuery<Atuendo> query = createQuery("from Atuendo", Atuendo.class);
         return query.getResultList();
     }
 }

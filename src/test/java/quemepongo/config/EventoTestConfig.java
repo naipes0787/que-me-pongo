@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-public abstract class EventoTestConfig {
+public abstract class EventoTestConfig extends TestBase {
 
     protected LocalDateTime fechaHaceDosHoras;
     protected LocalTime horarioHaceDosHoras;
@@ -26,7 +26,7 @@ public abstract class EventoTestConfig {
     protected LocalDateTime fechaEnDosDias;
 
     @Before
-    public void setup() {
+    public void inicializarFechas() {
         ahora = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         horarioAhora = ahora.toLocalTime();
         fechaHaceDosHoras = ahora.minusHours(2);

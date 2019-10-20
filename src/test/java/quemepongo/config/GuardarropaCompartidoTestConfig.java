@@ -11,7 +11,7 @@ import quemepongo.dominio.usuario.Usuario;
 import java.util.Arrays;
 import java.util.Set;
 
-public abstract class GuardarropaCompartidoTestConfig extends TestConfigGeneral {
+public abstract class GuardarropaCompartidoTestConfig extends TestBase {
 
     @Before
     public void preparar() {

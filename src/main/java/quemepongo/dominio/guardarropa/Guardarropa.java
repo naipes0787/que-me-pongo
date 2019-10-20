@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Entity
 public class Guardarropa extends Entidad {
 
-    public String nombre;
+    private String nombre;
 	
     private double margenError = 0.1;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -133,5 +133,9 @@ public class Guardarropa extends Entidad {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

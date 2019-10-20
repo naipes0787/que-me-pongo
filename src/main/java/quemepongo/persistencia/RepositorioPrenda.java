@@ -21,7 +21,7 @@ public class RepositorioPrenda extends Repositorio<Prenda> {
 	}
 
 	public Prenda obtenerPrenda(Long prendaId){
-		return entityManager().find(Prenda.class, prendaId);
+		return find(Prenda.class, prendaId);
 	}
 
 }

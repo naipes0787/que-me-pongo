@@ -3,10 +3,10 @@ package quemepongo.persistencia;
 import javafx.scene.paint.Color;
 import org.junit.Assert;
 import org.junit.Test;
-import quemepongo.config.TestConfigGeneral;
+import quemepongo.config.TestBase;
 import quemepongo.dominio.prenda.*;
 
-public class RepositorioPrendaTest extends TestConfigGeneral {
+public class RepositorioPrendaTest extends TestBase {
 
     @Test
     public void siSeGuardaUnaPrenda_SeAsignaIdCorrectamente(){

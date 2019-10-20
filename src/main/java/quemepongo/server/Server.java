@@ -2,11 +2,13 @@ package quemepongo.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import quemepongo.server.rutas.RutasGuardarropa;
 import quemepongo.server.rutas.RutasLogin;
 import spark.Spark;
 
-public class Server {
+public class Server implements WithGlobalEntityManager, TransactionalOps {
     private static final Logger logger = LoggerFactory.getLogger(Server.class);
 
     public static void main(String[] args) {
@@ -18,9 +20,16 @@ public class Server {
         Spark.port(9000);
         Spark.staticFiles.location("/public");
         Spark.init();
+
+        Spark.before((req, res) -> beginTransaction());
+        Spark.after((req, res) -> commitTransaction());
         Spark.exception(Exception.class,
-                (e, req, res) -> logger.error("Ocurrió un error", e)
+            (e, req, res) -> {
+                logger.error("Ocurrió un error", e);
+                rollbackTransaction();
+            }
         );
+        
         new RutasGuardarropa().registrar();
         new RutasLogin().registrar();
     }
