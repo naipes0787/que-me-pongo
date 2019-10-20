@@ -16,11 +16,11 @@ public class RepositorioGuardarropa extends Repositorio<Guardarropa> {
     }
 
     public Guardarropa get(Long id) {
-        return entityManager().find(Guardarropa.class, id);
+        return find(Guardarropa.class, id);
     }
 
     public List<Guardarropa> getGuardarropas() {
-        TypedQuery<Guardarropa> query = entityManager().createQuery("from Guardarropa", Guardarropa.class);
+        TypedQuery<Guardarropa> query = createQuery("from Guardarropa", Guardarropa.class);
         return query.getResultList();
     }
 

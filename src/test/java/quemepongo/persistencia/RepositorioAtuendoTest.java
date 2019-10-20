@@ -1,25 +1,35 @@
 package quemepongo.persistencia;
 
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import quemepongo.config.AtuendoTestConfig;
+import quemepongo.config.TestBase;
 import quemepongo.dominio.sugerencia.Atuendo;
 
 import java.util.List;
 
-public class RepositorioAtuendoTest extends AtuendoTestConfig {
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+public class RepositorioAtuendoTest extends TestBase {
+
+    private Atuendo atuendo;
+
+    @Before
+    public void inicializarAtuendo() {
+        this.atuendo = atuendoBasico();
+    }
 
     @Test
-    public void siSeGuardaUnAtuendo_SeAsignaIdCorrectamente(){
+    public void siSeGuardaUnAtuendo_SeAsignaIdCorrectamente() {
         RepositorioAtuendo.instancia().guardar(atuendo);
-        Assert.assertNotNull(atuendo.getId());
+        assertNotNull(atuendo.getId());
     }
 
     @Test
     public void siSeGuardaUnAtuendo_PuedeSerObtenidoDeLaDB(){
         RepositorioAtuendo.instancia().guardar(atuendo);
-        List<Atuendo> listaAtuendos = RepositorioAtuendo.instancia().getAtuendo();
-        Assert.assertTrue(listaAtuendos.contains(atuendo));
+        List<Atuendo> listaAtuendos = RepositorioAtuendo.instancia().atuendos();
+        assertTrue(listaAtuendos.contains(atuendo));
     }
 
 }

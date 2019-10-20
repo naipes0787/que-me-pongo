@@ -1,31 +1,38 @@
 package quemepongo.config;
 
+import org.junit.Before;
 import quemepongo.dominio.prenda.*;
 
-public class SugerenciasTestConfig extends TestConfigGeneral {
+public class SugerenciasTestConfig extends TestBase {
 
-    private static final TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(20));
-    private static final TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(20));
+    protected Prenda Musculosa;
+    protected Prenda Camisa;
+    protected Prenda Campera;
+    protected Prenda Mongomery;
+    protected Prenda Jean;
+    protected Prenda Joggin;
+    protected Prenda Botas;
+    protected Prenda Borcegos;
 
-    private static final TipoPrenda CAMPERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorAbrigo(90));
-    private static final TipoPrenda MONGOMERY = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorAbrigo(90));
+    @Before
+    public void inicializarPrendasExtra() {
+        TipoPrenda MUSCULOSA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(20));
+        TipoPrenda CAMISA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(20));
+        TipoPrenda CAMPERA = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorAbrigo(90));
+        TipoPrenda MONGOMERY = TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorAbrigo(90));
+        TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(30));
+        TipoPrenda JOGGIN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(30));
+        TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(25));
+        TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(25));
 
-    private static final TipoPrenda JEAN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(30));
-    private static final TipoPrenda JOGGIN = TipoPrenda.diseniarTipo(new FabricadorTipoInferior(30));
-
-    private static final TipoPrenda BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(25));
-    private static final TipoPrenda BORCEGOS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(25));
-
-    protected static Prenda Musculosa = crearPrenda(MUSCULOSA);
-    protected static Prenda Camisa = crearPrenda(CAMISA);
-
-    protected static Prenda Campera = crearPrenda(CAMPERA);
-    protected static Prenda Mongomery = crearPrenda(MONGOMERY);
-
-    protected static Prenda Jean = crearPrenda(JEAN);
-    protected static Prenda Joggin = crearPrenda(JOGGIN);
-
-    protected static Prenda Botas = crearPrenda(BOTAS);
-    protected static Prenda Borcegos = crearPrenda(BORCEGOS);
+        Musculosa = crearPrenda(MUSCULOSA);
+        Camisa = crearPrenda(CAMISA);
+        Campera = crearPrenda(CAMPERA);
+        Mongomery = crearPrenda(MONGOMERY);
+        Jean = crearPrenda(JEAN);
+        Joggin = crearPrenda(JOGGIN);
+        Botas = crearPrenda(BOTAS);
+        Borcegos = crearPrenda(BORCEGOS);
+    }
 
 }

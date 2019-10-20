@@ -9,7 +9,7 @@ import quemepongo.persistencia.RepositorioEvento;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-public abstract class ListarEventosTestConfig {
+public abstract class ListarEventosTestConfig extends TestBase {
 
     protected void generarEventosDe2020() {
         RepositorioEvento repo = RepositorioEvento.instancia();
