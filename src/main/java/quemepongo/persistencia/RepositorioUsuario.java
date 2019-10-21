@@ -2,6 +2,7 @@ package quemepongo.persistencia;
 
 import quemepongo.dominio.usuario.Usuario;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -21,9 +22,15 @@ public class RepositorioUsuario extends Repositorio<Usuario>{
         return query.getResultList();
     }
 
-    // TODO: Es solo un mock, falta agregar el método real
     public Usuario getUsuarioByUsername(String username) {
-        return new Usuario();
+        TypedQuery<Usuario> query = createQuery("from Usuario u WHERE u.username = :username", Usuario.class)
+                .setParameter("username", username);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException exception) {
+            return null;
+        }
+
     }
 
 }

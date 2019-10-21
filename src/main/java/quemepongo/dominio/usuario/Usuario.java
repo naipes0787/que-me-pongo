@@ -49,7 +49,13 @@ public class Usuario extends Entidad {
     private String username;
 
     public Usuario() {
-    	tipoUsuario = new UsuarioGratuito();
+        this.tipoUsuario = new UsuarioGratuito();
+    }
+
+    public Usuario(String username, String password) {
+    	this.tipoUsuario = new UsuarioGratuito();
+    	this.username = username;
+    	this.password = password;
     }
 
     public Usuario(TipoUsuario nuevaSuscripcion) {
@@ -143,20 +149,11 @@ public class Usuario extends Entidad {
         return guardarropas;
     }
 
-    // TODO: Se mockea el password como prueba de concepto
     public String getPassword() {
-        return "prueba";
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        return password;
     }
 
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }
