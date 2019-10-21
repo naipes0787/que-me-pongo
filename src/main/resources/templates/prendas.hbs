@@ -5,12 +5,12 @@
         Nombre: {{ nombre }}
     </h1>
 
-    {{#each guardarropas}}
+    {{#each prendas}}
     <div class="prenda">
+        <img src="{{ urlFoto }}" alt="{{ nombre }}" width="200" height="200" />
         <div class="detalles">
-            <a class="btn btn-info" href="/guardarropas/{{id}}/prendas">
-                <h2>{{nombre}}</h2>
-            </a>
+            <h2>{{nombre}}</h2>
+            {{ colorPrincipal }}
         </div>
     </div>
     {{/each}}

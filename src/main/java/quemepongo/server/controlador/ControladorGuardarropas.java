@@ -1,24 +1,27 @@
 package quemepongo.server.controlador;
 
 import quemepongo.dominio.guardarropa.Guardarropa;
+import quemepongo.dominio.usuario.Usuario;
 import quemepongo.persistencia.RepositorioGuardarropa;
+import quemepongo.persistencia.RepositorioUsuario;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class ControladorGuardarropas {
+public class ControladorGuardarropas extends ControladorAutenticado{
 
     public ModelAndView prendasByGuardarropaId(Request req, Response res) {
-        String username = req.session().attribute("user");
+        this.autenticar(req, res);
         Long id = Long.valueOf(req.params("id"));
         Guardarropa guardarropa = RepositorioGuardarropa.instancia().get(id);
-        return new ModelAndView(guardarropa, "guardarropas.hbs");
+        return new ModelAndView(guardarropa, "prendas.hbs");
     }
 
-    // TODO: Crear la parte visual para poder mostrar todos los guardarropas con sus prendas
-    public ModelAndView prendas(Request req, Response res) {
-        Guardarropa guardarropa = RepositorioGuardarropa.instancia().getGuardarropas().get(0);
+    public ModelAndView guardarropas(Request req, Response res) {
+        this.autenticar(req, res);
         String username = req.session().attribute("user");
-        return new ModelAndView(guardarropa, "guardarropas.hbs");
+        Usuario usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
+        return new ModelAndView(usuario, "guardarropas.hbs");
     }
+
 }

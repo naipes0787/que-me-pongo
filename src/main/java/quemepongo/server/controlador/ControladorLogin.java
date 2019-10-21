@@ -2,6 +2,7 @@ package quemepongo.server.controlador;
 
 import quemepongo.dominio.usuario.Usuario;
 import quemepongo.persistencia.RepositorioUsuario;
+import quemepongo.server.rutas.RutasConstantes;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -17,18 +18,14 @@ public class ControladorLogin {
     public Void login(Request request, Response response) {
         String username = request.queryParams("usuario");
         String pass = request.queryParams("contrasenia");
-        System.out.println("El usuario " + username + " quiere loguearse");
-
         Usuario usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
         if (usuario != null && usuario.getPassword().equals(pass)) {
-            System.out.println("El usuario " + username + " se logueó");
             request.session(true);
-            request.attribute("user", usuario);
-            response.redirect("/guardarropas/prendas");
+            request.session().attribute("user", username);
+            response.redirect(RutasConstantes.GUARDARROPAS_URL);
         } else {
-            System.out.println("El usuario " + username + " no existe o ingresó mal su contraseña");
             response.status(401);
-            response.redirect("/login");
+            response.redirect(RutasConstantes.LOGIN_URL);
         }
         return null;
     }
