@@ -12,7 +12,11 @@ import java.util.HashMap;
 public class ControladorLogin {
 
     public ModelAndView getLoginPage(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "login.hbs");
+        Boolean wrongUser = request.session().attribute("wrongUser");
+        request.session().removeAttribute("wrongUser");
+        HashMap<String, Boolean> map = new HashMap<>();
+        map.put("wrongUser", wrongUser);
+        return new ModelAndView(map, "login.hbs");
     }
 
     public Void login(Request request, Response response) {
@@ -24,9 +28,11 @@ public class ControladorLogin {
             request.session().attribute("user", username);
             response.redirect(RutasConstantes.GUARDARROPAS_URL);
         } else {
+            request.session().attribute("wrongUser", Boolean.TRUE);
             response.status(401);
             response.redirect(RutasConstantes.LOGIN_URL);
         }
         return null;
     }
+
 }
