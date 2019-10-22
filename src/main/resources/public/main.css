@@ -9,3 +9,45 @@
     display: inline-block;
     margin-left: 40px;
 }
+
+.jumbotron {
+    background-color: #3649B8;
+    color: floralwhite;
+}
+
+div.titulo-menu {
+    background-color: #4A569E;
+}
+
+footer.footer-principal {
+    padding-top: 50px;
+    background-color: #3649B8;
+    color: floralwhite;
+}
+
+a.footer-menu-item {
+  color: #CECECE;
+  padding-left: 10px;
+}
+
+a.footer-menu-item:hover {
+  color: #E8E8E8;
+}
+
+a.btn-social {
+    background-color: white;
+    color: #3578E5;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+a.desarrollado-por{
+  color: #74a9d8;
+	font-size: 1em!important;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.desarrollado-por:hover{
+  color: #9cc2e3;
+}

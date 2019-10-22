@@ -8,15 +8,19 @@ import quemepongo.dominio.prenda.CreadorDePrenda;
 import quemepongo.dominio.prenda.FabricadorTipoSuperiorAbrigo;
 import quemepongo.dominio.prenda.Material;
 import quemepongo.dominio.prenda.TipoPrenda;
+import quemepongo.dominio.usuario.Usuario;
 import quemepongo.persistencia.RepositorioGuardarropa;
+import quemepongo.persistencia.RepositorioUsuario;
 
 public class DataInicial implements WithGlobalEntityManager, TransactionalOps {
 
     private RepositorioGuardarropa repositorioGuardarropa = RepositorioGuardarropa.instancia();
+    private RepositorioUsuario repositorioUsuario = RepositorioUsuario.instancia();
 
     public void cargar() {
         withTransaction(() -> {
             cargarGuardarropa();
+            cargarUsuario();
         });
     }
 
@@ -32,6 +36,16 @@ public class DataInicial implements WithGlobalEntityManager, TransactionalOps {
                 .build()
         );
         repositorioGuardarropa.guardar(guardarropa);
+    }
+
+    private void cargarUsuario() {
+        Usuario usuarioObtenido = repositorioUsuario.getUsuarioByUsername("usuario1");
+        if (usuarioObtenido == null) {
+            Usuario usuario1 = new Usuario("usuario1", "pass");
+            Usuario usuario2 = new Usuario("usuario2", "pass");
+            repositorioUsuario.guardar(usuario1);
+            repositorioUsuario.guardar(usuario2);
+        }
     }
 
 }

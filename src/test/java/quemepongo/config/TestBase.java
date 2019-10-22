@@ -81,11 +81,11 @@ public abstract class TestBase extends AbstractPersistenceTest implements WithGl
     }
 
     protected Usuario usuarioBasico() {
-        return new Usuario();
+        return new Usuario("usuariotest", "contrasenia");
     }
 
     protected Usuario usuarioConGuardarropas(Guardarropa... guardarropas) {
-        Usuario usuario = new Usuario();
+        Usuario usuario = new Usuario("usuariotest", "contrasenia");
         Arrays.asList(guardarropas).forEach(usuario::agregarGuardarropa);
         return usuario;
     }

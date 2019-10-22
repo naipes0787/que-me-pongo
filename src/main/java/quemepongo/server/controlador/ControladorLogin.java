@@ -20,12 +20,13 @@ public class ControladorLogin {
         System.out.println("El usuario " + username + " quiere loguearse");
 
         Usuario usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
-        if (usuario.getPassword().equals(pass)) {
+        if (usuario != null && usuario.getPassword().equals(pass)) {
+            System.out.println("El usuario " + username + " se logueó");
             request.session(true);
             request.attribute("user", usuario);
             response.redirect("/guardarropas/prendas");
         } else {
-            System.out.println("El usuario " + username + " ingresó mal su contraseña");
+            System.out.println("El usuario " + username + " no existe o ingresó mal su contraseña");
             response.status(401);
             response.redirect("/login");
         }
