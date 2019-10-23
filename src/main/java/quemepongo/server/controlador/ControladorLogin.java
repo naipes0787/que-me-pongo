@@ -12,10 +12,11 @@ import java.util.HashMap;
 public class ControladorLogin {
 
     public ModelAndView getLoginPage(Request request, Response response) {
-        Boolean wrongUser = request.session().attribute("wrongUser");
-        request.session().removeAttribute("wrongUser");
+        // Se obtiene datosIncorrectos por si hay que mostrar un mensaje de error en la pantalla
+        Boolean datosIncorrectos = request.session().attribute("datosIncorrectos");
+        request.session().removeAttribute("datosIncorrectos");
         HashMap<String, Boolean> map = new HashMap<>();
-        map.put("wrongUser", wrongUser);
+        map.put("datosIncorrectos", datosIncorrectos);
         return new ModelAndView(map, "login.hbs");
     }
 
@@ -28,7 +29,8 @@ public class ControladorLogin {
             request.session().attribute("user", username);
             response.redirect(RutasConstantes.GUARDARROPAS_URL);
         } else {
-            request.session().attribute("wrongUser", Boolean.TRUE);
+            // Se setea datosIncorrectos en TRUE ya que se ingresó mal el usuario o password
+            request.session().attribute("datosIncorrectos", Boolean.TRUE);
             response.status(401);
             response.redirect(RutasConstantes.LOGIN_URL);
         }
