@@ -1,21 +1,20 @@
-
 {{#partial "contenido"}}
 
-    <div>
-        <h1>
-            Nombre: {{ nombre }}
-        </h1>
+<div>
+    <h2>
+        Usuario: {{ username }}
+    </h2>
 
-        {{#each prendas}}
-            <div class="prenda">
-                <img src="{{ urlFoto }}" alt="{{ nombre }}" width="200" height="200" />
-                <div class="detalles">
-                    <h2>{{nombre}}</h2>
-                    {{ colorPrincipal }}
-                </div>
-            </div>
-        {{/each}}
+    {{#each guardarropas}}
+    <div class="prenda">
+        <div class="detalles">
+            <a class="btn btn-info" href="/guardarropas/{{id}}/prendas">
+                <h2>{{nombre}}</h2>
+            </a>
+        </div>
     </div>
+    {{/each}}
+</div>
 
 {{/partial}}
 

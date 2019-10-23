@@ -145,7 +145,7 @@ public class Usuario extends Entidad {
         return eventos;
     }
 
-    public Set<Guardarropa> guardarropas() {
+    public Set<Guardarropa> getGuardarropas() {
         return guardarropas;
     }
 

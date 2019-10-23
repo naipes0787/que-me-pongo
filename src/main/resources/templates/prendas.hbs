@@ -1,0 +1,21 @@
+{{#partial "contenido"}}
+
+<div>
+    <h2>
+        Guardarropas: {{ nombre }}
+    </h2>
+
+    {{#each prendas}}
+    <div class="prenda">
+        <img src="{{ urlFoto }}" alt="{{ nombre }}" width="200" height="200" />
+        <div class="detalles">
+            <h2>{{nombre}}</h2>
+            {{ colorPrincipal }}
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+{{/partial}}
+
+{{>layout.hbs}}

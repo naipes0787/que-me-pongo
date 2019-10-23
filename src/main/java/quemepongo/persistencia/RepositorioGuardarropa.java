@@ -2,9 +2,6 @@ package quemepongo.persistencia;
 
 import quemepongo.dominio.guardarropa.Guardarropa;
 
-import javax.persistence.TypedQuery;
-import java.util.List;
-
 public class RepositorioGuardarropa extends Repositorio<Guardarropa> {
 
     private static RepositorioGuardarropa instancia = new RepositorioGuardarropa();
@@ -17,11 +14,6 @@ public class RepositorioGuardarropa extends Repositorio<Guardarropa> {
 
     public Guardarropa get(Long id) {
         return find(Guardarropa.class, id);
-    }
-
-    public List<Guardarropa> getGuardarropas() {
-        TypedQuery<Guardarropa> query = createQuery("from Guardarropa", Guardarropa.class);
-        return query.getResultList();
     }
 
 }

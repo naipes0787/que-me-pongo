@@ -10,11 +10,11 @@ public class RutasLogin extends Rutas {
     @Override
     public void registrar() {
 
-        Spark.get("/login",
+        Spark.get(RutasConstantes.LOGIN_URL,
                 controlador::getLoginPage,
                 templateEngine);
 
-        Spark.post("/login",
+        Spark.post(RutasConstantes.LOGIN_URL,
                 controlador::login);
 
     }

@@ -11,12 +11,12 @@ public class RutasGuardarropa extends Rutas {
     @Override
     public void registrar() {
 
-        get("/guardarropas/:id/prendas",
+        get(RutasConstantes.PRENDAS_URL,
                 controlador::prendasByGuardarropaId,
                 templateEngine);
 
-        get("/guardarropas/prendas",
-                controlador::prendas,
+        get(RutasConstantes.GUARDARROPAS_URL,
+                controlador::guardarropas,
                 templateEngine);
     }
 }
