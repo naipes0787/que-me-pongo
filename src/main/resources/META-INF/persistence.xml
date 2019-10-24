@@ -17,6 +17,8 @@
         <class>quemepongo.dominio.evento.tipo.EventoUnico</class>
         <class>quemepongo.dominio.sugerencia.Atuendo</class>
         <class>quemepongo.dominio.prenda.CombinacionPrenda</class>
+        <class>quemepongo.dominio.usuario.TipoUsuario</class>
+        <class>quemepongo.dominio.usuario.Usuario</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
