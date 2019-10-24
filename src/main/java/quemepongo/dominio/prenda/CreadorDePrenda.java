@@ -1,14 +1,8 @@
 package quemepongo.dominio.prenda;
 
-import javafx.scene.paint.Color;
-import net.coobird.thumbnailator.Thumbnails;
 import quemepongo.excepcion.ColoresRepetidosException;
 import quemepongo.excepcion.MaterialInvalidoException;
-import quemepongo.excepcion.PathInvalidoException;
 
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 public class CreadorDePrenda {
@@ -45,21 +39,12 @@ public class CreadorDePrenda {
 		return this;
 	}
 	
-    public CreadorDePrenda setUrlFoto(String path) {
-		try {
-			File foto = new File(path);
-    		Thumbnails.of(ImageIO.read(foto));
-    		this.urlFoto = foto.getAbsolutePath();
-        	return this;
-    	} catch(IOException ex) {
-    		throw new PathInvalidoException(path);
-    	}
+    public CreadorDePrenda setUrlFoto(String urlFoto) {
+		Imagen.validar(urlFoto);
+		this.urlFoto = urlFoto;
+		return this;
     }
     
-    public String getUrlFoto() {
-    	return this.urlFoto;
-    }
-
 	/**
 	 * Se valida que el material elegido sea de los permitidos por el tipo
 	 * de prenda.

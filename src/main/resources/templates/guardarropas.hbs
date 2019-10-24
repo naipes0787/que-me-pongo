@@ -10,10 +10,10 @@
 
     {{#each prendas}}
         <div class="prenda">
-            <img src="{{ urlFoto }}" alt="{{ nombre }}" width="200" height="200" />
+            <img src="data:image/png;base64, {{foto}}" alt="{{ nombre }}" />
             <div class="detalles">
                 <h2>{{nombre}}</h2>
-                {{ colorPrincipal }}
+                Color: {{ colorPrincipal.nombre }}
             </div>
 	    </div>
     {{/each}}
