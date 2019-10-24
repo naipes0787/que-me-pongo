@@ -10,7 +10,8 @@
         <img src="data:image/png;base64, {{foto}}" alt="{{ nombre }}" />
         <div class="detalles">
             <h2>{{nombre}}</h2>
-            Color: {{ colorPrincipal }}
+            <p>Color: {{ colorPrincipal.nombre }}</p>
+            <p><a class="btn btn-info" href="/prendas/{{id}}">Ver Más</a></p>
         </div>
     </div>
     {{/each}}
