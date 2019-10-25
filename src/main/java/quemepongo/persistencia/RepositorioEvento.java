@@ -4,6 +4,7 @@ import quemepongo.dominio.evento.Evento;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Repositorio de las {@link Evento}s del sistema

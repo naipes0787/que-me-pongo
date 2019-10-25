@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
+import quemepongo.server.rutas.RutasEvento;
 import quemepongo.server.rutas.RutasGuardarropa;
 import quemepongo.server.rutas.RutasHome;
 import quemepongo.server.rutas.RutasLogin;
@@ -34,6 +35,7 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
         new RutasGuardarropa().registrar();
         new RutasLogin().registrar();
         new RutasHome().registrar();
+        new RutasEvento().registrar();
     }
 
 }
