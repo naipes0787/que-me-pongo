@@ -38,4 +38,9 @@ public class ControladorLogin {
         return null;
     }
 
+    public ModelAndView logout(Request request, Response response) {
+        request.session().removeAttribute("user");
+        return new ModelAndView(new HashMap<>(), "login.hbs");
+    }
+
 }
