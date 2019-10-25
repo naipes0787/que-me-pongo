@@ -36,6 +36,7 @@ public class ControladorEvento extends ControladorAutenticado{
         Usuario usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
         usuario.agregarEvento(evento);
         RepositorioEvento.instancia().guardar(evento);
+        response.status(201);
         response.redirect(RutasConstantes.HOME_URL);
         return null;
     }
