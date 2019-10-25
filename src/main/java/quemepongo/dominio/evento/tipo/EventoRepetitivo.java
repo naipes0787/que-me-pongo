@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Entity
-@DiscriminatorValue(TipoEventoFactory.REPETITIVO)
+@DiscriminatorValue("REPETITIVO")
 public class EventoRepetitivo extends TipoEvento {
 
     @Convert(converter = ConversorFrecuencia.class)
