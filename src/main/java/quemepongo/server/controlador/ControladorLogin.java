@@ -8,6 +8,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class ControladorLogin {
 
@@ -23,11 +24,11 @@ public class ControladorLogin {
     public Void login(Request request, Response response) {
         String username = request.queryParams("usuario");
         String pass = request.queryParams("contrasenia");
-        Usuario usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
-        if (usuario != null && usuario.getPassword().equals(pass)) {
+        Optional<Usuario> usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
+        if (usuario.isPresent() && usuario.get().getPassword().equals(pass)) {
             request.session(true);
             request.session().attribute("user", username);
-            response.redirect(RutasConstantes.GUARDARROPAS_URL);
+            response.redirect(RutasConstantes.HOME_URL);
         } else {
             // Se setea datosIncorrectos en TRUE ya que se ingresó mal el usuario o password
             request.session().attribute("datosIncorrectos", Boolean.TRUE);
@@ -35,6 +36,11 @@ public class ControladorLogin {
             response.redirect(RutasConstantes.LOGIN_URL);
         }
         return null;
+    }
+
+    public ModelAndView logout(Request request, Response response) {
+        request.session().removeAttribute("user");
+        return new ModelAndView(new HashMap<>(), "login.hbs");
     }
 
 }

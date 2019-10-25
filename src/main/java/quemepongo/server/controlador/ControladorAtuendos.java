@@ -1,23 +1,17 @@
 package quemepongo.server.controlador;
 
 import quemepongo.dominio.evento.Evento;
-import quemepongo.dominio.guardarropa.Guardarropa;
 import quemepongo.dominio.sugerencia.Atuendo;
 import quemepongo.dominio.usuario.Usuario;
 import quemepongo.persistencia.RepositorioEvento;
-import quemepongo.persistencia.RepositorioGuardarropa;
-import quemepongo.persistencia.RepositorioUsuario;
 import quemepongo.server.rutas.RutasConstantes;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-public class ControladorAtuendos extends ControladorAutenticado{
+public class ControladorAtuendos implements Controlador {
 
     public ModelAndView obtenerAtuendos(Request req, Response res) {
         //Si ya está aceptado, no se le sugiere nada y vuelve a la pantalla de evento
@@ -70,7 +64,7 @@ public class ControladorAtuendos extends ControladorAutenticado{
     private void setAtuendos(Request req) {
         Usuario user = obtenerUsuario(req);
         Evento evento = obtenerEvento(req);
-        req.session().attribute(armarClaveAtuendos(req), new ArrayList<Atuendo>(user.sugerencias(evento)));
+        req.session().attribute(armarClaveAtuendos(req), new ArrayList<>(user.sugerencias(evento)));
         setAtuendoAMostrar(req, 0);
     }
 
@@ -91,11 +85,6 @@ public class ControladorAtuendos extends ControladorAutenticado{
 
     private String armarClaveAtuendoAMostrar(Request req){
         return "atuendoAMostrar" + obtenerEvento(req).getId();
-    }
-
-    private Usuario obtenerUsuario(Request req){
-        String username = req.session().attribute("user");
-        return RepositorioUsuario.instancia().getUsuarioByUsername(username);
     }
 
     private Evento obtenerEvento(Request req){

@@ -21,7 +21,8 @@ public class GuardarropaCompartidoTest extends GuardarropaCompartidoTestConfig {
         Evento evento = eventoBasico();
         Set<Atuendo> sugerenciasEvento = usuario1.sugerencias(evento);
         Atuendo algunAtuendo = sugerenciasEvento.iterator().next();
-        usuario1.aceptarSugerencia(evento, algunAtuendo);
+        algunAtuendo.aceptar();
+        evento.setSugerenciaAceptada(algunAtuendo);
 
         /* Deberian generarse dos sugerencias:
             jean - camisa - zapatillas

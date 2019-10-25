@@ -4,7 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
+import quemepongo.server.rutas.RutasAtuendos;
+import quemepongo.server.rutas.RutasEvento;
 import quemepongo.server.rutas.RutasGuardarropa;
+import quemepongo.server.rutas.RutasHome;
 import quemepongo.server.rutas.RutasLogin;
 import spark.Spark;
 
@@ -17,6 +20,7 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
 
     private void iniciar() {
         new DataInicial().cargar();
+
         Spark.port(9000);
         Spark.staticFileLocation("/public");
         Spark.init();
@@ -31,7 +35,10 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
         );
 
         new RutasGuardarropa().registrar();
+        new RutasAtuendos().registrar();
         new RutasLogin().registrar();
+        new RutasHome().registrar();
+        new RutasEvento().registrar();
     }
 
 }

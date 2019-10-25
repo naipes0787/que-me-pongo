@@ -1,6 +1,5 @@
 package quemepongo.dominio.prenda;
 
-import javafx.scene.paint.Color;
 import org.junit.Test;
 import quemepongo.excepcion.ColoresRepetidosException;
 import quemepongo.excepcion.MaterialInvalidoException;
@@ -23,7 +22,7 @@ public class PrendaTest {
 	public void construirPrendaSinTipo() {
 		Prenda prenda = new CreadorDePrenda()
 				.setMaterial(Material.ALGODON)
-				.setColorPrincipal(Color.BLACK)
+				.setColorPrincipal(Color.NEGRO)
 				.build();
 	}
 	
@@ -35,7 +34,7 @@ public class PrendaTest {
 	public void construirPrendaSinMaterial() {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(10)))
-				.setColorPrincipal(Color.BLACK)
+				.setColorPrincipal(Color.NEGRO)
 				.build();
 	}
 	
@@ -60,7 +59,7 @@ public class PrendaTest {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(10)))
 				.setMaterial(Material.SEDA)
-				.setColorPrincipal(Color.BLACK)
+				.setColorPrincipal(Color.NEGRO)
 				.build();
 	}
 	
@@ -72,8 +71,8 @@ public class PrendaTest {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
-				.setColorPrincipal(Color.BLACK)
-				.setColorSecundario(Color.BLACK)
+				.setColorPrincipal(Color.NEGRO)
+				.setColorSecundario(Color.NEGRO)
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
 	}
@@ -86,7 +85,7 @@ public class PrendaTest {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoSuperiorBase(15)))
 				.setMaterial(Material.ALGODON)
-				.setColorPrincipal(Color.BLACK)
+				.setColorPrincipal(Color.NEGRO)
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_SUPERIOR);
 	}
@@ -99,8 +98,8 @@ public class PrendaTest {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
-				.setColorPrincipal(Color.BLACK)
-				.setColorSecundario(Color.WHITE)
+				.setColorPrincipal(Color.NEGRO)
+				.setColorSecundario(Color.BLANCO)
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
 	}
@@ -113,8 +112,8 @@ public class PrendaTest {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
-				.setColorPrincipal(Color.BLACK)
-				.setColorSecundario(Color.WHITE)
+				.setColorPrincipal(Color.NEGRO)
+				.setColorSecundario(Color.BLANCO)
 				.setUrlFoto("./src/test/resources/test-foto.jpg")
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
@@ -128,8 +127,8 @@ public class PrendaTest {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
-				.setColorPrincipal(Color.BLACK)
-				.setColorSecundario(Color.WHITE)
+				.setColorPrincipal(Color.NEGRO)
+				.setColorSecundario(Color.BLANCO)
 				.setUrlFoto("./src/test/resources/test-foto-no-existe.jpg")
 				.build();
 		assertEquals(prenda.getCategoria(), Categoria.PRENDA_INFERIOR);
@@ -143,13 +142,13 @@ public class PrendaTest {
 		Prenda prenda = new CreadorDePrenda()
 				.setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
 				.setMaterial(Material.ALGODON)
-				.setColorPrincipal(Color.BLACK)
-				.setColorSecundario(Color.WHITE)
+				.setColorPrincipal(Color.NEGRO)
+				.setColorSecundario(Color.BLANCO)
 				.setUrlFoto("./src/test/resources/test-foto.jpg")
 				.build();
-		BufferedImage foto = prenda.getFoto();
-		assertEquals(foto.getWidth(), Prenda.ANCHO_FOTO.intValue());
-		assertEquals(foto.getHeight(), Prenda.ALTO_FOTO.intValue());
+		BufferedImage foto = prenda.getFoto().getImagen();
+		assertEquals(200, foto.getWidth());
+		assertEquals(200, foto.getHeight());
 	}
 
 }

@@ -28,21 +28,21 @@ public class CalificacionTest extends CalificacionTestConfig {
     public void siUsuarioCalificaAgradable_NoSeModificaLaSensibilidadDelClima(){
         assertEquals(1, usuarioBasico.getSensibilidadClima(), 0);
 
-        usuarioBasico.calificar(agradableGeneral);
+        usuarioBasico.modificarSensibilidad(agradableGeneral);
         assertEquals(1, usuarioBasico.getSensibilidadClima(), 0);
 
-        usuarioBasico.calificar(agradableGeneral);
+        usuarioBasico.modificarSensibilidad(agradableGeneral);
         assertEquals(1, usuarioBasico.getSensibilidadClima(), 0);
 
-        usuarioBasico.calificar(agradableGeneral);
+        usuarioBasico.modificarSensibilidad(agradableGeneral);
         assertEquals(1, usuarioBasico.getSensibilidadClima(), 0);
     }
 
     @Test
     public void siUsuarioGratuitoRealizaDosCalificacionesCalurosasYUnaCongelada_SuSensibilidadClimaDaria0_9(){
-        usuarioBasico.calificar(calurosoGeneral);
-        usuarioBasico.calificar(congeladoGeneral);
-        usuarioBasico.calificar(calurosoGeneral);
+        usuarioBasico.modificarSensibilidad(calurosoGeneral);
+        usuarioBasico.modificarSensibilidad(congeladoGeneral);
+        usuarioBasico.modificarSensibilidad(calurosoGeneral);
 
         assertEquals( 0.9, usuarioBasico.getSensibilidadClima(), 0);
     }
@@ -50,18 +50,18 @@ public class CalificacionTest extends CalificacionTestConfig {
     @Test
     public void siUsuarioPremiumRealizaQuinceCalificacionesCalurosasYUnaCongelada_SuSensibilidadClimaDaria_Negativo0_4(){
         for(int i = 0; i < 15; i++){
-            usuarioBasico.calificar(calurosoGeneral);
+            usuarioBasico.modificarSensibilidad(calurosoGeneral);
         }
-        usuarioBasico.calificar(congeladoGeneral);
+        usuarioBasico.modificarSensibilidad(congeladoGeneral);
 
         assertEquals( -0.4, usuarioBasico.getSensibilidadClima(), 0.01);
     }
 
     @Test
     public void siUsuarioGratuitoCalificaMuchosAtuendosCongeladosEnLasManos_EsFrioLentoEnLasManos(){
-        usuarioBasico.calificar(congeladoSoloManos);
-        usuarioBasico.calificar(congeladoSoloManos);
-        usuarioBasico.calificar(congeladoSoloManos);
+        usuarioBasico.modificarSensibilidad(congeladoSoloManos);
+        usuarioBasico.modificarSensibilidad(congeladoSoloManos);
+        usuarioBasico.modificarSensibilidad(congeladoSoloManos);
 
         assertTrue( usuarioBasico.esFriolentoDeManos() );
         assertEquals(1, usuarioBasico.getSensibilidadClima(), 0);
@@ -71,18 +71,18 @@ public class CalificacionTest extends CalificacionTestConfig {
 
     @Test
     public void siUsuarioPremiumCalificaMuchosAtuendosCalurososEnLasManos_NoEsFrioLentoEnLasManos(){
-        usuarioPremium.calificar(calurosoSoloManos);
-        usuarioPremium.calificar(calurosoSoloManos);
-        usuarioPremium.calificar(calurosoSoloManos);
+        usuarioPremium.modificarSensibilidad(calurosoSoloManos);
+        usuarioPremium.modificarSensibilidad(calurosoSoloManos);
+        usuarioPremium.modificarSensibilidad(calurosoSoloManos);
 
         assertFalse( usuarioPremium.esFriolentoDeManos() );
     }
 
     @Test
     public void siUsuarioGratuitoCalificaMuchosAtuendosCongeladosEnElCuello_EsFrioLentoEnElCuello(){
-        usuarioBasico.calificar(congeladoSoloCuello);
-        usuarioBasico.calificar(congeladoSoloCuello);
-        usuarioBasico.calificar(congeladoSoloCuello);
+        usuarioBasico.modificarSensibilidad(congeladoSoloCuello);
+        usuarioBasico.modificarSensibilidad(congeladoSoloCuello);
+        usuarioBasico.modificarSensibilidad(congeladoSoloCuello);
 
         assertTrue( usuarioBasico.esFriolentoDeCuello() );
         assertEquals(1, usuarioBasico.getSensibilidadClima(), 0);
@@ -92,18 +92,18 @@ public class CalificacionTest extends CalificacionTestConfig {
 
     @Test
     public void siUsuarioPremiumCalificaMuchosAtuendosCalurososElCuello_NoEsFrioLentoElCuello(){
-        usuarioPremium.calificar(calurosoSoloCuello);
-        usuarioPremium.calificar(calurosoSoloCuello);
-        usuarioPremium.calificar(calurosoSoloCuello);
+        usuarioPremium.modificarSensibilidad(calurosoSoloCuello);
+        usuarioPremium.modificarSensibilidad(calurosoSoloCuello);
+        usuarioPremium.modificarSensibilidad(calurosoSoloCuello);
 
         assertFalse( usuarioPremium.esFriolentoDeCuello() );
     }
 
     @Test
     public void siUsuarioPremiumCalificaMuchosAtuendosCongeladosEnLaCabeza_EsFrioLentoEnLaCabezaPeroNoEnElRestoDelCuerpo(){
-        usuarioPremium.calificar(congeladoSoloCabeza);
-        usuarioPremium.calificar(congeladoSoloCabeza);
-        usuarioPremium.calificar(congeladoSoloCabeza);
+        usuarioPremium.modificarSensibilidad(congeladoSoloCabeza);
+        usuarioPremium.modificarSensibilidad(congeladoSoloCabeza);
+        usuarioPremium.modificarSensibilidad(congeladoSoloCabeza);
 
         assertTrue( usuarioPremium.esFriolentoDeCabeza() );
         assertEquals(1, usuarioPremium.getSensibilidadClima(), 0);
@@ -113,9 +113,9 @@ public class CalificacionTest extends CalificacionTestConfig {
 
     @Test
     public void siUsuarioGratuitoCalificaMuchosAtuendosCalurososLaCabeza_NoEsFrioLentoLaCabeza(){
-        usuarioBasico.calificar(calurosoSoloCabeza);
-        usuarioBasico.calificar(calurosoSoloCabeza);
-        usuarioBasico.calificar(calurosoSoloCabeza);
+        usuarioBasico.modificarSensibilidad(calurosoSoloCabeza);
+        usuarioBasico.modificarSensibilidad(calurosoSoloCabeza);
+        usuarioBasico.modificarSensibilidad(calurosoSoloCabeza);
 
         assertFalse( usuarioBasico.esFriolentoDeCabeza() );
     }

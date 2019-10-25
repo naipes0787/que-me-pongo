@@ -1,6 +1,5 @@
 package quemepongo.persistencia;
 
-import javafx.scene.paint.Color;
 import org.junit.Assert;
 import org.junit.Test;
 import quemepongo.config.TestBase;
@@ -27,8 +26,8 @@ public class RepositorioPrendaTest extends TestBase {
         Prenda prenda = new CreadorDePrenda()
                 .setTipoPrenda(TipoPrenda.diseniarTipo(new FabricadorTipoInferior(15)))
                 .setMaterial(Material.ALGODON)
-                .setColorPrincipal(Color.BLACK)
-                .setColorSecundario(Color.WHITE)
+                .setColorPrincipal(Color.NEGRO)
+                .setColorSecundario(Color.BLANCO)
                 .setUrlFoto("./src/test/resources/test-foto.jpg")
                 .build();
         RepositorioPrenda.instancia().guardar(prenda);

@@ -1,32 +1,45 @@
 package quemepongo.dominio.calificacion;
 
-public class Calificacion {
-    private OpcionesCalificacion calificacionGlobal;
-    private OpcionesCalificacion calificacionManos;
-    private OpcionesCalificacion calificacionCuello;
-    private OpcionesCalificacion calificacionCabeza;
+import quemepongo.dominio.Entidad;
 
-    public Calificacion(OpcionesCalificacion calificacionGlobal, OpcionesCalificacion calificacionManos,
-                        OpcionesCalificacion calificacionCuello, OpcionesCalificacion calificacionCabeza){
-        this.calificacionGlobal = calificacionGlobal;
-        this.calificacionManos = calificacionManos;
-        this.calificacionCuello = calificacionCuello;
-        this.calificacionCabeza = calificacionCabeza;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import java.util.Map;
+
+@Entity
+public class Calificacion extends Entidad {
+    @Enumerated
+    private Puntuacion calificacionGlobal;
+    @Enumerated
+    private Puntuacion calificacionManos;
+    @Enumerated
+    private Puntuacion calificacionCuello;
+    @Enumerated
+    private Puntuacion calificacionCabeza;
+
+    public Calificacion(Map<TipoCalificacion, Puntuacion> puntuaciones){
+        this.calificacionGlobal = puntuaciones.get(TipoCalificacion.GLOBAL);
+        this.calificacionManos = puntuaciones.get(TipoCalificacion.MANOS);
+        this.calificacionCuello = puntuaciones.get(TipoCalificacion.CUELLO);
+        this.calificacionCabeza = puntuaciones.get(TipoCalificacion.CABEZA);
     }
 
-    public OpcionesCalificacion getCalificacionGlobal() {
+    public Calificacion() {
+    }
+
+    public Puntuacion getCalificacionGlobal() {
         return calificacionGlobal;
     }
 
-    public OpcionesCalificacion getCalificacionManos() {
+    public Puntuacion getCalificacionManos() {
         return calificacionManos;
     }
 
-    public OpcionesCalificacion getCalificacionCuello() {
+    public Puntuacion getCalificacionCuello() {
         return calificacionCuello;
     }
 
-    public OpcionesCalificacion getCalificacionCabeza() {
+    public Puntuacion getCalificacionCabeza() {
         return calificacionCabeza;
     }
 }
