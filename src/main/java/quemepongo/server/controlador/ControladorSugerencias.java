@@ -3,51 +3,57 @@ package quemepongo.server.controlador;
 import quemepongo.dominio.evento.Evento;
 import quemepongo.dominio.sugerencia.Atuendo;
 import quemepongo.dominio.usuario.Usuario;
+import quemepongo.excepcion.ControladorException;
 import quemepongo.persistencia.RepositorioEvento;
-import quemepongo.server.rutas.RutasConstantes;
+import quemepongo.server.controlador.sugerencias.VistaSugerencia;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.util.ArrayList;
 
-public class ControladorAtuendos implements Controlador {
+import static quemepongo.server.rutas.RutasConstantes.EVENTO_URL;
+
+public class ControladorSugerencias implements Controlador {
 
     public ModelAndView obtenerAtuendos(Request req, Response res) {
+        Evento evento = this.obtenerEvento(req);
         //Si ya está aceptado, no se le sugiere nada y vuelve a la pantalla de evento
         if (this.verificarSiYaAceptoAtuendo(req)){
-            return new ModelAndView(this.obtenerEvento(req), "evento.hbs");
+            return new ModelAndView(evento, "evento_particular.hbs");
         }
         //Si aún no se ingresó en la session el listado de atuendos, se setea.
         if (this.sinAtuendos(req)) {
             this.setAtuendos(req);
         }
+
         //obtiene el correspondiente y lo muestra
-        return new ModelAndView(this.darAtuendo(req), "atuendoSugerido.hbs");
+        Atuendo atuendoAMostrar = darAtuendo(req);
+        int indiceActual = getIndiceAtuendoAMostrar(req);
+        return new ModelAndView(
+                new VistaSugerencia(
+                        indiceActual,
+                        atuendoAMostrar,
+                        evento,
+                        indiceActual < getAtuendos(req).size() - 1), "sugerencias.hbs");
     }
 
     public Void aceptarAtuendo(Request req, Response res){
         Evento evento = obtenerEvento(req);
-        evento.setSugerenciaAceptada(darAtuendo(req));
-        res.redirect(RutasConstantes.EVENTO_URL);
+        Atuendo atuendo = getAtuendoActual(req);
+        atuendo.aceptar();
+        evento.setSugerenciaAceptada(atuendo);
+        res.redirect(EVENTO_URL.replace(":id", evento.getId().toString()));
         return null;
     }
-    private Atuendo darAtuendo(Request req){
-        int atuendoAMostrar = getAtuendosAMostrar(req);
 
-        //Ver como se puede hacer más lindo.
-        //Los botones Siguiente y Anterior tienen que setear algo
-        // que acá nos sirva para determinar si suma o resta
-        String mover = req.queryParams("mover");
-        if (mover != null) {
-            switch (mover) {
-                case "siguiente":
-                    atuendoAMostrar++;
-                    break;
-                case "anterior":
-                    atuendoAMostrar--;
-                    break;
-            }
+    private Atuendo darAtuendo(Request req){
+        int atuendoAMostrar = getIndiceAtuendoAMostrar(req);
+
+        if (req.queryParams("siguiente") != null && atuendoAMostrar < getAtuendos(req).size() - 1) {
+            atuendoAMostrar++;
+        } else {
+            atuendoAMostrar = 0;
         }
         setAtuendoAMostrar(req, atuendoAMostrar);
         return getAtuendos(req).get(atuendoAMostrar);
@@ -68,6 +74,10 @@ public class ControladorAtuendos implements Controlador {
         setAtuendoAMostrar(req, 0);
     }
 
+    private Atuendo getAtuendoActual(Request req) {
+        return getAtuendos(req).get(getIndiceAtuendoAMostrar(req));
+    }
+
     private ArrayList<Atuendo> getAtuendos(Request req){
         return req.session().attribute(armarClaveAtuendos(req));
     }
@@ -79,7 +89,7 @@ public class ControladorAtuendos implements Controlador {
         req.session().attribute(armarClaveAtuendoAMostrar(req), i);
     }
 
-    private int getAtuendosAMostrar(Request req){
+    private int getIndiceAtuendoAMostrar(Request req){
         return req.session().attribute(armarClaveAtuendoAMostrar(req));
     }
 
@@ -88,7 +98,7 @@ public class ControladorAtuendos implements Controlador {
     }
 
     private Evento obtenerEvento(Request req){
-        Long id = Long.valueOf(req.params("id"));
-        return RepositorioEvento.instancia().get(id);
+        return RepositorioEvento.instancia().buscarEvento(parsearId(req))
+                .orElseThrow(() -> new ControladorException("Evento " + parsearId(req) + " no encontrado"));
     }
 }

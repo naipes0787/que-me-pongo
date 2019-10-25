@@ -1,14 +1,13 @@
 package quemepongo.server.rutas;
 
-import quemepongo.server.controlador.ControladorGuardarropas;
-import quemepongo.server.controlador.ControladorAtuendos;
+import quemepongo.server.controlador.ControladorSugerencias;
 import spark.Spark;
 
 import static spark.Spark.get;
 
 public class RutasSugerencias extends Rutas {
 
-    private ControladorAtuendos controlador = new ControladorAtuendos();
+    private ControladorSugerencias controlador = new ControladorSugerencias();
 
     @Override
     public void registrar() {

@@ -1,0 +1,19 @@
+{{#partial "contenido"}}
+
+    <h2>
+        Guardarropas: {{ nombre }}
+    </h2>
+
+    {{#if prendas}}
+        {{>prendas.hbs prendas}}
+    {{else}}
+        <div class="container" style="height: 250px;">
+            <div class="alert alert-dark col-md-4 col-md-offset-4">
+                El guardarropas est&aacute; vac&iacute;o
+            </div>
+        </div>
+    {{/if}}
+
+{{/partial}}
+
+{{>layout.hbs}}

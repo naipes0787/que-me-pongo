@@ -5,6 +5,7 @@ import quemepongo.dominio.guardarropa.Guardarropa;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -29,7 +30,7 @@ public class RepositorioEvento extends Repositorio<Evento> {
         return query.getResultList();
     }
 
-    public Evento get(Long id) {
-        return find(Evento.class, id);
+    public Optional<Evento> buscarEvento(Long id) {
+        return Optional.ofNullable(find(Evento.class, id));
     }
 }

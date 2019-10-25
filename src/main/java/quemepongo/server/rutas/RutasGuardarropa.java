@@ -11,7 +11,7 @@ public class RutasGuardarropa extends Rutas {
     @Override
     public void registrar() {
 
-        get(RutasConstantes.PRENDAS_URL,
+        get(RutasConstantes.GUARDARROPA_URL,
                 controlador::prendasByGuardarropaId,
                 templateEngine);
 
