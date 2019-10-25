@@ -10,5 +10,6 @@ public final class RutasConstantes {
     public static final String PRENDAS_URL = "/guardarropas/:id/prendas";
     public static final String ATUENDOS_URL = "/atuendos";
     public static final String CALIFICACIONES_URL = "/atuendos/:id/calificaciones";
+    public static final String NUEVAS_PRENDAS_URL = "/form_prendas";
 
 }

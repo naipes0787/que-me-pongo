@@ -1,5 +1,8 @@
 package quemepongo.dominio.prenda;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Categoria {
     CALZADO("Calzado"),
     PRENDA_INFERIOR("Parte inferior"),
@@ -17,5 +20,9 @@ public enum Categoria {
 
     public String getNombre() {
         return nombreAMostrar;
+    }
+
+    public static List<Categoria> getTodos() {
+        return Arrays.asList(values());
     }
 }

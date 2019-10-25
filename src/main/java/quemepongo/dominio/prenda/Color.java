@@ -1,5 +1,10 @@
 package quemepongo.dominio.prenda;
 
+import quemepongo.dominio.calificacion.TipoCalificacion;
+
+import java.util.Arrays;
+import java.util.List;
+
 public enum Color {
     ROJO("Rojo"),
     AZUL("Azul"),
@@ -20,5 +25,9 @@ public enum Color {
 
     public String getNombre() {
         return nombreAMostrar;
+    }
+
+    public static List<Color> getTodos() {
+        return Arrays.asList(values());
     }
 }

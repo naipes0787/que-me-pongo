@@ -1,5 +1,8 @@
 package quemepongo.dominio.prenda;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Material {
     ALGODON("Algodón"),
     BRONCE("Bronce"),
@@ -24,5 +27,9 @@ public enum Material {
 
     public String getNombre() {
         return nombreAMostrar;
+    }
+
+    public static List<Material> getTodos() {
+        return Arrays.asList(values());
     }
 }

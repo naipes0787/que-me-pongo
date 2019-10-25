@@ -1,20 +1,20 @@
-package quemepongo.server.controlador;
+package quemepongo.server.controlador.prendas;
 
-import quemepongo.dominio.prenda.Color;
-import quemepongo.dominio.prenda.Material;
-import quemepongo.dominio.prenda.TipoPrenda;
-
-import java.util.ArrayList;
+import quemepongo.dominio.FactorClimatico;
+import quemepongo.dominio.prenda.*;
+import java.util.List;
 
 public class VistaPrenda {
 
-    private ArrayList<TipoPrenda> tiposPrenda;
+    public List<Material> materiales(){return Material.getTodos();}
 
-    private Material material;
+    public List<Color> colores(){return Color.getTodos();}
 
-    private Color color;
+    public List<Categoria> categorias(){return Categoria.getTodos();}
 
-    private
+    public List<Capa> capas(){return Capa.getTodos();}
+
+    public List<FactorClimatico> factoresclimaticos(){return FactorClimatico.getTodos();}
 
 
 }
