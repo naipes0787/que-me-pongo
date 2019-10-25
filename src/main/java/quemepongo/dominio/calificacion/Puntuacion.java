@@ -5,16 +5,16 @@ public enum Puntuacion {
     AGRADABLE("Estuvo bien", 0),
     CONGELADO("Sentí frío", 0.1);
 
-    String descripcion;
-    double varianzaSensibilidad;
+    private String nombreAMostrar;
+    private double varianzaSensibilidad;
 
-    Puntuacion(String descripcion, double varianzaSensibilidad){
-        this.descripcion = descripcion;
+    Puntuacion(String nombreAMostrar, double varianzaSensibilidad){
+        this.nombreAMostrar = nombreAMostrar;
         this.varianzaSensibilidad = varianzaSensibilidad;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return nombreAMostrar;
     }
 
     public double getVarianzaSensibilidad() {

@@ -105,7 +105,7 @@ public class Usuario extends Entidad {
         return atuendo.prendas().stream().anyMatch(prendasEnUso::contains);
     }
 
-    public void calificar(Calificacion calificacion){
+    public void modificarSensibilidad(Calificacion calificacion){
         sensibilidad.modificarSensibilidad(calificacion);
     }
 

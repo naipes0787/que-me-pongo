@@ -12,13 +12,13 @@ public enum Color {
     MARRON("Marrón"),
     BEIGE("Beige");
 
-    String nombre;
+    private String nombreAMostrar;
 
-    Color(String nombre) {
-        this.nombre = nombre;
+    Color(String nombreAMostrar) {
+        this.nombreAMostrar = nombreAMostrar;
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreAMostrar;
     }
 }

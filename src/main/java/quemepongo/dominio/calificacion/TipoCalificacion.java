@@ -9,19 +9,19 @@ public enum TipoCalificacion {
     CUELLO("Cuello"),
     CABEZA("Cabeza");
 
-    String descripcion;
-    Puntuacion[] puntuacionesPosibles = Puntuacion.values();
+    private String nombreAMostrar;
+    private List<Puntuacion> puntuacionesPosibles = Arrays.asList(Puntuacion.values());
 
-    TipoCalificacion(String descripcion) {
-        this.descripcion = descripcion;
+    TipoCalificacion(String nombreAMostrar) {
+        this.nombreAMostrar = nombreAMostrar;
     }
 
     public String getDescripcion() {
-        return this.descripcion;
+        return this.nombreAMostrar;
     }
 
     public List<Puntuacion> getPuntuacionesPosibles() {
-        return Arrays.asList(puntuacionesPosibles);
+        return puntuacionesPosibles;
     }
 
     public String getCodigo() {
