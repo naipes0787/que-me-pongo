@@ -8,6 +8,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class ControladorLogin {
 
@@ -23,8 +24,8 @@ public class ControladorLogin {
     public Void login(Request request, Response response) {
         String username = request.queryParams("usuario");
         String pass = request.queryParams("contrasenia");
-        Usuario usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
-        if (usuario != null && usuario.getPassword().equals(pass)) {
+        Optional<Usuario> usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
+        if (usuario.isPresent() && usuario.get().getPassword().equals(pass)) {
             request.session(true);
             request.session().attribute("user", username);
             response.redirect(RutasConstantes.HOME_URL);

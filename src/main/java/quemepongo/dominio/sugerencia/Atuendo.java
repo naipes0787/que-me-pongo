@@ -5,6 +5,9 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import quemepongo.dominio.Entidad;
 import quemepongo.dominio.FactorClimatico;
+import quemepongo.dominio.calificacion.Calificacion;
+import quemepongo.dominio.calificacion.Puntuacion;
+import quemepongo.dominio.evento.Evento;
 import quemepongo.dominio.prenda.CombinacionPrenda;
 import quemepongo.dominio.prenda.Prenda;
 
@@ -38,6 +41,10 @@ public class Atuendo extends Entidad {
     @Column(columnDefinition = "smallint")
     private EstadoAtuendo estado;
 
+    @OneToOne
+    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    private Calificacion calificacion;
+
     public Atuendo(){}
 
     public Atuendo(CombinacionPrenda prendasSuperiores, CombinacionPrenda prendaInferior, CombinacionPrenda calzado){
@@ -50,7 +57,7 @@ public class Atuendo extends Entidad {
     }
 
     public void agregarAccesorio(CombinacionPrenda nuevoAccesorio){
-        nuevoAccesorio.getPrendas().stream().forEach(prenda -> this.accesorio.agregarPrenda(prenda));
+        nuevoAccesorio.getPrendas().forEach(prenda -> this.accesorio.agregarPrenda(prenda));
     }
 
     public double getNivelAbrigo(){
@@ -78,23 +85,8 @@ public class Atuendo extends Entidad {
     	return prendasSuperiores;
     }
     
-    public CombinacionPrenda getPrendaInferior(){
-    	return prendaInferior;
-    }
-    
-    public CombinacionPrenda getCalzado() {
-    	return calzado;
-    }
-    
-    public CombinacionPrenda getAccesorio(){
-    	return accesorio;
-    }
-
     public int getCantidadPrendas(){
-        return getPrendasSuperiores().getCantPrendas()
-                + getPrendaInferior().getCantPrendas()
-                + getCalzado().getCantPrendas()
-                + getAccesorio().getCantPrendas();
+        return prendas().size();
     }
 
     public Set<Prenda> prendas() {
@@ -114,11 +106,31 @@ public class Atuendo extends Entidad {
         this.estado = estadoAtuendo;
     }
 
-    public ComandoAtuendo getUltimoComando() {
-        return ultimoComando;
-    }
-
     public void setUltimoComando(ComandoAtuendo comandoAtuendo) {
         this.ultimoComando = comandoAtuendo;
+    }
+
+    public void aceptar() {
+        new ComandoAtuendoAceptar(this).ejecutar();
+    }
+
+    public void rechazar() {
+        new ComandoAtuendoRechazar(this).ejecutar();
+    }
+
+    public void deshacerUltimaOperacion() {
+        ultimoComando.deshacer();
+    }
+
+    public void setCalificacion(Calificacion calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public String getDescripcion() {
+        return prendas().stream().map(Prenda::getNombre).collect(Collectors.joining(" + "));
+    }
+
+    public Calificacion getCalificacion() {
+        return calificacion;
     }
 }

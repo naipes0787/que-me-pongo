@@ -1,19 +1,36 @@
 {{#partial "contenido"}}
 
-<div>
-    <h2>
-        Guardarropas: {{ nombre }}
-    </h2>
+<h2>
+    Guardarropas: {{ nombre }}
+</h2>
+<div class="container-fluid">
 
-    {{#each prendas}}
-    <div class="prenda">
-        <img src="{{ urlFoto }}" alt="{{ nombre }}" width="200" height="200" />
-        <div class="detalles">
-            <h2>{{nombre}}</h2>
-            {{ colorPrincipal }}
-        </div>
+    <div class="row">
+        {{#if prendas}}
+            {{#each prendas}}
+                <div class="card-deck col-sm-3">
+                    <div class="card mx-3 my-3">
+                        <div class="card-header">{{nombre}}</div>
+                        <img src="data:image/png;base64, {{foto}}" alt="{{ nombre }}" class="card-img-top"/>
+
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Color: {{ colorPrincipal.nombre }}</li>
+                                <li class="list-group-item">Material: {{ material.nombre }}</li>
+                                <li class="list-group-item">Categor&iacute;a: {{ categoria.nombre }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <div class="container" style="height: 250px;">
+                <div class="alert alert-dark col-md-4 col-md-offset-4">
+                    El guardarropas est&aacute; vac&iacute;o
+                </div>
+            </div>
+        {{/if}}
     </div>
-    {{/each}}
 </div>
 
 {{/partial}}

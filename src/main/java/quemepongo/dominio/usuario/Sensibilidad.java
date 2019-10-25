@@ -8,11 +8,11 @@ public class Sensibilidad {
     private double sensibilidadCuello;
     private double sensibilidadCabeza;
 
-    public void modificarSensibilidad(Calificacion calificacion){
-        sensibilidadClima += calificacion.getCalificacionGlobal().varianzaSensibilidad;
-        sensibilidadManos += calificacion.getCalificacionManos().varianzaSensibilidad;
-        sensibilidadCuello += calificacion.getCalificacionCuello().varianzaSensibilidad;
-        sensibilidadCabeza += calificacion.getCalificacionCabeza().varianzaSensibilidad;
+    public void modificarSensibilidad(Calificacion calificacion) {
+        sensibilidadClima += calificacion.getCalificacionGlobal().getVarianzaSensibilidad();
+        sensibilidadManos += calificacion.getCalificacionManos().getVarianzaSensibilidad();
+        sensibilidadCuello += calificacion.getCalificacionCuello().getVarianzaSensibilidad();
+        sensibilidadCabeza += calificacion.getCalificacionCabeza().getVarianzaSensibilidad();
     }
 
     public double getSensibilidadClima() {

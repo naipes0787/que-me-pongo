@@ -5,6 +5,7 @@ import quemepongo.dominio.usuario.Usuario;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Optional;
 
 public class RepositorioUsuario extends Repositorio<Usuario>{
 
@@ -22,13 +23,13 @@ public class RepositorioUsuario extends Repositorio<Usuario>{
         return query.getResultList();
     }
 
-    public Usuario getUsuarioByUsername(String username) {
+    public Optional<Usuario> getUsuarioByUsername(String username) {
         TypedQuery<Usuario> query = createQuery("from Usuario u WHERE u.username = :username", Usuario.class)
                 .setParameter("username", username);
         try {
-            return query.getSingleResult();
+            return Optional.of(query.getSingleResult());
         } catch (NoResultException exception) {
-            return null;
+            return Optional.empty();
         }
 
     }
