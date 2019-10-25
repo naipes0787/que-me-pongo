@@ -24,31 +24,68 @@ public class ControladorAtuendos extends ControladorAutenticado{
         if (this.verificarSiYaAceptoAtuendo(req)){
             return new ModelAndView(this.obtenerEvento(req), "evento.hbs");
         }
-        if (this.sinAtuendos()) {
+        //Si aún no se ingresó en la session el listado de atuendos, se setea.
+        if (this.sinAtuendos(req)) {
             this.setAtuendos(req);
         }
+        //obtiene el correspondiente y lo muestra
         return new ModelAndView(this.darAtuendo(req), "atuendoSugerido.hbs");
+    }
+
+    public Void aceptarAtuendo(Request req, Response res){
+        Evento evento = obtenerEvento(req);
+        evento.setSugerenciaAceptada(darAtuendo(req));
+        res.redirect(RutasConstantes.EVENTO_URL);
+        return null;
     }
 
     private boolean verificarSiYaAceptoAtuendo(Request req) {
         return obtenerEvento(req).tieneSugerenciaAceptada();
     }
 
-    public Void aceptarAtuendo(Request req, Response res){
-        Evento evento = obtenerEvento(req);
-        evento.setSugerenciaAceptada(atuendos.get(atuendoAMostrar));
-        res.redirect(RutasConstantes.EVENTO_URL);
-        return null;
-    }
-
-    private Boolean sinAtuendos(){
-        return false //Aca me falta recuperar atributo atuendos y ver si existe / tiene algo
+    private Boolean sinAtuendos(Request req){
+        return req.session().attribute("atuendos").equals(null);
     }
 
     private void setAtuendos(Request req) {
         Usuario user = obtenerUsuario(req);
         Evento evento = obtenerEvento(req);
         req.session().attribute("atuendos", new ArrayList<Atuendo>(user.sugerencias(evento)));
+        setAtuendoAMostrar(req, 0);
+    }
+
+    private Atuendo darAtuendo(Request req){
+        int atuendoAMostrar = getAtuendosAMostrar(req);
+
+        //Ver como se puede hacer más lindo.
+        //Los botones Siguiente y Anterior tienen que setear algo
+        // que acá nos sirva para determinar si suma o resta
+        String mover = req.queryParams("mover");
+        if (mover != null) {
+            switch (mover) {
+                case "siguiente":
+                    atuendoAMostrar++;
+                    break;
+                case "anterior":
+                    atuendoAMostrar--;
+                    break;
+            }
+        }
+        setAtuendoAMostrar(req, atuendoAMostrar);
+        return getAtuendos(req).get(atuendoAMostrar);
+    }
+
+    private ArrayList<Atuendo> getAtuendos(Request req){
+        return req.session().attribute("atuendos");
+    }
+
+    private void setAtuendoAMostrar(Request req, int i){
+        req.session().removeAttribute("atuendoAMostrar");
+        req.session().attribute("atuendoAMostrar", i);
+    }
+
+    private int getAtuendosAMostrar(Request req){
+        return req.session().attribute("atuendoAMostrar");
     }
 
     private Usuario obtenerUsuario(Request req){
@@ -60,25 +97,4 @@ public class ControladorAtuendos extends ControladorAutenticado{
         Long id = Long.valueOf(req.params("id"));
         return RepositorioEvento.instancia().get(id);
     }
-
-    private Atuendo darAtuendo(Request req){
-        String mover = req.queryParams("mover");
-//Aca voy a tener que mover para atras o adelante un atributo que me vaya manteniendo el puntero del array.
-        if (mover != null) {
-            switch (mover) {
-                case "siguiente":
-                    atuendoAMostrar++;
-                    break;
-                case "anterior":
-                    atuendoAMostrar--;
-                    break;
-            }
-        }
-
-//y aca obtener el atuendo que corresponda según la posición.
-        return atuendos.get(atuendoAMostrar);
-    }
-
-
-
 }
