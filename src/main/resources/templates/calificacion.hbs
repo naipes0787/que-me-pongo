@@ -4,7 +4,7 @@
     <p>{{ atuendo.descripcion }}</p>
 
     <div class="row" style="justify-content: center;width: 100%;">
-        <form action="/atuendos/{{atuendo.id}}/calificacion" method="post" class="form-group col-md-6">
+        <form action="/atuendos/{{atuendo.id}}/calificaciones" method="post" class="form-group col-md-6">
             {{#each tiposCalificacion}}
                 <div class="card my-3">
                     <h5 class="card-header">Calificaci&oacute;n {{descripcion}}</h5>

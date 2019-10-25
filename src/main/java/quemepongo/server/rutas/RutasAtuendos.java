@@ -3,6 +3,8 @@ package quemepongo.server.rutas;
 import quemepongo.server.controlador.atuendos.ControladorAtuendos;
 import quemepongo.server.controlador.calificacion.ControladorCalificacion;
 
+import static quemepongo.server.rutas.RutasConstantes.ATUENDOS_URL;
+import static quemepongo.server.rutas.RutasConstantes.CALIFICACIONES_URL;
 import static spark.Spark.*;
 
 public class RutasAtuendos extends Rutas {
@@ -12,14 +14,14 @@ public class RutasAtuendos extends Rutas {
 
     @Override
     public void registrar() {
-        get("/atuendos",
+        get(ATUENDOS_URL,
                 controladorAtuendos::mostrarAtuendos,
                 templateEngine);
 
-        get("/atuendos/:id/calificacion",
+        get(CALIFICACIONES_URL,
                 controladorCalificacion::mostrarFormulario,
                 templateEngine);
 
-        post("/atuendos/:id/calificacion", controladorCalificacion::calificar);
+        post(CALIFICACIONES_URL, controladorCalificacion::calificar);
     }
 }
