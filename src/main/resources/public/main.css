@@ -51,3 +51,33 @@ a.desarrollado-por{
 a.desarrollado-por:hover{
   color: #9cc2e3;
 }
+
+.row-striped:nth-of-type(odd){
+    background-color: #efefef;
+    border-left: 4px #000000 solid;
+}
+
+.row-striped:nth-of-type(even){
+    background-color: #ffffff;
+    border-left: 4px #efefef solid;
+}
+
+.row-striped {
+    padding: 15px 0;
+}
+
+.fa-location-arrow {
+    color: #3649B8;
+}
+
+.fa-clock-o {
+    color: #3649B8;
+}
+
+.fa-calendar-o {
+    color: #3649B8;
+}
+
+.badge-secondary {
+    background-color: #3649B8;
+}

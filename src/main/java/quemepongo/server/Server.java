@@ -33,7 +33,7 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
 
         new RutasGuardarropa().registrar();
         new RutasLogin().registrar();
-//        new RutasEvento().registrar();
+        new RutasEvento().registrar();
     }
 
 }
