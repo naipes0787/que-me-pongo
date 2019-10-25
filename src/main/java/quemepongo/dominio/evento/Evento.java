@@ -19,7 +19,8 @@ public class Evento extends Entidad {
 	private Localizacion lugar;
 	@OneToOne(cascade = CascadeType.ALL)
 	private TipoEvento tipo;
-	@Transient
+
+	@ManyToOne
 	private Atuendo sugerenciaAceptada;
 	@Convert(converter = ConversorAnticipacion.class)
 	private Anticipacion anticipacion;
