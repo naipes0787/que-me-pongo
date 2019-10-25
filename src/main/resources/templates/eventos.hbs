@@ -1,0 +1,51 @@
+{{#partial "contenido"}}
+
+<div>
+    <h2 class="titulo-form">
+        Nuevo evento
+    </h2>
+    <form class="form-alta offset-md-2 col-md-8" action="/eventos" method="post">
+        <div class="form-group">
+            <label for="titulo">Título</label>
+            <input type="input" class="form-control" id="titulo" name="titulo" required="required"
+                   placeholder="Ingresa el título del evento">
+        </div>
+        <div class="form-group">
+            <label for="lugar">Lugar</label>
+            <select class="form-control" id="lugar" name="lugar" required="required">
+                <option value="CABA">CABA</option>
+                <option value="AVELLANEDA">Avellaneda</option>
+                <option value="BERNAL">Bernal</option>
+                <option value="SAN_ISIDRO">San Isidro</option>
+                <option value="QUILMES">Quilmes</option>
+                <option value="VILLA_LUGANO">Villa Lugano</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select class="form-control" id="tipo" name="tipo" aria-describedby="ayuda-tipo" required="required">
+                <option value="UNICO">Único</option>
+                <option value="REPETITIVO">Repetitivo</option>
+            </select>
+            <small id="ayuda-tipo" class="form-text text-muted">
+                El evento es único o se irá repitiendo?
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="anticipacion">Aviso anticipado</label>
+            <input type="number" min="1" max="10" class="form-control" id="anticipacion" required="required"
+                   aria-describedby="ayuda-anticipacion" name="anticipacion"
+                   placeholder="Anticipación de notificación del evento">
+            <small id="ayuda-anticipacion" class="form-text text-muted">
+                Podemos recordarte acerca del evento entre 1 y 10 días antes
+            </small>
+        </div>
+        <div class="clearfix">
+            <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+        </div>
+    </form>
+</div>
+
+{{/partial}}
+
+{{>layout.hbs}}

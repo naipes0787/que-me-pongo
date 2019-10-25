@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Entity
-@DiscriminatorValue("UNICO")
+@DiscriminatorValue(TipoEventoFactory.UNICO)
 public class EventoUnico extends TipoEvento {
 
     private LocalDateTime fecha;
