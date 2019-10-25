@@ -1,8 +1,6 @@
 package quemepongo.dominio.usuario;
 
 import com.google.common.collect.Sets;
-import quemepongo.servicio.clima.SelectorDeProveedorDeClima;
-import quemepongo.excepcion.GuardarropaNoPerteneceAlUsuarioException;
 import quemepongo.dominio.Entidad;
 import quemepongo.dominio.Temperatura;
 import quemepongo.dominio.calificacion.Calificacion;
@@ -12,9 +10,8 @@ import quemepongo.dominio.guardarropa.GuardarropaCompartido;
 import quemepongo.dominio.notificador.Notificador;
 import quemepongo.dominio.prenda.Prenda;
 import quemepongo.dominio.sugerencia.Atuendo;
-import quemepongo.dominio.sugerencia.ComandoAtuendo;
-import quemepongo.dominio.sugerencia.ComandoAtuendoAceptar;
-import quemepongo.dominio.sugerencia.ComandoAtuendoRechazar;
+import quemepongo.excepcion.GuardarropaNoPerteneceAlUsuarioException;
+import quemepongo.servicio.clima.SelectorDeProveedorDeClima;
 
 import javax.persistence.*;
 import java.util.Optional;
@@ -92,21 +89,6 @@ public class Usuario extends Entidad {
 
     public boolean tieneGuardarropa(Guardarropa guardarropa){ return guardarropas.contains(guardarropa); }
   
-    public void aceptarSugerencia(Evento evento, Atuendo atuendo) {
-        ComandoAtuendo comandoAtuendo = new ComandoAtuendoAceptar(atuendo);
-        comandoAtuendo.ejecutar();
-        evento.setSugerenciaAceptada(atuendo);
-    }
-
-    public void rechazarSugerencia(Atuendo atuendo) {
-        ComandoAtuendo comandoAtuendo = new ComandoAtuendoRechazar(atuendo);
-        comandoAtuendo.ejecutar();
-    }
-
-    public void deshacerUltimaOperacion(Atuendo atuendo) {
-        atuendo.getUltimoComando().deshacer();
-    }
-    
     public void setNotificador(Notificador notificador) {
     	this.notificador = notificador;
     }
@@ -116,14 +98,14 @@ public class Usuario extends Entidad {
     }
 
     public boolean estaUsandoAlgunaPrendaDe(Atuendo atuendo) {
-        Set<Prenda> prendasEnUso = eventos.stream().filter(Evento::tieneSugerenciaAceptada)
-                                                   .map(Evento::getSugerenciaAceptada)
+        Set<Prenda> prendasEnUso = eventos.stream().filter(Evento::tieneAtuendo)
+                                                   .map(Evento::getAtuendo)
                                                    .flatMap(a -> a.prendas().stream())
                                                    .collect(Collectors.toSet());
         return atuendo.prendas().stream().anyMatch(prendasEnUso::contains);
     }
 
-    public void calificar(Calificacion calificacion){
+    public void modificarSensibilidad(Calificacion calificacion){
         sensibilidad.modificarSensibilidad(calificacion);
     }
 

@@ -1,6 +1,7 @@
 package quemepongo.servicio.clima;
 
 import quemepongo.servicio.clima.cliente.ClienteAccuWeather;
+import quemepongo.servicio.clima.cliente.ClienteOpenWeather;
 
 public class SelectorDeProveedorDeClima {
 
@@ -10,7 +11,8 @@ public class SelectorDeProveedorDeClima {
     
     private SelectorDeProveedorDeClima() {
     	// Por default se utiliza AccuWeather
-    	this.proveedorDeClima = new ClienteAccuWeather();
+    	//this.proveedorDeClima = new ClienteAccuWeather();
+        this.proveedorDeClima = new ClienteOpenWeather();
     }
 
     public static SelectorDeProveedorDeClima getInstancia() {

@@ -1,9 +1,7 @@
 package quemepongo.config;
 
 import com.google.common.collect.Sets;
-import javafx.scene.paint.Color;
 import org.junit.Before;
-import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import quemepongo.dominio.FactorClimatico;
@@ -19,7 +17,6 @@ import quemepongo.dominio.usuario.Usuario;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-import static javafx.scene.paint.Color.BLACK;
 import static quemepongo.dominio.prenda.Material.*;
 
 public abstract class TestBase extends AbstractPersistenceTest implements WithGlobalEntityManager {
@@ -57,15 +54,15 @@ public abstract class TestBase extends AbstractPersistenceTest implements WithGl
         BOTAS = TipoPrenda.diseniarTipo(new FabricadorTipoCalzado(NIVEL_ABRIGO_DEFAULT));
         BUFANDA = TipoPrenda.diseniarTipo(new FabricadorTipoAccesorioCuello());
 
-        JeanDeOxfordNegro = crearPrenda(JEAN, OXFORD, BLACK);
-        PolleraDeAlgodonNegra = crearPrenda(POLLERA, ALGODON, BLACK);
-        RemeraDeAlgodonNegra = crearPrenda(REMERA, ALGODON, BLACK);
-        MusculosaDeAlgodonNegra = crearPrenda(MUSCULOSA, ALGODON, BLACK);
-        CamisaDeAlgodonNegra = crearPrenda(CAMISA, ALGODON, BLACK);
-        PilotoNegro = crearPrenda(PILOTO, PLASTICO, BLACK);
-        ZapatillasDeLonaNegras = crearPrenda(ZAPATILLAS, LONA, BLACK);
-        BotasDeCueroNegras = crearPrenda(BOTAS, CUERO, BLACK);
-        BufandaDeLana = crearPrenda(BUFANDA, LANA, BLACK);
+        JeanDeOxfordNegro = crearPrenda(JEAN, OXFORD, Color.NEGRO);
+        PolleraDeAlgodonNegra = crearPrenda(POLLERA, ALGODON, Color.NEGRO);
+        RemeraDeAlgodonNegra = crearPrenda(REMERA, ALGODON, Color.NEGRO);
+        MusculosaDeAlgodonNegra = crearPrenda(MUSCULOSA, ALGODON, Color.NEGRO);
+        CamisaDeAlgodonNegra = crearPrenda(CAMISA, ALGODON, Color.NEGRO);
+        PilotoNegro = crearPrenda(PILOTO, PLASTICO, Color.NEGRO);
+        ZapatillasDeLonaNegras = crearPrenda(ZAPATILLAS, LONA, Color.NEGRO);
+        BotasDeCueroNegras = crearPrenda(BOTAS, CUERO, Color.NEGRO);
+        BufandaDeLana = crearPrenda(BUFANDA, LANA, Color.NEGRO);
     }
 
     protected Prenda crearPrenda(TipoPrenda tipo, Material material, Color color) {
@@ -77,7 +74,7 @@ public abstract class TestBase extends AbstractPersistenceTest implements WithGl
     }
 
     protected Prenda crearPrenda(TipoPrenda tipo) {
-        return crearPrenda(tipo, tipo.materialesValidos.iterator().next(), BLACK);
+        return crearPrenda(tipo, tipo.materialesValidos.iterator().next(), Color.NEGRO);
     }
 
     protected Usuario usuarioBasico() {

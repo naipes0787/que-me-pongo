@@ -10,12 +10,10 @@ import spark.Response;
 
 import java.util.List;
 
-public class ControladorEventos extends ControladorAutenticado {
+public class ControladorEventos implements Controlador {
 
     public ModelAndView eventosByUsuarioId(Request req, Response res) {
-        this.autenticar(req, res);
-        Long usuario = req.session().attribute("id");
-        List<Evento> eventos = RepositorioEvento.instancia().getEventosByUsuarioId(usuario);
+        List<Evento> eventos = RepositorioEvento.instancia().getEventosByUsuarioId(obtenerIdActivo(req));
         return new ModelAndView(new ContenedorEventos(InformacionDeEvento.armarEventosParaCalendario(eventos)), "calendario.hbs");
     }
 

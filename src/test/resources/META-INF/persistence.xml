@@ -21,6 +21,7 @@
         <class>quemepongo.dominio.guardarropa.Guardarropa</class>
         <class>quemepongo.dominio.sugerencia.Atuendo</class>
         <class>quemepongo.dominio.prenda.CombinacionPrenda</class>
+        <class>quemepongo.dominio.calificacion.Calificacion</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

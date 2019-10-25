@@ -21,7 +21,7 @@ class ComprobadorDeAlertas extends ProcesadorDeEventosProximos {
     protected void procesarEvento(Evento evento, Usuario usuario) {
         List<FactorClimatico> factoresClimaticos = proovedorDeClima.obtenerAlertasActuales(evento.getLugar());
 
-        if (factoresClimaticos.stream().anyMatch(fc -> !evento.getSugerenciaAceptada().esAptoPara(fc))) {  // TODO REVISAR
+        if (factoresClimaticos.stream().anyMatch(fc -> !evento.getAtuendo().esAptoPara(fc))) {  // TODO REVISAR
             usuario.getNotificador()
                     .ifPresent(Notificador::notificarAlertaMeteorologica);
         }
