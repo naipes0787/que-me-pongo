@@ -20,14 +20,12 @@ public class DataInicial implements WithGlobalEntityManager, TransactionalOps {
     private RepositorioGuardarropa repositorioGuardarropa = RepositorioGuardarropa.instancia();
     private RepositorioUsuario repositorioUsuario = RepositorioUsuario.instancia();
 
-    public static void main(String[] args) {
-        new DataInicial().ejecutar();
-    }
-
-    private void ejecutar() {
+    public void cargar() {
         withTransaction(() -> {
-          cargarUsuarios();
-          cargarUsuarioConEvento();
+            if (repositorioUsuario.getUsuarios().isEmpty()) {
+                cargarUsuarios();
+                cargarUsuarioConEvento();
+            }
         });
     }
 

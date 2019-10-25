@@ -18,6 +18,8 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
     }
 
     private void iniciar() {
+        new DataInicial().cargar();
+
         Spark.port(9000);
         Spark.staticFiles.location("/public");
         Spark.init();
