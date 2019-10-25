@@ -19,6 +19,10 @@ div.titulo-menu {
     background-color: #4A569E;
 }
 
+div.home {
+    margin: 30px 20px 50px 20px;
+}
+
 footer.footer-principal {
     padding-top: 50px;
     background-color: #3649B8;
