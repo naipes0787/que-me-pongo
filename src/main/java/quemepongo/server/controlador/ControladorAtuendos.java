@@ -38,22 +38,6 @@ public class ControladorAtuendos extends ControladorAutenticado{
         res.redirect(RutasConstantes.EVENTO_URL);
         return null;
     }
-
-    private boolean verificarSiYaAceptoAtuendo(Request req) {
-        return obtenerEvento(req).tieneSugerenciaAceptada();
-    }
-
-    private Boolean sinAtuendos(Request req){
-        return req.session().attribute("atuendos").equals(null);
-    }
-
-    private void setAtuendos(Request req) {
-        Usuario user = obtenerUsuario(req);
-        Evento evento = obtenerEvento(req);
-        req.session().attribute("atuendos", new ArrayList<Atuendo>(user.sugerencias(evento)));
-        setAtuendoAMostrar(req, 0);
-    }
-
     private Atuendo darAtuendo(Request req){
         int atuendoAMostrar = getAtuendosAMostrar(req);
 
@@ -75,17 +59,38 @@ public class ControladorAtuendos extends ControladorAutenticado{
         return getAtuendos(req).get(atuendoAMostrar);
     }
 
-    private ArrayList<Atuendo> getAtuendos(Request req){
-        return req.session().attribute("atuendos");
+    private boolean verificarSiYaAceptoAtuendo(Request req) {
+        return obtenerEvento(req).tieneSugerenciaAceptada();
     }
 
+    private Boolean sinAtuendos(Request req){
+        return getAtuendos(req) == null;
+    }
+
+    private void setAtuendos(Request req) {
+        Usuario user = obtenerUsuario(req);
+        Evento evento = obtenerEvento(req);
+        req.session().attribute(armarClaveAtuendos(req), new ArrayList<Atuendo>(user.sugerencias(evento)));
+        setAtuendoAMostrar(req, 0);
+    }
+
+    private ArrayList<Atuendo> getAtuendos(Request req){
+        return req.session().attribute(armarClaveAtuendos(req));
+    }
+
+    private String armarClaveAtuendos(Request req){
+        return "atuendo" + obtenerEvento(req).getId();
+    }
     private void setAtuendoAMostrar(Request req, int i){
-        req.session().removeAttribute("atuendoAMostrar");
-        req.session().attribute("atuendoAMostrar", i);
+        req.session().attribute(armarClaveAtuendoAMostrar(req), i);
     }
 
     private int getAtuendosAMostrar(Request req){
-        return req.session().attribute("atuendoAMostrar");
+        return req.session().attribute(armarClaveAtuendoAMostrar(req));
+    }
+
+    private String armarClaveAtuendoAMostrar(Request req){
+        return "atuendoAMostrar" + obtenerEvento(req).getId();
     }
 
     private Usuario obtenerUsuario(Request req){
