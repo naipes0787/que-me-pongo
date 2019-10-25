@@ -14,9 +14,9 @@ public class ControladorEventos extends ControladorAutenticado {
 
     public ModelAndView eventosByUsuarioId(Request req, Response res) {
         this.autenticar(req, res);
-        Long id = Long.valueOf(req.params("id"));
-        List<Evento> eventos = RepositorioEvento.instancia().getEventos();
-        return new ModelAndView(new ContenedorEventos(InformacionDeEvento.armarEventosParaCalendario(eventos)), "eventos.hbs");
+        Long usuario = req.session().attribute("id");
+        List<Evento> eventos = RepositorioEvento.instancia().getEventosByUsuarioId(usuario);
+        return new ModelAndView(new ContenedorEventos(InformacionDeEvento.armarEventosParaCalendario(eventos)), "calendario.hbs");
     }
 
 }

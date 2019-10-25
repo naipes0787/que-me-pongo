@@ -7,6 +7,7 @@ import quemepongo.dominio.evento.tipo.EventoUnico;
 
 import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,16 +29,12 @@ public class RepositorioEvento extends Repositorio<Evento> {
     }
 
     public List<Evento> getEventos() {
-//        TypedQuery<Evento> query = createQuery("from Evento", Evento.class);
-//        return query.getResultList();
-        Evento e1= new Evento("unEvento", Localizacion.CABA, new EventoUnico(LocalDateTime.now()), Anticipacion.UNA_HORA_ANTES);
-        Evento e2 = new Evento("otroEvento", Localizacion.CABA, new EventoUnico(LocalDateTime.now()), Anticipacion.UNA_HORA_ANTES);
-        return Arrays.asList(e1,e2);
-    }
-
-    public List<Evento> getEventosByUsuarioId(Long usuarioId) {
-        TypedQuery<Evento> query = createQuery("from Usuario u inner join u.eventos where u.id = :user", Evento.class)
-                .setParameter("user", usuarioId);
+        TypedQuery<Evento> query = createQuery("from Evento", Evento.class);
         return query.getResultList();
+        }
+
+    public List<Evento> getEventosByUsuarioId(Long usuario) {
+        return createQuery("select e from Usuario u inner join u.eventos e where u.id = :user")
+                .setParameter("user", usuario).getResultList();
     }
 }

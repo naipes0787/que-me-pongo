@@ -27,6 +27,7 @@ public class ControladorLogin {
         if (usuario != null && usuario.getPassword().equals(pass)) {
             request.session(true);
             request.session().attribute("user", username);
+            request.session().attribute("id", usuario.getId());
             response.redirect(RutasConstantes.HOME_URL);
         } else {
             // Se setea datosIncorrectos en TRUE ya que se ingresó mal el usuario o password

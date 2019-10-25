@@ -6,5 +6,5 @@ public final class RutasConstantes {
     public static final String HOME_URL = "/home";
     public static final String GUARDARROPAS_URL = "/guardarropas";
     public static final String PRENDAS_URL = "/guardarropas/:id/prendas";
-    public static final String EVENTOS_URL = "/:id/eventos";
+    public static final String EVENTOS_URL = "/eventos";
 }
