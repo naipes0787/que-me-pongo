@@ -1,0 +1,28 @@
+{{#partial "contenido"}}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            {{#each this}}
+                <div class="card-deck col-sm-4">
+                    <div class="card mx-3 my-3">
+                        <h5 class="card-header">{{atuendo.descripcion}}</h5>
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Evento: {{evento.titulo}}</li>
+                            {{#if atuendo.calificacion}}
+                                <li class="list-group-item">Calificación global: {{atuendo.calificacion.calificacionGlobal.descripcion}}</li>
+                            {{/if}}
+                        </ul>
+                        {{#unless atuendo.calificacion}}
+                            <a class="btn btn-info" href="/atuendos/{{atuendo.id}}/calificacion">Calificar</a>
+                        {{/unless}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}

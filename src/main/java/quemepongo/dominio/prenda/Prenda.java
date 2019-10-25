@@ -67,4 +67,9 @@ public class Prenda extends Entidad {
     public Imagen getFoto() {
         return urlFoto != null ? new Imagen(urlFoto) : Imagen.PRENDA_DESCONOCIDA;
     }
+
+    public Material getMaterial() {
+        return material;
+    }
+
 }

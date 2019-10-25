@@ -1,19 +1,23 @@
 {{#partial "contenido"}}
 
-    <div>
-        <h2>
-            Usuario: {{ username }}
-        </h2>
+    <h2>
+        Usuario: {{ username }}
+    </h2>
+    <div class="container-fluid">
 
-        {{#each guardarropas}}
-            <div class="prenda">
-                <div class="detalles">
-                    <a class="btn btn-info" href="/guardarropas/{{id}}/prendas">
-                        <h2>{{nombre}}</h2>
-                    </a>
+        <div class="row">
+            {{#each guardarropas}}
+                <div class="card-deck col-sm-4">
+                    <div class="card mx-3 my-3">
+                        <div class="card-body">
+                            <a class="btn btn-info" href="/guardarropas/{{id}}/prendas">
+                                <h2>{{nombre}}</h2>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {{/each}}
+            {{/each}}
+        </div>
     </div>
 
 {{/partial}}

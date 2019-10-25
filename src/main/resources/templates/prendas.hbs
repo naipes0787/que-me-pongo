@@ -1,20 +1,28 @@
 {{#partial "contenido"}}
 
-<div>
-    <h2>
-        Guardarropas: {{ nombre }}
-    </h2>
+<h2>
+    Guardarropas: {{ nombre }}
+</h2>
+<div class="container-fluid">
 
-    {{#each prendas}}
-    <div class="prenda">
-        <img src="data:image/png;base64, {{foto}}" alt="{{ nombre }}" />
-        <div class="detalles">
-            <h2>{{nombre}}</h2>
-            <p>Color: {{ colorPrincipal.nombre }}</p>
-            <p><a class="btn btn-info" href="/prendas/{{id}}">Ver Más</a></p>
-        </div>
+    <div class="row">
+        {{#each prendas}}
+            <div class="card-deck col-sm-4">
+                <div class="card mx-3 my-3">
+                    <div class="card-header">{{nombre}}</div>
+                    <img src="data:image/png;base64, {{foto}}" alt="{{ nombre }}" class="card-img-top"/>
+
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Color: {{ colorPrincipal.nombre }}</li>
+                            <li class="list-group-item">Material: {{ material }}</li>
+                            <li class="list-group-item">Categor&iacute;a: {{ categoria }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
     </div>
-    {{/each}}
 </div>
 
 {{/partial}}

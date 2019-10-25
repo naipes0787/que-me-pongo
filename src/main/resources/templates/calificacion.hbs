@@ -1,0 +1,36 @@
+{{#partial "contenido"}}
+
+    <h2> Calificar Atuendo </h2>
+    <p>{{ atuendo.descripcion }}</p>
+
+    <div class="row" style="justify-content: center;width: 100%;">
+        <form action="/atuendos/{{atuendo.id}}/calificacion" method="post" class="form-group col-md-6">
+            {{#each tiposCalificacion}}
+                <div class="card my-3">
+                    <h5 class="card-header">Calificaci&oacute;n {{descripcion}}</h5>
+                    <div class="card-body">
+                        {{#each puntuacionesPosibles}}
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input class="custom-control-input"
+                                       type="radio"
+                                       name="{{codigo}}"
+                                       id="{{codigo}}-{{this}}"
+                                       value="{{this}}"
+                                       required="required"
+                                >
+                                <label class="custom-control-label" for="{{codigo}}-{{this}}">{{descripcion}}</label>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            {{/each}}
+
+            <div class="col-sm-12">
+                <input class="btn w-100 my-3 btn-lg btn-primary" type="submit" value="Guardar">
+            </div>
+        </form>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}

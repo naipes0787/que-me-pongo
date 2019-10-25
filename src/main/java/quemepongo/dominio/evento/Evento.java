@@ -1,5 +1,7 @@
 package quemepongo.dominio.evento;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.uqbar.commons.model.annotations.Observable;
 import quemepongo.dominio.Entidad;
 import quemepongo.dominio.evento.tipo.Anticipacion;
@@ -7,7 +9,10 @@ import quemepongo.dominio.evento.tipo.ConversorAnticipacion;
 import quemepongo.dominio.evento.tipo.TipoEvento;
 import quemepongo.dominio.sugerencia.Atuendo;
 
-import javax.persistence.*;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 
 @Observable
@@ -17,10 +22,12 @@ public class Evento extends Entidad {
 	private String titulo;
 	@Enumerated
 	private Localizacion lugar;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
+	@Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	private TipoEvento tipo;
-	@Transient
-	private Atuendo sugerenciaAceptada;
+	@OneToOne
+	@Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+	private Atuendo atuendo;
 	@Convert(converter = ConversorAnticipacion.class)
 	private Anticipacion anticipacion;
 
@@ -41,12 +48,16 @@ public class Evento extends Entidad {
 		return tipo.getFecha();
 	}
 
-	public Atuendo getSugerenciaAceptada() {
-		return sugerenciaAceptada;
+	public Atuendo getAtuendo() {
+		return atuendo;
 	}
 
-	public void setSugerenciaAceptada(Atuendo sugerenciaAceptada) {
-		this.sugerenciaAceptada = sugerenciaAceptada;
+	public boolean tieneAtuendo() {
+		return atuendo != null;
+	}
+
+	public void setAtuendo(Atuendo atuendo) {
+		this.atuendo = atuendo;
 	}
 
 	/**
@@ -70,10 +81,6 @@ public class Evento extends Entidad {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-
-	public boolean tieneSugerenciaAceptada() {
-		return sugerenciaAceptada != null;
 	}
 
 }

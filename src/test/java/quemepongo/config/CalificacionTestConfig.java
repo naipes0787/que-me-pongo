@@ -1,24 +1,29 @@
 package quemepongo.config;
 
+import org.apache.commons.collections15.map.HashedMap;
 import org.junit.Before;
 import quemepongo.dominio.calificacion.Calificacion;
+import quemepongo.dominio.calificacion.Puntuacion;
+import quemepongo.dominio.calificacion.TipoCalificacion;
 import quemepongo.dominio.usuario.Usuario;
 import quemepongo.dominio.usuario.UsuarioPremium;
 
-import static quemepongo.dominio.calificacion.OpcionesCalificacion.*;
+import java.util.Map;
+
+import static quemepongo.dominio.calificacion.Puntuacion.*;
 
 public class CalificacionTestConfig extends TestBase {
 
     //Calificaciones de Prueba
-    protected static final Calificacion agradableGeneral = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, AGRADABLE);
-    protected static final Calificacion calurosoGeneral = new Calificacion(CALUROSO, CALUROSO, CALUROSO, CALUROSO);
-    protected static final Calificacion congeladoGeneral = new Calificacion(CONGELADO, CONGELADO, CONGELADO, CONGELADO);
-    protected static final Calificacion calurosoSoloCabeza = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, CALUROSO);
-    protected static final Calificacion calurosoSoloManos = new Calificacion(AGRADABLE, CALUROSO, AGRADABLE, AGRADABLE);
-    protected static final Calificacion calurosoSoloCuello = new Calificacion(AGRADABLE, AGRADABLE, CALUROSO, AGRADABLE);
-    protected static final Calificacion congeladoSoloCabeza = new Calificacion(AGRADABLE, AGRADABLE, AGRADABLE, CONGELADO);
-    protected static final Calificacion congeladoSoloManos = new Calificacion(AGRADABLE, CONGELADO, AGRADABLE, AGRADABLE);
-    protected static final Calificacion congeladoSoloCuello = new Calificacion(AGRADABLE, AGRADABLE, CONGELADO, AGRADABLE);
+    protected Calificacion agradableGeneral = calificacion(AGRADABLE, AGRADABLE, AGRADABLE, AGRADABLE);
+    protected Calificacion calurosoGeneral = calificacion(CALUROSO, CALUROSO, CALUROSO, CALUROSO);
+    protected Calificacion congeladoGeneral = calificacion(CONGELADO, CONGELADO, CONGELADO, CONGELADO);
+    protected Calificacion calurosoSoloCabeza = calificacion(AGRADABLE, AGRADABLE, AGRADABLE, CALUROSO);
+    protected Calificacion calurosoSoloManos = calificacion(AGRADABLE, CALUROSO, AGRADABLE, AGRADABLE);
+    protected Calificacion calurosoSoloCuello = calificacion(AGRADABLE, AGRADABLE, CALUROSO, AGRADABLE);
+    protected Calificacion congeladoSoloCabeza = calificacion(AGRADABLE, AGRADABLE, AGRADABLE, CONGELADO);
+    protected Calificacion congeladoSoloManos = calificacion(AGRADABLE, CONGELADO, AGRADABLE, AGRADABLE);
+    protected Calificacion congeladoSoloCuello = calificacion(AGRADABLE, AGRADABLE, CONGELADO, AGRADABLE);
 
     //Usuario de Prueba
     protected Usuario usuarioBasico;
@@ -28,5 +33,15 @@ public class CalificacionTestConfig extends TestBase {
     public void ejecutarAntesDeCadaTest() {
         usuarioBasico = usuarioBasico();
         usuarioPremium = new Usuario(new UsuarioPremium());
+    }
+
+    private Calificacion calificacion(Puntuacion global, Puntuacion manos, Puntuacion cuello, Puntuacion cabeza) {
+        Map<TipoCalificacion, Puntuacion> puntuaciones = new HashedMap<TipoCalificacion, Puntuacion>() {{
+           put(TipoCalificacion.GLOBAL, global);
+           put(TipoCalificacion.MANOS, manos);
+           put(TipoCalificacion.CUELLO, cuello);
+           put(TipoCalificacion.CABEZA, cabeza);
+        }};
+        return new Calificacion(puntuaciones);
     }
 }
