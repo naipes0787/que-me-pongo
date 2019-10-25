@@ -14,6 +14,10 @@ public class RutasLogin extends Rutas {
                 controlador::getLoginPage,
                 templateEngine);
 
+        Spark.get(RutasConstantes.LOGOUT_URL,
+                controlador::logout,
+                templateEngine);
+
         Spark.post(RutasConstantes.LOGIN_URL,
                 controlador::login);
 
