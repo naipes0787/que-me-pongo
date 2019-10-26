@@ -2,17 +2,14 @@ package quemepongo.dominio.prenda;
 
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import quemepongo.excepcion.PathInvalidoException;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
 
 public class Imagen {
     private static final Integer ANCHO_FOTO = 200;

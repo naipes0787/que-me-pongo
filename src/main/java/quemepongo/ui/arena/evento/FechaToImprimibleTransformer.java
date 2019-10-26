@@ -1,9 +1,9 @@
 package quemepongo.ui.arena.evento;
 
+import org.apache.commons.collections15.Transformer;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import org.apache.commons.collections15.Transformer;
 
 /**
  * Formatea la fecha en un formato más legible

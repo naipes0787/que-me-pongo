@@ -12,9 +12,9 @@ public class ControladorAtuendos implements Controlador {
 
     public ModelAndView mostrarAtuendos(Request req, Response res) {
         return new ModelAndView(
-                usuarioActivo(req).getEventos().stream()
-                    .filter(Evento::tieneAtuendo)
-                    .map(evento -> new VistaAtuendo(evento.getAtuendo(), evento))
+                obtenerUsuario(req).getEventos().stream()
+                    .filter(Evento::tieneSugerenciaAceptada)
+                    .map(evento -> new VistaAtuendo(evento.getSugerenciaAceptada(), evento))
                     .collect(Collectors.toSet()),
                 "atuendos.hbs");
     }

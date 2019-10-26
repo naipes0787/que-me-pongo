@@ -11,7 +11,11 @@ public interface Controlador {
         return Long.parseLong(req.params("id"));
     }
 
-    default Usuario usuarioActivo(Request req) {
+    default Long obtenerIdActivo(Request req) {
+        return req.session().attribute("id");
+    }
+
+    default Usuario obtenerUsuario(Request req) {
         return RepositorioUsuario.instancia().getUsuarioByUsername(req.session().attribute("user"))
                 .orElseThrow(() -> new ControladorException("Usuario no encontrado"));
     }

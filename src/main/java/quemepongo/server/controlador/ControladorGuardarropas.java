@@ -10,11 +10,11 @@ public class ControladorGuardarropas implements Controlador {
 
     public ModelAndView prendasByGuardarropaId(Request req, Response res) {
         Guardarropa guardarropa = RepositorioGuardarropa.instancia().get(parsearId(req));
-        return new ModelAndView(guardarropa, "prendas.hbs");
+        return new ModelAndView(guardarropa, "guardarropa.hbs");
     }
 
     public ModelAndView guardarropas(Request req, Response res) {
-        return new ModelAndView(usuarioActivo(req), "guardarropas.hbs");
+        return new ModelAndView(obtenerUsuario(req), "guardarropas.hbs");
     }
 
 }

@@ -27,7 +27,7 @@ public class Evento extends Entidad {
 	private TipoEvento tipo;
 	@OneToOne
 	@Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
-	private Atuendo atuendo;
+	private Atuendo sugerenciaAceptada;
 	@Convert(converter = ConversorAnticipacion.class)
 	private Anticipacion anticipacion;
 
@@ -48,16 +48,16 @@ public class Evento extends Entidad {
 		return tipo.getFecha();
 	}
 
-	public Atuendo getAtuendo() {
-		return atuendo;
+	public Atuendo getSugerenciaAceptada() {
+		return sugerenciaAceptada;
 	}
 
-	public boolean tieneAtuendo() {
-		return atuendo != null;
+	public boolean tieneSugerenciaAceptada() {
+		return sugerenciaAceptada != null;
 	}
 
-	public void setAtuendo(Atuendo atuendo) {
-		this.atuendo = atuendo;
+	public void setSugerenciaAceptada(Atuendo atuendo) {
+		this.sugerenciaAceptada = atuendo;
 	}
 
 	/**

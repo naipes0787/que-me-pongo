@@ -18,7 +18,7 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
         new DataInicial().cargar();
 
         Spark.port(9000);
-        Spark.staticFiles.location("/public");
+        Spark.staticFileLocation("/public");
         Spark.init();
 
         Spark.before((req, res) -> beginTransaction());
@@ -36,7 +36,8 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
         new RutasHome().registrar();
         new RutasEvento().registrar();
         new RutasPrendas().registrar();
-
+        new RutasEventos().registrar();
+        new RutasSugerencias().registrar();
     }
 
 }
