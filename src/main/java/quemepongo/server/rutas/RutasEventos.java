@@ -1,6 +1,6 @@
 package quemepongo.server.rutas;
 
-import quemepongo.server.controlador.ControladorEventos;
+import quemepongo.server.controlador.evento.ControladorEventos;
 import spark.Spark;
 
 public class RutasEventos extends Rutas {

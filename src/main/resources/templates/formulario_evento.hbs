@@ -27,11 +27,6 @@
         <div class="form-group">
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    {{#if fechaInvalida}}
-                        <div class="alert alert-danger" role="alert">
-                            La fecha ingresada es inv&aacute;lida
-                        </div>
-                    {{/if}}
                     <label for="fecha">Fecha</label>
                     <input type="date" class="form-control" id="fecha" name="fecha" required="required" aria-describedby="ayuda-fecha">
                     <small id="ayuda-fecha" class="form-text text-muted">
@@ -51,6 +46,13 @@
                         </div>
                     </div>
                 </div>
+                {{#if isFechaInvalida}}
+                    <div class="col-lg-12">
+                        <div class="alert alert-danger" role="alert">
+                            La fecha ingresada es inv&aacute;lida
+                        </div>
+                    </div>
+                {{/if}}
             </div>
         </div>
         <div class="form-group">

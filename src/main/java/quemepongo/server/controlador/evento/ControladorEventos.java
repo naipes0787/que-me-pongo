@@ -1,9 +1,10 @@
-package quemepongo.server.controlador;
+package quemepongo.server.controlador.evento;
 
 import quemepongo.dominio.evento.ContenedorEventos;
 import quemepongo.dominio.evento.Evento;
 import quemepongo.dominio.evento.InformacionDeEvento;
 import quemepongo.persistencia.RepositorioEvento;
+import quemepongo.server.controlador.Controlador;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;

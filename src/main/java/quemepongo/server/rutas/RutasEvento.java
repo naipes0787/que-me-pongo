@@ -1,6 +1,6 @@
 package quemepongo.server.rutas;
 
-import quemepongo.server.controlador.ControladorEvento;
+import quemepongo.server.controlador.evento.ControladorEvento;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -16,7 +16,7 @@ public class RutasEvento extends Rutas {
                 controlador::formulario,
                 templateEngine);
 
-        post(RutasConstantes.FORMULARIO_ALTA_EVENTOS,
+        post(RutasConstantes.EVENTOS_URL,
                 controlador::guardarEvento);
 
         get(RutasConstantes.EVENTO_URL,
