@@ -49,7 +49,7 @@ public class TipoPrenda extends Entidad {
         return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), aptoPara);
     }
 
-    private TipoPrenda(Categoria categoria, Set<Material> materialesValidos, double nivelAbrigo, Capa capa, Set<FactorClimatico> aptoPara) {
+    public TipoPrenda(Categoria categoria, Set<Material> materialesValidos, double nivelAbrigo, Capa capa, Set<FactorClimatico> aptoPara) {
         this.categoria = categoria;
         this.materialesValidos = materialesValidos;
         this.nivelAbrigo = nivelAbrigo;

@@ -1,0 +1,86 @@
+{{#partial "contenido"}}
+
+<div>
+    <h2 class="titulo-form">
+        Nueva prenda
+    </h2>
+    <form class="form-alta offset-md-2 col-md-8" action="/guardarropas/{{guardarropaId}}/prendas" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="input" class="form-control" id="nombre" name="nombre" required="required"
+                   placeholder="Ingresa el nombre de tu prenda">
+        </div>
+        <div class="form-group">
+            <label for="categoria">Categoría</label>
+            <select class="form-control" id="categoria" name="categoria" required="required">
+                {{#each categorias}}
+                    <option value="{{this}}">{{nombre}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="material">Material</label>
+            <select class="form-control" id="material" name="material" required="required">
+                {{#each materiales}}
+                    <option value="{{this}}">{{nombre}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="color-principal">Color principal</label>
+            <select class="form-control" id="color-principal" name="color-principal" required="required">
+                {{#each colores}}
+                    <option value="{{this}}">{{nombre}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="color-secundario">Color secundario</label>
+            <select class="form-control" id="color-secundario" name="color-secundario" required="required">
+                {{#each colores}}
+                    <option value="{{this}}">{{nombre}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="efectividad">Efectivo para</label>
+            <select class="form-control" id="efectividad" name="efectividad" required="required"
+                    aria-describedby="ayuda-efectividad">
+                {{#each factoresClimaticos}}
+                    <option value="{{this}}">{{nombre}}</option>
+                {{/each}}
+            </select>
+            <small id="ayuda-efectividad" class="form-text text-muted">
+                Determinar el factor climático para el cual la prenda es apta
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="capa">Capa</label>
+            <select class="form-control" id="capa" name="capa" required="required"
+                    aria-describedby="ayuda-capa">
+                {{#each capas}}
+                    <option value="{{this}}">{{nombre}}</option>
+                {{/each}}
+            </select>
+            <small id="ayuda-capa" class="form-text text-muted">
+                Determinar si es una prenda pegada al cuerpo o si es un abrigo, utilizado sobre otra prenda
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="nivel-abrigo">Nivel de abrigo</label>
+            <input type="number" min="1" max="30" class="form-control" id="nivel-abrigo" required="required"
+                   aria-describedby="ayuda-nivel-abrigo" name="nivel-abrigo"
+                   placeholder="Ingresa el nivel de abrigo">
+            <small id="ayuda-nivel-abrigo" class="form-text text-muted">
+                Determina del 1 al 30 qué tanto abriga esta prenda
+            </small>
+        </div>
+        <div class="clearfix">
+            <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+        </div>
+    </form>
+</div>
+
+{{/partial}}
+
+{{>layout.hbs}}

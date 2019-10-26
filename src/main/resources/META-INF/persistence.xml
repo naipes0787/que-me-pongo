@@ -19,6 +19,7 @@
         <class>quemepongo.dominio.prenda.CombinacionPrenda</class>
         <class>quemepongo.dominio.usuario.TipoUsuario</class>
         <class>quemepongo.dominio.usuario.Usuario</class>
+        <class>quemepongo.dominio.usuario.Sensibilidad</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
@@ -37,7 +38,7 @@
             <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="true" />
             <property name="use_sql_comments" value="true" />
-            <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+<!--            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
 
         </properties>
 

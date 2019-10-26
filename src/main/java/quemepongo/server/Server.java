@@ -30,12 +30,12 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
             }
         );
 
-        new RutasGuardarropa().registrar();
+        new RutasGuardarropas().registrar();
         new RutasAtuendos().registrar();
         new RutasLogin().registrar();
         new RutasHome().registrar();
-        new RutasEvento().registrar();
         new RutasEventos().registrar();
+        new RutasPrendas().registrar();
         new RutasSugerencias().registrar();
     }
 
