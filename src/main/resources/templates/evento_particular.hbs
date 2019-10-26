@@ -1,0 +1,35 @@
+{{#partial "contenido"}}
+
+    <h2>
+        Evento: {{ titulo }}
+    </h2>
+    <dl>
+        <dt>Fecha</dt>
+        <dd>{{fecha}}</dd>
+        <dt>Lugar</dt>
+        <dd>{{lugar.nombre}}</dd>
+    </dl>
+
+    {{#if sugerenciaAceptada}}
+        {{#with sugerenciaAceptada}}
+            <h4>Atuendo elegido</h4>
+            <div class="card-deck col-sm-4">
+                <div class="card mx-3 my-3">
+                    <h5 class="card-header">{{descripcion}}</h5>
+                    <div class="card-body">
+                        {{#if calificacion}}
+                            <p>Calificación global: {{calificacion.calificacionGlobal.descripcion}}</p>
+                        {{else}}
+                            <a class="btn btn-info" href="/atuendos/{{id}}/calificaciones">Calificar</a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        {{/with}}
+    {{else}}
+        <a class="btn btn-info" href="/eventos/{{id}}/sugerencias">Elegir un atuendo</a>
+    {{/if}}
+
+{{/partial}}
+
+{{>layout.hbs}}

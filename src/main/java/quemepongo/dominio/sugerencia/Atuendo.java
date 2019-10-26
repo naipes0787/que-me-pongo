@@ -6,8 +6,6 @@ import org.hibernate.annotations.CascadeType;
 import quemepongo.dominio.Entidad;
 import quemepongo.dominio.FactorClimatico;
 import quemepongo.dominio.calificacion.Calificacion;
-import quemepongo.dominio.calificacion.Puntuacion;
-import quemepongo.dominio.evento.Evento;
 import quemepongo.dominio.prenda.CombinacionPrenda;
 import quemepongo.dominio.prenda.Prenda;
 
@@ -86,20 +84,21 @@ public class Atuendo extends Entidad {
     }
     
     public int getCantidadPrendas(){
-        return prendas().size();
+        return getPrendas().size();
     }
 
-    public Set<Prenda> prendas() {
+    public Set<Prenda> getPrendas() {
         Set<CombinacionPrenda> combinaciones = Sets.newHashSet();
         combinaciones.add(prendaInferior);
         combinaciones.add(prendasSuperiores);
         combinaciones.add(prendaInferior);
         combinaciones.add(calzado);
+        combinaciones.add(accesorio);
         return combinaciones.stream().flatMap(c -> c.getPrendas().stream()).collect(Collectors.toSet());
     }
 
     public boolean esAptoPara(FactorClimatico factorClimatico) {
-        return prendas().stream().anyMatch(p -> p.esAptaPara(factorClimatico));
+        return getPrendas().stream().anyMatch(p -> p.esAptaPara(factorClimatico));
     }
 
     public void setEstado(EstadoAtuendo estadoAtuendo){
@@ -127,7 +126,7 @@ public class Atuendo extends Entidad {
     }
 
     public String getDescripcion() {
-        return prendas().stream().map(Prenda::getNombre).collect(Collectors.joining(" + "));
+        return getPrendas().stream().map(Prenda::getNombre).collect(Collectors.joining(" + "));
     }
 
     public Calificacion getCalificacion() {

@@ -1,9 +1,11 @@
 package quemepongo.persistencia;
 
 import quemepongo.dominio.evento.Evento;
+import quemepongo.dominio.guardarropa.Guardarropa;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -26,5 +28,9 @@ public class RepositorioEvento extends Repositorio<Evento> {
     public List<Evento> getEventos() {
         TypedQuery<Evento> query = createQuery("from Evento", Evento.class);
         return query.getResultList();
+    }
+
+    public Optional<Evento> buscarEvento(Long id) {
+        return Optional.ofNullable(find(Evento.class, id));
     }
 }
