@@ -1,4 +1,4 @@
-package quemepongo.server.controlador.evento;
+package quemepongo.server.controlador.eventos;
 
 import quemepongo.dominio.evento.ContenedorEventos;
 import quemepongo.dominio.evento.Evento;
@@ -18,7 +18,6 @@ import spark.Response;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,6 @@ public class ControladorEventos implements Controlador {
     }
 
     public Void guardarEvento(Request req, Response res) {
-
         try {
             LocalDateTime fecha = FechaUtils.parsear(req.queryParams("fecha"), req.queryParams("hora"), req.queryParams("minutos"));
             Evento evento = new Evento(
@@ -49,7 +47,6 @@ public class ControladorEventos implements Controlador {
             req.session().attribute("isFechaInvalida", true);
             res.redirect(RutasConstantes.FORMULARIO_ALTA_EVENTOS);
         }
-
         return null;
     }
 

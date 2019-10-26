@@ -1,6 +1,6 @@
 package quemepongo.server.rutas;
 
-import quemepongo.server.controlador.evento.ControladorEventos;
+import quemepongo.server.controlador.eventos.ControladorEventos;
 
 import static spark.Spark.get;
 import static spark.Spark.post;

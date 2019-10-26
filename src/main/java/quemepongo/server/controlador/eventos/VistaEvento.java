@@ -1,13 +1,6 @@
-package quemepongo.server.controlador.evento;
+package quemepongo.server.controlador.eventos;
 
-import quemepongo.dominio.FactorClimatico;
 import quemepongo.dominio.evento.Localizacion;
-import quemepongo.dominio.prenda.Capa;
-import quemepongo.dominio.prenda.Categoria;
-import quemepongo.dominio.prenda.Color;
-import quemepongo.dominio.prenda.Material;
-
-import java.util.List;
 
 public class VistaEvento {
 

@@ -6,6 +6,8 @@ import java.util.List;
 
 public class VistaPrenda {
 
+    private Long guardarropaId;
+
     public List<Material> getMateriales() {
         return Material.getTodos();
     }
@@ -24,6 +26,14 @@ public class VistaPrenda {
 
     public List<FactorClimatico> getFactoresClimaticos() {
         return FactorClimatico.getTodos();
+    }
+
+    public VistaPrenda(Long guardarropaId){
+        this.guardarropaId = guardarropaId;
+    }
+
+    public Long getGuardarropaId(){
+        return this.guardarropaId;
     }
 
 }

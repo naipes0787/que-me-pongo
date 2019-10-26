@@ -1,7 +1,5 @@
 package quemepongo.dominio;
 
-import quemepongo.dominio.prenda.Capa;
-
 import java.util.Arrays;
 import java.util.List;
 
