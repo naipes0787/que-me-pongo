@@ -1,0 +1,21 @@
+{{#partial "contenido"}}
+
+    <h2>
+        Sugerencia #{{ numero }}
+    </h2>
+    {{>prendas.hbs sugerencia.prendas}}
+
+    {{#if permitirSiguiente}}
+        <form action="/eventos/{{evento.id}}/sugerencias" method="get" class="form-group col-md-6">
+            <input type="hidden" name="siguiente" value="">
+            <input class="btn w-100 my-3 btn-lg btn-primary" type="submit" value="Siguiente">
+        </form>
+    {{/if}}
+
+    <form action="/eventos/{{evento.id}}/sugerencias" method="post" class="form-group col-md-6">
+        <input class="btn w-100 my-3 btn-lg btn-primary" type="submit" value="Aceptar">
+    </form>
+
+{{/partial}}
+
+{{>layout.hbs}}

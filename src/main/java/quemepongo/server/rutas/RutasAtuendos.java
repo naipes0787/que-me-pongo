@@ -5,7 +5,8 @@ import quemepongo.server.controlador.calificacion.ControladorCalificacion;
 
 import static quemepongo.server.rutas.RutasConstantes.ATUENDOS_URL;
 import static quemepongo.server.rutas.RutasConstantes.CALIFICACIONES_URL;
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class RutasAtuendos extends Rutas {
 

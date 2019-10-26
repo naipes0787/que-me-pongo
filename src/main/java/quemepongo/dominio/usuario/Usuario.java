@@ -35,7 +35,7 @@ public class Usuario extends Entidad {
     @OneToOne(cascade = CascadeType.ALL)
     private TipoUsuario tipoUsuario;
 
-    @Transient
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private Sensibilidad sensibilidad = new Sensibilidad();
 
     @Transient
@@ -98,11 +98,11 @@ public class Usuario extends Entidad {
     }
 
     public boolean estaUsandoAlgunaPrendaDe(Atuendo atuendo) {
-        Set<Prenda> prendasEnUso = eventos.stream().filter(Evento::tieneAtuendo)
-                                                   .map(Evento::getAtuendo)
-                                                   .flatMap(a -> a.prendas().stream())
+        Set<Prenda> prendasEnUso = eventos.stream().filter(Evento::tieneSugerenciaAceptada)
+                                                   .map(Evento::getSugerenciaAceptada)
+                                                   .flatMap(a -> a.getPrendas().stream())
                                                    .collect(Collectors.toSet());
-        return atuendo.prendas().stream().anyMatch(prendasEnUso::contains);
+        return atuendo.getPrendas().stream().anyMatch(prendasEnUso::contains);
     }
 
     public void modificarSensibilidad(Calificacion calificacion){

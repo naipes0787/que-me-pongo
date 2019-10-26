@@ -30,7 +30,7 @@ public class ControladorCalificacion implements Controlador {
         Atuendo atuendo = buscarAtuendo(req);
         Calificacion calificacion = new Calificacion(puntuaciones);
         atuendo.setCalificacion(calificacion);
-        usuarioActivo(req).modificarSensibilidad(calificacion);
+        obtenerUsuario(req).modificarSensibilidad(calificacion);
 
         res.redirect(ATUENDOS_URL);
         return null;

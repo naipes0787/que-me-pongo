@@ -1,8 +1,12 @@
 package quemepongo.dominio.usuario;
 
+import quemepongo.dominio.Entidad;
 import quemepongo.dominio.calificacion.Calificacion;
 
-public class Sensibilidad {
+import javax.persistence.Entity;
+
+@Entity
+public class Sensibilidad extends Entidad {
     private double sensibilidadClima = 1;
     private double sensibilidadManos;
     private double sensibilidadCuello;
@@ -29,5 +33,21 @@ public class Sensibilidad {
 
     public double getSensibilidadCabeza() {
         return sensibilidadCabeza;
+    }
+
+    public void setSensibilidadClima(double sensibilidadClima) {
+        this.sensibilidadClima = sensibilidadClima;
+    }
+
+    public void setSensibilidadManos(double sensibilidadManos) {
+        this.sensibilidadManos = sensibilidadManos;
+    }
+
+    public void setSensibilidadCuello(double sensibilidadCuello) {
+        this.sensibilidadCuello = sensibilidadCuello;
+    }
+
+    public void setSensibilidadCabeza(double sensibilidadCabeza) {
+        this.sensibilidadCabeza = sensibilidadCabeza;
     }
 }

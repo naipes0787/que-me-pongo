@@ -1,16 +1,10 @@
 package quemepongo.persistencia;
 
 import quemepongo.dominio.evento.Evento;
-import quemepongo.dominio.evento.Localizacion;
-import quemepongo.dominio.evento.tipo.Anticipacion;
-import quemepongo.dominio.evento.tipo.EventoUnico;
 
 import javax.persistence.TypedQuery;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 /**
  * Repositorio de las {@link Evento}s del sistema
@@ -37,5 +31,9 @@ public class RepositorioEvento extends Repositorio<Evento> {
     public List<Evento> getEventosByUsuarioId(Long usuario) {
         return createQuery("select e from Usuario u inner join u.eventos e where u.id = :user")
                 .setParameter("user", usuario).getResultList();
+    }
+
+    public Optional<Evento> buscarEvento(Long id) {
+        return Optional.ofNullable(find(Evento.class, id));
     }
 }

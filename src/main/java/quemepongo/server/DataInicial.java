@@ -35,9 +35,9 @@ public class DataInicial implements WithGlobalEntityManager, TransactionalOps {
     }
 
     private void cargarUsuarioConEvento() {
-        Usuario usuario = crearUsuario("usuario3", guardarropaInformal2());
+        Usuario usuario = crearUsuario("usuario3", guardarropaInformal3());
         Evento evento = new Evento("Recital", Localizacion.CABA, new EventoUnico(LocalDateTime.now().plusDays(20)), Anticipacion.UNA_HORA_ANTES);
-        evento.setAtuendo(usuario.sugerencias(evento).stream().findAny().orElse(null));
+        evento.setSugerenciaAceptada(usuario.sugerencias(evento).stream().findAny().orElse(null));
         usuario.agregarEvento(evento);
         repositorioUsuario.guardar(usuario);
     }
@@ -66,6 +66,15 @@ public class DataInicial implements WithGlobalEntityManager, TransactionalOps {
                 crearPrenda("Jean", INFERIOR, Material.GABARDINA, Color.AZUL),
                 crearPrenda("Zapatillas", CALZADO, Material.LONA, Color.VERDE),
                 crearPrenda("Botas", CALZADO, Material.CUERO, Color.NEGRO)
+        );
+    }
+
+    private Guardarropa guardarropaInformal3() {
+        return crearGuardarropa("Guardarropa Informal",
+                crearPrenda("Campera", ABRIGO, Material.CUERO, Color.MARRON),
+                crearPrenda("Polera", BASE, Material.ALGODON, Color.NEGRO),
+                crearPrenda("Jean", INFERIOR, Material.GABARDINA, Color.AZUL),
+                crearPrenda("Zapatillas", CALZADO, Material.LONA, Color.VERDE)
         );
     }
 

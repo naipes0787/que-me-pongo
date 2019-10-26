@@ -9,20 +9,23 @@
         <h1 class="display-4"><span class="badge badge-secondary">{{numeroDia}}</span></h1>
             <h2>{{mes}}</h2>
         </div>
-            <div class="col-10">
-            <h3 class="text-uppercase"><strong>{{nombre}}</strong></h3>
-                <ul class="list-inline">
-                <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>{{diaDeLaSemana}}</li>
-                    <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i>{{cuandoEmpieza}}</li>
-                    <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i>{{donde}}</li>
-                </ul>
-            </div>
+            <a href="/eventos/{{id}}">
+                <div class="col-10" >
+                    <h3 class="text-uppercase"><strong>{{nombre}}</strong></h3>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>{{diaDeLaSemana}}</li>
+                        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i>{{cuandoEmpieza}}</li>
+                        <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i>{{donde}}</li>
+                    </ul>
+                </div>
+            </a>
         </div>
         </div>
     {{else}}
         PARECE QUE NO TENES EVENTOS, PODES CREAR UNO NUEVO ACA
     {{/each}}
-
+    <div class="footer-calendario">
+    </div>
 
 
 {{/partial}}

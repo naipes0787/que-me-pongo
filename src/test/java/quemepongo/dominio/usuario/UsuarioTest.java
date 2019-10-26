@@ -3,9 +3,9 @@ package quemepongo.dominio.usuario;
 import com.google.common.collect.Sets;
 import org.junit.Test;
 import quemepongo.config.UsuarioTestConfig;
+import quemepongo.dominio.guardarropa.GuardarropaCompartido;
 import quemepongo.excepcion.GuardarropaNoPerteneceAlUsuarioException;
 import quemepongo.excepcion.LimiteDeGuardarropasException;
-import quemepongo.dominio.guardarropa.GuardarropaCompartido;
 
 import static org.junit.Assert.*;
 

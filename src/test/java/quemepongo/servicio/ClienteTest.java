@@ -2,10 +2,10 @@ package quemepongo.servicio;
 
 import org.junit.Assert;
 import org.junit.Test;
-import quemepongo.servicio.clima.ApiDeClima;
 import quemepongo.dominio.FactorClimatico;
 import quemepongo.dominio.Temperatura;
 import quemepongo.dominio.evento.Localizacion;
+import quemepongo.servicio.clima.ApiDeClima;
 
 import java.util.Arrays;
 import java.util.List;

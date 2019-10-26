@@ -2,8 +2,8 @@ package quemepongo.dominio.evento;
 
 import org.junit.Test;
 import quemepongo.config.EventoTestConfig;
-import quemepongo.excepcion.FechaEventoNoValidaException;
 import quemepongo.dominio.evento.tipo.EventoUnico;
+import quemepongo.excepcion.FechaEventoNoValidaException;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,6 +1,5 @@
 package quemepongo.servicio.clima;
 
-import quemepongo.servicio.clima.cliente.ClienteAccuWeather;
 import quemepongo.servicio.clima.cliente.ClienteOpenWeather;
 
 public class SelectorDeProveedorDeClima {

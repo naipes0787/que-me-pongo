@@ -1,7 +1,6 @@
 package quemepongo.ui.arena.evento;
 
 import org.apache.commons.collections15.Transformer;
-
 import quemepongo.dominio.sugerencia.Atuendo;
 
 /**

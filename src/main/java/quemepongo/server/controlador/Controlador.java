@@ -15,7 +15,7 @@ public interface Controlador {
         return req.session().attribute("id");
     }
 
-    default Usuario usuarioActivo(Request req) {
+    default Usuario obtenerUsuario(Request req) {
         return RepositorioUsuario.instancia().getUsuarioByUsername(req.session().attribute("user"))
                 .orElseThrow(() -> new ControladorException("Usuario no encontrado"));
     }

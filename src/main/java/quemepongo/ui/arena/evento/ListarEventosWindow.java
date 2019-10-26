@@ -1,7 +1,5 @@
 package quemepongo.ui.arena.evento;
 
-import java.awt.Color;
-
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -11,8 +9,9 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
-
 import quemepongo.dominio.evento.Evento;
+
+import java.awt.*;
 
 /**
  * Ventana de listado de eventos.

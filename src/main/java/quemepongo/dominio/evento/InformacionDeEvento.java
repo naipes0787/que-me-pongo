@@ -6,12 +6,21 @@ import java.util.stream.Collectors;
 
 public class InformacionDeEvento {
 
+    private Long id;
     private String nombre;
     private Integer numeroDia;
     private String diaDeLaSemana;
     private String mes;
     private String cuandoEmpieza;
     private String donde;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -67,6 +76,7 @@ public class InformacionDeEvento {
 
     private static InformacionDeEvento armarEventoParaCalendario(Evento evento){
         InformacionDeEvento infoDeEvento = new InformacionDeEvento();
+        infoDeEvento.setId(evento.getId());
         infoDeEvento.setNombre(evento.getTitulo());
         LocalDateTime fecha = evento.getFecha();
         infoDeEvento.setNumeroDia(fecha.getDayOfMonth());

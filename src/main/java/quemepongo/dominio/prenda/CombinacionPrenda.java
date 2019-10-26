@@ -12,7 +12,7 @@ import java.util.Set;
 public class CombinacionPrenda extends Entidad {
 
     @OneToMany
-    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @Cascade({CascadeType.REFRESH})
     private Set<Prenda> prendas;
 
     public CombinacionPrenda(){}

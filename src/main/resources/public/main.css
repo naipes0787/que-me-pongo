@@ -23,8 +23,12 @@ div.home {
     margin: 30px 20px 50px 20px;
 }
 
+div.footer-calendario {
+    margin: 30px 20px 50px 20px;
+}
+
 h2.titulo-form {
-    margin-bottom: 20px:
+    margin-bottom: 20px;
 }
 
 form.form-alta {
