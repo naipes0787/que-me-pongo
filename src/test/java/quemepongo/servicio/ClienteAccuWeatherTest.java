@@ -6,11 +6,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import quemepongo.servicio.clima.cliente.ClienteAccuWeather;
-import quemepongo.excepcion.ApiDeClimaException;
-import quemepongo.excepcion.ClienteHttpException;
 import quemepongo.dominio.Temperatura;
 import quemepongo.dominio.evento.Localizacion;
+import quemepongo.excepcion.ApiDeClimaException;
+import quemepongo.excepcion.ClienteHttpException;
+import quemepongo.servicio.clima.cliente.ClienteAccuWeather;
 
 public class ClienteAccuWeatherTest {
 

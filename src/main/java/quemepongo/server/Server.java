@@ -35,6 +35,7 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
         new RutasLogin().registrar();
         new RutasHome().registrar();
         new RutasEvento().registrar();
+        new RutasEventos().registrar();
         new RutasSugerencias().registrar();
     }
 

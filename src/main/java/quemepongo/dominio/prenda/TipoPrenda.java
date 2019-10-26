@@ -1,8 +1,8 @@
 package quemepongo.dominio.prenda;
 
 import com.google.common.collect.Sets;
-import quemepongo.dominio.FactorClimatico;
 import quemepongo.dominio.Entidad;
+import quemepongo.dominio.FactorClimatico;
 
 import javax.persistence.*;
 import java.util.Set;

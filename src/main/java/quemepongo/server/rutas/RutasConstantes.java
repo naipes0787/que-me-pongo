@@ -7,7 +7,8 @@ public final class RutasConstantes {
 
     public static final String HOME_URL = "/home";
 
-    public static final String FORMULARIO_EVENTOS_URL = "/eventos";
+    public static final String FORMULARIO_ALTA_EVENTOS = "/form-alta-eventos";
+    public static final String EVENTOS_URL = "/eventos";
     public static final String EVENTO_URL = "/eventos/:id";
 
     public static final String SUGERIR_URL = "/eventos/:id/sugerencias";

@@ -1,8 +1,8 @@
 package quemepongo.dominio.usuario;
 
-import quemepongo.excepcion.LimiteDeGuardarropasException;
 import quemepongo.dominio.guardarropa.Guardarropa;
 import quemepongo.dominio.prenda.Prenda;
+import quemepongo.excepcion.LimiteDeGuardarropasException;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

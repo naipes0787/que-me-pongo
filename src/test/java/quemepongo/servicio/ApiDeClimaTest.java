@@ -6,10 +6,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import quemepongo.servicio.clima.ApiDeClima;
-import quemepongo.excepcion.ApiDeClimaException;
 import quemepongo.dominio.Temperatura;
 import quemepongo.dominio.evento.Localizacion;
+import quemepongo.excepcion.ApiDeClimaException;
+import quemepongo.servicio.clima.ApiDeClima;
 import quemepongo.servicio.clima.SelectorDeProveedorDeClima;
 
 public class ApiDeClimaTest {

@@ -4,7 +4,6 @@ import org.junit.Test;
 import quemepongo.config.CalificacionTestConfig;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertFalse;
 
 public class CalificacionTest extends CalificacionTestConfig {
 

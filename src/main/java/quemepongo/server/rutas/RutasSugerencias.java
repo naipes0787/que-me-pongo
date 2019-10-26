@@ -3,8 +3,6 @@ package quemepongo.server.rutas;
 import quemepongo.server.controlador.ControladorSugerencias;
 import spark.Spark;
 
-import static spark.Spark.get;
-
 public class RutasSugerencias extends Rutas {
 
     private ControladorSugerencias controlador = new ControladorSugerencias();
