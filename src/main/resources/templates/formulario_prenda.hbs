@@ -14,7 +14,7 @@
             <label for="categoria">Categoría</label>
             <select class="form-control" id="categoria" name="categoria" required="required">
                 {{#each categorias}}
-                <option value="{{this}}">{{nombreAMostrar}}</option>
+                    <option value="{{this}}">{{nombre}}</option>
                 {{/each}}
             </select>
         </div>
@@ -22,7 +22,7 @@
             <label for="material">Material</label>
             <select class="form-control" id="material" name="material" required="required">
                 {{#each materiales}}
-                <option value="{{this}}">{{nombreAMostrar}}</option>
+                    <option value="{{this}}">{{nombre}}</option>
                 {{/each}}
             </select>
         </div>
@@ -30,7 +30,7 @@
             <label for="color-principal">Color principal</label>
             <select class="form-control" id="color-principal" name="color-principal" required="required">
                 {{#each colores}}
-                <option value="{{this}}">{{nombreAMostrar}}</option>
+                    <option value="{{this}}">{{nombre}}</option>
                 {{/each}}
             </select>
         </div>
@@ -38,7 +38,7 @@
             <label for="color-secundario">Color secundario</label>
             <select class="form-control" id="color-secundario" name="color-secundario" required="required">
                 {{#each colores}}
-                <option value="{{this}}">{{nombreAMostrar}}</option>
+                    <option value="{{this}}">{{nombre}}</option>
                 {{/each}}
             </select>
         </div>
@@ -47,7 +47,7 @@
             <select class="form-control" id="efectividad" name="efectividad" required="required"
                     aria-describedby="ayuda-efectividad">
                 {{#each factoresClimaticos}}
-                    <option value="{{this}}">{{nombreAMostrar}}</option>
+                    <option value="{{this}}">{{nombre}}</option>
                 {{/each}}
             </select>
             <small id="ayuda-efectividad" class="form-text text-muted">
@@ -55,11 +55,11 @@
             </small>
         </div>
         <div class="form-group">
-            <label for="capa">Efectivo para</label>
+            <label for="capa">Capa</label>
             <select class="form-control" id="capa" name="capa" required="required"
                     aria-describedby="ayuda-capa">
                 {{#each capas}}
-                <option value="{{this}}">{{nombreAMostrar}}</option>
+                    <option value="{{this}}">{{nombre}}</option>
                 {{/each}}
             </select>
             <small id="ayuda-capa" class="form-text text-muted">

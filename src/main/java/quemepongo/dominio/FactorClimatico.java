@@ -1,10 +1,24 @@
 package quemepongo.dominio;
 
+import quemepongo.dominio.prenda.Capa;
+
 import java.util.Arrays;
 import java.util.List;
 
 public enum FactorClimatico {
-    LLUVIA, VIENTO, SOL;
+    LLUVIA("Lluvia"),
+    VIENTO("Viento"),
+    SOL("Sol");
+
+    private String nombreAMostrar;
+
+    FactorClimatico(String nombreAMostrar) {
+        this.nombreAMostrar = nombreAMostrar;
+    }
+
+    public String getNombre() {
+        return nombreAMostrar;
+    }
 
     public static List<FactorClimatico> getTodos() {
         return Arrays.asList(values());

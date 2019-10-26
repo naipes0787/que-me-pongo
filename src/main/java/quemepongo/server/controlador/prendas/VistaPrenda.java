@@ -6,23 +6,24 @@ import java.util.List;
 
 public class VistaPrenda {
 
-    public List<Material> materiales;
-
-    public List<Color> colores;
-
-    public List<Categoria> categorias;
-
-    public List<Capa> capas;
-
-    public List<FactorClimatico> factoresclimaticos;
-
-    public VistaPrenda(){
-        this.materiales = Material.getTodos();
-        this.colores = Color.getTodos();
-        this.categorias = Categoria.getTodos();
-        this.capas = Capa.getTodos();
-        this.factoresclimaticos = FactorClimatico.getTodos();
+    public List<Material> getMateriales() {
+        return Material.getTodos();
     }
 
+    public List<Color> getColores() {
+        return Color.getTodos();
+    }
+
+    public List<Categoria> getCategorias() {
+        return Categoria.getTodos();
+    }
+
+    public List<Capa> getCapas() {
+        return Capa.getTodos();
+    }
+
+    public List<FactorClimatico> getFactoresClimaticos() {
+        return FactorClimatico.getTodos();
+    }
 
 }

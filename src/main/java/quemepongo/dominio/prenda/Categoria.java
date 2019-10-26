@@ -7,10 +7,10 @@ public enum Categoria {
     CALZADO("Calzado"),
     PRENDA_INFERIOR("Parte inferior"),
     PRENDA_SUPERIOR("Parte superior"),
-    ACCESORIO_MANOS("Accesorio"),
-    ACCESORIO_CUELLO("Accesorio"),
-    ACCESORIO_CABEZA("Accesorio"),
-    ACCESORIO_CONTRALLUVIA("Accesorio");
+    ACCESORIO_MANOS("Accesorio de manos"),
+    ACCESORIO_CUELLO("Accesorio de cuello"),
+    ACCESORIO_CABEZA("Accesorio de cabeza"),
+    ACCESORIO_CONTRALLUVIA("Accesorio contra lluvia");
 
     private String nombreAMostrar;
 
