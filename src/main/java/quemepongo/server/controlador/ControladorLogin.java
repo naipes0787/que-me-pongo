@@ -32,7 +32,7 @@ public class ControladorLogin {
             response.redirect(RutasConstantes.HOME_URL);
         } else {
             // Se setea datosIncorrectos en TRUE ya que se ingresó mal el usuario o password
-            request.session().attribute("datosIncorrectos", Boolean.TRUE);
+            request.session().attribute("datosIncorrectos", true);
             response.status(401);
             response.redirect(RutasConstantes.LOGIN_URL);
         }
