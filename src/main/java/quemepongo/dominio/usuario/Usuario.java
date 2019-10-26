@@ -131,14 +131,6 @@ public class Usuario extends Entidad {
         return guardarropas;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
     /**
      * Compara el password del parámetro con el password del usuario mediante el {@link Encriptador}
      * @param password {@link String}
