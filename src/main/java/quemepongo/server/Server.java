@@ -1,5 +1,6 @@
 package quemepongo.server;
 
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -30,13 +31,15 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
             }
         );
 
-        new RutasGuardarropas().registrar();
-        new RutasAtuendos().registrar();
-        new RutasLogin().registrar();
-        new RutasHome().registrar();
-        new RutasEventos().registrar();
-        new RutasPrendas().registrar();
-        new RutasSugerencias().registrar();
+        Lists.newArrayList(
+                new RutasGuardarropas(),
+                new RutasAtuendos(),
+                new RutasLogin(),
+                new RutasHome(),
+                new RutasEventos(),
+                new RutasPrendas(),
+                new RutasSugerencias()
+        ).forEach(Rutas::registrar);
     }
 
 }
