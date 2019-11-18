@@ -13,8 +13,4 @@ public class ControladorGuardarropas implements Controlador {
         return new ModelAndView(guardarropa, "guardarropa.hbs");
     }
 
-    public ModelAndView guardarropas(Request req, Response res) {
-        return new ModelAndView(obtenerUsuario(req), "guardarropas.hbs");
-    }
-
 }

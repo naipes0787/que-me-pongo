@@ -14,9 +14,5 @@ public class RutasGuardarropas extends Rutas {
         get(RutasConstantes.PRENDAS_URL,
                 controlador::prendasByGuardarropaId,
                 templateEngine);
-
-        get(RutasConstantes.GUARDARROPAS_URL,
-                controlador::guardarropas,
-                templateEngine);
     }
 }

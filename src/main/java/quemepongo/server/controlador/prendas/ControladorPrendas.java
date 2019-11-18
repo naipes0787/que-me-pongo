@@ -41,7 +41,7 @@ public class ControladorPrendas implements Controlador {
         );
         RepositorioPrenda.instancia().guardar(prenda);
         res.status(201);
-        res.redirect(RutasConstantes.GUARDARROPAS_URL);
+        res.redirect(RutasConstantes.HOME_URL);
         return null;
     }
 

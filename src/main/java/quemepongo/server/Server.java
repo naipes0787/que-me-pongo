@@ -36,6 +36,7 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
                 new RutasAtuendos(),
                 new RutasLogin(),
                 new RutasHome(),
+                new RutasQuienesSomos(),
                 new RutasEventos(),
                 new RutasPrendas(),
                 new RutasSugerencias()
