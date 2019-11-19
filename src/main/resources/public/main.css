@@ -10,13 +10,22 @@
     margin-left: 40px;
 }
 
-.jumbotron {
+div.container-layout {
+    margin-top: 80px;
+}
+
+nav.navbar {
     background-color: #3649B8;
     color: floralwhite;
 }
 
+div.logo {
+    margin-right: 10px;
+}
+
 div.titulo-menu {
     background-color: #4A569E;
+    color: #FFF;
 }
 
 div.home {
@@ -53,7 +62,6 @@ a.footer-menu-item:hover {
 a.btn-social {
     background-color: white;
     color: #3578E5;
-    margin: 5px;
     border: 1px solid black;
 }
 
