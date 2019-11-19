@@ -88,4 +88,14 @@ public class UsuarioTest extends UsuarioTestConfig {
 		assertEquals(CANTIDAD_PRENDAS_EJEMPLO_PREMIUM, guardarropa.cantidadDePrendas());
 	}
 
+	@Test
+	public void siIngresoContraseniaIncorrecta_MetodoDeChequeoDaFalse(){
+		assertFalse(johnnyBravo.isPasswordOk("noEsLaContrasenia"));
+	}
+
+	@Test
+	public void siIngresoContraseniaCorrecta_MetodoDeChequeoDaTrue(){
+		assertTrue(johnnyBravo.isPasswordOk("contrasenia"));
+	}
+
 }

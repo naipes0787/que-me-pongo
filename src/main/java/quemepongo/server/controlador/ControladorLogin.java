@@ -25,7 +25,7 @@ public class ControladorLogin {
         String username = request.queryParams("usuario");
         String pass = request.queryParams("contrasenia");
         Optional<Usuario> usuario = RepositorioUsuario.instancia().getUsuarioByUsername(username);
-        if (usuario.isPresent() && usuario.get().getPassword().equals(pass)) {
+        if (usuario.isPresent() && usuario.get().isPasswordOk(pass)) {
             request.session(true);
             request.session().attribute("user", username);
             request.session().attribute("id", usuario.get().getId());

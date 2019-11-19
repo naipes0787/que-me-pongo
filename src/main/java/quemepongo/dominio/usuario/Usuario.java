@@ -52,7 +52,7 @@ public class Usuario extends Entidad {
     public Usuario(String username, String password) {
     	this.tipoUsuario = new UsuarioGratuito();
     	this.username = username;
-    	this.password = password;
+    	this.password = Encriptador.encriptar(password);
     }
 
     public Usuario(TipoUsuario nuevaSuscripcion) {
@@ -131,11 +131,12 @@ public class Usuario extends Entidad {
         return guardarropas;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUsername() {
-        return username;
+    /**
+     * Compara el password del parámetro con el password del usuario mediante el {@link Encriptador}
+     * @param password {@link String}
+     * @return {@link Boolean} TRUE si el password es igual al del usuario, FALSE en caso contrario
+     */
+    public Boolean isPasswordOk(String password) {
+        return Encriptador.encriptar(password).equals(this.password);
     }
 }
