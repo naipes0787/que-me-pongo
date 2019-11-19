@@ -2,17 +2,29 @@
 
 <div>
     <h2>
-        Bienvenido!
+        Guardarropas:
     </h2>
 
+    <div class="container-fluid">
+        <div class="row">
+            {{#each guardarropas}}
+            <div class="card-deck col-sm-4">
+                <div class="card mx-3 my-3">
+                    <div class="card-body">
+                        <a class="btn btn-info" href="/guardarropas/{{id}}/prendas">
+                            <h2>{{nombre}}</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
     <div class="home">
-        <p>Desde tu cuenta podés ingresar a las siguientes opciones:</p>
+        <p>También podés ingresar a:</p>
         <ul>
-            <li><a href="/guardarropas">Listar guardarropas</a></li>
             <li><a href="/eventos/creacion">Crear evento</a></li>
-            <li><a href="/eventos">Ver tu calendario</a></li>
             <li><a href="/atuendos">Calificar sugerencias</a></li>
-            <li><a href="/logout">Cerrar sesi&oacute;n</a></li>
         </ul>
     </div>
 </div>
