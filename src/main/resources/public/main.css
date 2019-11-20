@@ -28,6 +28,18 @@ div.titulo-menu {
     color: #FFF;
 }
 
+h2.titulo-pagina {
+    margin-top: 150px;
+}
+
+div.menu-mi-cuenta {
+    margin-right: 100px!important;
+}
+
+button.btn-mi-cuenta {
+
+}
+
 div.home {
     margin: 30px 20px 50px 20px;
 }
