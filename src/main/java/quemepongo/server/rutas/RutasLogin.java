@@ -30,12 +30,17 @@ public class RutasLogin extends Rutas {
     }
 
     private void verificarLogin(Request request, Response response) {
-        if (!RutasConstantes.LOGIN_URL.equals(request.uri())) {
+        if (requiereAutenticacion(request.uri())) {
             String username = request.session().attribute("user");
             if (username == null) {
                 response.redirect(RutasConstantes.LOGIN_URL);
                 halt();
             }
         }
+    }
+
+    private boolean requiereAutenticacion(String URI){
+        return (!RutasConstantes.LOGIN_URL.equals(URI) &&
+                !RutasConstantes.QUIENES_SOMOS_URL.equals(URI));
     }
 }
