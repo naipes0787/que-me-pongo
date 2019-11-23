@@ -6,8 +6,15 @@ import java.time.format.DateTimeFormatter;
 
 public class FechaUtils {
 
-    public static LocalDateTime parsear(String fecha, String hora, String minutos) {
+    /**
+     * @param fecha en formato yyyy-MM-dd
+     * @param horario en formato HH:mm
+     * @return LocalDateTime correspondiente
+     */
+    public static LocalDateTime parsear(String fecha, String horario) {
+        int hora = Integer.parseInt(horario.split(":")[0]);
+        int minutos = Integer.parseInt(horario.split(":")[1]);
         return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                .atTime(Integer.parseInt(hora), Integer.parseInt(minutos));
+                .atTime(hora, minutos);
     }
 }
