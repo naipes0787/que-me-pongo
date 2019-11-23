@@ -32,12 +32,12 @@ public class ControladorEventos implements Controlador {
 
     public Void guardarEvento(Request req, Response res) {
         try {
-            LocalDateTime fecha = FechaUtils.parsear(req.queryParams("fecha"), req.queryParams("hora"), req.queryParams("minutos"));
+            LocalDateTime fecha = FechaUtils.parsear(req.queryParams("fecha"), req.queryParams("horario"));
             Evento evento = new Evento(
                     req.queryParams("titulo"),
                     Localizacion.valueOf(req.queryParams("lugar")),
                     new EventoUnico(fecha),
-                    new Anticipacion(ChronoUnit.DAYS, Integer.valueOf(req.queryParams("anticipacion")))
+                    new Anticipacion(ChronoUnit.HOURS, Integer.valueOf(req.queryParams("anticipacion")))
             );
             obtenerUsuario(req).agregarEvento(evento);
             RepositorioEvento.instancia().guardar(evento);

@@ -4,7 +4,7 @@
     <h2 class="titulo-form">
         Nuevo evento
     </h2>
-    <form class="form-alta offset-md-2 col-md-8" action="/eventos" method="post">
+    <form class="form-alta offset-md-2 col-md-10" action="/eventos" method="post">
         <div class="form-group">
             <label for="titulo">Título</label>
             <input type="input" class="form-control" id="titulo" name="titulo" required="required"
@@ -19,50 +19,26 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="tipo">Tipo</label>
-            <select class="form-control" id="tipo" name="tipo" required="required">
-                <option value="UNICO">Único</option>
-            </select>
-        </div>
-        <div class="form-group">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="fecha">Fecha</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha" required="required" aria-describedby="ayuda-fecha">
-                    <small id="ayuda-fecha" class="form-text text-muted">
-                        La fecha en la que ocurrir&aacute; el evento
-                    </small>
+                    <input type="date" class="form-control {{#if isFechaInvalida}}is-invalid{{/if}}" id="fecha" name="fecha" required="required">
+                    {{#if isFechaInvalida}}
+                        <div class="invalid-feedback"> La fecha ingresada es inv&aacute;lida</div>
+                    {{/if}}
                 </div>
-                <div class="form-group">
-                    <label for="hora">Horario</label>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <input type="number" max="23" min="0" class="form-control" id="hora" name="hora" required="required" aria-describedby="ayuda-hora" onKeyDown="return false">
-                            <small id="ayuda-hora" class="form-text text-muted">Hora</small>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="number" max="59" min="0" class="form-control" id="minutos" name="minutos" required="required" aria-describedby="ayuda-minutos" onKeyDown="return false">
-                            <small id="ayuda-minutos" class="form-text text-muted">Minutos</small>
-                        </div>
+                <div class="form-group col-md-2">
+                    <label for="horario">Horario</label>
+                    <input type="time" id="horario" class="form-control" name="horario" required="required">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="anticipacion">Avisarme</label>
+                    <div class="form-inline">
+                        <input type="number" min="1" max="120" class="form-control col-md-2 mr-3" id="anticipacion" name="anticipacion" required="required">
+                        <span class="form-group">horas antes</span>
                     </div>
                 </div>
-                {{#if isFechaInvalida}}
-                    <div class="col-lg-12">
-                        <div class="alert alert-danger" role="alert">
-                            La fecha ingresada es inv&aacute;lida
-                        </div>
-                    </div>
-                {{/if}}
             </div>
-        </div>
-        <div class="form-group">
-            <label for="anticipacion">Aviso anticipado</label>
-            <input type="number" min="1" max="10" class="form-control" id="anticipacion" required="required"
-                   aria-describedby="ayuda-anticipacion" name="anticipacion"
-                   placeholder="Anticipación de notificación del evento">
-            <small id="ayuda-anticipacion" class="form-text text-muted">
-                Podemos recordarte acerca del evento entre 1 y 10 días antes
-            </small>
         </div>
         <div class="clearfix">
             <button type="submit" class="btn btn-primary pull-right">Guardar</button>
