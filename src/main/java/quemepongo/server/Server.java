@@ -18,7 +18,7 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
     private void iniciar() {
         new DataInicial().cargar();
 
-        Spark.port(getHerokuAssignedPort());
+        Spark.port(obtenerPuertoHeroku());
         Spark.staticFileLocation("/public");
         Spark.init();
 
@@ -43,12 +43,15 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
         ).forEach(Rutas::registrar);
     }
 
-    private int getHerokuAssignedPort() {
+    /**
+     * Devolver el puerto asignado por Heroku. En caso de no existir uno, se devuelve 9000 por default
+     * @return int
+     */
+    private int obtenerPuertoHeroku() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
-        // Si el puerto de Heroku no está seteado, se usa por default 9000
         return 9000;
     }
 
