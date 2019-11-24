@@ -117,3 +117,30 @@ a.desarrollado-por:hover{
 .badge-secondary {
     background-color: #3649B8;
 }
+
+.connecting-line {
+    border: 2px solid #e0e0e0;
+    width: 23%;
+}
+
+.step {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    text-align: center;
+    font-size: 25px;
+}
+
+.active {
+    background: #fff;
+    border: 2px solid #5bc0de;
+}
+
+.completed {
+    background: #fff;
+    border-color: #00aa13;
+}

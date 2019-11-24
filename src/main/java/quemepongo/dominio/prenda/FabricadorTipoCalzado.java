@@ -33,4 +33,9 @@ public class FabricadorTipoCalzado extends FabricaTipoPrenda {
     public Capa getCapa() {
     	return Capa.BASE;
     }
+
+    @Override
+    public String getNombre() {
+        return "Calzado";
+    }
 }

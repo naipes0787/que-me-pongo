@@ -1,0 +1,40 @@
+{{#partial "contenido"}}
+    <div class="mb-5 pb-5">
+        <div class="form-inline pt-5 pb-5 ml-5">
+            <div class="text-center mr-3 ml-3">
+                <span class="completed step">1</span>
+                <span class="text-center" style="display:block">Tipo</span>
+            </div>
+            <div class="completed connecting-line"></div>
+            <div class="text-center mr-3 ml-3">
+                <span class="completed step">2</span>
+                <span class="text-center" style="display:block">Características</span>
+            </div>
+            <div class="completed connecting-line"></div>
+            <div class="text-center mr-3 ml-3">
+                <span class="active step">3</span>
+                <span class="text-center" style="display:block">Guardar</span>
+            </div>
+        </div>
+
+        <form class="col-md-8 ml-5" action="/guardarropas/{{guardarropaId}}/prendas?paso=3" enctype='multipart/form-data' method="post">
+            <h2 class="titulo-form">
+                Ponele un nombre a tu prenda
+            </h2>
+            <div class="form-group">
+                <input type="text" class="form-control" id="nombre" name="nombre" required="required" />
+            </div>
+
+            <h2 class="titulo-form">
+                Subir una foto
+            </h2>
+            <div class="form-group">
+                <input type="file" class="form-control" id="foto" name="foto" />
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Siguiente</button>
+            <a class="btn btn-info" href="/guardarropas/{{guardarropaId}}/prendas/nueva?paso=2">Atrás</a>
+        </form>
+    </div>
+{{/partial}}
+
+{{>layout.hbs}}

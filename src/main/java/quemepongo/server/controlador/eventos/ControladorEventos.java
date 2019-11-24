@@ -9,7 +9,6 @@ import quemepongo.dominio.evento.tipo.EventoUnico;
 import quemepongo.excepcion.ControladorException;
 import quemepongo.excepcion.FechaEventoNoValidaException;
 import quemepongo.persistencia.RepositorioEvento;
-import quemepongo.server.controlador.Controlador;
 import quemepongo.server.rutas.RutasConstantes;
 import quemepongo.util.FechaUtils;
 import spark.ModelAndView;
@@ -21,7 +20,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
-public class ControladorEventos implements Controlador {
+import static quemepongo.util.RequestUtils.*;
+
+public class ControladorEventos {
 
     public ModelAndView formulario(Request request, Response response) {
         Optional<Boolean> isFechaInvalida = Optional.ofNullable(request.session().attribute("isFechaInvalida"));

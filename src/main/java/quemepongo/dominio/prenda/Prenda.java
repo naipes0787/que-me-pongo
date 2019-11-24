@@ -44,6 +44,10 @@ public class Prenda extends Entidad {
         return this.tipo.getCategoria();
     }
 
+    public TipoPrenda getTipo(){
+        return this.tipo;
+    }
+
     public double getNivelAbrigo() {
     	return this.tipo.getNivelAbrigo();
     }

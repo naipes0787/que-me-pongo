@@ -33,4 +33,9 @@ public class FabricadorTipoSuperiorAbrigo extends FabricaTipoPrenda{
     public Capa getCapa() {
     	return Capa.ABRIGO;
     }
+
+    @Override
+    public String getNombre() {
+        return "Abrigo";
+    }
 }

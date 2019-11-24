@@ -11,5 +11,5 @@ public abstract class FabricaTipoPrenda {
     public double getNivelAbrigo(){
     	return this.nivelAbrigo;
     }
-
+    public abstract String getNombre();
 }

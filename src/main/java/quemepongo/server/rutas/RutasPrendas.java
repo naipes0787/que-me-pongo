@@ -10,11 +10,11 @@ public class RutasPrendas extends Rutas {
     @Override
     public void registrar() {
         get(RutasConstantes.FORMULARIO_ALTA_PRENDAS,
-                controladorPrendas::getBuilderPrendaForm,
+                controladorPrendas::formulario,
                 templateEngine);
 
         post(RutasConstantes.PRENDAS_URL,
-                controladorPrendas::guardarPrenda);
+                controladorPrendas::guardar);
 
     }
 }

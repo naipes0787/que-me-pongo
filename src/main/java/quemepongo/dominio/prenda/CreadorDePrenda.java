@@ -44,6 +44,30 @@ public class CreadorDePrenda {
 		this.urlFoto = urlFoto;
 		return this;
     }
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public TipoPrenda getTipoPrenda() {
+		return tipoPrenda;
+	}
+
+	public Material getMaterial() {
+		return material;
+	}
+
+	public Color getColorPrincipal() {
+		return colorPrincipal;
+	}
+
+	public Color getColorSecundario() {
+		return colorSecundario;
+	}
+
+	public String getUrlFoto() {
+		return urlFoto;
+	}
     
 	/**
 	 * Se valida que el material elegido sea de los permitidos por el tipo

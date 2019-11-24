@@ -25,5 +25,10 @@ public class FabricadorTipoAccesorioCabeza  extends FabricaTipoPrenda {
         return Capa.BASE;
     }
 
+    @Override
+    public String getNombre() {
+        return "Accesorio para cabeza";
+    }
+
 }
 

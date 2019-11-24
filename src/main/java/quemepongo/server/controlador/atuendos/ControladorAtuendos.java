@@ -1,14 +1,15 @@
 package quemepongo.server.controlador.atuendos;
 
 import quemepongo.dominio.evento.Evento;
-import quemepongo.server.controlador.Controlador;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.util.stream.Collectors;
 
-public class ControladorAtuendos implements Controlador {
+import static quemepongo.util.RequestUtils.obtenerUsuario;
+
+public class ControladorAtuendos {
 
     public ModelAndView mostrarAtuendos(Request req, Response res) {
         return new ModelAndView(
