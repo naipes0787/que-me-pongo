@@ -26,7 +26,7 @@ Para poder realizar el deploy en Heroku se deberán seguir los siguientes pasos:
 1. Ejecutar `heroku login` para loguearnos
 1. Situarse en el directorio del proyecto y ejecutar `heroku create que-me-pongo-grupo-22` para crear la aplicación en Heroku
 1. Luego ejecutar `heroku addons:create heroku-postgresql` para asociar una base de datos postgreSQL a nuestro proyecto
-1. Configurar el archivo `persistence.xml` para que apunte a dicha base de datos (Podemos ver la URL, usuario y contraseña desde la página de [Heroku](https://dashboard.heroku.com/apps)
+1. Configurar el archivo `persistence.xml` para que apunte a dicha base de datos (Podemos ver la URL, usuario y contraseña de la base de datos creada desde la página de [Heroku](https://dashboard.heroku.com/apps))
 1. Ahora, para deployar, desde el mismo directorio ejecutar `mvn heroku:deploy`
 1. Una vez que termine de ejecutar todo, listo! Ya está levantado en la URL que se muestra en la misma consola al finalizar. En caso de querer ver los logs puede ejecutarse `heroku logs --tail`
 
