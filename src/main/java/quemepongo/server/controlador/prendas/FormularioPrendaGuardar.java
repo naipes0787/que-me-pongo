@@ -1,23 +1,23 @@
 package quemepongo.server.controlador.prendas;
 
-import org.apache.commons.lang.StringUtils;
 import quemepongo.dominio.guardarropa.Guardarropa;
 import quemepongo.dominio.prenda.CreadorDePrenda;
 import quemepongo.dominio.usuario.Usuario;
 import quemepongo.persistencia.RepositorioGuardarropa;
 import quemepongo.server.rutas.RutasConstantes;
-import quemepongo.util.RequestUtils;
+import quemepongo.util.MultipartFormData;
 import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static quemepongo.util.RequestUtils.obtenerUsuario;
 import static quemepongo.util.RequestUtils.parsearId;
 
-public class FormularioPrendaPaso3 extends FormularioPrenda {
+public class FormularioPrendaGuardar extends FormularioPrenda {
 
-    public FormularioPrendaPaso3(CreadorDePrenda creadorPrenda) {
+    public FormularioPrendaGuardar(CreadorDePrenda creadorPrenda) {
         super(3, creadorPrenda);
     }
 
@@ -28,11 +28,12 @@ public class FormularioPrendaPaso3 extends FormularioPrenda {
 
     @Override
     public void guardar(Request req, Response res) {
-        creadorPrenda.setNombre(req.queryParams("nombre"));
-        if (StringUtils.isNotBlank(req.queryParams("foto"))) {
-            creadorPrenda.setUrlFoto(req.queryParams("foto"));
+        MultipartFormData data = new MultipartFormData(req);
+        creadorPrenda.setNombre(data.get("nombre"));
+        if (data.get("foto") != null) {
+            creadorPrenda.setUrlFoto(data.get("foto"));
         }
-        Usuario usuario = RequestUtils.obtenerUsuario(req);
+        Usuario usuario = obtenerUsuario(req);
         Guardarropa guardarropa = RepositorioGuardarropa.instancia().buscarPorId(parsearId(req));
         usuario.agregarPrenda(creadorPrenda.build(), guardarropa);
     }

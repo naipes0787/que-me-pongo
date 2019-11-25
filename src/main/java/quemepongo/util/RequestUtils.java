@@ -5,8 +5,6 @@ import quemepongo.excepcion.ControladorException;
 import quemepongo.persistencia.RepositorioUsuario;
 import spark.Request;
 
-import java.io.InputStream;
-
 public class RequestUtils {
 
     public static Long parsearId(Request req) {
@@ -22,11 +20,4 @@ public class RequestUtils {
                 .orElseThrow(() -> new ControladorException("Usuario no encontrado"));
     }
 
-    public static InputStream obtenerArchivo(Request req, String key) {
-        try {
-            return req.raw().getPart(key).getInputStream();
-        } catch (Exception e) {
-            return null;
-        }
-    }
 }

@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class FormularioPrendaPaso1 extends FormularioPrenda {
+public class FormularioPrendaTipo extends FormularioPrenda {
 
-    public FormularioPrendaPaso1(CreadorDePrenda creadorPrenda) {
+    public FormularioPrendaTipo(CreadorDePrenda creadorPrenda) {
         super(1, creadorPrenda);
     }
 

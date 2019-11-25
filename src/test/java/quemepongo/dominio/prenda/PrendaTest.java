@@ -146,7 +146,7 @@ public class PrendaTest {
 				.setColorSecundario(Color.BLANCO)
 				.setUrlFoto("./src/test/resources/test-foto.jpg")
 				.build();
-		BufferedImage foto = prenda.getFoto().getImagen();
+		BufferedImage foto = prenda.getFoto().getNormalizada();
 		assertEquals(200, foto.getWidth());
 		assertEquals(200, foto.getHeight());
 	}

@@ -6,7 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import quemepongo.server.rutas.*;
+import quemepongo.util.RepositorioImagenes;
 import spark.Spark;
+
+import static spark.Spark.staticFiles;
 
 public class Server implements WithGlobalEntityManager, TransactionalOps {
     private static final Logger logger = LoggerFactory.getLogger(Server.class);
@@ -20,6 +23,7 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
 
         Spark.port(9000);
         Spark.staticFileLocation("/public");
+        staticFiles.externalLocation(RepositorioImagenes.instancia().dir());
         Spark.init();
 
         Spark.before((req, res) -> beginTransaction());

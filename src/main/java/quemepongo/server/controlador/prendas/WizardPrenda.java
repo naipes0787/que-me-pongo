@@ -12,9 +12,9 @@ public class WizardPrenda {
     public WizardPrenda() {
         CreadorDePrenda builder = new CreadorDePrenda();
         pasos = Lists.newArrayList(
-            new FormularioPrendaPaso1(builder),
-            new FormularioPrendaPaso2(builder),
-            new FormularioPrendaPaso3(builder)
+            new FormularioPrendaTipo(builder),
+            new FormularioPrendaDetalles(builder),
+            new FormularioPrendaGuardar(builder)
         );
     }
 

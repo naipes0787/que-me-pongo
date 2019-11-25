@@ -1,5 +1,6 @@
 package quemepongo.server;
 
+import com.google.common.collect.Lists;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import quemepongo.dominio.evento.Evento;
@@ -10,6 +11,7 @@ import quemepongo.dominio.guardarropa.Guardarropa;
 import quemepongo.dominio.prenda.*;
 import quemepongo.dominio.usuario.Usuario;
 import quemepongo.persistencia.RepositorioGuardarropa;
+import quemepongo.persistencia.RepositorioTipoPrenda;
 import quemepongo.persistencia.RepositorioUsuario;
 
 import java.time.LocalDateTime;
@@ -22,11 +24,17 @@ public class DataInicial implements WithGlobalEntityManager, TransactionalOps {
 
     public void cargar() {
         withTransaction(() -> {
+            cargarTiposDePrenda();
             if (repositorioUsuario.getUsuarios().isEmpty()) {
                 cargarUsuarios();
                 cargarUsuarioConEvento();
             }
         });
+    }
+
+    private void cargarTiposDePrenda() {
+        Lists.newArrayList(ABRIGO, BASE, CALZADO, INFERIOR)
+            .forEach(RepositorioTipoPrenda.instancia()::guardar);
     }
 
     private void cargarUsuarios() {

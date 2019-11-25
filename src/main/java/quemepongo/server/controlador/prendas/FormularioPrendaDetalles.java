@@ -1,5 +1,6 @@
 package quemepongo.server.controlador.prendas;
 
+import org.apache.commons.lang3.StringUtils;
 import quemepongo.dominio.prenda.Color;
 import quemepongo.dominio.prenda.CreadorDePrenda;
 import quemepongo.dominio.prenda.Material;
@@ -10,12 +11,11 @@ import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class FormularioPrendaPaso2 extends FormularioPrenda {
+public class FormularioPrendaDetalles extends FormularioPrenda {
 
-    public FormularioPrendaPaso2(CreadorDePrenda creadorPrenda) {
+    public FormularioPrendaDetalles(CreadorDePrenda creadorPrenda) {
         super(2, creadorPrenda);
     }
 
@@ -35,8 +35,11 @@ public class FormularioPrendaPaso2 extends FormularioPrenda {
     public void guardar(Request req, Response res) {
         creadorPrenda
             .setMaterial(Material.valueOf(req.queryParams("material")))
-            .setColorPrincipal(Color.valueOf(req.queryParams("color_principal")))
-            .setColorSecundario(Optional.ofNullable(req.queryParams("color_secundario")).map(Color::valueOf).orElse(null));
+            .setColorPrincipal(Color.valueOf(req.queryParams("color_principal")));
+
+        if (StringUtils.isNotBlank(req.queryParams("color_secundario"))){
+            creadorPrenda.setColorSecundario(Color.valueOf(req.queryParams("color_secundario")));
+        }
     }
 
     @Override

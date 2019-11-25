@@ -2,7 +2,6 @@ package quemepongo.dominio.prenda;
 
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.FilenameUtils;
 import quemepongo.excepcion.PathInvalidoException;
 
 import javax.imageio.ImageIO;
@@ -16,25 +15,23 @@ public class Imagen {
     private static final Integer ALTO_FOTO = 200;
     public static final Imagen PRENDA_DESCONOCIDA = new Imagen("./src/main/resources/public/prenda_desconocida.png");
 
-    private File archivo;
-    private BufferedImage imagen;
+    private BufferedImage normalizada;
 
-    public Imagen(String pathOriginal) {
-        archivo = validar(pathOriginal);
-        imagen = normalizar(archivo);
+    public Imagen(String path) {
+        normalizada = normalizar(archivo(path));
     }
 
-    public static File validar(String path) {
-        File archivoOriginal = new File(path);
-        if (!archivoOriginal.exists()) {
+    private static File archivo(String path) {
+        File archivo = new File(path);
+        if (!archivo.exists()) {
             throw new PathInvalidoException(path);
         }
-        return archivoOriginal;
+        return archivo;
     }
 
     private BufferedImage normalizar(File archivo) {
         try {
-            return Thumbnails.of(ImageIO.read(archivo)).forceSize(ANCHO_FOTO, ALTO_FOTO).asBufferedImage();
+            return Thumbnails.of(archivo).forceSize(ANCHO_FOTO, ALTO_FOTO).asBufferedImage();
         } catch (IOException e) {
             throw new RuntimeException("Error al normalizar la foto", e);
         }
@@ -44,16 +41,15 @@ public class Imagen {
     public String toString() {
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
-            String extension = FilenameUtils.getExtension(archivo.getName());
-            ImageIO.write(imagen, extension, os);
+            ImageIO.write(normalizada, "png", os);
             return new String(Base64.encodeBase64(os.toByteArray()));
         } catch (IOException e) {
             throw new RuntimeException("Error al codificar la imagen", e);
         }
     }
 
-    public BufferedImage getImagen() {
-        return imagen;
+    public BufferedImage getNormalizada() {
+        return normalizada;
     }
 
 }
