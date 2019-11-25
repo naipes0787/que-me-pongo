@@ -44,6 +44,14 @@ div.home {
     margin: 30px 20px 50px 20px;
 }
 
+img.card-img-top {
+    margin-top: 20px;
+}
+
+li.item-guardarropas {
+    text-align: center;
+}
+
 div.footer-calendario {
     margin: 30px 20px 50px 20px;
 }
