@@ -1,21 +1,27 @@
 {{#partial "contenido"}}
 
     <h2 class="titulo-pagina">
-        Usuario: {{ username }}
+        Guardarropas:
     </h2>
-    <div class="container-fluid">
 
+    <div class="container-fluid">
         <div class="row">
             {{#each guardarropas}}
-                <div class="card-deck col-sm-4">
-                    <div class="card mx-3 my-3">
-                        <div class="card-body">
-                            <a class="btn btn-info" href="/guardarropas/{{id}}/prendas">
-                                <h2>{{nombre}}</h2>
-                            </a>
-                        </div>
+            <div class="card-deck col-sm-3">
+                <div class="card mx-3 my-3">
+                    <div class="card-header">{{nombre}}</div>
+                    <img src="/guardarropas.jpg" alt="{{ nombre }}" class="card-img-top"/>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item item-guardarropas">
+                                <a class="btn btn-info" href="/guardarropas/{{id}}/prendas">
+                                    Ver prendas
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </div>
             {{/each}}
         </div>
     </div>

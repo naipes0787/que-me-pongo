@@ -17,19 +17,19 @@ import java.util.stream.Collectors;
 public class Atuendo extends Entidad {
 
     @ManyToOne
-    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @Cascade({CascadeType.ALL})
     private CombinacionPrenda prendasSuperiores;
 
     @ManyToOne
-    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @Cascade({CascadeType.ALL})
     private CombinacionPrenda prendaInferior;
 
     @ManyToOne
-    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @Cascade({CascadeType.ALL})
     private CombinacionPrenda calzado;
 
     @ManyToOne
-    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @Cascade({CascadeType.ALL})
     private CombinacionPrenda accesorio;
 
     @Transient
