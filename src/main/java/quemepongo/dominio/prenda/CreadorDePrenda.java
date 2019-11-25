@@ -40,6 +40,7 @@ public class CreadorDePrenda {
 	}
 	
     public CreadorDePrenda setUrlFoto(String urlFoto) {
+		Imagen.validar(urlFoto);
 		this.urlFoto = urlFoto;
 		return this;
     }

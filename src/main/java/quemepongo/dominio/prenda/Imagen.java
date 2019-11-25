@@ -18,10 +18,11 @@ public class Imagen {
     private BufferedImage normalizada;
 
     public Imagen(String path) {
-        normalizada = normalizar(archivo(path));
+        File archivo = validar(path);
+        normalizada = normalizar(archivo);
     }
 
-    private static File archivo(String path) {
+    public static File validar(String path) {
         File archivo = new File(path);
         if (!archivo.exists()) {
             throw new PathInvalidoException(path);
