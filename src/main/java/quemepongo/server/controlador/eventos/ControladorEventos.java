@@ -17,6 +17,7 @@ import spark.Response;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,7 +55,13 @@ public class ControladorEventos {
     public ModelAndView mostrarEvento(Request req, Response res) {
         Evento evento = RepositorioEvento.instancia().buscarEvento(parsearId(req))
                 .orElseThrow(() -> new ControladorException("Evento " + parsearId(req) + " no encontrado"));;
-        return new ModelAndView(evento, "evento_particular.hbs");
+        return new ModelAndView(new HashMap<String, Object>(){{
+            put("id", evento.getId());
+            put("titulo", evento.getTitulo());
+            put("fecha", FechaUtils.formatear(evento.getFecha()));
+            put("lugar", evento.getLugar());
+            put("sugerenciaAceptada", evento.getSugerenciaAceptada());
+        }}, "evento_particular.hbs");
     }
 
     public ModelAndView eventosByUsuarioId(Request req, Response res) {

@@ -32,6 +32,8 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
             (e, req, res) -> {
                 logger.error("Ocurrió un error", e);
                 rollbackTransaction();
+                res.status(500);
+                res.redirect("/error");
             }
         );
 
@@ -43,7 +45,8 @@ public class Server implements WithGlobalEntityManager, TransactionalOps {
                 new RutasQuienesSomos(),
                 new RutasEventos(),
                 new RutasPrendas(),
-                new RutasSugerencias()
+                new RutasSugerencias(),
+                new RutasError()
         ).forEach(Rutas::registrar);
     }
 

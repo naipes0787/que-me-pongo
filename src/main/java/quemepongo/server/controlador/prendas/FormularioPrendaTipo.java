@@ -14,15 +14,15 @@ import java.util.stream.Collectors;
 
 public class FormularioPrendaTipo extends FormularioPrenda {
 
-    public FormularioPrendaTipo(CreadorDePrenda creadorPrenda) {
-        super(1, creadorPrenda);
+    public FormularioPrendaTipo() {
+        super(1);
     }
 
     @Override
-    protected Map<String, Object> datosVista(Request req) {
+    protected Map<String, Object> datosVista(Request req, CreadorDePrenda borradorPrenda) {
         return new HashMap<String, Object>() {{
-            put("tipos", opciones(creadorPrenda.getTipoPrenda(), RepositorioTipoPrenda.instancia().getTipos()));
-            put("tipoSeleccionado", creadorPrenda.getTipoPrenda());
+            put("tipos", opciones(borradorPrenda.getTipoPrenda(), RepositorioTipoPrenda.instancia().getTipos()));
+            put("tipoSeleccionado", borradorPrenda.getTipoPrenda());
         }};
     }
 
@@ -34,14 +34,14 @@ public class FormularioPrendaTipo extends FormularioPrenda {
     }
 
     @Override
-    public void guardar(Request req, Response res) {
-        creadorPrenda.setTipoPrenda(
+    public void guardar(Request req, CreadorDePrenda borradorPrenda) {
+        borradorPrenda.setTipoPrenda(
             RepositorioTipoPrenda.instancia().buscarPorId(Long.valueOf(req.queryParams("tipo")))
         );
     }
 
     @Override
-    public void siguiente(Request req, Response res) {
+    public void avanzar(Request req, Response res) {
         res.redirect(urlPaso(req, 2));
     }
 }

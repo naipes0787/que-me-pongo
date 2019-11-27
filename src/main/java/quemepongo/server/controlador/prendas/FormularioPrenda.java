@@ -13,24 +13,22 @@ import static quemepongo.util.RequestUtils.parsearId;
 public abstract class FormularioPrenda {
 
     private int paso;
-    protected CreadorDePrenda creadorPrenda;
 
-    public FormularioPrenda(int pasoActual, CreadorDePrenda builder) {
+    public FormularioPrenda(int pasoActual) {
         this.paso = pasoActual;
-        this.creadorPrenda = builder;
     }
 
-    public ModelAndView vista(Request req) {
-        Map<String, Object> datosVista = datosVista(req);
+    public ModelAndView vista(Request req, CreadorDePrenda borradorPrenda) {
+        Map<String, Object> datosVista = datosVista(req, borradorPrenda);
         datosVista.put("guardarropaId", parsearId(req));
         return new ModelAndView(datosVista, "wizard_prenda/wizard_prenda_paso_" + paso + ".hbs");
     }
 
-    protected abstract Map<String, Object> datosVista(Request req);
+    protected abstract Map<String, Object> datosVista(Request req, CreadorDePrenda borradorPrenda);
 
-    public abstract void guardar(Request req, Response res);
+    public abstract void guardar(Request req, CreadorDePrenda borradorPrenda);
 
-    public abstract void siguiente(Request req, Response res);
+    public abstract void avanzar(Request req, Response res);
 
     public int getPaso() {
         return paso;

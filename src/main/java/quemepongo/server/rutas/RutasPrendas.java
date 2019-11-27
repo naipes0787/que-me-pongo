@@ -1,11 +1,14 @@
 package quemepongo.server.rutas;
 
-import quemepongo.server.controlador.prendas.ControladorPrendas;
+import quemepongo.persistencia.RepositorioGuardarropa;
+import quemepongo.server.controlador.prendas.ControladorWizardPrenda;
+
+import static quemepongo.util.RequestUtils.parsearId;
 import static spark.Spark.*;
 
 public class RutasPrendas extends Rutas {
 
-    private ControladorPrendas controladorPrendas = new ControladorPrendas();
+    private ControladorWizardPrenda controladorPrendas = new ControladorWizardPrenda();
 
     @Override
     public void registrar() {
@@ -15,6 +18,9 @@ public class RutasPrendas extends Rutas {
 
         post(RutasConstantes.PRENDAS_URL,
                 controladorPrendas::guardar);
+
+        before(RutasConstantes.FORMULARIO_ALTA_PRENDAS,
+                (req, res) -> RepositorioGuardarropa.instancia().buscarPorId(parsearId(req)));
 
     }
 }

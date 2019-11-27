@@ -6,6 +6,7 @@ import quemepongo.dominio.usuario.Usuario;
 import quemepongo.persistencia.RepositorioGuardarropa;
 import quemepongo.server.rutas.RutasConstantes;
 import quemepongo.util.MultipartFormData;
+import quemepongo.util.RepositorioImagenes;
 import spark.Request;
 import spark.Response;
 
@@ -17,31 +18,33 @@ import static quemepongo.util.RequestUtils.parsearId;
 
 public class FormularioPrendaGuardar extends FormularioPrenda {
 
-    public FormularioPrendaGuardar(CreadorDePrenda creadorPrenda) {
-        super(3, creadorPrenda);
+    public FormularioPrendaGuardar() {
+        super(3);
     }
 
     @Override
-    protected Map<String, Object> datosVista(Request req) {
+    protected Map<String, Object> datosVista(Request req, CreadorDePrenda borradorPrenda) {
         return new HashMap<>();
     }
 
     @Override
-    public void guardar(Request req, Response res) {
+    public void guardar(Request req, CreadorDePrenda borradorPrenda) {
         MultipartFormData data = new MultipartFormData(req);
-        creadorPrenda.setNombre(data.get("nombre"));
+        borradorPrenda.setNombre(data.get("nombre"));
+
         if (data.get("foto") != null) {
-            creadorPrenda.setUrlFoto(data.get("foto"));
+            String urlFoto = RepositorioImagenes.instancia().subir(data.get("foto"));
+            borradorPrenda.setUrlFoto(urlFoto);
         }
         Usuario usuario = obtenerUsuario(req);
         Guardarropa guardarropa = RepositorioGuardarropa.instancia().buscarPorId(parsearId(req));
-        usuario.agregarPrenda(creadorPrenda.build(), guardarropa);
+        usuario.agregarPrenda(borradorPrenda.build(), guardarropa);
     }
 
     @Override
-    public void siguiente(Request req, Response res) {
-        req.session().removeAttribute("wizard_prenda");
+    public void avanzar(Request req, Response res) {
+        req.session().removeAttribute("borrador_prenda");
         res.status(201);
-        res.redirect(RutasConstantes.HOME_URL);
+        res.redirect(RutasConstantes.PRENDAS_URL.replace(":id", req.params("id")));
     }
 }

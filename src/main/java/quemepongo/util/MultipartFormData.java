@@ -18,7 +18,7 @@ public class MultipartFormData {
                 if (item.isFormField()) {
                     data.put(item.getFieldName(), item.getString());
                 } else if (item.getSize() > 0) {
-                    data.put(item.getFieldName(), RepositorioImagenes.instancia().subir(item));
+                    data.put(item.getFieldName(), item);
                 }
             });
         } catch (Exception e) {

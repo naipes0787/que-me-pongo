@@ -15,35 +15,35 @@ import java.util.stream.Collectors;
 
 public class FormularioPrendaDetalles extends FormularioPrenda {
 
-    public FormularioPrendaDetalles(CreadorDePrenda creadorPrenda) {
-        super(2, creadorPrenda);
+    public FormularioPrendaDetalles() {
+        super(2);
     }
 
     @Override
-    protected Map<String, Object> datosVista(Request req) {
+    protected Map<String, Object> datosVista(Request req, CreadorDePrenda borradorPrenda) {
         return new HashMap<String, Object>() {{
-            put("materiales", opciones(creadorPrenda.getMaterial(), creadorPrenda.getTipoPrenda().getMaterialesValidos()));
-            put("coloresPrincipales", opciones(creadorPrenda.getColorPrincipal(), Color.getTodos()));
-            put("coloresSecundarios", opciones(creadorPrenda.getColorSecundario(), Color.getTodos()));
-            put("materialSeleccionado", creadorPrenda.getMaterial());
-            put("colorPrincipalSeleccionado", creadorPrenda.getColorPrincipal());
-            put("colorSecundarioSeleccionado", creadorPrenda.getColorSecundario());
+            put("materiales", opciones(borradorPrenda.getMaterial(), borradorPrenda.getTipoPrenda().getMaterialesValidos()));
+            put("coloresPrincipales", opciones(borradorPrenda.getColorPrincipal(), Color.getTodos()));
+            put("coloresSecundarios", opciones(borradorPrenda.getColorSecundario(), Color.getTodos()));
+            put("materialSeleccionado", borradorPrenda.getMaterial());
+            put("colorPrincipalSeleccionado", borradorPrenda.getColorPrincipal());
+            put("colorSecundarioSeleccionado", borradorPrenda.getColorSecundario());
         }};
     }
 
     @Override
-    public void guardar(Request req, Response res) {
-        creadorPrenda
+    public void guardar(Request req, CreadorDePrenda borradorPrenda) {
+        borradorPrenda
             .setMaterial(Material.valueOf(req.queryParams("material")))
             .setColorPrincipal(Color.valueOf(req.queryParams("color_principal")));
 
         if (StringUtils.isNotBlank(req.queryParams("color_secundario"))){
-            creadorPrenda.setColorSecundario(Color.valueOf(req.queryParams("color_secundario")));
+            borradorPrenda.setColorSecundario(Color.valueOf(req.queryParams("color_secundario")));
         }
     }
 
     @Override
-    public void siguiente(Request req, Response res) {
+    public void avanzar(Request req, Response res) {
         res.redirect(urlPaso(req,3));
     }
 

@@ -33,6 +33,9 @@ public class DataInicial implements WithGlobalEntityManager, TransactionalOps {
     }
 
     private void cargarTiposDePrenda() {
+        if (!RepositorioTipoPrenda.instancia().getTipos().isEmpty()) {
+            return;
+        }
         Lists.newArrayList(ABRIGO, BASE, CALZADO, INFERIOR)
             .forEach(RepositorioTipoPrenda.instancia()::guardar);
     }
