@@ -15,6 +15,8 @@ Categoria y listado de materiales validos que corresponde.
 @Entity
 public class TipoPrenda extends Entidad {
 
+    private String nombre;
+
     @Enumerated
     @Column(columnDefinition = "smallint")
     public Categoria categoria;
@@ -42,14 +44,15 @@ public class TipoPrenda extends Entidad {
     }
 
     public static TipoPrenda diseniarTipo(FabricaTipoPrenda tipo) {
-        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), Sets.newHashSet());
+        return new TipoPrenda(tipo.getNombre(), tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), Sets.newHashSet());
     }
 
     public static TipoPrenda diseniarTipo(FabricaTipoPrenda tipo, Set<FactorClimatico> aptoPara) {
-        return new TipoPrenda(tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), aptoPara);
+        return new TipoPrenda(tipo.getNombre(), tipo.getCategoria(), tipo.getMaterialesValidos(), tipo.getNivelAbrigo(), tipo.getCapa(), aptoPara);
     }
 
-    public TipoPrenda(Categoria categoria, Set<Material> materialesValidos, double nivelAbrigo, Capa capa, Set<FactorClimatico> aptoPara) {
+    public TipoPrenda(String nombre, Categoria categoria, Set<Material> materialesValidos, double nivelAbrigo, Capa capa, Set<FactorClimatico> aptoPara) {
+        this.nombre = nombre;
         this.categoria = categoria;
         this.materialesValidos = materialesValidos;
         this.nivelAbrigo = nivelAbrigo;
@@ -75,5 +78,9 @@ public class TipoPrenda extends Entidad {
 
     public boolean esAptoPara(FactorClimatico factorClimatico) {
         return aptoPara.contains(factorClimatico);
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }

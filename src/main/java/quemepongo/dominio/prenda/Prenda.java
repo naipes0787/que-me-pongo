@@ -1,7 +1,5 @@
 package quemepongo.dominio.prenda;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import quemepongo.dominio.Entidad;
 import quemepongo.dominio.FactorClimatico;
 
@@ -14,7 +12,6 @@ public class Prenda extends Entidad {
 
     @ManyToOne
     @JoinColumn(name = "tipo_prenda_id")
-    @Cascade({CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	private TipoPrenda tipo;
 
     @Enumerated
@@ -42,6 +39,10 @@ public class Prenda extends Entidad {
 
     public Categoria getCategoria(){
         return this.tipo.getCategoria();
+    }
+
+    public TipoPrenda getTipo(){
+        return this.tipo;
     }
 
     public double getNivelAbrigo() {

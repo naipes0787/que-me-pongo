@@ -37,4 +37,9 @@ public class FabricadorTipoInferior extends FabricaTipoPrenda {
     	return Capa.BASE;
     }
 
+    @Override
+    public String getNombre() {
+        return "Parte inferior";
+    }
+
 }

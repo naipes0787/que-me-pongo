@@ -2,6 +2,8 @@ package quemepongo.persistencia;
 
 import quemepongo.dominio.guardarropa.Guardarropa;
 
+import java.util.Optional;
+
 public class RepositorioGuardarropa extends Repositorio<Guardarropa> {
 
     private static RepositorioGuardarropa instancia = new RepositorioGuardarropa();
@@ -12,8 +14,8 @@ public class RepositorioGuardarropa extends Repositorio<Guardarropa> {
         return instancia;
     }
 
-    public Guardarropa get(Long id) {
-        return find(Guardarropa.class, id);
+    public Guardarropa buscarPorId(Long id) {
+        return Optional.ofNullable(find(Guardarropa.class, id)).orElseThrow(() -> new RuntimeException("Guardarropa no encontrado"));
     }
 
 }

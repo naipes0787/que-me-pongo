@@ -1,0 +1,41 @@
+{{#partial "contenido"}}
+    <div class="mb-5 pb-5">
+        <div class="form-inline pt-5 pb-5 ml-5">
+            <div class="text-center mr-3 ml-3">
+                <span class="active step">1</span>
+                <span class="text-center" style="display:block">Tipo</span>
+            </div>
+            <div class="connecting-line"></div>
+            <div class="text-center mr-3 ml-3">
+                <span class="step">2</span>
+                <span class="text-center" style="display:block">Características</span>
+            </div>
+            <div class="connecting-line"></div>
+            <div class="text-center mr-3 ml-3">
+                <span class="step">3</span>
+                <span class="text-center" style="display:block">Guardar</span>
+            </div>
+        </div>
+
+        <form class="col-md-8 ml-5" action="/guardarropas/{{guardarropaId}}/prendas?paso=1" method="post">
+            <h2 class="titulo-form">
+                ¿Qué tipo de prenda es?
+            </h2>
+            <div class="form-group">
+                <select class="form-control" id="tipo" name="tipo" required="required">
+                    {{#if tipoSeleccionado}}
+                        <option value="{{tipoSeleccionado.id}}" selected>{{tipoSeleccionado.nombre}}</option>
+                    {{else}}
+                        <option value="" style="display: none;" selected>Elegir...</option>
+                    {{/if}}
+                    {{#each tipos}}
+                        <option value="{{id}}">{{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Siguiente</button>
+        </form>
+    </div>
+{{/partial}}
+
+{{>layout.hbs}}

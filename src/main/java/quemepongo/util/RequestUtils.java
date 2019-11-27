@@ -1,21 +1,21 @@
-package quemepongo.server.controlador;
+package quemepongo.util;
 
 import quemepongo.dominio.usuario.Usuario;
 import quemepongo.excepcion.ControladorException;
 import quemepongo.persistencia.RepositorioUsuario;
 import spark.Request;
 
-public interface Controlador {
+public class RequestUtils {
 
-    default Long parsearId(Request req) {
+    public static Long parsearId(Request req) {
         return Long.parseLong(req.params("id"));
     }
 
-    default Long obtenerIdActivo(Request req) {
+    public static Long obtenerIdActivo(Request req) {
         return req.session().attribute("id");
     }
 
-    default Usuario obtenerUsuario(Request req) {
+    public static Usuario obtenerUsuario(Request req) {
         return RepositorioUsuario.instancia().getUsuarioByUsername(req.session().attribute("user"))
                 .orElseThrow(() -> new ControladorException("Usuario no encontrado"));
     }

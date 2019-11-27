@@ -6,7 +6,9 @@ import spark.Response;
 
 import java.util.HashMap;
 
-public class ControladorHome implements Controlador {
+import static quemepongo.util.RequestUtils.obtenerUsuario;
+
+public class ControladorHome {
 
     public ModelAndView homepage(Request req, Response res) {
         return new ModelAndView(obtenerUsuario(req), "home.hbs");

@@ -3,6 +3,9 @@
 *.iml
 .ipr
 
+## Directorio de uploads
+imagenes_subidas
+
 ### Eclipse ###
 .metadata
 bin/

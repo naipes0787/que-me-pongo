@@ -25,7 +25,7 @@
             <property name="hibernate.archive.autodetection" value="class"/>
 
 <!--            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />-->
-<!--            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/quemepongo" />-->
+<!--            <property name="hibernate.connection.urlPaso" value="jdbc:postgresql://localhost:5432/quemepongo" />-->
 <!--            <property name="hibernate.connection.username" value="userdb" />-->
 <!--            <property name="hibernate.connection.password" value="mypass" />-->
 <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>-->

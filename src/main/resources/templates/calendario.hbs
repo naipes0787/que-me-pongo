@@ -1,8 +1,7 @@
 {{#partial "contenido"}}
 
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
     {{#each eventos}}
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <div class="container">
         <div class="row row-striped">
         <div class="col-2 text-right">
@@ -22,10 +21,11 @@
         </div>
         </div>
     {{else}}
-        <div class="container" style="height: 250px;">
+        <div class="container mt-5 pt-5" style="height: 250px;">
             <div class="alert alert-dark col-md-8 col-xs-12">
-                En este momento no ten&eacute;s eventos, pod&eacute;s crear uno desde <a href="/eventos/creacion">este enlace</a>
+                En este momento no ten&eacute;s eventos
             </div>
+            <a class="btn btn-primary" href="/eventos/creacion">Crear un evento</a>
         </div>
     {{/each}}
     <div class="footer-calendario">

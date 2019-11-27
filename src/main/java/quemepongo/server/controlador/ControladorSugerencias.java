@@ -13,8 +13,10 @@ import spark.Response;
 import java.util.ArrayList;
 
 import static quemepongo.server.rutas.RutasConstantes.EVENTO_URL;
+import static quemepongo.util.RequestUtils.obtenerUsuario;
+import static quemepongo.util.RequestUtils.parsearId;
 
-public class ControladorSugerencias implements Controlador {
+public class ControladorSugerencias {
 
     public ModelAndView obtenerAtuendos(Request req, Response res) {
         Evento evento = this.obtenerEvento(req);

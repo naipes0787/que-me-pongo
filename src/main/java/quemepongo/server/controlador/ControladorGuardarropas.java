@@ -6,10 +6,12 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class ControladorGuardarropas implements Controlador {
+import static quemepongo.util.RequestUtils.parsearId;
+
+public class ControladorGuardarropas {
 
     public ModelAndView prendasByGuardarropaId(Request req, Response res) {
-        Guardarropa guardarropa = RepositorioGuardarropa.instancia().get(parsearId(req));
+        Guardarropa guardarropa = RepositorioGuardarropa.instancia().buscarPorId(parsearId(req));
         return new ModelAndView(guardarropa, "guardarropa.hbs");
     }
 

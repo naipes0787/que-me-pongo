@@ -5,7 +5,6 @@ import quemepongo.dominio.calificacion.Puntuacion;
 import quemepongo.dominio.calificacion.TipoCalificacion;
 import quemepongo.dominio.sugerencia.Atuendo;
 import quemepongo.persistencia.RepositorioAtuendo;
-import quemepongo.server.controlador.Controlador;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -14,8 +13,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static quemepongo.server.rutas.RutasConstantes.ATUENDOS_URL;
+import static quemepongo.util.RequestUtils.obtenerUsuario;
+import static quemepongo.util.RequestUtils.parsearId;
 
-public class ControladorCalificacion implements Controlador {
+public class ControladorCalificacion {
 
     public ModelAndView mostrarFormulario(Request req, Response res) {
         Atuendo atuendo = buscarAtuendo(req);

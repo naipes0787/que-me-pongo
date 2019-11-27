@@ -17,4 +17,8 @@ public class FechaUtils {
         return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                 .atTime(hora, minutos);
     }
+
+    public static String formatear(LocalDateTime fecha) {
+        return fecha.format(DateTimeFormatter.ofPattern("d 'de' MMM 'de' YYYY '-' HH:mm 'hs.'"));
+    }
 }
