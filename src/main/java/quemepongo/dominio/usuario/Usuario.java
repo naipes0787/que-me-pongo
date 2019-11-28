@@ -119,7 +119,7 @@ public class Usuario extends Entidad {
         return sensibilidad.getSensibilidadClima();
     }
 
-    public double obtenerNivelDeAbrigo(Temperatura temperatura) {
+    private double obtenerNivelDeAbrigo(Temperatura temperatura) {
         return temperatura.convertirANivelDeAbrigo() * getSensibilidadClima();
     }
 
