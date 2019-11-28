@@ -5,8 +5,11 @@
             <div class="card-deck col-sm-3">
                 <div class="card mx-3 my-3">
                     <div class="card-header">{{nombre}}</div>
-                    <img src="data:image/png;base64, {{foto}}" alt="{{ nombre }}" class="card-img-top"/>
-
+                    {{#if foto}}
+                        <img src="data:image/png;base64, {{foto}}" alt="{{ nombre }}" class="card-img-top"/>
+                    {{else}}
+                        <img src="/prenda_desconocida.png" alt="{{ nombre }}" class="card-img-top"/>
+                    {{/if}}
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Color: {{ colorPrincipal.nombre }}</li>

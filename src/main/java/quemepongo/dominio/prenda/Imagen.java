@@ -13,7 +13,6 @@ import java.io.IOException;
 public class Imagen {
     private static final Integer ANCHO_FOTO = 200;
     private static final Integer ALTO_FOTO = 200;
-    public static final Imagen PRENDA_DESCONOCIDA = new Imagen("./src/main/resources/public/prenda_desconocida.png");
 
     private BufferedImage normalizada;
 
