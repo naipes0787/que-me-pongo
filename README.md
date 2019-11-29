@@ -36,4 +36,11 @@ Para poder realizar el deploy en Heroku se deberán seguir los siguientes pasos:
 https://www.lucidchart.com/invitations/accept/ff3ffe0e-75bf-4900-a7fc-a4db119df8ee
 
 ### Diagrama de clases:
-https://www.lucidchart.com/invitations/accept/24ede451-befc-456d-b021-42805038e22e
+https://www.lucidchart.com/documents/edit/dd0ff97c-62b7-4ae2-a344-fee8c6916696/0_0
+
+### Diagrama de arquitectura:
+https://www.lucidchart.com/documents/edit/ad10a7cf-d85c-4c3d-b7a2-79c33e8c8c15
+
+### Diagrama de arquitectura caché:
+https://www.lucidchart.com/documents/edit/fa18521a-a0a0-4d09-8307-af4abc9bae1d/0_0
+https://www.lucidchart.com/documents/edit/e3f79d9f-cda3-4cc0-bd91-b2026b1dcef2/7ezayB~FQlW7
