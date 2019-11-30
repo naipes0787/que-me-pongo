@@ -9,7 +9,7 @@ import quemepongo.servicio.clima.SelectorDeProveedorDeClima;
 
 import java.util.List;
 
-class ComprobadorDeAlertas extends ProcesadorDeEventosProximos {
+public class ComprobadorDeAlertas extends ProcesadorDeEventosProximos {
 
     private ApiDeClima proovedorDeClima = SelectorDeProveedorDeClima.getInstancia().getProovedorDeClima();
 
